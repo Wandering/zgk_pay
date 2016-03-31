@@ -53,36 +53,36 @@ $(function () {
             drawToast(str);
         }
     };
-
-    function captchaValidate() {
-        $('#reg-btn-code').click(function () {
-            var _this = $(this);
-            var regName = $.trim($('#reg-tel').val());
-            if (regName == '' || !Validate.isMobile(regName)) {
-                Validate.msg('手机号码输入有误');
-                return false;
+    $('#reg-btn-code').click(function () {
+        var _this = $(this);
+        captchaValidate(_this);
+    });
+    function captchaValidate(obj) {
+        var regName = $.trim($('#reg-tel').val());
+        if (regName == '' || !Validate.isMobile(regName)) {
+            Validate.msg('手机号码输入有误');
+            return false;
+        }
+        var getCaptchaData = {
+            account: regName,
+            type: 0  //0注册  1找回密码
+        };
+        Util.ajaxFun('/captcha/captcha', 'post', getCaptchaData, function (res) {
+            if (res.rtnCode == '0000000') {
+                obj.attr('disabled', 'disabled');
+                var n = 60;
+                var timer = setTimeout(function () {
+                    n--;
+                    if (n <= 0) {
+                        clearInterval(timer);
+                        obj.removeAttr('disabled');
+                    }
+                    obj.val(n + 's后重新获取');
+                }, 1000);
+            } else {
+                Validate.msg(res.msg);
             }
-            var getCaptchaData = {
-                account: regName,
-                type: 0  //0注册  1找回密码
-            };
-            Util.ajaxFun('/captcha/captcha', 'post', getCaptchaData, function (res) {
-                if (res.rtnCode == '0000000') {
-                    _this.attr('disabled', 'disabled');
-                    var n = 60;
-                    var timer = setTimeout(function () {
-                        n--;
-                        if (n <= 0) {
-                            clearInterval(timer);
-                            _this.removeAttr('disabled');
-                        }
-                        _this.val(n + 's后重新获取');
-                    }, 1000);
-                } else {
-                    Validate.msg(res.msg);
-                }
-            }, '', '');
-        });
+        }, '', '');
     }
 
     $('#reg-submit-btn').click(function () {
