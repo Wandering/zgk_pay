@@ -10,39 +10,39 @@
 <%@ include file="../common/header.jsp"%>
 <div class="container">
     <div class="tab-list">
-        <div class="tab tab-login">登录</div>
-        <div class="tab tab-register active">注册</div>
+        <div class="tab tab-login ">注册</div>
+        <div class="tab tab-register active">登录</div>
     </div>
-    <form class="hidden" id="login" action="">
+    <div class="tab-content " id="login">
         <div class="form-group">
             <div class="input-group">
                 <i class="mobile-icon"></i>
-                <input type="text" placeholder="请输入手机号码"/>
+                <input type="text" placeholder="请输入手机号码" name="tel"/>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
                 <i class="password-icon"></i>
-                <input type="password" placeholder="请输入密码"/>
+                <input type="password" placeholder="请输入密码" name="pwd"/>
             </div>
         </div>
         <div class="reset-password">
             <a>忘记密码？</a>
         </div>
         <div class="form-group">
-            <button class="submit-btn">登录</button>
+            <button class="submit-btn" id="login-submit-btn">登录</button>
         </div>
-    </form>
-    <form id="register" action="">
+    </div>
+    <div id="register" class="tab-content disn">
         <div class="form-group">
             <div class="input-group">
                 <i class="mobile-icon"></i>
-                <input type="text" placeholder="请输入手机号码"/>
+                <input type="text" placeholder="请输入手机号码" id="reg-tel"/>
             </div>
         </div>
         <div class="form-group">
-            <input class="check-code" type="text" placeholder="输入验证码"/>
-            <input type="button" value="获取验证码" />
+            <input class="check-code" type="text" placeholder="输入验证码" id="reg-code"/>
+            <input type="button" value="获取验证码" id="reg-btn-code"/>
         </div>
         <div class="form-group">
             <div class="title">高考报名地区：</div>
@@ -55,30 +55,20 @@
         <div class="form-group">
             <div class="input-group">
                 <i class="password-icon"></i>
-                <input type="password" placeholder="密码"/>
+                <input type="password" placeholder="密码" id="reg-pwd"/>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
                 <i class="password-icon"></i>
-                <input type="password" placeholder="确认密码"/>
+                <input type="password" placeholder="确认密码" id="reg-confirm-pwd"/>
             </div>
         </div>
         <div class="form-group">
-            <button class="submit-btn">注册</button>
+            <button class="submit-btn" id="reg-submit-btn">注册</button>
         </div>
-    </form>
+    </div>
 </div>
-<script>
-    $(function(){
-        $('#header-title').text('注册');
-        $('.tab-list .tab').on('click', function(){
-            $('.tab-list .tab').removeClass('active');
-            $(this).addClass('active');
-            $('form').addClass('hidden');
-            $('form').eq($(this).index()).removeClass('hidden');
-        })
-    })
-</script>
+<script src="<%=ctx%>/static/dist/js/register.min.js"></script>
 </body>
 </html>
