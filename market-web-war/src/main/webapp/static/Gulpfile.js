@@ -11,8 +11,6 @@ var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
 
 
-
-
 var paths = {
     srcCss: './src/assets/css/**/*.css',
     srcImg: './src/assets/img/**/*.png',
@@ -23,13 +21,13 @@ var paths = {
 };
 
 //压缩css
-gulp.task('minifycss', function() {
+gulp.task('minifycss', function () {
     return gulp.src(paths.srcCss)      //压缩的文件
         .pipe(minifycss())   //执行压缩
-    .pipe(gulp.dest(paths.distCss))   //输出文件夹
+        .pipe(gulp.dest(paths.distCss))   //输出文件夹
 });
 
-gulp.task('minifyimg', function(){
+gulp.task('minifyimg', function () {
     return gulp.src(paths.srcImg)
         .pipe(imagemin({
             progressive: true,
@@ -43,9 +41,8 @@ gulp.task('minifyimg', function(){
 });
 
 
-
 //压缩js
-gulp.task('minifyjs', function() {
+gulp.task('minifyjs', function () {
     return gulp.src(paths.srcJs)
         //.pipe(concat('main.js'))    //合并所有js到main.js
         .pipe(rename({suffix: '.min'}))   //rename压缩后的文件名
@@ -55,19 +52,18 @@ gulp.task('minifyjs', function() {
 
 
 // 清空图片、样式、js
-gulp.task('clean', function() {
+gulp.task('clean', function () {
     gulp.src(['./dist'],
         {read: false})
         .pipe(clean());
 });
 
 
-
 var myDevConfig = Object.create(webpackConfig);
 var devCompiler = webpack(myDevConfig);
-gulp.task("build-js", function(callback) {
-    devCompiler.run(function(err, stats) {
-        if(err) throw new gutil.PluginError("webpack:build-js", err);
+gulp.task("build-js", function (callback) {
+    devCompiler.run(function (err, stats) {
+        if (err) throw new gutil.PluginError("webpack:build-js", err);
         gutil.log("[webpack:build-js]", stats.toString({
             colors: true
         }));
@@ -75,30 +71,16 @@ gulp.task("build-js", function(callback) {
     });
 });
 
-gulp.task('watch',function() {
-
-var myDevConfig = Object.create(webpackConfig);
-var devCompiler = webpack(myDevConfig);
-gulp.task("build-js", function(callback) {
-    devCompiler.run(function(err, stats) {
-        if(err) throw new gutil.PluginError("webpack:build-js", err);
-        gutil.log("[webpack:build-js]", stats.toString({
-            colors: true
-        }));
-        callback();
-    });
-});
-
-gulp.task('watch',['build-js'],function() {
+gulp.task('watch',  function () {
     gulp.watch(paths.srcCss, ['minifycss']);
     gulp.watch(paths.srcImg, ['minifyimg']);
-    gulp.watch(paths.srcJs, ['minifyjs']);
+    gulp.watch(paths.srcJs, ['build-js']);
 });
 
 
 // 默认命令
-gulp.task('default',function() {
+gulp.task('default', function () {
     //gulp.start('minifycss', 'minifyimg','minifyjs');
-    gulp.start('minifycss', 'minifyimg','build-js');
+    gulp.start('minifycss', 'minifyimg', 'build-js');
 });
 
