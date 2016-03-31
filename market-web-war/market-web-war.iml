@@ -40,12 +40,12 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: javax.servlet:servlet-api:2.5" level="project" />
     <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.common:thinkjoy-domain-common:0.1.83-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.freemarker:freemarker:2.3.20" level="project" />
     <orderEntry type="library" exported="" name="Gradle: jstl:jstl:1.2" level="project" />
     <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.jx:jx-auth-common:0.0.9-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.mock:mock-scan:1.0.3-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: javax.servlet:servlet-api:2.5" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-webmvc:4.1.0.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.utils:core:0.0.3-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="Gradle: commons-lang:commons-lang:2.6" level="project" />
