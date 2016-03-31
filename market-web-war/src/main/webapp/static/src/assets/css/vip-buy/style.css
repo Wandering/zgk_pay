@@ -1,11 +1,3 @@
-/**
- * PgwModal - Version 2.0
- *
- * Copyright 2014, Jonathan M. Piat
- * http://pgwjs.com - http://pagawa.com
- *
- * Released under the GNU GPLv3 license - http://opensource.org/licenses/gpl-3.0
- */
 body.pgwModalOpen {
   overflow: hidden;
 }
@@ -92,20 +84,24 @@ header {
   position: relative;
   overflow: hidden;
 }
+
 header .header-title {
   padding-left: 46px;
 }
+
 header .header-btn {
   position: absolute;
   height: 25px;
   top: 6px;
   left: 9px;
 }
+
 header .location {
   font-size: 12px;
   vertical-align: 2px;
   margin-left: 1px;
 }
+
 header .location.location-icon:before {
   vertical-align: -6px;
   margin-right: 4px;
@@ -116,10 +112,12 @@ header .location.location-icon:before {
   font-size: 14px;
   color: #575757;
 }
+
 .description .title {
   text-align: center;
   font-size: 12px;
 }
+
 .description .content {
   margin-top: 18px;
   font-size: 12px;
@@ -130,9 +128,11 @@ header .location.location-icon:before {
   text-align: center;
   position: relative;
 }
+
 .vip-check-info img {
   width: 168px;
 }
+
 .vip-check-info .text {
   position: absolute;
   top: 2px;

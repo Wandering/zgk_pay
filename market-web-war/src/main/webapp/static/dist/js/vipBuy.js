@@ -40,24 +40,35 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(1);
+	__webpack_require__(10);
+
 
 	$(function(){
+	    $('#header-title').text('订单');
 	    $('.vip-buy-btn').on('click', function(){
-	        alert(88)
 	        $.pgwModal({
 	            title: '订单确认',
 	            content: $('.modal').html()
 	        });
 	    });
-	})
+
+
+	    /* 代理商后台价格接口 */
+	    var princeUrl = 'http://10.254.130.33:8080/system/agent/getAgentInfo.do?accountId=13';
+	    $.getJSON(princeUrl,function(res){
+	        console.log(princeUrl)
+	    })
+
+	});
 
 /***/ },
-/* 1 */
+
+/***/ 10:
 /***/ function(module, exports) {
 
 	/**
@@ -72,4 +83,5 @@
 
 
 /***/ }
-/******/ ]);
+
+/******/ });
