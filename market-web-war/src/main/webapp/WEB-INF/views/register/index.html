@@ -5,14 +5,6 @@
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="../../../dist/css/register/style.css"/>
-    <style>
-        /*header,*/
-        /*.container {*/
-            /*position: relative;*/
-            /*z-index: 9;*/
-            /*opacity: 0.6;*/
-        /*}*/
-    </style>
 </head>
 <body>
 <!--<img src="register.png" style="position: absolute;width: 100%;top: -51px;"/>-->
@@ -31,8 +23,8 @@
 </header>
 <div class="container">
     <div class="tab-list">
-        <div class="tab tab-login">登录</div>
-        <div class="tab tab-register active">注册</div>
+        <div class="tab tab-login active">登录</div>
+        <div class="tab tab-register">注册</div>
     </div>
     <form class="hidden" id="login" action="">
         <div class="form-group">
@@ -90,17 +82,6 @@
         </div>
     </form>
 </div>
-<script src="../../../assets/js/jquery-2.2.2.min.js"></script>
-<script>
-    $(function(){
-        $('.tab-list .tab').on('click', function(){
-            $('.tab-list .tab').removeClass('active');
-            $(this).addClass('active');
-
-            $('form').addClass('hidden');
-            $('form').eq($(this).index()).removeClass('hidden');
-        })
-    })
-</script>
+<script src="../../../static/src/lib/jquery/jquery-2.2.2.min.js"></script>
 </body>
 </html>

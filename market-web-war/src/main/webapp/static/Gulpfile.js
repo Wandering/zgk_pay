@@ -25,8 +25,8 @@ var paths = {
 //压缩css
 gulp.task('minifycss', function() {
     return gulp.src(paths.srcCss)      //压缩的文件
-        .pipe(gulp.dest(paths.distCss))   //输出文件夹
-        .pipe(minifycss());   //执行压缩
+        .pipe(minifycss())   //执行压缩
+    .pipe(gulp.dest(paths.distCss))   //输出文件夹
 });
 
 gulp.task('minifyimg', function(){
@@ -75,10 +75,24 @@ gulp.task("build-js", function(callback) {
     });
 });
 
+gulp.task('watch',function() {
+
+var myDevConfig = Object.create(webpackConfig);
+var devCompiler = webpack(myDevConfig);
+gulp.task("build-js", function(callback) {
+    devCompiler.run(function(err, stats) {
+        if(err) throw new gutil.PluginError("webpack:build-js", err);
+        gutil.log("[webpack:build-js]", stats.toString({
+            colors: true
+        }));
+        callback();
+    });
+});
+
 gulp.task('watch',['build-js'],function() {
     gulp.watch(paths.srcCss, ['minifycss']);
     gulp.watch(paths.srcImg, ['minifyimg']);
-    //gulp.watch(paths.srcJs, ['minifyjs']);
+    gulp.watch(paths.srcJs, ['minifyjs']);
 });
 
 
