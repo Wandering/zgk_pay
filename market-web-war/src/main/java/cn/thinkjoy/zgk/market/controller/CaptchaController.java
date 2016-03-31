@@ -1,6 +1,5 @@
 package cn.thinkjoy.zgk.market.controller;
 
-import cn.thinkjoy.cloudstack.dynconfig.DynConfigClientFactory;
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.push.domain.sms.SMSCheckCode;
 import cn.thinkjoy.push.service.sms.SMSService;
@@ -65,11 +64,12 @@ public class CaptchaController extends BaseCommonController {
             }else{
                 throw new BizException(ERRORCODE.PARAM_ERROR.getCode(), "类型错误!");
             }
+
             long time = CaptchaTimeConst.CAPTCHA_TIME;
             String timeKey  = RedisConst.CAPTCHA_AUTH_TIME_KEY+account;
             if(!RedisUtil.getInstance().exists(timeKey)){
 
-                String bizTarget = DynConfigClientFactory.getClient().getConfig("sms", "bizTarget");
+                String bizTarget = StaticSource.getSource("smsbizTarget");
 
                 String randomString = CaptchaUtil.getRandomNumString(6);
 

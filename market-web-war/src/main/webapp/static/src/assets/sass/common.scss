@@ -23,7 +23,6 @@ header {
     text-align: center;
   }
 }
-
 /*icons*/
 .back-icon:before {
   content: "";
@@ -125,12 +124,15 @@ input {
 }
 
 
-.disn{
+/*layer*/
+.disn {
   display: none;
 }
-.disb{
+
+.disb {
   display: block;
 }
+
 #toast {
   position: fixed;
   top: 200px;
@@ -146,5 +148,5 @@ input {
   opacity: .9;
   -webkit-transition: opacity 0.5s ease-out;
   transition: opacity 0.5s ease-out;
-  font-size: 14px
+  font-size: 14px;
 }

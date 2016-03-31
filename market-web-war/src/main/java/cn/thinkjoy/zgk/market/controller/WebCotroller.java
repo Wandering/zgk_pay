@@ -1,16 +1,27 @@
 package cn.thinkjoy.zgk.market.controller;
 
+import cn.thinkjoy.zgk.zgksystem.AgentService;
+import cn.thinkjoy.zgk.zgksystem.domain.Department;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-/**
- * Created by dengshaofei on 16/3/30.
- */
 @Controller
 @RequestMapping("/")
 public class WebCotroller {
 
+    @Autowired
+    private AgentService agentService;
+
+    @RequestMapping("/getAgentInfo")
+    @ResponseBody
+    public Department getAgentInfo(@RequestParam(value = "accountId")String accountId)
+    {
+        return agentService.getAgentInfo(accountId);
+    }
     /**
      * login
      *
@@ -20,6 +31,7 @@ public class WebCotroller {
     public ModelAndView test() {
         return new ModelAndView("/register/register");
     }
+
     /**
      * user-detail
      *
@@ -39,6 +51,7 @@ public class WebCotroller {
     public ModelAndView vip() {
         return new ModelAndView("/vip/vip");
     }
+
     /**
      * vip-check
      *
@@ -49,6 +62,16 @@ public class WebCotroller {
         return new ModelAndView("/vip-check/vip-check");
     }
     /**
+     * vip-buy
+     *
+     * @return
+     */
+    @RequestMapping("/vip-buy")
+    public ModelAndView vipBuy() {
+        return new ModelAndView("/vip-buy/vip-buy");
+    }
+
+    /**
      * order
      *
      * @return
@@ -58,6 +81,7 @@ public class WebCotroller {
     public ModelAndView order() {
         return new ModelAndView("/order/order");
     }
+
     /**
      * modify-user-detail
      *
@@ -67,6 +91,7 @@ public class WebCotroller {
     public ModelAndView modifyUserDetail() {
         return new ModelAndView("/modify-user-detail/modify-user-detail");
     }
+
     /**
      * find-password
      *
@@ -76,6 +101,7 @@ public class WebCotroller {
     public ModelAndView findPassword() {
         return new ModelAndView("/find-password/find-password");
     }
+
     /**
      * code
      *
