@@ -53,9 +53,7 @@ $(function () {
             drawToast(str);
         }
     };
-    $('#reg-btn-code').click(function () {
-        captchaValidate();
-    });
+
     function captchaValidate(obj) {
         var regName = $.trim($('#reg-tel').val());
         if (regName == '' || !Validate.isMobile(regName)) {
@@ -67,16 +65,17 @@ $(function () {
             type: 0  //0注册  1找回密码
         };
         Util.ajaxFun('/captcha/captcha', 'post', getCaptchaData, function (res) {
-            if (res.rtnCode == '0000000') {
+            if (res.rtnCode != '0000000') {
                 $('#reg-btn-code').attr('disabled', 'disabled');
                 var n = 60;
-                var timer = setTimeout(function () {
-                    n--;
+                var timer = setInterval(function () {
+                    n = n - 1;
                     if (n <= 0) {
                         clearInterval(timer);
                         $('#reg-btn-code').removeAttr('disabled');
+                        $('#reg-btn-code').val('重新获取');
                     }
-                    $('#reg-btn-code').val(n + 's后重新获取');
+                    $('#reg-btn-code').val(n + 's后获取');
                 }, 1000);
             } else {
                 Validate.msg(res.msg);
@@ -84,8 +83,15 @@ $(function () {
         }, '', '');
     }
 
-    $('#reg-submit-btn').click(function () {
+    $('#reg-btn-code').click(function () {
         captchaValidate();
+    });
+    $('#reg-submit-btn').click(function () {
+        var regName = $.trim($('#reg-tel').val());
+        if (regName == '' || !Validate.isMobile(regName)) {
+            Validate.msg('手机号码输入有误');
+            return false;
+        }
         var regCode = $.trim($('#reg-code').val());
         if (regCode == '' || regCode.length != 6) {
             Validate.msg('验证码输入有误');
