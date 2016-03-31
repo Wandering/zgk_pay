@@ -65,7 +65,7 @@ $(function () {
             type: 0  //0注册  1找回密码
         };
         Util.ajaxFun('/captcha/captcha', 'post', getCaptchaData, function (res) {
-            if (res.rtnCode != '0000000') {
+            if (res.rtnCode == '0000000') {
                 $('#reg-btn-code').attr('disabled', 'disabled');
                 var n = 60;
                 var timer = setInterval(function () {
