@@ -54,8 +54,7 @@ $(function () {
         }
     };
     $('#reg-btn-code').click(function () {
-        var _this = $(this);
-        captchaValidate(_this);
+        captchaValidate();
     });
     function captchaValidate(obj) {
         var regName = $.trim($('#reg-tel').val());
@@ -69,15 +68,15 @@ $(function () {
         };
         Util.ajaxFun('/captcha/captcha', 'post', getCaptchaData, function (res) {
             if (res.rtnCode == '0000000') {
-                obj.attr('disabled', 'disabled');
+                $('#reg-btn-code').attr('disabled', 'disabled');
                 var n = 60;
                 var timer = setTimeout(function () {
                     n--;
                     if (n <= 0) {
                         clearInterval(timer);
-                        obj.removeAttr('disabled');
+                        $('#reg-btn-code').removeAttr('disabled');
                     }
-                    obj.val(n + 's后重新获取');
+                    $('#reg-btn-code').val(n + 's后重新获取');
                 }, 1000);
             } else {
                 Validate.msg(res.msg);
