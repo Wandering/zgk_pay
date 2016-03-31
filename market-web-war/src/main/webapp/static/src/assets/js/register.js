@@ -60,23 +60,33 @@ $(function () {
             Validate.msg('手机号码输入有误');
             return false;
         }
-        var getCaptchaData = {
+        var getComfirmData = {
             account: regName,
             type: 0  //0注册  1找回密码
         };
-        Util.ajaxFun('/captcha/captcha', 'post', getCaptchaData, function (res) {
+        Util.ajaxFun('/register/confirmAccount', 'post', getComfirmData, function (res) {
             if (res.rtnCode == '0000000') {
-                $('#reg-btn-code').attr('disabled', 'disabled');
-                var n = 60;
-                var timer = setInterval(function () {
-                    n = n - 1;
-                    if (n <= 0) {
-                        clearInterval(timer);
-                        $('#reg-btn-code').removeAttr('disabled');
-                        $('#reg-btn-code').val('重新获取');
+                var getCaptchaData = {
+                    account: regName,
+                    type: 0  //0注册  1找回密码
+                };
+                Util.ajaxFun('/captcha/captcha', 'post', getCaptchaData, function (res) {
+                    if (res.rtnCode == '0000000') {
+                        $('#reg-btn-code').attr('disabled', 'disabled');
+                        var n = 60;
+                        var timer = setInterval(function () {
+                            n = n - 1;
+                            if (n <= 0) {
+                                clearInterval(timer);
+                                $('#reg-btn-code').removeAttr('disabled');
+                                $('#reg-btn-code').val('重新获取');
+                            }
+                            $('#reg-btn-code').val(n + 's后获取');
+                        }, 1000);
+                    } else {
+                        Validate.msg(res.msg);
                     }
-                    $('#reg-btn-code').val(n + 's后获取');
-                }, 1000);
+                }, '', '');
             } else {
                 Validate.msg(res.msg);
             }
