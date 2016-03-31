@@ -10,6 +10,7 @@ dependencies {
     compile "commons-io:commons-io:2.4"
     compile "com.google.zxing:core:3.2.1"
     compile ("cn.thinkjoy:microschool-core:1.4.7"){
+        exclude group: 'org.bouncycastle'
         exclude group: 'org.springframework'
         exclude group: 'org.codehaus.jackson'
         exclude group: 'net.sf.json-lib'
