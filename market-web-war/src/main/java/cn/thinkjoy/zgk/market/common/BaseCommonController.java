@@ -56,7 +56,7 @@ public class BaseCommonController {
 
 
 	/**
-	 * è·å–ç”¨æˆ·ID
+	 * »ñÈ¡ÓÃ»§ID
 	 * @return
      */
 	public String getAccoutId(){
@@ -65,7 +65,7 @@ public class BaseCommonController {
 		return uid.toString();
 	}
 	/**
-	 * è·å–ç”¨æˆ·ä¿¡æ¯
+	 * »ñÈ¡ÓÃ»§ĞÅÏ¢
 	 * @return
 	 */
 	protected UserAccountPojo getUserAccountPojo() {
@@ -85,11 +85,11 @@ public class BaseCommonController {
 	}
 
 	/**
-	 * è·å–çœä»½ID
+	 * »ñÈ¡Ê¡·İID
 	 * @return
 	 */
 	protected Long getAreaId(){
-		//é»˜è®¤æµ™æ±Ÿçœ
+		//Ä¬ÈÏÕã½­Ê¡
 		try{
 			return Long.valueOf(String.valueOf(getAreaMap().get(UserAreaContext.getCurrentUserArea())).toString());
 		}catch (Exception e){

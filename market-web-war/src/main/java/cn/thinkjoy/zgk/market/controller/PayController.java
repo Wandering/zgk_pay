@@ -2,6 +2,7 @@ package cn.thinkjoy.zgk.market.controller;
 
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
+import cn.thinkjoy.zgk.market.domain.Order;
 import cn.thinkjoy.zgk.market.domain.OrderStatements;
 import cn.thinkjoy.zgk.market.service.IOrderService;
 import cn.thinkjoy.zgk.market.service.IOrderStatementsService;
@@ -10,14 +11,12 @@ import cn.thinkjoy.zgk.market.util.NumberGenUtil;
 import cn.thinkjoy.zgk.market.util.StaticSource;
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
+import com.alibaba.fastjson.JSONObject;
 import com.pingplusplus.Pingpp;
 import com.pingplusplus.model.Charge;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -33,11 +32,11 @@ import java.util.Map;
 public class PayController {
 
     private Logger logger= LoggerFactory.getLogger(PayController.class);
-  @Autowired
-  private IOrderService orderService;
+    @Autowired
+    private IOrderService orderService;
 
-  @Autowired
-  private IOrderStatementsService orderStatementService;
+    @Autowired
+    private IOrderStatementsService orderStatementService;
 
 
     public static final String  CURRENCY ="cny";
@@ -48,43 +47,43 @@ public class PayController {
     @RequestMapping(value = "/payOrder",method = RequestMethod.POST)
     @ResponseBody
     public Charge payOrder(@RequestParam(value = "orderNo",required = true) String orderNo,
-                                       @RequestParam(value = "amount",required = true)String amount,
-                                       @RequestParam(value = "userId",required = true)long userId,
-                                       @RequestParam(value = "channel",required = true)String channel ,
-                                       @RequestParam(value = "subject",required = true)String subject,
-                                       @RequestParam(value = "body",required = true)String body,
-                                       HttpServletRequest request){
+                           @RequestParam(value = "amount",required = true)String amount,
+                           @RequestParam(value = "userId",required = true)long userId,
+                           @RequestParam(value = "channel",required = true)String channel ,
+                           HttpServletRequest request){
         Map<String,Object> resultMap=new HashMap<>();
-            //参数错误
-          if("".equals(orderNo)||orderNo==null||"".equals(amount)||amount==null||userId==0){
-                throw  new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
-            }
+        //参数错误
+        if("".equals(orderNo)||orderNo==null||"".equals(amount)||amount==null||userId==0){
+            throw  new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
+        }
         try{
-//            Pingpp.apiKey="sk_test_zHq9uHO8efn9SWvvvTaL0iHS";
-//            String appId="app_1C8484m1mnf1GujL";
+
             Pingpp.apiKey=StaticSource.getSource("apiKey");
+            String appId=StaticSource.getSource("appId");
             String statemenstNo=NumberGenUtil.genStatementNo();
             OrderStatements orderstatement=new OrderStatements();
-            orderstatement.setAmount(Double.valueOf(amount)*100);
-            orderstatement.setCreateDate(System.currentTimeMillis());
-            orderstatement.setOrderNo(orderNo);
-            //0:交易进行中  1：交易成功  2：交易失败
-            orderstatement.setStatus(0);
-            orderstatement.setStatementNo(statemenstNo);
-            orderStatementService.insert(orderstatement);
+//            orderstatement.setAmount(Double.valueOf(amount)*100);
+//            orderstatement.setCreateDate(System.currentTimeMillis());
+//            orderstatement.setOrderNo(orderNo);
+//            //0:交易进行中  1：交易成功  2：交易失败
+//            orderstatement.setStatus(0);
+//            orderstatement.setStatementNo(statemenstNo);
+
             Map<String,Object> chargeParams=new HashMap<>();
             Map<String,String> app=new HashMap<>();
-            app.put("id", StaticSource.getSource("appId"));
-            chargeParams.put("order_no",statemenstNo);
+            app.put("id", appId);
+            chargeParams.put("order_no",orderNo);
             chargeParams.put("amount",Double.valueOf(amount)*100);
             chargeParams.put("app",app);
             chargeParams.put("channel",channel);
             chargeParams.put("client_ip", IPUtil.getRemortIP(request));
-            chargeParams.put("subject",subject);
-            chargeParams.put("body",body);
+            chargeParams.put("subject",StaticSource.getSource("subject"));
+            chargeParams.put("body",StaticSource.getSource("body"));
             chargeParams.put("currency",CURRENCY);
+            orderstatement.setPayJson(JSONObject.toJSONString(chargeParams));
+            orderStatementService.insert(orderstatement);
             Charge charge=Charge.create(chargeParams);
-            //to do 插入流水凭证
+
 
             return charge;
         }catch (Exception e){
@@ -99,13 +98,19 @@ public class PayController {
      */
     @RequestMapping(value = "/callBack",method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> callBack(@RequestParam("orderNo") String orderNo,
-                                       @RequestParam("amount")String amount,
-                                       @RequestParam("userId")long userId,
-                                       @RequestParam("channel")String channel ){
+    public void callBack(@RequestBody Charge charge ){
+        String orderNo=charge.getOrderNo();
+        Order order=new Order();
+        order.setOrderNo(orderNo);
+        order.setStatus(1);
+        orderService.updateByOrderNo(order);
+        OrderStatements orderStatements=new OrderStatements();
+        orderStatements.setOrderNo(orderNo);
+        orderStatements.setCallBackJson(JSONObject.toJSONString(charge));
+        orderStatementService.updateByOrderNo(orderStatements);
+        Map<String,Order> orderMap=orderService.queryOrderByNo(orderNo);
+        orderMap.get("user_id");
 
-        Map<String,Object> resultMap=new HashMap<>();
-        return  resultMap;
 
     }
 
@@ -135,11 +140,11 @@ public class PayController {
     @RequestMapping(value = "/refunds",method = RequestMethod.POST)
     @ResponseBody
     public Map<String,Object> refunds(@RequestParam("orderNo") String orderNo,
-                                       @RequestParam("amount")String amount,
-                                       @RequestParam("userId")long userId,
-                                       @RequestParam("channel")String channel ){
+                                      @RequestParam("amount")String amount,
+                                      @RequestParam("userId")long userId,
+                                      @RequestParam("channel")String channel ){
 
-                //TO DO
+        //TO DO
         return  null;
     }
 
