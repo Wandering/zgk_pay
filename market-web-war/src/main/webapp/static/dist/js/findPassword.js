@@ -56,6 +56,7 @@
 	$(function () {
 	    // 登录提交
 	    $('#register-pwd-btn').on('click', function () {
+	        alert(8)
 	        var registerPhoneV = $.trim($('#register-pwd-phone').val()),
 	            verificationCodeV = $.trim($('#verification-pwd-code').val()),
 	            registerPwdV = $.trim($('#register-pwd-code').val()),
