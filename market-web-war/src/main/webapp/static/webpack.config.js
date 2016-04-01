@@ -10,7 +10,8 @@ module.exports = {
         modifyUserDetail: './src/assets/js/modify-user-detail/modify-user-detail',
         findPassword: './src/assets/js/reglogin/find-password',
         userDetail: './src/assets/js/user-detail/user-detail',
-        order: './src/assets/js/order/order'
+        order: './src/assets/js/order/order',
+        vipBuy: './src/assets/js/vip-buy/vip-buy'
     },
     output: {
         path: path.join(__dirname, "./dist/js"),
