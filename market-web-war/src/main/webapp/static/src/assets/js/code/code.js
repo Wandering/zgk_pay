@@ -5,9 +5,9 @@ var util = require('commonjs');
 var interfaceUrl = require('urlConfig');
 var cookie = require('cookie');
 $(function () {
+    var account = util.getLinkey('account');
     util.ajaxFun(interfaceUrl.getCaptchaImg, 'get', {
-        'account': '18192168460'
-        //'account': cookie.getCookieValue('phone')
+        'account': account
     }, function (res) {
         //var res = {
         //    bizData: {
