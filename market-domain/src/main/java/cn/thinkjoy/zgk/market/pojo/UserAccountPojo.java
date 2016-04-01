@@ -19,6 +19,7 @@ public class UserAccountPojo extends BaseDomain<Long> {
     private String userKey;
     private String vipActiveDate;
     private String vipEndDate;
+    private String qrcodeUrl;
     public UserAccountPojo(){
     }
 
@@ -124,5 +125,13 @@ public class UserAccountPojo extends BaseDomain<Long> {
 
     public void setUserKey(String userKey) {
         this.userKey = userKey;
+    }
+
+    public String getQrcodeUrl() {
+        return qrcodeUrl;
+    }
+
+    public void setQrcodeUrl(String qrcodeUrl) {
+        this.qrcodeUrl = qrcodeUrl;
     }
 }

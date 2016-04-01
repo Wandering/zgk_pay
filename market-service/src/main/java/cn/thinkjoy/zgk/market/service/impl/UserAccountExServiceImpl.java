@@ -86,73 +86,78 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
 
     @Override
     public boolean insertUserAccount(UserAccount userAccount,Long sharerId,Integer sharerType) {
-        boolean flag;
-        userAccountDAO.insert(userAccount);
-        long id = userAccount.getId();
-        UserInfo userInfo = new UserInfo();
-        userInfo.setId(id);
-        String account = userAccount.getAccount();
-        userInfo.setName("gk-" + account.substring(0, 3) + "****" + account.substring(account.length() - 4, account.length()));
-        userInfo.setToken(UUID.randomUUID().toString());
-        userInfo.setProvinceId(userAccount.getProvinceId());
-        userInfo.setCityId(userAccount.getCityId());
-        userInfo.setCountyId(userAccount.getCountyId());
-        userInfoExDAO.insertUserInfo(userInfo);
-        UserVip userVip = new UserVip();
-        userVip.setId(id);
-        userVip.setStatus(0);
-        userVip.setCreateDate(System.currentTimeMillis());
-        userVipDAO.insert(userVip);
-        UserExam userExam = new UserExam();
-        userExam.setId(id);
-        userExam.setIsReported(0);
-        userExam.setIsSurvey(0);
-        userExamDAO.insert(userExam);
-        try{
-        UserMarket userMarket = new UserMarket();
-        userMarket.setAccountId(id);
-        Integer agentLevel = 0;
-        if(sharerType == 0){//供货商
-            agentLevel =1;
-        }else if(sharerType == 1){//普通用户
-            UserMarket userMarket1 = (UserMarket)userMarketDAO.findOne("accountId", sharerId, null, null);
-            if(userMarket1 !=null){
-                agentLevel = userMarket1.getAgentLevel()+1;
+            boolean flag;
+            userAccountDAO.insert(userAccount);
+            long id = userAccount.getId();
+            UserInfo userInfo = new UserInfo();
+            userInfo.setId(id);
+            String account = userAccount.getAccount();
+            userInfo.setName("gk-" + account.substring(0, 3) + "****" + account.substring(account.length() - 4, account.length()));
+            userInfo.setToken(UUID.randomUUID().toString());
+            userInfo.setProvinceId(userAccount.getProvinceId());
+            userInfo.setCityId(userAccount.getCityId());
+            userInfo.setCountyId(userAccount.getCountyId());
+            userInfoExDAO.insertUserInfo(userInfo);
+            UserVip userVip = new UserVip();
+            userVip.setId(id);
+            userVip.setStatus(0);
+            userVip.setCreateDate(System.currentTimeMillis());
+            userVipDAO.insert(userVip);
+            UserExam userExam = new UserExam();
+            userExam.setId(id);
+            userExam.setIsReported(0);
+            userExam.setIsSurvey(0);
+            userExamDAO.insert(userExam);
+            try{
+            UserMarket userMarket = new UserMarket();
+            userMarket.setAccountId(id);
+            Integer agentLevel = 0;
+            if(sharerType == 0){//供货商
+                agentLevel =1;
+            }else if(sharerType == 1){//普通用户
+                UserMarket userMarket1 = (UserMarket)userMarketDAO.findOne("accountId", sharerId, null, null);
+                if(userMarket1 !=null){
+                    agentLevel = userMarket1.getAgentLevel()+1;
+                }
             }
+            userMarket.setSharerType(sharerType);
+            userMarket.setAgentLevel(agentLevel);
+            userMarket.setCreateDate(System.currentTimeMillis());
+            userMarket.setCreator(id);
+            userMarket.setFromType(1);//微信
+            userMarket.setSharerId(sharerId);
+            String uploadUrl = StaticSource.getSource("uploadUrl");
+            String loginUrl = StaticSource.getSource("loginUrl")+"?sharerId="+id+"&sharerType="+1;
+            MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+            Map hints = new HashMap();
+            hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+            BitMatrix bitMatrix = multiFormatWriter.encode(loginUrl, BarcodeFormat.QR_CODE, 400, 400,hints);
+
+
+            String path=Thread.currentThread().getContextClassLoader().getResource("").toString();
+            path=path.substring(1, path.indexOf("classes")).replaceFirst("ile:","");
+            String fileName = id+".jpg";
+            File file = new File(path,fileName);
+            MatrixToImageWriter.writeToFile(bitMatrix, "jpg", file);
+            MultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
+            RestTemplate template = new RestTemplate();
+            param.add("file", file);
+            param.add("productCode", "gk360");
+            param.add("bizSystem", "gk360");
+            param.add("spaceName", "gk360");
+            param.add("userId", "gk360");
+            param.add("dirId", "0");
+            template.getMessageConverters().add(new FastJsonHttpMessageConverter());
+            String imgUrl = template.postForObject(uploadUrl, param, String.class);
+            userMarket.setQrcodeUrl(imgUrl);//二维码地址
+            userMarketDAO.insert(userMarket);
+                flag = true;
+        }catch(Exception e){
+                flag = false;
+            e.printStackTrace();
         }
-        userMarket.setSharerType(sharerType);
-        userMarket.setAgentLevel(agentLevel);
-        userMarket.setCreateDate(System.currentTimeMillis());
-        userMarket.setCreator(id);
-        userMarket.setFromType(1);//微信
-        userMarket.setSharerId(sharerId);
-        String uploadUrl = StaticSource.getSource("uploadUrl");
-        String loginUrl = StaticSource.getSource("loginUrl")+"?sharerId="+id+"&sharerType="+1;
-        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-        Map hints = new HashMap();
-        hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-        BitMatrix bitMatrix = multiFormatWriter.encode(loginUrl, BarcodeFormat.QR_CODE, 400, 400,hints);
-        File file = new File("/Users/yhwang/zgk",id+".jpg");
-        MatrixToImageWriter.writeToFile(bitMatrix, "jpg", file);
-        MultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
-        RestTemplate template = new RestTemplate();
-        param.add("file", file);
-        param.add("productCode", "gk360");
-        param.add("bizSystem", "gk360");
-        param.add("spaceName", "gk360");
-        param.add("userId", "gk360");
-        param.add("dirId", "0");
-        template.getMessageConverters().add(new FastJsonHttpMessageConverter());
-        String imgUrl = template.postForObject(uploadUrl, param, String.class);
-        userMarket.setQrcodeUrl(imgUrl);//二维码地址
-        userMarketDAO.insert(userMarket);
-            flag = true;
-    }catch(Exception e){
-            flag = false;
-        e.printStackTrace();
+        return flag;
     }
-    return flag;
-}
 
     @Override
     public boolean updateUserAccount(UserAccount userAccount){
