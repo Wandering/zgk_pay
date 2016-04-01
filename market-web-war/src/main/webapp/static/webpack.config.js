@@ -7,7 +7,6 @@ module.exports = {
         regLogin: "./src/assets/js/reglogin/reglogin",
         modifyUserDetail: './src/assets/js/modify-user-detail/modify-user-detail',
         findPassword: './src/assets/js/reglogin/find-password',
-        modifyUserDetail: './src/assets/js/modify-user-detail/modify-user-detail',
         userDetail: './src/assets/js/user-detail/user-detail',
         order: './src/assets/js/order/order'
     },

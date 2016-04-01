@@ -238,7 +238,7 @@ $(function () {
                     cookie.setCookie("subjectType", subjectType, 4, "");
                     cookie.setCookie("userKey", userKey, 4, "");
                     $('#submitBtn').attr('disabled', 'disabled');
-                    window.location.assign('http://' + $.trim(userKey) + '.' + domain + '/user-account-info.html');
+                    window.location.assign('http://' + $.trim(userKey) + '.' + domain + '/user-detail');
                 } else {
                     util.drawToast(res.msg);
                 }

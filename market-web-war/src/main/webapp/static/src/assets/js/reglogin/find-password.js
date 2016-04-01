@@ -3,13 +3,16 @@ var cookie=require('cookie');
 var md5=require('md5');
 var urlConfig=require('urlConfig');
 
-
+var domain = util.domain; // 正式
 
 
 $(function () {
+    var urlDomain = window.location.hostname + '';
+    var urlArr = urlDomain.split('.');
+    var provinceKey = urlArr[0];
     // 登录提交
     $('#register-pwd-btn').on('click', function () {
-        var registerPhoneV = $.trim($('#register-phone').val()),
+        var registerPhoneV = $.trim($('#register-pwd-phone').val()),
             verificationCodeV = $.trim($('#verification-pwd-code').val()),
             registerPwdV = $.trim($('#register-pwd-code').val()),
             registerPwdRepeatV = $.trim($('#register-pwd-repeat2').val());
@@ -24,7 +27,6 @@ $(function () {
             util.drawToast('手机号有误,请重新输入');
             return false;
         }
-
         if (verificationCodeV == "") {
             util.drawToast('请输入验证码');
             return false;
@@ -45,7 +47,6 @@ $(function () {
             util.drawToast('两次密码输入不一致');
             return false;
         }
-
         var postUrl = urlConfig.postRetrievePassword;
         var md5RegisterPwdV = $.md5(registerPwdV);
         util.ajaxFun(postUrl, 'POST', {
@@ -54,32 +55,7 @@ $(function () {
             password: md5RegisterPwdV //密码
         }, function (res) {
             if (res.rtnCode === "0000000") {
-                console.log(res.bizData.userInfo.icon)
-                var token = res.bizData.token;
-                var userName = res.bizData.userInfo.name;
-                var account = res.bizData.userInfo.account;
-                var icon = res.bizData.userInfo.icon;
-                var vipStatus = res.bizData.userInfo.vipStatus;
-                var subjectType = res.bizData.userInfo.subjectType;
-                var userKey = res.bizData.userInfo.userKey;
-                var avatar='';
-                var imgIco = "";
-                if (icon == '' || icon == null) {
-                    avatar = imgIco;
-                } else {
-                    avatar = icon;
-                }
-                window.localStorage.icon = avatar;
-                cookie.setCookie("token", token, 4, "");
-                cookie.setCookie("isLogin", "true", 4, "");
-                cookie.setCookie("phone", account, 4, "");
-                cookie.setCookie("userName", userName, 4, "");
-                cookie.setCookie("icon", icon, 4, "");
-                cookie.setCookie("vipStatus", vipStatus, 4, "");
-                cookie.setCookie("subjectType",subjectType, 4, "");
-                cookie.setCookie("userKey",userKey, 4, "");
-                $('#submitBtn').attr('disabled','disabled');
-                //window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/user-account-info.html');
+                window.location.assign('http://' + $.trim(provinceKey) + '.'+ domain +'/login');
             } else {
                 util.drawToast(res.msg);
             }
@@ -89,9 +65,9 @@ $(function () {
 
     var captchaType = '1'; //0.注册标志  1 找回密码
     // 验证码获取
-    $('#verification-btn').on('click', function () {
+    $('#verification-pwd-btn').on('click', function () {
         var _this = $(this);
-        var registerPhoneV = $.trim($('#register-phone').val());
+        var registerPhoneV = $.trim($('#register-pwd-phone').val());
         if (registerPhoneV == "") {
             util.drawToast('请输入手机号');
             return false;

@@ -46,13 +46,13 @@
 
 	
 	// 切换
-	__webpack_require__(5);
-
-	// 登录
 	__webpack_require__(6);
 
+	// 登录
+	__webpack_require__(7);
+
 	// 注册
-	__webpack_require__(8);
+	__webpack_require__(9);
 
 
 /***/ },
@@ -61,7 +61,7 @@
 
 	//var domainStr = 'zhigaokao.cn'; //正式
 	//var domainStr = 'test.zhigaokao.cn'; //测试
-	var domainStr = 'zhigaokao.com:3005';
+	var domainStr = 'zhigaokao.com:8084';
 
 	//获取域名前缀=============================
 	var urlDomain = window.location.hostname + '';
@@ -692,7 +692,8 @@
 
 
 /***/ },
-/* 5 */
+/* 5 */,
+/* 6 */
 /***/ function(module, exports) {
 
 	var UI ={
@@ -709,13 +710,13 @@
 
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var util=__webpack_require__(1);
 	var cookie=__webpack_require__(2);
 	var md5=__webpack_require__(3);
-	var getTime=__webpack_require__(7);
+	var getTime=__webpack_require__(8);
 
 	    var domain = util.domain; // 正式
 
@@ -771,7 +772,7 @@
 	                    cookie.setCookie("vipStatus", vipStatus, 4, "");
 	                    cookie.setCookie("phone",phone, 4, "");
 	                    cookie.setCookie("userKey",userKey, 4, "");
-	                    //window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/index.html');
+	                    window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/user-detail');
 	                } else {
 	                    util.drawToast(res.msg);
 	                }
@@ -787,7 +788,7 @@
 
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
@@ -820,7 +821,7 @@
 
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var util = __webpack_require__(1);
@@ -1063,7 +1064,7 @@
 	                    cookie.setCookie("subjectType", subjectType, 4, "");
 	                    cookie.setCookie("userKey", userKey, 4, "");
 	                    $('#submitBtn').attr('disabled', 'disabled');
-	                    window.location.assign('http://' + $.trim(userKey) + '.' + domain + '/user-account-info.html');
+	                    window.location.assign('http://' + $.trim(userKey) + '.' + domain + '/user-detail');
 	                } else {
 	                    util.drawToast(res.msg);
 	                }
