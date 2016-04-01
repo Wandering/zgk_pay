@@ -218,6 +218,22 @@
 	    });
 	};
 
+	function ajaxFunJSON(url, method, data, callback) {
+	    if (cookie.getCookieValue('token')) {
+	        data.token = cookie.getCookieValue('token');
+	    }
+	    data.userKey = provinceKey;
+	    $.ajax({
+	        url: url,
+	        type: method,
+	        contentType: 'application/json',
+	        dataType: 'json',
+	        data: JSON.stringify(data),
+	        success: callback,
+	        error: callback
+	    });
+	}
+
 
 	var getLinkey = function getLinkey(name) {
 	    var reg = new RegExp("(^|\\?|&)" + name + "=([^&]*)(\\s|&|$)", "i");
@@ -297,6 +313,7 @@
 	exports.tips = tips;
 	exports.drawToast = drawToast;
 	exports.layer = layer;
+	exports.ajaxFunJSON = ajaxFunJSON;
 
 
 
@@ -617,6 +634,18 @@
 	     * */
 	    getCaptchaImg: 'user/getUserProfile',//分享二维码
 
+	    /**
+	     * 在线购买初始化
+	     */
+	    getBuyInfo: '/order/getBuyInfo',
+	    /**
+	     * 确认订单
+	     */
+	    commitOrder: '/order/commitOrder',
+	    /**
+	     * 订单支付
+	     */
+	    payOrder: '/pay/payOrder',
 
 	    /*
 	     * 高考咨询
