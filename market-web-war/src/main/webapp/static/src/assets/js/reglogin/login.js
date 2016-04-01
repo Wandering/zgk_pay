@@ -24,11 +24,10 @@ var getTime=require('timeFormat');
                 return false;
             }
             var md5loginPwdV = $.md5(loginPwdV);
-            util.ajaxFun('/login/login', 'POST', {
+            util.ajaxFun(util.postLogin, 'POST', {
                 account: loginPhoneV,
                 password: md5loginPwdV
             }, function (res) {
-                console.log(res)
                 if (res.rtnCode === "0000000") {
                     var token = res.bizData.token;
                     var userName = res.bizData.userInfo.name;

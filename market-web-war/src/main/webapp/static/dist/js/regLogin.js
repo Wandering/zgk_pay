@@ -414,10 +414,10 @@
 	    /*
 	     * 登录|注册
 	     * */
-	    postLogin: BASE_URL + '/login/login.do',   // 登录
+	    postLogin:  '/login/login.do',   // 登录
 	    postRegisterLogin: BASE_URL + '/register/account.do',   // 注册
-	    postConfirmAccountCode: BASE_URL + '/register/confirmAccount.do',  // 确认是否注册
-	    postVerificationCode: BASE_URL + '/captcha/captcha.do',   // 获取手机验证码
+	    postConfirmAccountCode: '/register/confirmAccount.do',  // 确认是否注册
+	    postVerificationCode:  '/captcha/captcha.do',   // 获取手机验证码
 	    postRetrievePassword: BASE_URL + '/register/retrievePassword.do',   // 获取手机验证码
 
 
@@ -808,11 +808,10 @@
 	                return false;
 	            }
 	            var md5loginPwdV = $.md5(loginPwdV);
-	            util.ajaxFun('/login/login', 'POST', {
+	            util.ajaxFun(util.postLogin, 'POST', {
 	                account: loginPhoneV,
 	                password: md5loginPwdV
 	            }, function (res) {
-	                console.log(res)
 	                if (res.rtnCode === "0000000") {
 	                    var token = res.bizData.token;
 	                    var userName = res.bizData.userInfo.name;

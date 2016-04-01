@@ -495,10 +495,10 @@
 	    /*
 	     * 登录|注册
 	     * */
-	    postLogin: BASE_URL + '/login/login.do',   // 登录
+	    postLogin:  '/login/login.do',   // 登录
 	    postRegisterLogin: BASE_URL + '/register/account.do',   // 注册
-	    postConfirmAccountCode: BASE_URL + '/register/confirmAccount.do',  // 确认是否注册
-	    postVerificationCode: BASE_URL + '/captcha/captcha.do',   // 获取手机验证码
+	    postConfirmAccountCode: '/register/confirmAccount.do',  // 确认是否注册
+	    postVerificationCode:  '/captcha/captcha.do',   // 获取手机验证码
 	    postRetrievePassword: BASE_URL + '/register/retrievePassword.do',   // 获取手机验证码
 
 

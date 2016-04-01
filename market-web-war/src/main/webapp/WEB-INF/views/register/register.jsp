@@ -17,7 +17,7 @@
         <div class="form-group">
             <div class="input-group">
                 <i class="mobile-icon"></i>
-                <input type="text" id="#login-phone" placeholder="请输入手机号码"/>
+                <input type="text" id="login-phone" placeholder="请输入手机号码"/>
             </div>
         </div>
         <div class="form-group">
