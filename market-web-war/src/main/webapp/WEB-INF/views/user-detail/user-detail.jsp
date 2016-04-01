@@ -14,41 +14,41 @@
             修改
         </span>
         <div class="info-center">
-            <div><img src="<%=ctx%>/static/img/user-detail/avatar.png" alt=""/></div>
-            <div class="name">邓飞</div>
-            <div class="account">账号：15209209248</div>
+            <div><img id="avatar-img" src="<%=ctx%>/static/dist/img/icons/avatar.png" alt=""/></div>
+            <div class="name" id="header-user-name"></div>
+            <div class="account" id="number"></div>
         </div>
     </div>
     <div class="user-detail">
         <ul class="detail-list">
             <li>
                 <span>性别</span>
-                <span>女</span>
+                <span id="sex"></span>
             </li>
             <li>
                 <span>所在省份：</span>
-                <span>陕西</span>
+                <span id="province"></span>
             </li>
             <li>
                 <span>所在县区：</span>
-                <span>山阳县</span>
+                <span id="city"></span>
             </li>
             <li>
                 <span>所在中学：</span>
-                <span>山阳中学</span>
+                <span id="school-name"></span>
             </li>
             <li>
                 <span>科目：</span>
-                <span>理科</span>
+                <span id="subject"></span>
             </li>
             <li>
                 <span>Email：</span>
-                <span>256361212@qq.com</span>
+                <span id="email"></span>
             </li>
             <li>
                 <span>我的二维码：</span>
                 <span>
-                    <img src="<%=ctx%>/static/img/user-detail/code.png" alt=""/>
+                    <img id="qrcodeUrl" src="<%=ctx%>/static/dist/img/icons/code.png" alt=""/>
                 </span>
             </li>
         </ul>
@@ -57,5 +57,19 @@
         修改密码
     </div>
 </div>
+
+<div class="mask">
+    <div class="modal">
+        <div class="modal-title">修改密码</div>
+        <div class="modal-body">
+            <input id="current-psd" type="text" placeholder="当前密码">
+            <input id="new-psd" type="text" placeholder="新密码">
+            <input id="confirm-psd" type="text" placeholder="确认新密码">
+            <input id="confirm_pwd_btn" type="button" value="确认修改">
+        </div>
+        <div class="close-modal">X</div>
+    </div>
+</div>
+<script type="text/javascript" src="<%=ctx%>static/dist/js/userDetail.js"></script>
 </body>
 </html>

@@ -99,7 +99,7 @@ public class WebCotroller {
      */
     @RequestMapping("/find-password")
     public ModelAndView findPassword() {
-        return new ModelAndView("/find-password/find-password");
+        return new ModelAndView("/register/find-password");
     }
 
     /**

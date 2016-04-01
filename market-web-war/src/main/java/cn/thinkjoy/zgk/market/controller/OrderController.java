@@ -1,10 +1,13 @@
 package cn.thinkjoy.zgk.market.controller;
 
 import cn.thinkjoy.common.exception.BizException;
+import cn.thinkjoy.zgk.market.common.BaseCommonController;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
 import cn.thinkjoy.zgk.market.domain.Order;
 import cn.thinkjoy.zgk.market.service.IOrderService;
 import cn.thinkjoy.zgk.market.util.NumberGenUtil;
+import cn.thinkjoy.zgk.zgksystem.AgentService;
+import cn.thinkjoy.zgk.zgksystem.domain.Department;
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +24,39 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/order")
-public class OrderController {
+public class OrderController extends BaseCommonController {
     private Logger logger= LoggerFactory.getLogger(OrderController.class);
     @Autowired
     private IOrderService orderService;
+    @Autowired
+    private AgentService agentService;
+
+
+    /**
+     * 获取购买信息
+     * @return
+     */
+    @RequestMapping(value = "/getBuyInfo",method = RequestMethod.POST)
+    @ResponseBody
+    public Department getBuyInfo(@RequestParam("userId") String userId){
+
+        Map<String,Object> map=new HashMap<>();
+
+        //参数错误
+        if(userId==null){
+            throw new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
+        }
+        try{
+
+            Department  department= agentService.getAgentInfo(userId);
+
+            return  department;
+        }catch (Exception e){
+            logger.error("用户" + userId + ",获取购买信息异常:" + e);
+            throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
+        }
+    }
+
     /**
      * 提交订单
      * @return
@@ -32,22 +64,29 @@ public class OrderController {
     @RequestMapping(value = "/commitOrder",method = RequestMethod.POST)
     @ResponseBody
     public Map<String,Object> commitOrder(@RequestBody Order order){
-        Map<String,Object> resultMap=new HashMap<>();
+
+        Map<String,Object> map=new HashMap<>();
 
         //参数错误
         if(order==null){
             throw new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
         }
         try{
-            order.setOrderNo(NumberGenUtil.genOrderNo());
+            String orderNo= NumberGenUtil.genOrderNo();
+            Department  department= agentService.getAgentInfo(order.getUserId().toString());
+            order.setCreateDate(System.currentTimeMillis());
+            order.setOrderNo(orderNo);
+            order.setDepartmentName(department.getDepartmentName());
+            order.setDepartmentPhone(department.getDepartmentPhone());
+            order.setGoodAddress(department.getGoodsAddress());
+            order.setProductPrice(department.getSalePrice());
             orderService.insert(order);
-            resultMap.put("code",200);
-            resultMap.put("msg","下单成功");
+            map.put("orderNo",orderNo);
+            map.put("department",department);
+            return  map;
         }catch (Exception e){
             logger.error("用户" + order.getUserId() + ",提交订单异常:" + e);
             throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
-        }finally {
-            return resultMap;
         }
     }
 

@@ -3,73 +3,75 @@
  */
 (function() {
 
+    var util = require('commonjs');
+    var interfaceUrl = require('urlConfig');
+    var cookie = require('cookie');
     function initUserInfo() {
-        //获取用户信息
-        util.ajaxFun(util.INTERFACE_URL.getUserInfo, 'GET', {}, function (res) {
-            if (res.rtnCode == '0000000') {
-                var personListData = res.bizData;
-                var avatar = '';
-                var imgIco = '/static/dist/img/icons/avatar.png';
-                if (personListData.icon == '' || personListData.icon == null) {
-                    avatar = imgIco;
-                } else {
-                    avatar = personListData.icon
-                }
-                $('#name').val(personListData.name);
-                $('#avatar-img').attr('src', avatar);
-                $('#school_name').val(personListData.schoolName);
-                $('#email').val(personListData.mail);
-                $('.subject[data-value="' + personListData.sex + '"]').addClass('active');
-                $('.subject[data-value="' + personListData.subjectType + '"]').addClass('active');
-                $('#user-birthday').val(personListData.birthdayDate ? timeFormat(personListData.birthdayDate, 'yyyy-MM-dd') : '1970-01-01');
-                $('#user-qq').val(personListData.qq);
-            }
-        });
+        var avatar = cookie.getCookieValue('avatar');
+        if (!avatar) avatar = '/static/dist/img/icons/avatar.png';
+        $('#avatar-img').attr('src', avatar);
+
+        var userName = cookie.getCookieValue('userName');
+        $('#name').text(userName || '');
+
+        var schoolName = cookie.getCookieValue('schoolName');
+        $('#school_name').text(schoolName || '');
+
+        var sexType = cookie.getCookieValue('sexType');
+
+        var subjectType = cookie.getCookieValue('subjectType');
+
+        $('.sex[data-value="' + (sexType || 1) + '"]').addClass('active');
+        $('.subject[data-value="' + (subjectType || 1) + '"]').addClass('active');
+
+
+        var email = cookie.getCookieValue('email');
+        $('#email').text(email || '');
+
     }
 
     $(document).ready(function() {
-
         initUserInfo();
-
         //清除input里面的值
         $('.clear').on('click', function() {
             $(this).parent().find('input').val('');
         });
-
+        $('.sex, .subject').on('click', function() {
+            $(this).addClass('active');
+            $(this).siblings().removeClass('active');
+        });
         //修改提交
         $('.submit-btn').on('click', function() {
-
             var name = $.trim($('#name').val()),//姓名
                 sex = $('.sex.active').attr('data-value'),//性别
                 school = $.trim($('#school_name').val()), //学校名字
                 subject = $('.subject.active').attr('data-value'),//科目选择
                 email = $.trim($('#email').val()),//邮箱
-                birthdayDate = $('#user-birthday').val(),
-                qq = $('#user-qq').val();
-
+                birthdayDate = cookie.getCookieValue('birthdayDate'),
+                qq = cookie.getCookieValue('qq');
             if (name.length == 0) {
-                util.toast('用户名不能为空');
+                util.drawToast('用户名不能为空');
                 return false;
             }
             if (name.length > 10) {
-                util.toast('用户名不能大于10个字');
+                util.drawToast('用户名不能大于10个字');
                 return false;
             }
             if (school.length == 0) {
-                util.toast('学校名不能为空');
+                util.drawToast('学校名不能为空');
                 return false;
             }
             if (school.length > 20) {
-                util.toast('学校名不能大于20个字');
+                util.drawToast('学校名不能大于20个字');
                 return false;
             }
 
             var img_url = $('#avatar-img').attr('src');
 
-            var provinceId = $('#province').val(),
-                cityId = $('#city').val(),
-                countyId = $('#county').val();
-            util.ajaxFun(util.INTERFACE_URL.postUpdateUserInfo, 'POST', {
+            var provinceId = cookie.getCookieValue('provinceId'),
+                cityId = cookie.getCookieValue('cityId'),
+                countyId = cookie.getCookieValue('countyId');
+            util.ajaxFun(interfaceUrl.postUpdateUserInfo, 'POST', {
                 name: name,
                 provinceId: provinceId,
                 cityId: cityId,
@@ -82,12 +84,11 @@
                 icon: img_url,
                 qq: qq
             }, function (res) {
-                console.log(res)
                 if (res.rtnCode == '0000000') {
-                    util.toast('信息更新成功');
-                    window.location.href = "/user-account-info.html";
+                    util.drawToast('信息更新成功');
+                    window.location.href = "/user-detail";
                 } else {
-                    util.toast(res.msg);
+                    util.drawToast(res.msg || '信息更新失败');
                 }
             });
 

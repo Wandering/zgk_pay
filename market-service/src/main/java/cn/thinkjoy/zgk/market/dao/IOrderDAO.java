@@ -20,4 +20,6 @@ public interface IOrderDAO extends IBaseDAO<Order> {
     List<Map<String,Object>> queryOrderListByUserId(@Param("userId")long userId, @Param("pageNo")int pageNo, @Param("pageSize")int pageSize);
 
     Map<String,Object> queryOrderByNo(@Param("orderNo")String orderNo);
+
+    void updateByOrderNo(Order order);
 }

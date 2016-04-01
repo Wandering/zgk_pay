@@ -39,12 +39,42 @@ header {
   }
 }
 .form-group {
-  height: 40px;
-  line-height: 40px;
+  color: #707070;
+  height: 42px;
+  line-height: 42px;
   padding-left: 17px;
   font-size: 13px;
+  border-bottom: 1px solid #E9E4E4;
   &:nth-child(2) {
     margin-top: 15px;
+  }
+  &:nth-child(4) input {
+    width: calc(100% - 99px);
+  }
+  &:nth-child(6) input {
+    width: calc(100% - 67px);
+  }
+  &:nth-child(3),
+  &:nth-child(5) {
+    .options {
+      margin-right: 16px;
+      span {
+        border: 1px solid #979797;
+        padding: 6px 15px;
+        border-radius: 3px;
+        &:first-child {
+          margin-right: 8px;
+        }
+        &.active {
+          background-color: #D80C18;
+          border-color:  #D80C18;
+          color: #fff;
+        }
+      }
+    }
+  }
+  &:nth-child(5) .options span {
+    padding: 6px 8px;
   }
   .label {
     display: inline-block;
@@ -52,5 +82,34 @@ header {
   }
   .clear {
     display: inline-block;
+    float: right;
+    height: 40px;
+    img {
+      width: 26px;
+      margin-top: 9px;
+      margin-right: 4px;
+    }
   }
+  input {
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    text-align: right;
+    width: calc(100% - 60px);
+  }
+}
+.submit-btn {
+  height: 39px;
+  line-height: 39px;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  background-color: #D80C18;
+  border: none;
+  border-radius: 2px;
+  width: 270px;
+  margin: 50px auto;
 }

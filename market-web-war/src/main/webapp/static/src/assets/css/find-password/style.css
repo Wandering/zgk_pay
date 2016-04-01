@@ -51,7 +51,8 @@ header .location.location-icon:before {
   margin: 3px 0;
 }
 .container .form-group .check-code {
-  width: calc(100% - 130px);
+  width: calc(100% - 190px);
+  padding-left: 40px;
 }
 .container .form-group .location-list {
   display: flex;
@@ -111,4 +112,15 @@ header .location.location-icon:before {
   width: 100%;
   border: none;
   border-radius: 2px;
+}
+
+.btn-code {
+  outline: none;
+  border: none;
+  background-color: #d80c18;
+  border-radius: 40px;
+  line-height: 20px;
+  color: #fff;
+  margin-left: 10px;
+  padding: 9px 9pt;
 }

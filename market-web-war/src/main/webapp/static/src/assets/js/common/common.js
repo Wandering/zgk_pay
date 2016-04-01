@@ -1,6 +1,6 @@
 //var domainStr = 'zhigaokao.cn'; //正式
 //var domainStr = 'test.zhigaokao.cn'; //测试
-var domainStr = 'zhigaokao.com:3005';
+var domainStr = 'zhigaokao.com:8084';
 
 //获取域名前缀=============================
 var urlDomain = window.location.hostname + '';
@@ -47,6 +47,22 @@ function ajaxFun(url, method, data, callback) {
         error: callback
     });
 };
+
+function ajaxFunJSON(url, method, data, callback) {
+    if (cookie.getCookieValue('token')) {
+        data.token = cookie.getCookieValue('token');
+    }
+    data.userKey = provinceKey;
+    $.ajax({
+        url: url,
+        type: method,
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(data),
+        success: callback,
+        error: callback
+    });
+}
 
 
 var getLinkey = function getLinkey(name) {
@@ -127,6 +143,7 @@ exports.provinceKey = provinceKey;
 exports.tips = tips;
 exports.drawToast = drawToast;
 exports.layer = layer;
+exports.ajaxFunJSON = ajaxFunJSON;
 
 
 

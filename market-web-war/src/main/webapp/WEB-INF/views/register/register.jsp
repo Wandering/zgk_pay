@@ -13,7 +13,7 @@
         <div class="tab tab-login">登录</div>
         <div class="tab tab-register type-res active" typeRes="1">注册</div>
     </div>
-    <div class="tab-content">
+    <div class="tab-content" id="login">
         <div class="form-group">
             <div class="input-group">
                 <i class="mobile-icon"></i>
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="reset-password">
-            <a>忘记密码？</a>
+            <a href="/find-password">忘记密码？</a>
         </div>
         <div class="form-group">
             <button class="submit-btn" id="submit-btn">登录</button>
@@ -35,7 +35,7 @@
     </div>
 
 
-    <div class="register-input tab-content login-reg-content" id="register-content">
+    <div class="register-input tab-content login-reg-content" id="register">
         <div class="form-group">
             <div class="input-group">
                 <i class="mobile-icon"></i>
@@ -46,7 +46,7 @@
             <input class="check-code" type="text" id="verification-code" placeholder="输入验证码"/>
             <button type="button" class="btn btn-code w50" id="verification-btn">获取验证码</button>
         </div>
-        <div class="form-group">
+        <div class="form-group areaSel">
             <div class="title">高考报名地区：</div>
             <div class="location-list">
                 <span class="select"><select name="" id="province" class="form-control"></select></span>
