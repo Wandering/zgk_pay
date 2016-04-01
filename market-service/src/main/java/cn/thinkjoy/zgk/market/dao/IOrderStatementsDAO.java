@@ -10,6 +10,7 @@ import cn.thinkjoy.common.dao.IBaseDAO;
 import cn.thinkjoy.zgk.market.domain.OrderStatements;
 
 public interface IOrderStatementsDAO extends IBaseDAO<OrderStatements>{
-	
 
+
+    void updateByOrderNo(OrderStatements orderStatements);
 }

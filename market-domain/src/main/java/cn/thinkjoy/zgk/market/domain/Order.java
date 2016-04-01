@@ -12,24 +12,25 @@ package cn.thinkjoy.zgk.market.domain;
 import cn.thinkjoy.common.domain.BaseDomain;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
 
 public class Order extends BaseDomain{
     private Long userId;
-    private Long productId;
+    //    private Long productId;
     private String orderNo;
     private Integer channle;
     private Integer status;
     private Long createDate;
     private Long updateDate;
     private String state;
-    private Double amount;
-    private Integer productNumber;
-    private Double productPrice;
+    //    private Double amount;
+//    private Integer productNumber;
+    private String  productPrice;
+    private String  goodAddress;
+    private String  departmentName;
+    private String departmentPhone;
 
-	public Order(){
-	}
+    public Order(){
+    }
     public void setUserId(Long value) {
         this.userId = value;
     }
@@ -37,13 +38,13 @@ public class Order extends BaseDomain{
     public Long getUserId() {
         return this.userId;
     }
-    public void setProductId(Long value) {
-        this.productId = value;
-    }
+//    public void setProductId(Long value) {
+//        this.productId = value;
+//    }
 
-    public Long getProductId() {
-        return this.productId;
-    }
+    //    public Long getProductId() {
+//        return this.productId;
+//    }
     public void setOrderNo(String value) {
         this.orderNo = value;
     }
@@ -79,27 +80,27 @@ public class Order extends BaseDomain{
     public String getState() {
         return this.state;
     }
-    public void setAmount(Double value) {
-        this.amount = value;
-    }
+//    public void setAmount(Double value) {
+//        this.amount = value;
+//    }
+//
+//    public Double getAmount() {
+//        return this.amount;
+//    }
+//    public void setProductNumber(Integer value) {
+//        this.productNumber = value;
+//    }
 
-    public Double getAmount() {
-        return this.amount;
-    }
-    public void setProductNumber(Integer value) {
-        this.productNumber = value;
-    }
+//    public Integer getProductNumber() {
+//        return this.productNumber;
+//    }
+//    public void setProductPrice(Double value) {
+//        this.productPrice = value;
+////    }
 
-    public Integer getProductNumber() {
-        return this.productNumber;
-    }
-    public void setProductPrice(Double value) {
-        this.productPrice = value;
-    }
-
-    public Double getProductPrice() {
-        return this.productPrice;
-    }
+//    public Double getProductPrice() {
+//        return this.productPrice;
+//    }
 
     public Integer getStatus() {
         return status;
@@ -109,36 +110,67 @@ public class Order extends BaseDomain{
         this.status = status;
     }
 
-    public String toString() {
-		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-			.append("Id",getId())
-			.append("UserId",getUserId())
-			.append("ProductId",getProductId())
-			.append("Status",getStatus())
-			.append("OrderNo",getOrderNo())
-			.append("Channle",getChannle())
-			.append("CreateDate",getCreateDate())
-			.append("UpdateDate",getUpdateDate())
-			.append("State",getState())
-			.append("Amount",getAmount())
-			.append("ProductNumber",getProductNumber())
-			.append("ProductPrice",getProductPrice())
-			.toString();
-	}
-	
-	public int hashCode() {
-		return new HashCodeBuilder()
-			.append(getId())
-			.toHashCode();
-	}
-	
-	public boolean equals(Object obj) {
-		if(obj instanceof Order == false) return false;
-		if(this == obj) return true;
-		Order other = (Order)obj;
-		return new EqualsBuilder()
-			.append(getId(),other.getId())
-			.isEquals();
-	}
-}
+    //    public String toString() {
+//		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
+//			.append("Id",getId())
+//			.append("UserId",getUserId())
+//			.append("ProductId",getProductId())
+//			.append("Status",getStatus())
+//			.append("OrderNo",getOrderNo())
+//			.append("Channle",getChannle())
+//			.append("CreateDate",getCreateDate())
+//			.append("UpdateDate",getUpdateDate())
+//			.append("State",getState())
+//			.append("Amount",getAmount())
+//			.append("ProductNumber",getProductNumber())
+//			.append("ProductPrice",getProductPrice())
+//			.toString();
+//	}
+//
+    public int hashCode() {
+        return new HashCodeBuilder()
+                .append(getId())
+                .toHashCode();
+    }
 
+    public String getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(String productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public String getGoodAddress() {
+        return goodAddress;
+    }
+
+    public void setGoodAddress(String goodAddress) {
+        this.goodAddress = goodAddress;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public String getDepartmentPhone() {
+        return departmentPhone;
+    }
+
+    public void setDepartmentPhone(String departmentPhone) {
+        this.departmentPhone = departmentPhone;
+    }
+
+    public boolean equals(Object obj) {
+        if(obj instanceof Order == false) return false;
+        if(this == obj) return true;
+        Order other = (Order)obj;
+        return new EqualsBuilder()
+                .append(getId(),other.getId())
+                .isEquals();
+    }
+}

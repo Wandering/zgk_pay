@@ -24,9 +24,27 @@ public class OrderStatements extends BaseDomain{
     private Integer status;
     private String state;
     private Double amount;
+    private String payJson;
+    private String callBackJson;
 
-	public OrderStatements(){
-	}
+    public String getPayJson() {
+        return payJson;
+    }
+
+    public void setPayJson(String payJson) {
+        this.payJson = payJson;
+    }
+
+    public String getCallBackJson() {
+        return callBackJson;
+    }
+
+    public void setCallBackJson(String callBackJson) {
+        this.callBackJson = callBackJson;
+    }
+
+    public OrderStatements(){
+    }
     public void setOrderNo(String value) {
         this.orderNo = value;
     }
@@ -85,33 +103,32 @@ public class OrderStatements extends BaseDomain{
         return this.amount;
     }
 
-	public String toString() {
-		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-			.append("Id",getId())
-			.append("OrderNo",getOrderNo())
-			.append("StatementNo",getStatementNo())
-			.append("Status",getStatus())
-			.append("CreateDate",getCreateDate())
-			.append("UpdateDate",getUpdateDate())
-			.append("CreaterId",getCreaterId())
-			.append("State",getState())
-			.append("Amount",getAmount())
-			.toString();
-	}
-	
-	public int hashCode() {
-		return new HashCodeBuilder()
-			.append(getId())
-			.toHashCode();
-	}
-	
-	public boolean equals(Object obj) {
-		if(obj instanceof OrderStatements == false) return false;
-		if(this == obj) return true;
-		OrderStatements other = (OrderStatements)obj;
-		return new EqualsBuilder()
-			.append(getId(),other.getId())
-			.isEquals();
-	}
-}
+    public String toString() {
+        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
+                .append("Id",getId())
+                .append("OrderNo",getOrderNo())
+                .append("StatementNo",getStatementNo())
+                .append("Status",getStatus())
+                .append("CreateDate",getCreateDate())
+                .append("UpdateDate",getUpdateDate())
+                .append("CreaterId",getCreaterId())
+                .append("State",getState())
+                .append("Amount",getAmount())
+                .toString();
+    }
 
+    public int hashCode() {
+        return new HashCodeBuilder()
+                .append(getId())
+                .toHashCode();
+    }
+
+    public boolean equals(Object obj) {
+        if(obj instanceof OrderStatements == false) return false;
+        if(this == obj) return true;
+        OrderStatements other = (OrderStatements)obj;
+        return new EqualsBuilder()
+                .append(getId(),other.getId())
+                .isEquals();
+    }
+}
