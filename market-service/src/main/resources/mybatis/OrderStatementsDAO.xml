@@ -2,27 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.thinkjoy.zgk.market.dao.IOrderStatementsDAO">
-<!--
-insert
-update
-updateNull
-deleteById
-deleteByCondition
-deleteByProperty
-fetch
-findOne
-findList
-findAll
-queryPage
-like
-queryList
-queryOne
-count
-selectMaxId
-updateOrSave
-selectOne
-selectList
--->
+    <!--
+    insert
+    update
+    updateNull
+    deleteById
+    deleteByCondition
+    deleteByProperty
+    fetch
+    findOne
+    findList
+    findAll
+    queryPage
+    like
+    queryList
+    queryOne
+    count
+    selectMaxId
+    updateOrSave
+    selectOne
+    selectList
+    -->
     <sql id="Base_Column_List">
         id,
         order_no,
@@ -43,7 +43,9 @@ selectList
         update_date,
         creater_id,
         state,
-        amount
+        amount,
+        pay_json,
+        callback_json,
         ) VALUES (
         #{orderNo},
         #{statementNo},
@@ -52,10 +54,12 @@ selectList
         #{updateDate},
         #{createrId},
         #{state},
-        #{amount}
+        #{amount},
+        #{payJson},
+        #{callBackJson}
         )
         <selectKey resultType="java.lang.Long" keyProperty="id">
-        SELECT LAST_INSERT_ID() AS ID
+            SELECT LAST_INSERT_ID() AS ID
         </selectKey>
     </insert>
 
@@ -186,23 +190,23 @@ selectList
 
     <insert id="insertMap" >
         INSERT INTO zgk_order_statements (
-                order_no,
-                statement_no,
-                status,
-                create_date,
-                update_date,
-                creater_id,
-                state,
-                amount
+        order_no,
+        statement_no,
+        status,
+        create_date,
+        update_date,
+        creater_id,
+        state,
+        amount
         ) VALUES (
-                    #{map.orderNo},
-                    #{map.statementNo},
-                    #{map.status},
-                    #{map.createDate},
-                    #{map.updateDate},
-                    #{map.createrId},
-                    #{map.state},
-                    #{map.amount}
+        #{map.orderNo},
+        #{map.statementNo},
+        #{map.status},
+        #{map.createDate},
+        #{map.updateDate},
+        #{map.createrId},
+        #{map.state},
+        #{map.amount}
         )
     </insert>
 
@@ -220,7 +224,7 @@ selectList
             amount = #{amount},
         </trim>
         WHERE
-        id = #{id} 
+        id = #{id}
     </update>
 
     <!-- 按Id删除 -->
@@ -278,7 +282,7 @@ selectList
             AND id = #{id}
         </trim>
         <if test="orderBy!=null">
-        ORDER BY ${orderBy} ${sortBy}
+            ORDER BY ${orderBy} ${sortBy}
         </if>
     </select>
 
@@ -348,10 +352,10 @@ selectList
             </if>
 
 
-    </where>
+        </where>
 
         <if test="orderBy!=null">
-        ORDER BY ${orderBy} ${sortBy}
+            ORDER BY ${orderBy} ${sortBy}
         </if>
         <if test="offset != null">
             limit ${offset}, ${rows}
@@ -392,7 +396,7 @@ selectList
             </if>
         </trim>
         <if test="orderBy!=null">
-        ORDER BY ${orderBy} ${sortBy}
+            ORDER BY ${orderBy} ${sortBy}
         </if>
     </select>
 
@@ -431,7 +435,7 @@ selectList
             </if>
         </trim>
         <if test="orderBy!=null">
-        ORDER BY ${orderBy} ${sortBy}
+            ORDER BY ${orderBy} ${sortBy}
         </if>
     </select>
 
@@ -473,39 +477,39 @@ selectList
 
     <select id="count" resultType="java.lang.Integer">
         SELECT count(id) FROM zgk_order_statements
-       <where>
-           <if test="id!=null">
-               ${groupOp} id ${id.op}  #{id.data}
-           </if>
-           <if test="orderNo!=null">
-               ${groupOp} order_no ${order_no.op}  #{order_no.data}
-           </if>
-           <if test="statementNo!=null">
-               ${groupOp} statement_no ${statement_no.op}  #{statement_no.data}
-           </if>
-           <if test="status!=null">
-               ${groupOp} status ${status.op}  #{status.data}
-           </if>
-           <if test="createDate!=null">
-               ${groupOp} create_date ${create_date.op}  #{create_date.data}
-           </if>
-           <if test="updateDate!=null">
-               ${groupOp} update_date ${update_date.op}  #{update_date.data}
-           </if>
-           <if test="createrId!=null">
-               ${groupOp} creater_id ${creater_id.op}  #{creater_id.data}
-           </if>
-           <if test="state!=null">
-               ${groupOp} state ${state.op}  #{state.data}
-           </if>
-           <if test="amount!=null">
-               ${groupOp} amount ${amount.op}  #{amount.data}
-           </if>
+        <where>
+            <if test="id!=null">
+                ${groupOp} id ${id.op}  #{id.data}
+            </if>
+            <if test="orderNo!=null">
+                ${groupOp} order_no ${order_no.op}  #{order_no.data}
+            </if>
+            <if test="statementNo!=null">
+                ${groupOp} statement_no ${statement_no.op}  #{statement_no.data}
+            </if>
+            <if test="status!=null">
+                ${groupOp} status ${status.op}  #{status.data}
+            </if>
+            <if test="createDate!=null">
+                ${groupOp} create_date ${create_date.op}  #{create_date.data}
+            </if>
+            <if test="updateDate!=null">
+                ${groupOp} update_date ${update_date.op}  #{update_date.data}
+            </if>
+            <if test="createrId!=null">
+                ${groupOp} creater_id ${creater_id.op}  #{creater_id.data}
+            </if>
+            <if test="state!=null">
+                ${groupOp} state ${state.op}  #{state.data}
+            </if>
+            <if test="amount!=null">
+                ${groupOp} amount ${amount.op}  #{amount.data}
+            </if>
 
-       </where>
-    <if test="orderBy!=null">
-        ORDER BY ${orderBy} ${sortBy}
-    </if>
+        </where>
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
     </select>
 
     <select id="selectMaxId" resultType="java.lang.Integer">
@@ -514,5 +518,10 @@ selectList
         FROM zgk_order_statements
     </select>
 
-</mapper>
 
+    <update id="updateByOrderNo" parameterType="OrderStatements">
+        UPDATE zgk_order_statements
+        set callback_json=#{callBackJson},update_date=#{updateDate} where order_no=#{orderNo}
+
+    </update>
+</mapper>

@@ -111,13 +111,13 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
             userExam.setIsReported(0);
             userExam.setIsSurvey(0);
             userExamDAO.insert(userExam);
-            try{
+        try{
             UserMarket userMarket = new UserMarket();
             userMarket.setAccountId(id);
             Integer agentLevel = 0;
-            if(sharerType == 0){//ä¾›è´§å•†
+            if(sharerType == 0){//¹©»õÉÌ
                 agentLevel =1;
-            }else if(sharerType == 1){//æ™®é€šç”¨æˆ·
+            }else if(sharerType == 1){//ÆÕÍ¨ÓÃ»§
                 UserMarket userMarket1 = (UserMarket)userMarketDAO.findOne("accountId", sharerId, null, null);
                 if(userMarket1 !=null){
                     agentLevel = userMarket1.getAgentLevel()+1;
@@ -127,7 +127,7 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
             userMarket.setAgentLevel(agentLevel);
             userMarket.setCreateDate(System.currentTimeMillis());
             userMarket.setCreator(id);
-            userMarket.setFromType(1);//å¾®ä¿¡
+            userMarket.setFromType(1);//Î¢ĞÅ
             userMarket.setSharerId(sharerId);
             String uploadUrl = StaticSource.getSource("uploadUrl");
             String loginUrl = StaticSource.getSource("loginUrl")+"?sharerId="+id+"&sharerType="+1;
@@ -153,7 +153,7 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
             String returnJson = template.postForObject(uploadUrl, param, String.class);
                 UploadFileReturn  uploadFileReturn = JsonMapper.buildNormalMapper().fromJson(returnJson,UploadFileReturn.class);
                 if(uploadFileReturn !=null && "0000000".equals(uploadFileReturn.getRtnCode())){
-                    userMarket.setQrcodeUrl(uploadFileReturn.getUri());//äºŒç»´ç åœ°å€
+                    userMarket.setQrcodeUrl(uploadFileReturn.getUri());//¶şÎ¬ÂëµØÖ·
                 }
             userMarketDAO.insert(userMarket);
                 flag = true;

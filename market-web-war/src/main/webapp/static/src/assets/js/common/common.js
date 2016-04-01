@@ -1,6 +1,6 @@
 //var domainStr = 'zhigaokao.cn'; //正式
 //var domainStr = 'test.zhigaokao.cn'; //测试
-var domainStr = 'zhigaokao.com:3005';
+var domainStr = 'zhigaokao.com:8084';
 
 //获取域名前缀=============================
 var urlDomain = window.location.hostname + '';

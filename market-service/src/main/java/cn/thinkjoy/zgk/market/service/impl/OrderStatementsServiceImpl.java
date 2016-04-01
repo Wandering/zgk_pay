@@ -25,6 +25,11 @@ public class OrderStatementsServiceImpl extends AbstractPageService<IBaseDAO<Ord
         return orderStatementsDAO;
     }
 
+    @Override
+    public void updateByOrderNo(OrderStatements orderStatements) {
+        orderStatementsDAO.updateByOrderNo(orderStatements);
+    }
+
 //    @Override
 //    public void insert(BaseDomain entity) {
 //
