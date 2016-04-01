@@ -46,7 +46,7 @@
 
 	var cookie = __webpack_require__(2);
 	var util = __webpack_require__(1);
-	var urlConfig = __webpack_require__(3);
+	var urlConfig = __webpack_require__(4);
 	var account = cookie.getCookieValue('phone');
 	$('#account-number').val(account);
 	$('.vip-btn').click(function () {
@@ -97,7 +97,7 @@
 
 	//var domainStr = 'zhigaokao.cn'; //正式
 	//var domainStr = 'test.zhigaokao.cn'; //测试
-	var domainStr = 'zhigaokao.com:3005';
+	var domainStr = 'zhigaokao.com:8084';
 
 	//获取域名前缀=============================
 	var urlDomain = window.location.hostname + '';
@@ -301,7 +301,8 @@
 
 
 /***/ },
-/* 3 */
+/* 3 */,
+/* 4 */
 /***/ function(module, exports) {
 
 	/*
