@@ -9,6 +9,7 @@ import cn.thinkjoy.zgk.market.service.IOrderStatementsService;
 import cn.thinkjoy.zgk.market.util.IPUtil;
 import cn.thinkjoy.zgk.market.util.NumberGenUtil;
 import cn.thinkjoy.zgk.market.util.StaticSource;
+import cn.thinkjoy.zgk.zgksystem.AgentService;
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.fastjson.JSONObject;
@@ -37,6 +38,9 @@ public class PayController {
 
     @Autowired
     private IOrderStatementsService orderStatementService;
+
+    @Autowired
+    private AgentService agentService;
 
 
     public static final String  CURRENCY ="cny";

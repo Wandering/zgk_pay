@@ -30,6 +30,33 @@ public class OrderController extends BaseCommonController {
     private IOrderService orderService;
     @Autowired
     private AgentService agentService;
+
+
+    /**
+     * 获取购买信息
+     * @return
+     */
+    @RequestMapping(value = "/getBuyInfo",method = RequestMethod.POST)
+    @ResponseBody
+    public Department getBuyInfo(@RequestParam("userId") String userId){
+
+        Map<String,Object> map=new HashMap<>();
+
+        //参数错误
+        if(userId==null){
+            throw new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
+        }
+        try{
+
+            Department  department= agentService.getAgentInfo(userId);
+
+            return  department;
+        }catch (Exception e){
+            logger.error("用户" + userId + ",获取购买信息异常:" + e);
+            throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
+        }
+    }
+
     /**
      * 提交订单
      * @return
