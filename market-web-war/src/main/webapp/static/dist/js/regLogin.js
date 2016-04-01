@@ -46,13 +46,13 @@
 
 	
 	// 切换
-	__webpack_require__(6);
-
-	// 登录
 	__webpack_require__(7);
 
+	// 登录
+	__webpack_require__(8);
+
 	// 注册
-	__webpack_require__(9);
+	__webpack_require__(10);
 
 
 /***/ },
@@ -341,6 +341,7 @@
 	/*
 	 * url配置文件
 	 * */
+	//var BASE_URL = ''; //正式
 	//var BASE_URL = 'http://s1.service.zhigaokao.cn'; //正式
 	//var BASE_URL = 'http://10.136.21.171:8080';  //正式环境
 	var BASE_URL = 'http://10.136.13.233:8080';  //测试环境
@@ -350,9 +351,16 @@
 	//var BASE_URL = 'http://127.0.0.1:8080';
 
 
-
-
 	var interfaceUrl = {
+
+	    /*
+	     * ==================================================
+	     * new  interface
+	     * ==================================================
+	     * */
+	    getCaptchaImg: BASE_URL + '',
+
+
 	    /*
 	     * 高考咨询
 	     * */
@@ -447,7 +455,7 @@
 	     *
 	     * */
 	    getAllRegion: BASE_URL + '/region/getAllRegion.do', //省市区
-	    getUserInfo: BASE_URL + '/info/getUserInfo.do', //获取用户信息
+	    getUserInfo: BASE_URL + '/info/getUserInfo', //获取用户信息
 
 
 	    /*
@@ -522,11 +530,11 @@
 	    /**
 	     * 智能填报
 	     */
-	    getVolunteerReport: BASE_URL +'/report/get/batch.do', // 智能填报
-	    getVolunteerSchool: BASE_URL +'/report/main.do', // 院校清单
-	    getSpecialty: BASE_URL +'/report/get/specialty.do', // 获取专业信息
-	    volunteerSave: BASE_URL +'/report/save.do', // 保存志愿填报
-	    getVolunteerFinalInfo: BASE_URL +'/report/get/info.do' // 志愿报告结果页
+	    getVolunteerReport: BASE_URL + '/report/get/batch.do', // 智能填报
+	    getVolunteerSchool: BASE_URL + '/report/main.do', // 院校清单
+	    getSpecialty: BASE_URL + '/report/get/specialty.do', // 获取专业信息
+	    volunteerSave: BASE_URL + '/report/save.do', // 保存志愿填报
+	    getVolunteerFinalInfo: BASE_URL + '/report/get/info.do' // 志愿报告结果页
 
 
 	};
@@ -756,7 +764,8 @@
 
 
 /***/ },
-/* 6 */
+/* 6 */,
+/* 7 */
 /***/ function(module, exports) {
 
 	$('#header-title').text('注册');
@@ -769,13 +778,13 @@
 
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var util=__webpack_require__(1);
 	var cookie=__webpack_require__(2);
 	var md5=__webpack_require__(5);
-	var getTime=__webpack_require__(8);
+	var getTime=__webpack_require__(9);
 	    var domain = util.domain; // 正式
 	    $(function () {
 	        // 登录提交
@@ -845,7 +854,7 @@
 
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
@@ -878,7 +887,7 @@
 
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var util=__webpack_require__(1);
