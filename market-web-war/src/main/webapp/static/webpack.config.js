@@ -4,10 +4,13 @@ var webpack = require('webpack');
 module.exports = {
     entry: {
         vipBuy: "./src/assets/js/vip-buy/vip-buy",
-        vip: "./src/assets/js/vip-buy/vip",
+        vip: "./src/assets/js/vip/vip",
+        code: "./src/assets/js/code/code",
         regLogin: "./src/assets/js/reglogin/reglogin",
         modifyUserDetail: './src/assets/js/modify-user-detail/modify-user-detail',
-        findPassword: './src/assets/js/reglogin/find-password'
+        findPassword: './src/assets/js/reglogin/find-password',
+        userDetail: './src/assets/js/user-detail/user-detail',
+        order: './src/assets/js/order/order'
     },
     output: {
         path: path.join(__dirname, "./dist/js"),
@@ -21,8 +24,7 @@ module.exports = {
             cookie: path.join(__dirname, "./src/assets/js/common/cookie"),
             md5: path.join(__dirname, "./src/lib/md5/jQuery.md5"),
             timeFormat: path.join(__dirname, "./src/assets/js/common/timeFormat"),
-            util: path.join(__dirname, "./src/lib/baseComponents/common"),
-            interfaceUrl: path.join(__dirname, "./src/lib/baseComponents/url-config")
+            iscroll: path.join(__dirname, "./src/lib/iscroll/iscroll-probe")
         }
     },
     plugins: [

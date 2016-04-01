@@ -44,40 +44,52 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/**
-	 * Created by pdeng on 16/3/31.
-	 */
-	var util = __webpack_require__(1);
-	var interfaceUrl = __webpack_require__(4);
 	var cookie = __webpack_require__(2);
-	$(function () {
-	    util.ajaxFun(interfaceUrl.getCaptchaImg, 'get', {
-	        'account': '18192168460'
-	        //'account': cookie.getCookieValue('phone')
+	var util = __webpack_require__(1);
+	var urlConfig = __webpack_require__(3);
+	var account = cookie.getCookieValue('phone');
+	$('#account-number').val(account);
+	$('.vip-btn').click(function () {
+	    var cardNum = $.trim($('#card-number').val());
+	    var cardPsd = $.trim($('#card-psd').val());
+	    if (cardNum == "") {
+	        util.drawToast('卡号不能为空');
+	        return;
+	    }
+	    if (cardNum.length != 10 && cardNum.length != 8) {
+	        util.drawToast('请输入正确的卡号');
+	        return;
+	    }
+	    if (cardPsd == "") {
+	        util.drawToast('卡密码不能为空');
+	        return;
+	    }
+	    if (cardPsd.length != 10) {
+	        util.drawToast('请输入正确的卡密码');
+	        return;
+	    }
+	    util.ajaxFun(urlConfig.upgradeVipByCard, 'POST', {
+	        "cardNumber": cardNum,
+	        "password": cardPsd
 	    }, function (res) {
-	        //var res = {
-	        //    bizData: {
-	        //        'captchImg': 'http://pic.baike.soso.com/p/20131211/20131211091752-393669037.jpg',
-	        //        'name': 'pdeng',
-	        //        'account': '18710921676'
-	        //    },
-	        //    rtnCode: '0000000'
-	        //};
-	        if (res.rtnCode = '0000000') {
-	            var dataJson = res.bizData;
-	            $('.name').text(dataJson.name);
-	            $('.tel').text(dataJson.account);
-	            $('.captchImg').attr('src', dataJson.captchImg);
+	        if (res.rtnCode == '0000000') {
+	            var vipStatus = res.bizData.vipStatus;
+	            var vipActiveDate = res.bizData.vipActiveDate;
+	            var vipEndDate = res.bizData.vipEndDate;
+	            util.cookie.setCookie("vipStatus", vipStatus, 4, "");
+	            util.cookie.setCookie("vipActiveDate", vipActiveDate, 4, "");
+	            util.cookie.setCookie("vipEndDate", vipEndDate, 4, "");
+	            util.drawToast('申请成功');
+	        } else {
+	            util.drawToast('res.msg');
+	        }
+	        if (res.rtnCode == '0900002' || res.rtnCode == '0900001') {
+	            util.drawToast('res.msg');
 	        }
 	    });
-	    //分享
-	    $('.share-btn').click(function () {
-	        $('.mask').show();
-	    });
-	    $('.mask').click(function () {
-	        $(this).hide();
-	    })
 	});
+
+
 
 /***/ },
 /* 1 */
@@ -289,8 +301,7 @@
 
 
 /***/ },
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ function(module, exports) {
 
 	/*

@@ -266,76 +266,6 @@
 
 /***/ },
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var util = __webpack_require__(1);
-	var urlConfig=__webpack_require__(4);
-
-	$(function () {
-	    var captchaType = '0'; //0.注册标志  1 找回密码
-	    // 忘记密码
-	    $('#forget-psd').on('click', function () {
-	        $('#forget-psd-title,#register-content').show();
-	        $('#login-reg-tab,#login-content,.areaSel').hide();
-	        $('#register-btn').text('确定');
-	        captchaType = '1';
-	        $('.login-register-box input[type="text"]').val("");
-	    });
-	    // 验证码获取
-	    $('#verification-btn').on('click', function () {
-	        var _this = $(this);
-	        var registerPhoneV = $.trim($('#register-phone').val());
-	        if (registerPhoneV == "") {
-	            util.drawToast('请输入手机号');
-	            return false;
-	        }
-	        var regMobile = /^1[3|4|5|6|7|8|9][0-9]{1}[0-9]{8}$/;
-	        var mobileResult = regMobile.test(registerPhoneV);
-	        if (mobileResult == false) {
-	            util.drawToast('手机号有误,请重新输入');
-	            return false;
-	        }
-	        util.ajaxFun(urlConfig.postConfirmAccountCode, 'POST', {
-	            type: captchaType,
-	            account: registerPhoneV
-	        }, function (res) {
-	            if (res.rtnCode === "0000000") {
-	                util.ajaxFun(urlConfig.postVerificationCode, 'POST', {
-	                    type: captchaType,
-	                    account: registerPhoneV
-	                }, function (res) {
-	                    if (res.rtnCode === "0000000") {
-	                        _this.attr({
-	                            'background-color': '#ccc',
-	                            'disabled': true
-	                        });
-	                        var s = (JSON.parse(res.bizData)).time;
-	                        var timer = setInterval(function () {
-	                            s--;
-	                            _this.text(s + '秒后重新获取');
-	                            if (s <= 0) {
-	                                clearInterval(timer);
-	                                _this.text('重新获取').css('background-color', '#d80c18');
-	                                _this.attr('disabled', false)
-	                            }
-	                        }, 1000);
-	                    } else {
-	                        util.drawToast(res.msg);
-	                    }
-	                });
-	            } else {
-	                util.drawToast(res.msg);
-	            }
-	        });
-
-	    });
-	});
-
-
-
-
-/***/ },
-/* 4 */
 /***/ function(module, exports) {
 
 	/*
@@ -356,7 +286,7 @@
 	     * new  interface
 	     * ==================================================
 	     * */
-	    getCaptchaImg: BASE_URL + '',
+	    getCaptchaImg: 'user/getUserProfile',//分享二维码
 
 
 	    /*
@@ -414,11 +344,11 @@
 	    /*
 	     * 登录|注册
 	     * */
-	    postLogin:  '/login/login',   // 登录
+	    postLogin: '/login/login',   // 登录
 	    postRegisterLogin: BASE_URL + '/register/account.do',   // 注册
-	    postConfirmAccountCode: '/register/confirmAccount.do',  // 确认是否注册
-	    postVerificationCode:  '/captcha/captcha.do',   // 获取手机验证码
-	    postRetrievePassword: BASE_URL + '/register/retrievePassword.do',   // 获取手机验证码
+	    postConfirmAccountCode: '/register/confirmAccount',  // 确认是否注册
+	    postVerificationCode: '/captcha/captcha',   // 获取手机验证码
+	    postRetrievePassword: '/register/retrievePassword',   // 获取手机验证码
 
 
 	    /**
@@ -542,7 +472,7 @@
 
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports) {
 
 		/**
@@ -762,6 +692,7 @@
 
 
 /***/ },
+/* 5 */,
 /* 6 */
 /***/ function(module, exports) {
 
@@ -784,8 +715,9 @@
 
 	var util=__webpack_require__(1);
 	var cookie=__webpack_require__(2);
-	var md5=__webpack_require__(5);
+	var md5=__webpack_require__(4);
 	var getTime=__webpack_require__(8);
+
 	    var domain = util.domain; // 正式
 
 	    $(function () {
@@ -807,8 +739,9 @@
 	                util.drawToast('请输入密码');
 	                return false;
 	            }
+
 	            var md5loginPwdV = $.md5(loginPwdV);
-	            util.ajaxFun(util.postLogin, 'GET', {
+	            util.ajaxFun('/login/login', 'GET', {
 	                account: loginPhoneV,
 	                password: md5loginPwdV
 	            }, function (res) {
@@ -893,9 +826,8 @@
 
 	var util = __webpack_require__(1);
 	var cookie = __webpack_require__(2);
-	__webpack_require__(3);
-	var md5 = __webpack_require__(5);
-	var urlConfig = __webpack_require__(4);
+	var md5 = __webpack_require__(4);
+	var urlConfig = __webpack_require__(3);
 
 	//var dialog = require('dialog');
 	var domain = util.domain; // 正式
@@ -918,7 +850,6 @@
 	                    that.changeCity(currentCityId);
 
 	                } else {
-
 
 	                }
 	            });
@@ -1141,6 +1072,59 @@
 	        });
 
 	    });
+
+	    var captchaType = '0'; //0.注册标志  1 找回密码
+	    // 验证码获取
+	    $('#verification-btn').on('click', function () {
+	        var _this = $(this);
+	        var registerPhoneV = $.trim($('#register-phone').val());
+	        if (registerPhoneV == "") {
+	            util.drawToast('请输入手机号');
+	            return false;
+	        }
+	        var regMobile = /^1[3|4|5|6|7|8|9][0-9]{1}[0-9]{8}$/;
+	        var mobileResult = regMobile.test(registerPhoneV);
+	        if (mobileResult == false) {
+	            util.drawToast('手机号有误,请重新输入');
+	            return false;
+	        }
+	        util.ajaxFun(urlConfig.postConfirmAccountCode, 'POST', {
+	            type: captchaType,
+	            account: registerPhoneV
+	        }, function (res) {
+	            if (res.rtnCode === "0000000") {
+	                util.ajaxFun(urlConfig.postVerificationCode, 'POST', {
+	                    type: captchaType,
+	                    account: registerPhoneV
+	                }, function (res) {
+	                    if (res.rtnCode === "0000000") {
+	                        _this.attr({
+	                            'background-color': '#ccc',
+	                            'disabled': true
+	                        });
+	                        var s = (JSON.parse(res.bizData)).time;
+	                        var timer = setInterval(function () {
+	                            s--;
+	                            _this.text(s + '秒后重新获取');
+	                            if (s <= 0) {
+	                                clearInterval(timer);
+	                                _this.text('重新获取').css('background-color', '#d80c18');
+	                                _this.attr('disabled', false)
+	                            }
+	                        }, 1000);
+	                    } else {
+	                        util.drawToast(res.msg);
+	                    }
+	                });
+	            } else {
+	                util.drawToast(res.msg);
+	            }
+	        });
+
+	    });
+
+
+
 	});
 
 

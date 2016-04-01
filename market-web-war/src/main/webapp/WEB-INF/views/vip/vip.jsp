@@ -4,7 +4,7 @@
 <head lang="en">
     <%@ include file="../common/meta.jsp"%>
     <title>登录页</title>
-    <link rel="stylesheet" href="<%=ctx%>/static/dist/css//vip/style.css"/>
+    <link rel="stylesheet" href="<%=ctx%>/static/dist/css/vip/style.css"/>
 </head>
 <body>
 <%@ include file="../common/header.jsp"%>
@@ -28,7 +28,7 @@
         <div class="form-group">
             <div class="input-group">
                 <i class="password-icon"></i>
-                <input type="password" placeholder="密码：" id="psd">
+                <input type="password" placeholder="密码：" id="card-psd">
             </div>
         </div>
         <div class="vip-btn">
