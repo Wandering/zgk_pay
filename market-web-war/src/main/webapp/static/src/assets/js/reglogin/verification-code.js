@@ -3,14 +3,6 @@ var urlConfig=require('urlConfig');
 
 $(function () {
     var captchaType = '0'; //0.注册标志  1 找回密码
-    // 忘记密码
-    $('#forget-psd').on('click', function () {
-        $('#forget-psd-title,#register-content').show();
-        $('#login-reg-tab,#login-content,.areaSel').hide();
-        $('#register-btn').text('确定');
-        captchaType = '1';
-        $('.login-register-box input[type="text"]').val("");
-    });
     // 验证码获取
     $('#verification-btn').on('click', function () {
         var _this = $(this);

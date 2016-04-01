@@ -2,6 +2,7 @@ var util=require('commonjs');
 var cookie=require('cookie');
 var md5=require('md5');
 var getTime=require('timeFormat');
+
     var domain = util.domain; // 正式
 
     $(function () {
@@ -23,8 +24,9 @@ var getTime=require('timeFormat');
                 util.drawToast('请输入密码');
                 return false;
             }
+
             var md5loginPwdV = $.md5(loginPwdV);
-            util.ajaxFun(util.postLogin, 'GET', {
+            util.ajaxFun('/login/login', 'GET', {
                 account: loginPhoneV,
                 password: md5loginPwdV
             }, function (res) {
