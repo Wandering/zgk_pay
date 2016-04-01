@@ -9,6 +9,7 @@ package cn.thinkjoy.zgk.market.service.impl;
 
 import cn.thinkjoy.zgk.market.dao.*;
 import cn.thinkjoy.zgk.market.domain.*;
+import cn.thinkjoy.zgk.market.pojo.UploadFileReturn;
 import cn.thinkjoy.zgk.market.pojo.UserAccountPojo;
 import cn.thinkjoy.zgk.market.pojo.UserInfoPojo;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
@@ -19,6 +20,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
+import com.jlusoft.microschool.core.utils.JsonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Service;
@@ -133,8 +135,6 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
             Map hints = new HashMap();
             hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
             BitMatrix bitMatrix = multiFormatWriter.encode(loginUrl, BarcodeFormat.QR_CODE, 400, 400,hints);
-
-
             String path=Thread.currentThread().getContextClassLoader().getResource("").toString();
             path=path.substring(1, path.indexOf("classes")).replaceFirst("ile:","");
             String fileName = id+".jpg";
@@ -150,9 +150,11 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
             param.add("userId", "gk360");
             param.add("dirId", "0");
             template.getMessageConverters().add(new FastJsonHttpMessageConverter());
-            String imgUrl = template.postForObject(uploadUrl, param, String.class);
-
-            userMarket.setQrcodeUrl(imgUrl);//二维码地址
+            String returnJson = template.postForObject(uploadUrl, param, String.class);
+                UploadFileReturn  uploadFileReturn = JsonMapper.buildNormalMapper().fromJson(returnJson,UploadFileReturn.class);
+                if(uploadFileReturn !=null && "0000000".equals(uploadFileReturn.getRtnCode())){
+                    userMarket.setQrcodeUrl(uploadFileReturn.getUri());//二维码地址
+                }
             userMarketDAO.insert(userMarket);
                 flag = true;
         }catch(Exception e){
