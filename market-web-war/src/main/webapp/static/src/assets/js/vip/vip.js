@@ -1,6 +1,11 @@
-/**
- * Created by kepeng on 16/3/31.
- */
-(function() {
+(function () {
+    var cookie = require('cookie');
+    var account = cookie.getCookieValue('tel');
+    $('#account-number').val(account);
+    $('.vip-btn').click(function () {
+        var cardNum = $.trim($('#card-number').val());
 
-})();
+    });
+
+
+});

@@ -4,6 +4,7 @@ var webpack = require('webpack');
 module.exports = {
     entry: {
         vipBuy: "./src/assets/js/vip-buy/vip-buy",
+        vip: "./src/assets/js/vip-buy/vip",
         regLogin: "./src/assets/js/reglogin/reglogin",
         modifyUserDetail: './src/assets/js/modify-user-detail/modify-user-detail',
         findPassword: './src/assets/js/reglogin/find-password'

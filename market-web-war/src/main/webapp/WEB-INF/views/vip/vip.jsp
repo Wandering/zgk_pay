@@ -16,19 +16,19 @@
         <div class="form-group">
             <div class="input-group">
                 <i class="mobile-icon"></i>
-                <input type="text" placeholder="充值账号：15209209240">
+                <input type="text" placeholder="充值账号：" id="account-number" disable>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
                 <i class="card-icon"></i>
-                <input type="text" placeholder="卡号：">
+                <input type="text" placeholder="卡号：" id="card-number">
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
                 <i class="password-icon"></i>
-                <input type="password" placeholder="密码：">
+                <input type="password" placeholder="密码：" id="psd">
             </div>
         </div>
         <div class="vip-btn">
@@ -39,6 +39,6 @@
         </div>
     </form>
 </div>
-<script type="text/javascript" src=""></script>
+<script src="<%=ctx%>/static/dist/js/vip.js"></script>
 </body>
 </html>
