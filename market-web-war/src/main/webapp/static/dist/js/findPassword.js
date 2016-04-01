@@ -422,7 +422,6 @@
 	/*
 	 * url配置文件
 	 * */
-	//var BASE_URL = ''; //正式
 	//var BASE_URL = 'http://s1.service.zhigaokao.cn'; //正式
 	//var BASE_URL = 'http://10.136.21.171:8080';  //正式环境
 	var BASE_URL = 'http://10.136.13.233:8080';  //测试环境
@@ -430,7 +429,6 @@
 	//var BASE_URL = 'http://10.136.56.195:8080';  //开发环境
 	//var BASE_URL = 'http://172.16.180.150:8086';  //yyp
 	//var BASE_URL = 'http://127.0.0.1:8080';
-
 
 	var interfaceUrl = {
 
@@ -497,10 +495,10 @@
 	    /*
 	     * 登录|注册
 	     * */
-	    postLogin: BASE_URL + '/login/login.do',   // 登录
+	    postLogin:  '/login/login',   // 登录
 	    postRegisterLogin: BASE_URL + '/register/account.do',   // 注册
-	    postConfirmAccountCode: BASE_URL + '/register/confirmAccount.do',  // 确认是否注册
-	    postVerificationCode: BASE_URL + '/captcha/captcha.do',   // 获取手机验证码
+	    postConfirmAccountCode: '/register/confirmAccount.do',  // 确认是否注册
+	    postVerificationCode:  '/captcha/captcha.do',   // 获取手机验证码
 	    postRetrievePassword: BASE_URL + '/register/retrievePassword.do',   // 获取手机验证码
 
 
@@ -536,7 +534,7 @@
 	     *
 	     * */
 	    getAllRegion: BASE_URL + '/region/getAllRegion.do', //省市区
-	    getUserInfo: BASE_URL + '/info/getUserInfo', //获取用户信息
+	    getUserInfo: BASE_URL + '/info/getUserInfo.do', //获取用户信息
 
 
 	    /*

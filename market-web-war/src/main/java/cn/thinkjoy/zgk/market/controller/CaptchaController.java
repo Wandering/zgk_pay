@@ -38,6 +38,7 @@ public class CaptchaController extends BaseCommonController {
     @RequestMapping(value = "/captcha")
     @ResponseBody
     public String captcha(@RequestParam(value="account",required=false) String account,@RequestParam(value="type",required=false) Integer type) throws Exception {
+
         long areaId= getAreaId();
         JSONObject result = new JSONObject();
         try{

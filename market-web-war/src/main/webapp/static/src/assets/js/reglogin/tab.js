@@ -1,7 +1,11 @@
+var UI ={
+    $tabContent:$('.tab-content')
+};
+
 $('#header-title').text('注册');
-$('.tab-list .tab').on('click', function(){
-    $('.tab-list .tab').removeClass('active');
-    $(this).addClass('active');
-    $('form').addClass('hidden');
-    $('form').eq($(this).index()).removeClass('hidden');
-})
+$('.tab-list').on('click','.tab', function(){
+    $(this).addClass('active').siblings().removeClass('active');
+    var index = $(this).index();
+    UI.$tabContent.removeClass('active').eq(index).addClass('active');
+});
+$('.tab-list .tab').eq(0).click();

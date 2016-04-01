@@ -119,11 +119,11 @@ public class LoginController extends BaseCommonController {
 	private UserInfoPojo oldUserLogin(String account,String password){
 		UserInfoPojo userAccountBean = userAccountExService.findOldUserAccountPojoByPhone(account);
 		if (userAccountBean == null) {
-			throw new BizException(ERRORCODE.LOGIN_ACCOUNT_NO_EXIST.getCode(),ERRORCODE.LOGIN_ACCOUNT_NO_EXIST.getMessage());
+			throw new BizException(ERRORCODE.LOGIN_ACCOUNT_NO_EXIST.getCode(), ERRORCODE.LOGIN_ACCOUNT_NO_EXIST.getMessage());
 		}
 		if (!"@@@@".equals(password)) {
 			if (!password.equals(userAccountBean.getPassword())) {
-				throw new BizException(ERRORCODE.LOGIN_PASSWORD_ERROR.getCode(),ERRORCODE.LOGIN_PASSWORD_ERROR.getMessage());
+				throw new BizException(ERRORCODE.LOGIN_PASSWORD_ERROR.getCode(), ERRORCODE.LOGIN_PASSWORD_ERROR.getMessage());
 			}
 		}
 		return userAccountBean;

@@ -167,3 +167,120 @@ header {
     margin-top: 13px;
   }
 }
+
+.tab-content{
+  display: none;
+}
+.tab-content.active{
+  display: block;
+}
+
+
+
+
+.comm-sass {
+  .w50{
+    width: 50%!important;
+  }
+  .w40{
+    width: 43%!important;
+  }
+  .btn-code{
+    outline: none;
+    border: none;
+    background-color: $mainColor;
+    border-radius: 40px;
+    line-height: 20px;
+    color: #fff;
+    margin-left: 10px;
+  }
+  background: #fff url("../../img/login-bg.png") center center;
+  height: 700px;
+  .w1000 {
+    position: relative;
+  }
+  .logo {
+    margin-right: 30px;
+    padding-top: 35px;
+    display: inline-block;
+  }
+  .go-home {
+    color: #555;
+    font-size: 14px;
+    text-decoration: none;
+    .icon-home {
+      margin-right: 5px;
+      position: relative;
+      top: -2px;
+    }
+  }
+  //=================================
+  .title {
+    height: 45px;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 30px;
+    .tab {
+      line-height: 45px;
+      font-size: 20px;
+      width: 50%;
+      display: block;
+      float: left;
+      text-align: center;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .active {
+      position: relative;
+      top: -2px;
+      border-bottom: 2px solid $mainColor;
+      color: $mainColor;
+    }
+  }
+  .form-group {
+    position: relative;
+    .comm {
+      height: 40px;
+      line-height: 40px;
+      padding: 0 15px 0 30px;
+      width: 100%;
+      border: 1px solid #e5e5e5;
+      border-radius: 40px;
+      outline: none;
+    }
+    i {
+      position: absolute;
+    }
+  }
+  .btn-comm {
+    width: 100%;
+    border-radius: 40px;
+    text-align: center;
+    height: 40px;
+    background-color: $mainColor;
+    color: #fff;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    &:hover {
+      background-color: lighten($mainColor, 10%);
+      transition: all 1s;
+    }
+  }
+
+  .nav-link {
+    height: 20px;
+    margin-bottom: 10px;
+    .forget-psd {
+      display: inline-block;
+      float: right;
+      margin-bottom: 30px;
+      color: #666;
+    }
+    .tips {
+      display: inline-block;
+      color: #e24d39;
+    }
+  }
+
+}
+

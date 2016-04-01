@@ -3,31 +3,31 @@ var cookie=require('cookie');
 var md5=require('md5');
 var getTime=require('timeFormat');
     var domain = util.domain; // 正式
+
     $(function () {
         // 登录提交
         $('#submit-btn').on('click', function () {
             var loginPhoneV = $.trim($('#login-phone').val()),
                 loginPwdV = $.trim($('#login-pwd').val());
             if (loginPhoneV == "") {
-                util.tips('#tips', '请输入手机号');
+                util.drawToast('请输入手机号');
                 return false;
             }
             var regMobile = /^1[3|4|5|6|7|8|9][0-9]{1}[0-9]{8}$/;
             var mobileResult = regMobile.test(loginPhoneV);
             if (mobileResult == false) {
-                util.tips('#tips', '手机号有误,请重新输入');
+                util.drawToast('手机号有误,请重新输入');
                 return false;
             }
             if (loginPwdV == "") {
-                util.tips('#tips', '请输入密码');
+                util.drawToast('请输入密码');
                 return false;
             }
             var md5loginPwdV = $.md5(loginPwdV);
-            util.ajaxFun(util.INTERFACE_URL.postLogin, 'POST', {
+            util.ajaxFun(util.postLogin, 'GET', {
                 account: loginPhoneV,
                 password: md5loginPwdV
             }, function (res) {
-                console.log(res)
                 if (res.rtnCode === "0000000") {
                     var token = res.bizData.token;
                     var userName = res.bizData.userInfo.name;
@@ -55,9 +55,9 @@ var getTime=require('timeFormat');
                     cookie.setCookie("vipStatus", vipStatus, 4, "");
                     cookie.setCookie("phone",phone, 4, "");
                     cookie.setCookie("userKey",userKey, 4, "");
-                    window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/index.html');
+                    //window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/index.html');
                 } else {
-                    util.tips('#tips', res.msg);
+                    util.drawToast(res.msg);
                 }
             });
         });
