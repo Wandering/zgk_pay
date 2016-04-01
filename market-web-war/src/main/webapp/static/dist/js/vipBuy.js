@@ -48,7 +48,7 @@
 	(function() {
 
 	    var util = __webpack_require__(1);
-	    var interfaceUrl = __webpack_require__(4);
+	    var interfaceUrl = __webpack_require__(3);
 	    var cookie = __webpack_require__(2);
 
 	    /**
@@ -330,8 +330,7 @@
 
 
 /***/ },
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ function(module, exports) {
 
 	/*
@@ -550,6 +549,7 @@
 
 
 /***/ },
+/* 4 */,
 /* 5 */,
 /* 6 */,
 /* 7 */,

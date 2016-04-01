@@ -75,7 +75,7 @@ public class OrderController extends BaseCommonController {
             String orderNo= NumberGenUtil.genOrderNo();
             Order order=new Order();
 
-            Department  department= agentService.getAgentInfo(order.getUserId().toString());
+            Department  department= agentService.getAgentInfo(userId);
             if(! department.getSalePrice().equals(price)){
 
                 logger.error("用户" + order.getUserId() + ",提交的价格不匹配" );

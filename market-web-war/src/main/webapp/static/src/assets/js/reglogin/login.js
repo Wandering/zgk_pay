@@ -2,7 +2,6 @@ var util=require('commonjs');
 var cookie=require('cookie');
 var md5=require('md5');
 var getTime=require('timeFormat');
-
     var domain = util.domain; // 正式
 
     $(function () {
@@ -24,12 +23,12 @@ var getTime=require('timeFormat');
                 util.drawToast('请输入密码');
                 return false;
             }
-
             var md5loginPwdV = $.md5(loginPwdV);
             util.ajaxFun('/login/login', 'GET', {
                 account: loginPhoneV,
                 password: md5loginPwdV
             }, function (res) {
+                console.log(res)
                 if (res.rtnCode === "0000000") {
                     var token = res.bizData.token;
                     var userName = res.bizData.userInfo.name;
@@ -57,7 +56,7 @@ var getTime=require('timeFormat');
                     cookie.setCookie("vipStatus", vipStatus, 4, "");
                     cookie.setCookie("phone",phone, 4, "");
                     cookie.setCookie("userKey",userKey, 4, "");
-                    window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/user-detail');
+                    //window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/user-detail');
                 } else {
                     util.drawToast(res.msg);
                 }
