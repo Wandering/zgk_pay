@@ -167,3 +167,11 @@ header {
     margin-top: 13px;
   }
 }
+
+.tab-content{
+  display: none;
+}
+.tab-content.active{
+  display: block;
+}
+

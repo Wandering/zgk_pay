@@ -155,3 +155,11 @@ header .location.location-icon:before {
   text-decoration: underline;
   margin-top: 13px;
 }
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
