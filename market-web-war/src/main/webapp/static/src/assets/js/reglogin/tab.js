@@ -1,6 +1,6 @@
 var UI ={
     $tabContent:$('.tab-content')
-}
+};
 
 $('#header-title').text('注册');
 $('.tab-list').on('click','.tab', function(){

@@ -13,25 +13,24 @@
         <div class="tab tab-login">登录</div>
         <div class="tab tab-register type-res active" typeRes="1">注册</div>
     </div>
-
     <div class="tab-content">
         <div class="form-group">
             <div class="input-group">
                 <i class="mobile-icon"></i>
-                <input type="text" placeholder="请输入手机号码"/>
+                <input type="text" id="#login-phone" placeholder="请输入手机号码"/>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
                 <i class="password-icon"></i>
-                <input type="password" placeholder="请输入密码"/>
+                <input type="password" id="login-pwd" placeholder="请输入密码"/>
             </div>
         </div>
         <div class="reset-password">
             <a>忘记密码？</a>
         </div>
         <div class="form-group">
-            <button class="submit-btn">登录</button>
+            <button class="submit-btn" id="submit-btn">登录</button>
         </div>
     </div>
 
