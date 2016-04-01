@@ -51,9 +51,9 @@
 	var interfaceUrl = __webpack_require__(4);
 	var cookie = __webpack_require__(2);
 	$(function () {
+	    var account = util.getLinkey('account');
 	    util.ajaxFun(interfaceUrl.getCaptchaImg, 'get', {
-	        'account': '18192168460'
-	        //'account': cookie.getCookieValue('phone')
+	        'account': account
 	    }, function (res) {
 	        //var res = {
 	        //    bizData: {
