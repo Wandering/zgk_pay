@@ -76,9 +76,9 @@ var interfaceUrl = {
      * */
     postLogin:  '/login/login',   // 登录
     postRegisterLogin: BASE_URL + '/register/account.do',   // 注册
-    postConfirmAccountCode: '/register/confirmAccount.do',  // 确认是否注册
-    postVerificationCode:  '/captcha/captcha.do',   // 获取手机验证码
-    postRetrievePassword: BASE_URL + '/register/retrievePassword.do',   // 获取手机验证码
+    postConfirmAccountCode: '/register/confirmAccount',  // 确认是否注册
+    postVerificationCode:  '/captcha/captcha',   // 获取手机验证码
+    postRetrievePassword:  '/register/retrievePassword',   // 获取手机验证码
 
 
     /**

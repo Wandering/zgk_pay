@@ -53,14 +53,14 @@
 
 
 
-	var domain = util.domain; // 正式
 	$(function () {
 	    // 登录提交
-	    $('#register-btn').on('click', function () {
-	        var registerPhoneV = $.trim($('#register-phone').val()),
-	            verificationCodeV = $.trim($('#verification-code').val()),
-	            registerPwdV = $.trim($('#register-pwd').val()),
-	            registerPwdRepeatV = $.trim($('#register-pwd-repeat').val());
+	    $('#register-pwd-btn').on('click', function () {
+	        alert(8)
+	        var registerPhoneV = $.trim($('#register-pwd-phone').val()),
+	            verificationCodeV = $.trim($('#verification-pwd-code').val()),
+	            registerPwdV = $.trim($('#register-pwd-code').val()),
+	            registerPwdRepeatV = $.trim($('#register-pwd-repeat2').val());
 	        if (registerPhoneV == "") {
 	            util.drawToast('请输入手机号');
 	            return false;
@@ -126,7 +126,7 @@
 	                cookie.setCookie("subjectType",subjectType, 4, "");
 	                cookie.setCookie("userKey",userKey, 4, "");
 	                $('#submitBtn').attr('disabled','disabled');
-	                window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/user-account-info.html');
+	                //window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/user-account-info.html');
 	            } else {
 	                util.drawToast(res.msg);
 	            }
@@ -497,9 +497,9 @@
 	     * */
 	    postLogin:  '/login/login',   // 登录
 	    postRegisterLogin: BASE_URL + '/register/account.do',   // 注册
-	    postConfirmAccountCode: '/register/confirmAccount.do',  // 确认是否注册
-	    postVerificationCode:  '/captcha/captcha.do',   // 获取手机验证码
-	    postRetrievePassword: BASE_URL + '/register/retrievePassword.do',   // 获取手机验证码
+	    postConfirmAccountCode: '/register/confirmAccount',  // 确认是否注册
+	    postVerificationCode:  '/captcha/captcha',   // 获取手机验证码
+	    postRetrievePassword:  '/register/retrievePassword',   // 获取手机验证码
 
 
 	    /**

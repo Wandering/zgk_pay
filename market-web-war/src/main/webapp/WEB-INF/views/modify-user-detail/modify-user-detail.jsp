@@ -10,6 +10,9 @@
 <%@ include file="../common/header.jsp"%>
 <input type="hidden" id="user-birthday" value="">
 <input type="hidden" id="user-qq" value="">
+<input type="hidden" id="province" value="">
+<input type="hidden" id="city" value="">
+<input type="hidden" id="county" value="">
 <div class="container">
     <form action="">
         <div class="avatar">
