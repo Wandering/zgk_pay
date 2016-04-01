@@ -18,7 +18,7 @@
         </div>
         <div class="form-group">
             <input class="check-code" id="verification-pwd-code"  type="text" placeholder="输入验证码"/>
-            <button type="button" class="btn btn-code w50" id="verification-btn">获取验证码</button>
+            <button type="button" class="btn btn-code w50" id="verification-pwd-btn">获取验证码</button>
         </div>
         <div class="form-group">
             <div class="input-group">
