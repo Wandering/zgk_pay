@@ -2,7 +2,7 @@ var UI ={
     $tabContent:$('.tab-content')
 };
 
-$('#header-title').text('注册');
+$('#header-title').text('登录&注册');
 $('.tab-list').on('click','.tab', function(){
     $(this).addClass('active').siblings().removeClass('active');
     var index = $(this).index();

@@ -85,7 +85,7 @@
 	    }]
 
 	    var util = __webpack_require__(1);
-	    var interfaceUrl = __webpack_require__(4);
+	    var interfaceUrl = __webpack_require__(3);
 	    var IScroll = __webpack_require__(5);
 	    var myScroll = null;
 
@@ -423,8 +423,7 @@
 
 
 /***/ },
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ function(module, exports) {
 
 	/*
@@ -643,6 +642,7 @@
 
 
 /***/ },
+/* 4 */,
 /* 5 */
 /***/ function(module, exports) {
 
