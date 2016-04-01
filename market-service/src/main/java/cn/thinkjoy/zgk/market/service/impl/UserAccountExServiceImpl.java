@@ -30,6 +30,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -196,6 +197,11 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("account",phone);
         return userAccountExDAO.findOldUserAccountPojo(params);
+    }
+
+    @Override
+    public List<Map<String, Object>> getUserRelListByUserId(Long aLong) {
+        return userAccountExDAO.getUserRelListByUserId(aLong);
     }
 
 }

@@ -120,7 +120,11 @@ public class PayController {
             orderStatementService.updateByOrderNo(orderStatements);
             Map<String, Order> orderMap = orderService.queryOrderByNo(orderNo);
             String userId= orderMap.get("user_id").toString();
+
             List<Map<String,Object>> userRelLs= userAccountExService.getUserRelListByUserId(Long.valueOf(userId));
+
+
+
 
             List<SplitPricePojo> splitPricePojos = new ArrayList<>();
 //            agentService.SplitPriceExec(splitPricePojos, charge.getAmount(), orderNo);
