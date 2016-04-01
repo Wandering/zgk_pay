@@ -100,7 +100,9 @@
 	            captcha: verificationCodeV, //验证码
 	            password: md5RegisterPwdV //密码
 	        }, function (res) {
+	            console.log(res)
 	            if (res.rtnCode === "0000000") {
+
 	                window.location.assign('http://' + $.trim(provinceKey) + '.'+ domain +'/login');
 	            } else {
 	                util.drawToast(res.msg);
