@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="vip-check-info">
-        <img src="../../../img/vip-check/vip.png" alt=""/>
+        <img src="<%=ctx%>/static/dist/img/icons/vip.png" alt=""/>
         <div class="text">
             <div>价格：511元</div>
         </div>
@@ -34,20 +34,6 @@
         <div class="confirm-btn">确认支付</div>
     </div>
 </div>
-<script src="<%=ctx%>/static/dist/js/vipBuy.js"></script>
-
-
-<%--<script src="<%=ctx%>/static/assets/js/jquery-2.2.2.min.js"></script>--%>
-<%--<script src="../../../assets/js/pgwmodal.min.js"></script>--%>
-<%--<script>--%>
-    <%--$(function(){--%>
-        <%--$('.vip-buy-btn').on('click', function(){--%>
-            <%--$.pgwModal({--%>
-                <%--title: '订单确认',--%>
-                <%--content: $('.modal').html()--%>
-            <%--});--%>
-        <%--});--%>
-    <%--})--%>
-<%--</script>--%>
+<script src="<%=ctx%>/static/dist/js/vip.js"></script>
 </body>
 </html>
