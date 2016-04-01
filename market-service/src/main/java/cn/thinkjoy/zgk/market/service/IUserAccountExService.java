@@ -12,6 +12,9 @@ import cn.thinkjoy.zgk.market.domain.UserAccount;
 import cn.thinkjoy.zgk.market.pojo.UserAccountPojo;
 import cn.thinkjoy.zgk.market.pojo.UserInfoPojo;
 
+import java.util.List;
+import java.util.Map;
+
 public interface IUserAccountExService {
 
     UserAccountPojo findUserAccountPojoByToken(String token);
@@ -33,4 +36,6 @@ public interface IUserAccountExService {
     UserInfoPojo findOldUserAccountPojoById(long id);
 
     UserInfoPojo findOldUserAccountPojoByPhone(String phone);
+
+List<Map<String,Object>> getUserRelListByUserId(Long aLong);
 }

@@ -63,29 +63,37 @@ public class OrderController extends BaseCommonController {
      */
     @RequestMapping(value = "/commitOrder",method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> commitOrder(@RequestBody Order order){
+    public Map<String,Object> commitOrder(@RequestParam("userId") String userId,@RequestParam("price")String price){
 
         Map<String,Object> map=new HashMap<>();
 
         //参数错误
-        if(order==null){
+        if(userId==null||price==null){
             throw new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
         }
         try{
             String orderNo= NumberGenUtil.genOrderNo();
+            Order order=new Order();
+
             Department  department= agentService.getAgentInfo(order.getUserId().toString());
+            if(! department.getSalePrice().equals(price)){
+
+                logger.error("用户" + order.getUserId() + ",提交的价格不匹配" );
+                throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
+            }
             order.setCreateDate(System.currentTimeMillis());
             order.setOrderNo(orderNo);
             order.setDepartmentName(department.getDepartmentName());
             order.setDepartmentPhone(department.getDepartmentPhone());
             order.setGoodAddress(department.getGoodsAddress());
             order.setProductPrice(department.getSalePrice());
+            order.setUserId(Long.valueOf(userId));
             orderService.insert(order);
             map.put("orderNo",orderNo);
             map.put("department",department);
             return  map;
         }catch (Exception e){
-            logger.error("用户" + order.getUserId() + ",提交订单异常:" + e);
+            logger.error("用户" +userId + ",提交订单异常:" + e);
             throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
         }
     }

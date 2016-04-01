@@ -13,7 +13,7 @@ require('pgwmodal');
             userId: cookie.getCookieValue('userId') || 13
         }, function (res) {
             if (res.rtnCode == '0000000') {
-
+                $('#price').html('价格：' + res.bizData.salePrice + '元');
             }
         })
     }
@@ -26,7 +26,10 @@ require('pgwmodal');
             userId: cookie.getCookieValue('userId') || 13
         }, function (res) {
             if (res.rtnCode == '0000000') {
-
+                $('#orderNo').html('订单ID：');
+                $('#orderNo').html('订单ID：');
+                $('#service_price').html('服务价格：元');
+                $('#pay_price').html('应付费用：元');
             }
         })
     }

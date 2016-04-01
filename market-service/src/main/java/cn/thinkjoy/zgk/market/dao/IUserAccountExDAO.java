@@ -9,7 +9,9 @@ package cn.thinkjoy.zgk.market.dao;
 
 import cn.thinkjoy.zgk.market.pojo.UserAccountPojo;
 import cn.thinkjoy.zgk.market.pojo.UserInfoPojo;
+import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Map;
 
 public interface IUserAccountExDAO {
@@ -22,4 +24,5 @@ public interface IUserAccountExDAO {
 
     UserInfoPojo findOldUserAccountPojo(Map<String, Object> params);
 
+    List<Map<String,Object>> getUserRelListByUserId(@Param("userId") Long aLong);
 }

@@ -22,12 +22,14 @@
         info.countyId as county,
         pro.code as userKey,
         vip.endDate,
-        vip.activeDate
+        vip.activeDate,
+        market.qrcodeUrl
         FROM zgk_user_account acc
         left join zgk_user_vip vip on acc.id = vip.id
         left join zgk_user_info info on acc.id = info.id
         left join zgk_user_exam exam on acc.id = exam.id
         left join zgk_province pro on pro.id = info.provinceId
+        left join zgk_user_market market on acc.id = market.accountId
         <where>
             acc.userType = 0
             <if test="token!=null">
@@ -121,5 +123,27 @@
             </if>
         </where>
     </select>
+
+
+    <select id="getUserRelListByUserId" resultType="java.util.Map">
+
+      select b.accountId ,c.account as phone , b.agentLevel from zgk_user_market a left join
+
+         zgk_user_market b on b.accountId=a.sharerId left join  zgk_user_account
+
+          c on c.id = b.accountId where  a.accountId=#{userId}
+
+         union all
+
+          select c.accountId ,d.account as phone , c.agentLevel from zgk_user_market a left join
+
+         zgk_user_market b on b.accountId=a.sharerId left join  zgk_user_market c on
+
+         c.accountId=b.sharerId left join  zgk_user_account d on d.id=c.accountId where
+
+          a.accountId=#{userId}
+
+    </select>
+
 </mapper>
 
