@@ -55,7 +55,7 @@ header {
       margin: 3px 0;
     }
     .check-code {
-      width: calc(100% - 130px);
+      width: calc(100% - 160px);
     }
     .location-list {
       display: flex;
@@ -119,4 +119,16 @@ header {
     }
   }
 }
+
+.btn-code {
+  outline: none;
+  border: none;
+  background-color: #d80c18;
+  border-radius: 40px;
+  line-height: 20px;
+  color: #fff;
+  margin-left: 10px;
+  padding: 9px 9pt;
+}
+
 
