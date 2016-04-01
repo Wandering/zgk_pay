@@ -24,7 +24,7 @@ var getTime=require('timeFormat');
                 return false;
             }
             var md5loginPwdV = $.md5(loginPwdV);
-            util.ajaxFun(util.postLogin, 'POST', {
+            util.ajaxFun(util.postLogin, 'GET', {
                 account: loginPhoneV,
                 password: md5loginPwdV
             }, function (res) {
@@ -55,7 +55,7 @@ var getTime=require('timeFormat');
                     cookie.setCookie("vipStatus", vipStatus, 4, "");
                     cookie.setCookie("phone",phone, 4, "");
                     cookie.setCookie("userKey",userKey, 4, "");
-                    window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/index.html');
+                    //window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/index.html');
                 } else {
                     util.drawToast(res.msg);
                 }

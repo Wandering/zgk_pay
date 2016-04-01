@@ -414,7 +414,7 @@
 	    /*
 	     * 登录|注册
 	     * */
-	    postLogin:  '/login/login.do',   // 登录
+	    postLogin:  '/login/login',   // 登录
 	    postRegisterLogin: BASE_URL + '/register/account.do',   // 注册
 	    postConfirmAccountCode: '/register/confirmAccount.do',  // 确认是否注册
 	    postVerificationCode:  '/captcha/captcha.do',   // 获取手机验证码
@@ -808,7 +808,7 @@
 	                return false;
 	            }
 	            var md5loginPwdV = $.md5(loginPwdV);
-	            util.ajaxFun(util.postLogin, 'POST', {
+	            util.ajaxFun(util.postLogin, 'GET', {
 	                account: loginPhoneV,
 	                password: md5loginPwdV
 	            }, function (res) {
@@ -839,7 +839,7 @@
 	                    cookie.setCookie("vipStatus", vipStatus, 4, "");
 	                    cookie.setCookie("phone",phone, 4, "");
 	                    cookie.setCookie("userKey",userKey, 4, "");
-	                    window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/index.html');
+	                    //window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/index.html');
 	                } else {
 	                    util.drawToast(res.msg);
 	                }
