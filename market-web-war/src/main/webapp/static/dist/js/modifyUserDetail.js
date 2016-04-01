@@ -50,11 +50,9 @@
 	(function() {
 
 	    var util = __webpack_require__(1);
-	    var interfaceUrl = __webpack_require__(3);
+	    var interfaceUrl = __webpack_require__(4);
 	    var cookie = __webpack_require__(2);
 	    function initUserInfo() {
-	        //获取用户信息
-
 	        var avatar = cookie.getCookieValue('avatar');
 	        if (!avatar) avatar = '/static/dist/img/icons/avatar.png';
 	        $('#avatar-img').attr('src', avatar);
@@ -79,22 +77,17 @@
 	    }
 
 	    $(document).ready(function() {
-
 	        initUserInfo();
-
 	        //清除input里面的值
 	        $('.clear').on('click', function() {
 	            $(this).parent().find('input').val('');
 	        });
-
 	        $('.sex, .subject').on('click', function() {
 	            $(this).addClass('active');
 	            $(this).siblings().removeClass('active');
 	        });
-
 	        //修改提交
 	        $('.submit-btn').on('click', function() {
-
 	            var name = $.trim($('#name').val()),//姓名
 	                sex = $('.sex.active').attr('data-value'),//性别
 	                school = $.trim($('#school_name').val()), //学校名字
@@ -102,7 +95,6 @@
 	                email = $.trim($('#email').val()),//邮箱
 	                birthdayDate = cookie.getCookieValue('birthdayDate'),
 	                qq = cookie.getCookieValue('qq');
-
 	            if (name.length == 0) {
 	                util.drawToast('用户名不能为空');
 	                return false;
@@ -158,7 +150,7 @@
 
 	//var domainStr = 'zhigaokao.cn'; //正式
 	//var domainStr = 'test.zhigaokao.cn'; //测试
-	var domainStr = 'zhigaokao.com:3005';
+	var domainStr = 'zhigaokao.com:8084';
 
 	//获取域名前缀=============================
 	var urlDomain = window.location.hostname + '';
@@ -362,7 +354,8 @@
 
 
 /***/ },
-/* 3 */
+/* 3 */,
+/* 4 */
 /***/ function(module, exports) {
 
 	/*
@@ -383,7 +376,7 @@
 	     * new  interface
 	     * ==================================================
 	     * */
-	    getCaptchaImg: 'user/getUserProfile',//分享二维码
+	    getCaptchaImg: BASE_URL + '',
 
 
 	    /*
@@ -441,11 +434,11 @@
 	    /*
 	     * 登录|注册
 	     * */
-	    postLogin: '/login/login',   // 登录
+	    postLogin:  '/login/login',   // 登录
 	    postRegisterLogin: BASE_URL + '/register/account.do',   // 注册
 	    postConfirmAccountCode: '/register/confirmAccount',  // 确认是否注册
-	    postVerificationCode: '/captcha/captcha',   // 获取手机验证码
-	    postRetrievePassword: '/register/retrievePassword',   // 获取手机验证码
+	    postVerificationCode:  '/captcha/captcha',   // 获取手机验证码
+	    postRetrievePassword:  '/register/retrievePassword',   // 获取手机验证码
 
 
 	    /**

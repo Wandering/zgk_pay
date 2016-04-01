@@ -57,7 +57,7 @@ var getTime=require('timeFormat');
                     cookie.setCookie("vipStatus", vipStatus, 4, "");
                     cookie.setCookie("phone",phone, 4, "");
                     cookie.setCookie("userKey",userKey, 4, "");
-                    //window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/index.html');
+                    window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/user-detail');
                 } else {
                     util.drawToast(res.msg);
                 }
