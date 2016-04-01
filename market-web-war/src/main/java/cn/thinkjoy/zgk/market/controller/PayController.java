@@ -6,6 +6,7 @@ import cn.thinkjoy.zgk.market.domain.Order;
 import cn.thinkjoy.zgk.market.domain.OrderStatements;
 import cn.thinkjoy.zgk.market.service.IOrderService;
 import cn.thinkjoy.zgk.market.service.IOrderStatementsService;
+import cn.thinkjoy.zgk.market.service.IUserAccountExService;
 import cn.thinkjoy.zgk.market.util.IPUtil;
 import cn.thinkjoy.zgk.market.util.NumberGenUtil;
 import cn.thinkjoy.zgk.market.util.StaticSource;
@@ -42,6 +43,9 @@ public class PayController {
     @Autowired
     private AgentService agentService;
 
+    @Autowired
+    private IUserAccountExService userAccountExService;
+
 
     public static final String  CURRENCY ="cny";
     /**
@@ -61,6 +65,7 @@ public class PayController {
             throw  new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
         }
         try{
+
 
             Pingpp.apiKey=StaticSource.getSource("apiKey");
             String appId=StaticSource.getSource("appId");
@@ -101,20 +106,27 @@ public class PayController {
      * @return
      */
     @RequestMapping(value = "/callBack",method = RequestMethod.POST)
-    @ResponseBody
     public void callBack(@RequestBody Charge charge ){
-        String orderNo=charge.getOrderNo();
-        Order order=new Order();
-        order.setOrderNo(orderNo);
-        order.setStatus(1);
-        orderService.updateByOrderNo(order);
-        OrderStatements orderStatements=new OrderStatements();
-        orderStatements.setOrderNo(orderNo);
-        orderStatements.setCallBackJson(JSONObject.toJSONString(charge));
-        orderStatementService.updateByOrderNo(orderStatements);
-        Map<String,Order> orderMap=orderService.queryOrderByNo(orderNo);
-        orderMap.get("user_id");
+        try {
+            String orderNo = charge.getOrderNo();
+            Order order = new Order();
+            order.setOrderNo(orderNo);
+            order.setStatus(1);
+            orderService.updateByOrderNo(order);
+            OrderStatements orderStatements = new OrderStatements();
+            orderStatements.setOrderNo(orderNo);
+            orderStatements.setCallBackJson(JSONObject.toJSONString(charge));
+            orderStatementService.updateByOrderNo(orderStatements);
+            Map<String, Order> orderMap = orderService.queryOrderByNo(orderNo);
+            String userId= orderMap.get("user_id").toString();
+//            userAccountExService.
 
+//            List<SplitPricePojo> splitPricePojos = new ArrayList<>();
+//            agentService.SplitPriceExec(splitPricePojos, charge.getAmount(), orderNo);
+
+        }catch (Exception e){
+            logger.error("回调错误"+e);
+        }
 
     }
 
