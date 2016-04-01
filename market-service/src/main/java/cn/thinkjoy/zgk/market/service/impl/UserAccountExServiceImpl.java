@@ -20,6 +20,7 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -140,8 +141,9 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
             File file = new File(path,fileName);
             MatrixToImageWriter.writeToFile(bitMatrix, "jpg", file);
             MultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
-            RestTemplate template = new RestTemplate();
-            param.add("file", file);
+                FileSystemResource resource = new FileSystemResource(file);
+                RestTemplate template = new RestTemplate();
+            param.add("file", resource);
             param.add("productCode", "gk360");
             param.add("bizSystem", "gk360");
             param.add("spaceName", "gk360");
@@ -149,6 +151,7 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
             param.add("dirId", "0");
             template.getMessageConverters().add(new FastJsonHttpMessageConverter());
             String imgUrl = template.postForObject(uploadUrl, param, String.class);
+
             userMarket.setQrcodeUrl(imgUrl);//二维码地址
             userMarketDAO.insert(userMarket);
                 flag = true;
