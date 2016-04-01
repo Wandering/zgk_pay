@@ -18,6 +18,18 @@ var interfaceUrl = {
      * */
     getCaptchaImg: 'user/getUserProfile',//分享二维码
 
+    /**
+     * 在线购买初始化
+     */
+    getBuyInfo: '/order/getBuyInfo',
+    /**
+     * 确认订单
+     */
+    commitOrder: '/order/commitOrder',
+    /**
+     * 订单支付
+     */
+    payOrder: '/pay/payOrder',
 
     /*
      * 高考咨询
