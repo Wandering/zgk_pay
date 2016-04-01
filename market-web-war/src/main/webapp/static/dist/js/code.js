@@ -45,117 +45,39 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
-	 * Created by kepeng on 16/4/1.
+	 * Created by pdeng on 16/3/31.
 	 */
-
-	(function() {
-
-	    var util = __webpack_require__(1);
-	    var interfaceUrl = __webpack_require__(4);
-	    var cookie = __webpack_require__(2);
-
-	    function initUserInfo() {
-	        var avatar = cookie.getCookieValue('avatar');
-	        if (!avatar) avatar = '/static/dist/img/icons/avatar.png';
-	        $('#avatar-img').attr('src', avatar);
-
-	        var userName = cookie.getCookieValue('userName');
-	        $('#header-user-name').text(userName || '');
-
-	        var phone = cookie.getCookieValue('phone');
-	        $('#number').text('账号：' + (phone || ''));
-
-	        var schoolName = cookie.getCookieValue('schoolName');
-	        $('#school-name').text(schoolName || '');
-
-	        var sexType = cookie.getCookieValue('sexType');
-	        var sex = ['女生', '男生'];
-	        $('#sex').text(sex[sexType || 1]);
-
-	        var subjectType = cookie.getCookieValue('subjectType');
-	        var subject = ['文科', '理科'];
-	        $('#subject').text(subject[subjectType || 1]);
-
-	        var province = cookie.getCookieValue('province');
-	        $('#province').text(province || '');
-
-	        var city = cookie.getCookieValue('city');
-	        $('#city').text(city || '');
-
-	        var email = cookie.getCookieValue('email');
-	        $('#email').text(email || '');
-
-	        var qrcodeUrl = cookie.getCookieValue('qrcodeUrl');
-	        $('#qrcodeUrl').attr('src', qrcodeUrl || '/static/dist/img/icons/code.png');
-	    }
-
-	    //修改密码
-	    function changePwd() {
-	        var currentPsd = $('#current-psd');
-	        var newPsd = $('#new-psd');
-	        var confirmPsd = $('#confirm-psd');
-	        if (currentPsd.val() == '') {
-	            util.drawToast('当前密码不能为空');
-	            return false;
+	var util = __webpack_require__(1);
+	var interfaceUrl = __webpack_require__(4);
+	var cookie = __webpack_require__(2);
+	$(function () {
+	    util.ajaxFun(interfaceUrl.getCaptchaImg, 'get', {
+	        'account': '18192168460'
+	        //'account': cookie.getCookieValue('phone')
+	    }, function (res) {
+	        //var res = {
+	        //    bizData: {
+	        //        'captchImg': 'http://pic.baike.soso.com/p/20131211/20131211091752-393669037.jpg',
+	        //        'name': 'pdeng',
+	        //        'account': '18710921676'
+	        //    },
+	        //    rtnCode: '0000000'
+	        //};
+	        if (res.rtnCode = '0000000') {
+	            var dataJson = res.bizData;
+	            $('.name').text(dataJson.name);
+	            $('.tel').text(dataJson.account);
+	            $('.captchImg').attr('src', dataJson.captchImg);
 	        }
-	        if ($.trim(currentPsd.val()).length > 16 && $.trim(currentPsd.val()).length < 6) {
-	            util.drawToast('密码输入有误，6-16位');
-	            return false;
-	        }
-	        if (newPsd.val() == '') {
-	            util.drawToast('新密码不能为空');
-	            return false;
-	        }
-	        if ($.trim(newPsd.val()).length > 16 && $.trim(newPsd.val()).length < 6) {
-	            util.drawToast('新输入有误，6-16位');
-	            return false;
-	        }
-	        if (confirmPsd.val() == '') {
-	            util.drawToast('确认密码不能为空');
-	            return false;
-	        }
-	        if ($.trim(confirmPsd.val()).length > 16 && $.trim(confirmPsd.val()).length < 6) {
-	            util.drawToast('新输入有误，6-16位');
-	            return false;
-	        }
-	        if ($.trim(confirmPsd.val()) != $.trim(newPsd.val())) {
-	            util.drawToast('两次密码输入不一致');
-	            return false;
-	        }
-	        util.ajaxFun(interfaceUrl.postModifyPassword, 'POST', {
-	            oldPassword: currentPsd.val(),//旧密码
-	            password: newPsd.val()//新密码
-	        }, function (res) {
-	            if (res.rtnCode == '0000000') {
-	                window.location.href = '/login';
-	            } else {
-	                util.drawToast(res.msg);
-	            }
-	        });
-	    }
-	    $(document).ready(function() {
-	        initUserInfo();
-
-	        $('.modify-btn').on('click', function() {
-	            window.location.href = '/modify-user-detail';
-	        });
-
-	        $('.close-modal').on('click', function() {
-	            $('.mask').removeClass('show');
-	        });
-
-	        $('.change-password-btn').on('click', function() {
-	            $('.mask').addClass('show');
-	            $('#confirm_pwd_btn').off('click');
-	            $('#confirm_pwd_btn').on('click', function() {
-	                changePwd();
-	            })
-	        });
-
 	    });
-
-	})();
-
+	    //分享
+	    $('.share-btn').click(function () {
+	        $('.mask').show();
+	    });
+	    $('.mask').click(function () {
+	        $(this).hide();
+	    })
+	});
 
 /***/ },
 /* 1 */
@@ -210,22 +132,6 @@
 	        error: callback
 	    });
 	};
-
-	function ajaxFunJSON(url, method, data, callback) {
-	    if (cookie.getCookieValue('token')) {
-	        data.token = cookie.getCookieValue('token');
-	    }
-	    data.userKey = provinceKey;
-	    $.ajax({
-	        url: url,
-	        type: method,
-	        contentType: 'application/json',
-	        dataType: 'json',
-	        data: JSON.stringify(data),
-	        success: callback,
-	        error: callback
-	    });
-	}
 
 
 	var getLinkey = function getLinkey(name) {
@@ -306,7 +212,6 @@
 	exports.tips = tips;
 	exports.drawToast = drawToast;
 	exports.layer = layer;
-	exports.ajaxFunJSON = ajaxFunJSON;
 
 
 
@@ -408,18 +313,6 @@
 	     * */
 	    getCaptchaImg: 'user/getUserProfile',//分享二维码
 
-	    /**
-	     * 在线购买初始化
-	     */
-	    getBuyInfo: '/order/getBuyInfo',
-	    /**
-	     * 确认订单
-	     */
-	    commitOrder: '/order/commitOrder',
-	    /**
-	     * 订单支付
-	     */
-	    payOrder: '/pay/payOrder',
 
 	    /*
 	     * 高考咨询

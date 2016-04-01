@@ -4,11 +4,14 @@ var webpack = require('webpack');
 module.exports = {
     entry: {
         vipBuy: "./src/assets/js/vip-buy/vip-buy",
+        vip: "./src/assets/js/vip/vip",
+        code: "./src/assets/js/code/code",
         regLogin: "./src/assets/js/reglogin/reglogin",
         modifyUserDetail: './src/assets/js/modify-user-detail/modify-user-detail',
         findPassword: './src/assets/js/reglogin/find-password',
         userDetail: './src/assets/js/user-detail/user-detail',
-        order: './src/assets/js/order/order'
+        order: './src/assets/js/order/order',
+        vipBuy: './src/assets/js/vip-buy/vip-buy'
     },
     output: {
         path: path.join(__dirname, "./dist/js"),

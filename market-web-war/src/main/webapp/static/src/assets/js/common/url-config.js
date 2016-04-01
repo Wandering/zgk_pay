@@ -16,8 +16,20 @@ var interfaceUrl = {
      * new  interface
      * ==================================================
      * */
-    getCaptchaImg: BASE_URL + '',
+    getCaptchaImg: 'user/getUserProfile',//分享二维码
 
+    /**
+     * 在线购买初始化
+     */
+    getBuyInfo: '/order/getBuyInfo',
+    /**
+     * 确认订单
+     */
+    commitOrder: '/order/commitOrder',
+    /**
+     * 订单支付
+     */
+    payOrder: '/pay/payOrder',
 
     /*
      * 高考咨询
@@ -74,11 +86,11 @@ var interfaceUrl = {
     /*
      * 登录|注册
      * */
-    postLogin:  '/login/login',   // 登录
+    postLogin: '/login/login',   // 登录
     postRegisterLogin: BASE_URL + '/register/account.do',   // 注册
     postConfirmAccountCode: '/register/confirmAccount',  // 确认是否注册
-    postVerificationCode:  '/captcha/captcha',   // 获取手机验证码
-    postRetrievePassword:  '/register/retrievePassword',   // 获取手机验证码
+    postVerificationCode: '/captcha/captcha',   // 获取手机验证码
+    postRetrievePassword: '/register/retrievePassword',   // 获取手机验证码
 
 
     /**
