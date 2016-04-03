@@ -46,13 +46,15 @@
 
 	
 	// 切换
-	__webpack_require__(7);
+	__webpack_require__(6);
 
 	// 登录
-	__webpack_require__(8);
+	__webpack_require__(7);
 
 	// 注册
-	__webpack_require__(10);
+	__webpack_require__(9);
+
+
 
 
 /***/ },
@@ -114,6 +116,7 @@
 	        data.token = cookie.getCookieValue('token');
 	    }
 	    data.userKey = provinceKey;
+	    console.log(JSON.stringify(data));
 	    $.ajax({
 	        url: url,
 	        type: method,
@@ -722,15 +725,14 @@
 
 /***/ },
 /* 5 */,
-/* 6 */,
-/* 7 */
+/* 6 */
 /***/ function(module, exports) {
 
 	var UI ={
 	    $tabContent:$('.tab-content')
 	};
 
-	$('#header-title').text('注册');
+	$('#header-title').text('登录&注册');
 	$('.tab-list').on('click','.tab', function(){
 	    $(this).addClass('active').siblings().removeClass('active');
 	    var index = $(this).index();
@@ -740,14 +742,13 @@
 
 
 /***/ },
-/* 8 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var util=__webpack_require__(1);
 	var cookie=__webpack_require__(2);
 	var md5=__webpack_require__(4);
-	var getTime=__webpack_require__(9);
-
+	var getTime=__webpack_require__(8);
 	    var domain = util.domain; // 正式
 
 	    $(function () {
@@ -769,12 +770,12 @@
 	                util.drawToast('请输入密码');
 	                return false;
 	            }
-
 	            var md5loginPwdV = $.md5(loginPwdV);
 	            util.ajaxFun('/login/login', 'GET', {
 	                account: loginPhoneV,
 	                password: md5loginPwdV
 	            }, function (res) {
+	                console.log(res)
 	                if (res.rtnCode === "0000000") {
 	                    var token = res.bizData.token;
 	                    var userName = res.bizData.userInfo.name;
@@ -802,7 +803,7 @@
 	                    cookie.setCookie("vipStatus", vipStatus, 4, "");
 	                    cookie.setCookie("phone",phone, 4, "");
 	                    cookie.setCookie("userKey",userKey, 4, "");
-	                    window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/user-detail');
+	                    //window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/user-detail');
 	                } else {
 	                    util.drawToast(res.msg);
 	                }
@@ -818,7 +819,7 @@
 
 
 /***/ },
-/* 9 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
@@ -851,7 +852,7 @@
 
 
 /***/ },
-/* 10 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var util = __webpack_require__(1);
