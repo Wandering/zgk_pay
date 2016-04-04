@@ -14,6 +14,7 @@ require('pgwmodal');
         }, function (res) {
             if (res.rtnCode == '0000000') {
                 $('#price').html('价格：' + res.bizData.salePrice + '元');
+                $('#price').attr('data-price', res.bizData.salePrice);
             }
         })
     }
@@ -22,8 +23,9 @@ require('pgwmodal');
      * 订单确定
      */
     function commitOrder() {
-        util.ajaxFunJSON(interfaceUrl.commitOrder, 'POST', {
-            userId: cookie.getCookieValue('userId') || 13
+        util.ajaxFun(interfaceUrl.commitOrder, 'POST', {
+            userId: cookie.getCookieValue('userId') || '13',
+            price: $('#price').attr('data-price') || '200'
         }, function (res) {
             if (res.rtnCode == '0000000') {
                 $('#orderNo').html('订单ID：');

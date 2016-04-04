@@ -50,7 +50,7 @@
 	(function() {
 
 	    var util = __webpack_require__(1);
-	    var interfaceUrl = __webpack_require__(4);
+	    var interfaceUrl = __webpack_require__(3);
 	    var cookie = __webpack_require__(2);
 	    function initUserInfo() {
 	        var avatar = cookie.getCookieValue('avatar');
@@ -203,6 +203,7 @@
 	        data.token = cookie.getCookieValue('token');
 	    }
 	    data.userKey = provinceKey;
+	    console.log(JSON.stringify(data));
 	    $.ajax({
 	        url: url,
 	        type: method,
@@ -371,8 +372,7 @@
 
 
 /***/ },
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ function(module, exports) {
 
 	/*

@@ -11,7 +11,9 @@ module.exports = {
         findPassword: './src/assets/js/reglogin/find-password',
         userDetail: './src/assets/js/user-detail/user-detail',
         order: './src/assets/js/order/order',
-        vipBuy: './src/assets/js/vip-buy/vip-buy'
+        policy: './src/assets/js/policy/policy',
+        policyDetail: './src/assets/js/policy/policy-detail',
+        schoolInfo: './src/assets/js/school-info/school-info'
     },
     output: {
         path: path.join(__dirname, "./dist/js"),
@@ -25,7 +27,8 @@ module.exports = {
             cookie: path.join(__dirname, "./src/assets/js/common/cookie"),
             md5: path.join(__dirname, "./src/lib/md5/jQuery.md5"),
             timeFormat: path.join(__dirname, "./src/assets/js/common/timeFormat"),
-            iscroll: path.join(__dirname, "./src/lib/iscroll/iscroll-probe")
+            iscroll: path.join(__dirname, "./src/lib/iscroll/iscroll-probe"),
+            handlebars: path.join(__dirname, "./src/lib/handlebars/handlebars-v4.0.5")
         }
     },
     plugins: [

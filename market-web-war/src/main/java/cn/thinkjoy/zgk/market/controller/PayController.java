@@ -11,7 +11,7 @@ import cn.thinkjoy.zgk.market.util.IPUtil;
 import cn.thinkjoy.zgk.market.util.NumberGenUtil;
 import cn.thinkjoy.zgk.market.util.StaticSource;
 import cn.thinkjoy.zgk.zgksystem.AgentService;
-import cn.thinkjoy.zgk.zgksystem.pojo.SplitPricePojo;
+//import cn.thinkjoy.zgk.zgksystem.pojo.SplitPricePojo;
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.fastjson.JSONObject;
@@ -126,7 +126,7 @@ public class PayController {
 
 
 
-            List<SplitPricePojo> splitPricePojos = new ArrayList<>();
+//            List<SplitPricePojo> splitPricePojos = new ArrayList<>();
 //            agentService.SplitPriceExec(splitPricePojos, charge.getAmount(), orderNo);
 
         }catch (Exception e){

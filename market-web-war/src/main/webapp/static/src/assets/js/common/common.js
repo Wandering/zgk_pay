@@ -53,6 +53,7 @@ function ajaxFunJSON(url, method, data, callback) {
         data.token = cookie.getCookieValue('token');
     }
     data.userKey = provinceKey;
+    console.log(JSON.stringify(data));
     $.ajax({
         url: url,
         type: method,

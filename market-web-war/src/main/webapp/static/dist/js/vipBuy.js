@@ -44,11 +44,11 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(10);
+	__webpack_require__(11);
 	(function() {
 
 	    var util = __webpack_require__(1);
-	    var interfaceUrl = __webpack_require__(4);
+	    var interfaceUrl = __webpack_require__(3);
 	    var cookie = __webpack_require__(2);
 
 	    /**
@@ -60,6 +60,7 @@
 	        }, function (res) {
 	            if (res.rtnCode == '0000000') {
 	                $('#price').html('价格：' + res.bizData.salePrice + '元');
+	                $('#price').attr('data-price', res.bizData.salePrice);
 	            }
 	        })
 	    }
@@ -68,8 +69,9 @@
 	     * 订单确定
 	     */
 	    function commitOrder() {
-	        util.ajaxFunJSON(interfaceUrl.commitOrder, 'POST', {
-	            userId: cookie.getCookieValue('userId') || 13
+	        util.ajaxFun(interfaceUrl.commitOrder, 'POST', {
+	            userId: cookie.getCookieValue('userId') || '13',
+	            price: $('#price').attr('data-price') || '200'
 	        }, function (res) {
 	            if (res.rtnCode == '0000000') {
 	                $('#orderNo').html('订单ID：');
@@ -162,6 +164,7 @@
 	        data.token = cookie.getCookieValue('token');
 	    }
 	    data.userKey = provinceKey;
+	    console.log(JSON.stringify(data));
 	    $.ajax({
 	        url: url,
 	        type: method,
@@ -330,8 +333,7 @@
 
 
 /***/ },
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ function(module, exports) {
 
 	/*
@@ -550,12 +552,14 @@
 
 
 /***/ },
+/* 4 */,
 /* 5 */,
 /* 6 */,
 /* 7 */,
 /* 8 */,
 /* 9 */,
-/* 10 */
+/* 10 */,
+/* 11 */
 /***/ function(module, exports) {
 
 	/**

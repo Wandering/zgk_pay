@@ -103,6 +103,36 @@ public class WebCotroller {
     }
 
     /**
+     * policy
+     *
+     * @return
+     */
+    @RequestMapping("/policy")
+    public ModelAndView policy() {
+        return new ModelAndView("/policy/policy");
+    }
+
+    /**
+     * policy-detail
+     *
+     * @return
+     */
+    @RequestMapping("/policy-detail")
+    public ModelAndView policyDetail() {
+        return new ModelAndView("/policy/policy-detail");
+    }
+
+    /**
+     * school-detail
+     *
+     * @return
+     */
+    @RequestMapping("/school-info")
+    public ModelAndView schoolInfo() {
+        return new ModelAndView("/school-info/school-info");
+    }
+
+    /**
      * code
      *
      * @return
