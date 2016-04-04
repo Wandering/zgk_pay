@@ -62,4 +62,18 @@
         </property>
     </bean>
 
+    <!--<mvc:interceptors >-->
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash; 需拦截的地址 &ndash;&gt;-->
+            <!--&lt;!&ndash; 一级目录 &ndash;&gt;-->
+            <!--<mvc:mapping path="/*" />-->
+            <!--&lt;!&ndash; 需排除拦截的地址 &ndash;&gt;-->
+            <!--<mvc:exclude-mapping path="/login"/>-->
+            <!--<mvc:exclude-mapping path="/*.js"/>-->
+            <!--<mvc:exclude-mapping path="/*.css"/>-->
+            <!--<mvc:exclude-mapping path="/static/*"/>-->
+            <!--<mvc:exclude-mapping path="/find-password"/>-->
+            <!--<bean class="cn.thinkjoy.zgk.market.interceptor.LoginInterceptor"></bean>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 </beans>

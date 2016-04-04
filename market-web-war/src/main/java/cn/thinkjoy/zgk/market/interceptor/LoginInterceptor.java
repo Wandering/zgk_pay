@@ -1,8 +1,8 @@
 package cn.thinkjoy.zgk.market.interceptor;
 
 import cn.thinkjoy.common.exception.BizException;
-import cn.thinkjoy.zgk.market.constant.UserRedisConst;
 import cn.thinkjoy.zgk.market.constant.ServletPathConst;
+import cn.thinkjoy.zgk.market.constant.UserRedisConst;
 import cn.thinkjoy.zgk.market.util.CookieUtil;
 import cn.thinkjoy.zgk.market.util.RedisUtil;
 import org.slf4j.Logger;
