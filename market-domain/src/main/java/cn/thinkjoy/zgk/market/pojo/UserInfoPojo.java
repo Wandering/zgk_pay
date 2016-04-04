@@ -26,6 +26,15 @@ public class UserInfoPojo extends BaseDomain<Long> {
     private String userKey;
     private String endDate;
     private String activeDate;
+    private String qrcodeUrl;
+
+    public String getQrcodeUrl() {
+        return qrcodeUrl;
+    }
+
+    public void setQrcodeUrl(String qrcodeUrl) {
+        this.qrcodeUrl = qrcodeUrl;
+    }
 
     public String getEndDate() {
         return endDate;

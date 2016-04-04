@@ -11,7 +11,6 @@ import cn.thinkjoy.zgk.market.service.IProvinceService;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
 import cn.thinkjoy.zgk.market.util.DESUtil;
 import cn.thinkjoy.zgk.market.util.RedisUtil;
-import com.jlusoft.microschool.core.utils.MD5Util;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,9 +81,9 @@ public class RegisterController extends BaseCommonController {
             if (userAccountBean!=null){
                 throw new BizException(ERRORCODE.PARAM_ERROR.getCode(), "该账号已被注册!");
             }
-            if (!checkCaptcha(account,captcha)){
-                throw new BizException(ERRORCODE.PARAM_ERROR.getCode(), "验证码有误!");
-            }
+//            if (!checkCaptcha(account,captcha)){
+//                throw new BizException(ERRORCODE.PARAM_ERROR.getCode(), "验证码有误!");
+//            }
 
             //保存用户
         UserAccount userAccount = new UserAccount();

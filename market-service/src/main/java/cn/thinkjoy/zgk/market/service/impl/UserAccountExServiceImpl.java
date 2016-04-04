@@ -116,9 +116,9 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
             UserMarket userMarket = new UserMarket();
             userMarket.setAccountId(id);
             Integer agentLevel = 0;
-            if(sharerType == 0){//π©ªı…Ã
+            if(sharerType == 0){//‰æõË¥ßÂïÜ
                 agentLevel =1;
-            }else if(sharerType == 1){//∆’Õ®”√ªß
+            }else if(sharerType == 1){//ÊôÆÈÄöÁî®Êà∑
                 UserMarket userMarket1 = (UserMarket)userMarketDAO.findOne("accountId", sharerId, null, null);
                 if(userMarket1 !=null){
                     agentLevel = userMarket1.getAgentLevel()+1;
@@ -128,7 +128,7 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
             userMarket.setAgentLevel(agentLevel);
             userMarket.setCreateDate(System.currentTimeMillis());
             userMarket.setCreator(id);
-            userMarket.setFromType(1);//Œ¢–≈
+            userMarket.setFromType(1);//ÂæÆ‰ø°
             userMarket.setSharerId(sharerId);
             String uploadUrl = StaticSource.getSource("uploadUrl");
             String loginUrl = StaticSource.getSource("loginUrl")+"?sharerId="+id+"&sharerType="+1;
@@ -140,6 +140,7 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
             path=path.substring(1, path.indexOf("classes")).replaceFirst("ile:","");
             String fileName = id+".jpg";
             File file = new File(path,fileName);
+            System.out.println(path);
             MatrixToImageWriter.writeToFile(bitMatrix, "jpg", file);
             MultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
                 FileSystemResource resource = new FileSystemResource(file);
@@ -152,9 +153,10 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
             param.add("dirId", "0");
             template.getMessageConverters().add(new FastJsonHttpMessageConverter());
             String returnJson = template.postForObject(uploadUrl, param, String.class);
-                UploadFileReturn  uploadFileReturn = JsonMapper.buildNormalMapper().fromJson(returnJson,UploadFileReturn.class);
+                UploadFileReturn  uploadFileReturn = JsonMapper.buildNormalMapper().fromJson(returnJson, UploadFileReturn.class);
                 if(uploadFileReturn !=null && "0000000".equals(uploadFileReturn.getRtnCode())){
-                    userMarket.setQrcodeUrl(uploadFileReturn.getUri());//∂˛Œ¨¬Îµÿ÷∑
+                    userMarket.setQrcodeUrl(uploadFileReturn.getBizData().getFile().getFileUrl());//‰∫åÁª¥Á†ÅÂú∞ÂùÄ
+                    file.delete();
                 }
             userMarketDAO.insert(userMarket);
                 flag = true;

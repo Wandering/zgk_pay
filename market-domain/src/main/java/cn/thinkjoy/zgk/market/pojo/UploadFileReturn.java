@@ -1,20 +1,20 @@
 package cn.thinkjoy.zgk.market.pojo;
 
+import java.io.Serializable;
+
 /**
  * Created by yhwang on 16/4/1.
  */
-public class UploadFileReturn {
+public class UploadFileReturn implements Serializable{
     private String rtnCode;
     private String msg;
     private String developMsg;
     private String uri;
     private String ts;
-    private String bizData;
-
+    private BizData bizData;
     public String getRtnCode() {
         return rtnCode;
     }
-
     public void setRtnCode(String rtnCode) {
         this.rtnCode = rtnCode;
     }
@@ -51,11 +51,12 @@ public class UploadFileReturn {
         this.ts = ts;
     }
 
-    public String getBizData() {
+    public BizData getBizData() {
         return bizData;
     }
 
-    public void setBizData(String bizData) {
+    public void setBizData(BizData bizData) {
         this.bizData = bizData;
     }
 }
+
