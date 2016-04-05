@@ -8,7 +8,7 @@
 </head>
 <body>
 <%@ include file="../common/header.jsp"%>
-<div class="container" id="container">
+<div class="container">
     <div>
         <div class="order-list">
         </div>
@@ -20,7 +20,7 @@
         </div>
     </div>
 </div>
-<script src="<%=ctx%>/static/dist/js/commons.js"></script>
+<script type="text/javascript" src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script type="text/javascript" src="<%=ctx%>static/dist/js/order.js"></script>
 </body>
 </html>

@@ -141,6 +141,24 @@ public class WebCotroller {
     public ModelAndView code() {
         return new ModelAndView("/code/code");
     }
+    /**
+     * inventory
+     *
+     * @return
+     */
+    @RequestMapping("/consumer-list")
+    public ModelAndView inventory() {
+        return new ModelAndView("/consumer-list/consumer-list");
+    }
+    /**
+     * schedule
+     *
+     * @return
+     */
+    @RequestMapping("/schedule")
+    public ModelAndView schedule() {
+        return new ModelAndView("/schedule/schedule");
+    }
 
 
 }

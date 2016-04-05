@@ -32,36 +32,36 @@
             <%--<span>580分</span>--%>
             <%--</div>--%>
             <div class="menu-list clearfix">
-                <div class="item">
-                    <a href="">
-                        <img src="<%=ctx%>/static/dist/img/1-active.png" alt=""/>
-                        <span>查院校</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="">
-                        <img src="<%=ctx%>/static/dist/img/2-active.png" alt=""/>
-                    </a>
-                    <span>查专业</span>
-                </div>
-                <div class="item">
-                    <a href="">
-                        <img src="<%=ctx%>/static/dist/img/3-active.png" alt=""/>
-                        <span>省控线</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="">
-                        <img src="<%=ctx%>/static/dist/img/4-active.png" alt=""/>
-                        <span>院校预测</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="">
-                        <img src="<%=ctx%>/static/dist/img/5-active.png" alt=""/>
-                        <span>录取预测</span>
-                    </a>
-                </div>
+                <%--<div class="item">--%>
+                    <%--<a href="">--%>
+                        <%--<img src="<%=ctx%>/static/dist/img/1-active.png" alt=""/>--%>
+                        <%--<span>查院校</span>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
+                <%--<div class="item">--%>
+                    <%--<a href="">--%>
+                        <%--<img src="<%=ctx%>/static/dist/img/2-active.png" alt=""/>--%>
+                    <%--</a>--%>
+                    <%--<span>查专业</span>--%>
+                <%--</div>--%>
+                <%--<div class="item">--%>
+                    <%--<a href="">--%>
+                        <%--<img src="<%=ctx%>/static/dist/img/3-active.png" alt=""/>--%>
+                        <%--<span>省控线</span>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
+                <%--<div class="item">--%>
+                    <%--<a href="">--%>
+                        <%--<img src="<%=ctx%>/static/dist/img/4-active.png" alt=""/>--%>
+                        <%--<span>院校预测</span>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
+                <%--<div class="item">--%>
+                    <%--<a href="">--%>
+                        <%--<img src="<%=ctx%>/static/dist/img/5-active.png" alt=""/>--%>
+                        <%--<span>录取预测</span>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
                 <div class="item">
                     <a href="/policy">
                         <img src="<%=ctx%>/static/dist/img/6-active.png" alt=""/>
@@ -69,19 +69,19 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="">
+                    <a href="/schedule">
                         <img src="<%=ctx%>/static/dist/img/7-active.png" alt=""/>
                         <span>高考日程</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="">
+                    <a href="/consumer-list">
                         <img src="<%=ctx%>/static/dist/img/8-active.png" alt=""/>
                         <span>我的钱包</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="">
+                    <a href="/order">
                         <img src="<%=ctx%>/static/dist/img/9-active.png" alt=""/>
                         <span>我的订单</span>
                     </a>
@@ -105,37 +105,37 @@
         <div class="backdrop"></div>
         <div class="menu">
             <div class="menu-list clearfix">
-                <div class="item">
-                    <a href="">
-                        <img src="<%=ctx%>/static/dist/img/1.png" alt=""/>
-                        <span>查院校</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="">
-                        <img src="<%=ctx%>/static/dist/img/2.png" alt=""/>
-                        <span>查专业</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="">
-                        <img src="<%=ctx%>/static/dist/img/3.png" alt=""/>
-                        <span>省控线</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="">
-                        <img src="<%=ctx%>/static/dist/img/4.png" alt=""/>
+                <%--<div class="item">--%>
+                    <%--<a href="">--%>
+                        <%--<img src="<%=ctx%>/static/dist/img/1.png" alt=""/>--%>
+                        <%--<span>查院校</span>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
+                <%--<div class="item">--%>
+                    <%--<a href="">--%>
+                        <%--<img src="<%=ctx%>/static/dist/img/2.png" alt=""/>--%>
+                        <%--<span>查专业</span>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
+                <%--<div class="item">--%>
+                    <%--<a href="">--%>
+                        <%--<img src="<%=ctx%>/static/dist/img/3.png" alt=""/>--%>
+                        <%--<span>省控线</span>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
+                <%--<div class="item">--%>
+                    <%--<a href="">--%>
+                        <%--<img src="<%=ctx%>/static/dist/img/4.png" alt=""/>--%>
 
-                        <span>院校预测</span>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="">
-                        <img src="<%=ctx%>/static/dist/img/5.png" alt=""/>
-                        <span>录取预测</span>
-                    </a>
-                </div>
+                        <%--<span>院校预测</span>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
+                <%--<div class="item">--%>
+                    <%--<a href="">--%>
+                        <%--<img src="<%=ctx%>/static/dist/img/5.png" alt=""/>--%>
+                        <%--<span>录取预测</span>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
                 <div class="item">
                     <a href="/policy">
                         <img src="<%=ctx%>/static/dist/img/6.png" alt=""/>
@@ -143,19 +143,19 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="">
+                    <a href="/schedule">
                         <img src="<%=ctx%>/static/dist/img/7.png" alt=""/>
                         <span>高考日程</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="">
+                    <a href="/consumer-list">
                         <img src="<%=ctx%>/static/dist/img/8.png" alt=""/>
                         <span>我的钱包</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="">
+                    <a href="/order">
                         <img src="<%=ctx%>/static/dist/img/9.png" alt=""/>
                         <span>我的订单</span>
                     </a>
