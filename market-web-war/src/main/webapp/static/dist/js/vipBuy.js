@@ -83,7 +83,7 @@ webpackJsonp([15],{
 
 	        var channel = 'wx_pub';
 	        if (!isWeiXin()) {
-	            channel = 'alipay';
+	            channel = 'alipay_wap';
 	        }
 
 	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
