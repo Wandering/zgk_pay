@@ -1,6 +1,7 @@
 require('pgwmodal');
 (function() {
 
+    $('#header-menu').show();
     var util = require('commonjs');
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
@@ -18,7 +19,6 @@ require('pgwmodal');
             }
         })
     }
-
     /**
      * 订单确定
      */

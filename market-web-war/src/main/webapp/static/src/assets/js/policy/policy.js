@@ -6,6 +6,8 @@ var handlebars = require('handlebars');
 var interfaceUrl = require('urlConfig');
 var IScroll = require('iscroll');
 $(function () {
+    $('#header-menu').show();
+    $('#header-title').text('高考政策');
     var Policy = {
         page: 0,
         pageRow: 5,

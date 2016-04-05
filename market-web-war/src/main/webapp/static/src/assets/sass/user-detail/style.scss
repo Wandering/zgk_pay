@@ -65,13 +65,19 @@ header {
   padding: 0 15px;
   font-size: 14px;
   border-bottom: 1px solid #E9E4E4;
-  span:last-child {
-    float: right;
+  a.code-links{
+    color: #707070;
+    text-decoration: none;
+    display: block;
+    span:last-child {
+      float: right;
+    }
+    img {
+      width: 33px;
+      margin-top: 5px;
+    }
   }
-  img {
-    width: 33px;
-    margin-top: 5px;
-  }
+
 }
 .change-password-btn {
   height: 39px;

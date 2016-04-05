@@ -7,15 +7,7 @@
     <link rel="stylesheet" href="<%=ctx%>/static/dist/css/policy/style.css"/>
 </head>
 <body>
-<header>
-    <div class="header-btn">
-        <i class="menu-icon"></i>
-    </div>
-    <div class="header-title">
-        <span>高考政策</span>
-        <span class="location location-icon">陕西</span>
-    </div>
-</header>
+<%@ include file="../common/header.jsp"%>
 <div class="container" id="container">
     <div>
     <ul id="policy-list"></ul>

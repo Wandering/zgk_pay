@@ -30,7 +30,7 @@
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		13:0
+/******/ 		11:0
 /******/ 	};
 
 /******/ 	// The require function
@@ -76,7 +76,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"code","1":"findPassword","3":"modifyUserDetail","4":"order","6":"policy","7":"policyDetail","8":"regLogin","9":"schoolInfo","10":"userDetail","11":"vip","12":"vipBuy"}[chunkId]||chunkId) + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"code","1":"findPassword","3":"modifyUserDetail","4":"order","5":"policy","6":"policyDetail","7":"regLogin","8":"schoolInfo","9":"vip","10":"vipBuy"}[chunkId]||chunkId) + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -97,8 +97,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	//var domainStr = 'm.zhigaokao.cn'; //正式
-	//var domainStr = 'test.zhigaokao.cn'; //测试
-	var domainStr = 'm.zhigaokao.com:8083';
+	//var domainStr = 'test.m.zhigaokao.cn'; //测试
+	var domainStr = 'm.zhigaokao.com:8084';
 
 	//获取域名前缀=============================
 	var urlDomain = window.location.hostname + '';
@@ -178,15 +178,6 @@
 	    }, 1000);
 	};
 
-	//return {
-	//    isLogin: isLogin,
-	//    ajaxFun: ajaxFun,
-	//    getLinkey: getLinkey,
-	//    cookie: cookie,
-	//    domain: domainStr,
-	//    provinceKey: provinceKey,
-	//    tips: tips
-	//};
 
 
 	function drawToast(message) {
@@ -225,23 +216,23 @@
 
 	function confirmLayer(title,content) {
 	    var confirmLayer = [];
-	    confirmLayer.push('<div class="mask">');
+	    confirmLayer.push('<div class="mask show">');
 	    confirmLayer.push('<div class="modal">');
 	    confirmLayer.push('<div class="modal-title">'+ title +'</div>');
-	    confirmLayer.push('<div class="close-modal">X</div>');
 	    confirmLayer.push('<div class="modal-body">');
 	    confirmLayer.push(content);
 	    confirmLayer.push('</div>');
 	    confirmLayer.push('<div class="modal-footer">');
+	    confirmLayer.push('<button id="close-modal" type="button">取消</button>');
 	    confirmLayer.push('<button id="confirm-btn" type="button">确定</button>');
 	    confirmLayer.push('</div>');
 	    confirmLayer.push('</div>');
 	    confirmLayer.push('</div>');
-	    $('body').append(confirmLayer.join(''));
-	    $('.close-modal').on('click', function() {
+	    $('body').append(confirmLayer.join('')).on('click','#close-modal',function() {
 	        $('.mask').remove();
 	    });
 	}
+
 
 
 	exports.isLogin = isLogin;

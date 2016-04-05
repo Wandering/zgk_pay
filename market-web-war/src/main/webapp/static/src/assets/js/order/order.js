@@ -1,9 +1,6 @@
-/**
- * Created by kepeng on 16/4/1.
- */
 
 (function() {
-
+    $('#header-menu').show();
     var TEST_DATA = [{
         payStatus: 1,
         name: 'zhigao',

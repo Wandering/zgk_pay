@@ -7,11 +7,6 @@
     <link rel="stylesheet" href="<%=ctx%>/static/dist/css/code/style.css"/>
 </head>
 <body>
-<div class="mask">
-    <div class="js-openurl">分享到微信</div>
-    <div class="js-openurl">分享到QQ</div>
-    <div class="js-openurl">分享到微博</div>
-</div>
 <%@ include file="../common/header.jsp"%>
 <div class="container">
     <div class="user-info clearfix">
@@ -24,13 +19,13 @@
         </div>
     </div>
     <div class="code">
-        <%--<img src="<%=ctx%>/static/dist/img/icons/code.png" class='captchImg'/>--%>
-        <img src="" class='captchImg'/>
+        <img src="" class='captchImg' id="captchImg"/>
     </div>
     <div class="share-btn">
         分享二维码
     </div>
 </div>
+<script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/code.js"></script>
 </body>
 </html>

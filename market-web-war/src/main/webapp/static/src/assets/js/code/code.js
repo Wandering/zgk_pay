@@ -5,23 +5,16 @@ var util = require('commonjs');
 var interfaceUrl = require('urlConfig');
 var cookie = require('cookie');
 $(function () {
-    var account = util.getLinkey('account');
+    var userId = util.getLinkey('userId');
     util.ajaxFun(interfaceUrl.getCaptchaImg, 'get', {
-        'account': account
+        'userId': userId
     }, function (res) {
-        //var res = {
-        //    bizData: {
-        //        'captchImg': 'http://pic.baike.soso.com/p/20131211/20131211091752-393669037.jpg',
-        //        'name': 'pdeng',
-        //        'account': '18710921676'
-        //    },
-        //    rtnCode: '0000000'
-        //};
+        console.log(res);
         if (res.rtnCode = '0000000') {
             var dataJson = res.bizData;
             $('.name').text(dataJson.name);
             $('.tel').text(dataJson.account);
-            $('.captchImg').attr('src', dataJson.captchImg);
+            $('#captchImg').attr('src', dataJson.qrcodeUrl);
         }
     });
     //分享
