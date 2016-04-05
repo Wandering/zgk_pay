@@ -31,6 +31,7 @@
     <div class="confirm-btn">确认支付</div>
 </div>
 <script src="<%=ctx%>/static/dist/js/commons.js"></script>
+<script src="<%=ctx%>/static/dist/js/pingpp.js"></script>
 <script type="text/javascript" src="<%=ctx%>static/dist/js/order.js"></script>
 </body>
 </html>
