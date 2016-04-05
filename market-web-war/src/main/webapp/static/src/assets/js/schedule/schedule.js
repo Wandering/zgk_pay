@@ -71,30 +71,31 @@ $(function(){
         }, function (res) {
             console.log(res)
             if (res.rtnCode == '0000000') {
-                var jsonData = res.bizData.schedules;
-                for(var i=0;i<jsonData.length;i++){
-                    var id  =res.bizData.schedules[i];
-                    var month  =res.bizData.schedules[i].month;
-                    var title  =res.bizData.schedules[i].title;
-                    var years  =res.bizData.schedules[i].years;
-                    console.log(id)
-                    console.log(month)
-                    console.log(title)
-                    console.log(years)
-                }
+                var jsonData = res.bizData;
+                console.log(typeof jsonData.schedules);
+                //for(var i=0;i<jsonData.length;i++){
+                //    var id  =res.bizData.schedules[i];
+                //    var month  =res.bizData.schedules[i].month;
+                //    var title  =res.bizData.schedules[i].title;
+                //    var years  =res.bizData.schedules[i].years;
+                //    console.log(id)
+                //    console.log(month)
+                //    console.log(title)
+                //    console.log(years)
+                //}
 
 
-                util.ajaxFun(urlConfig.getScheduleInfo, 'get', {id: id}, function (res) {
-                    if (res.rtnCode == '0000000') {
-                        handlebars.registerHelper('formatDate', function (date) {
-                            return getTime(date);
-                        });
-                        var template = handlebars.compile($("#article-detail").html());
-                        var list = res.bizData;
-                        var html = template(list);
-                        $('.article-detail').html(html);
-                    }
-                });
+                //util.ajaxFun(urlConfig.getScheduleInfo, 'get', {id: id}, function (res) {
+                //    if (res.rtnCode == '0000000') {
+                //        handlebars.registerHelper('formatDate', function (date) {
+                //            return getTime(date);
+                //        });
+                //        var template = handlebars.compile($("#article-detail").html());
+                //        var list = res.bizData;
+                //        var html = template(list);
+                //        $('.article-detail').html(html);
+                //    }
+                //});
             }
         })
     }
