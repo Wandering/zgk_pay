@@ -2,6 +2,14 @@ var UI ={
     $tabContent:$('.tab-content')
 };
 
+
+
+
+
+
+
+//$('.mask').addClass('show');
+
 $('#header-menu').show();
 
 $('.tab-list').on('click','.tab', function(){
@@ -11,5 +19,7 @@ $('.tab-list').on('click','.tab', function(){
     UI.$tabContent.removeClass('active').eq(index).addClass('active');
 });
 $('.tab-list .tab').eq(0).click();
+
+
 
 

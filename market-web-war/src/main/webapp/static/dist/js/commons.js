@@ -227,6 +227,22 @@
 	}
 
 
+	function confirmLayer(){
+	    var confirmLayer = [];
+	        confirmLayer.push('<div class="mask">');
+	        confirmLayer.push('<div class="modal">');
+	        confirmLayer.push('<div class="modal-title">修改密码</div>');
+	        confirmLayer.push('<div class="modal-body">');
+	        confirmLayer.push('<input id="current-psd" type="text" placeholder="当前密码">');
+	        confirmLayer.push('<input id="new-psd" type="text" placeholder="新密码">');
+	        confirmLayer.push('<input id="confirm-psd" type="text" placeholder="确认新密码">');
+	        confirmLayer.push('<input id="confirm_pwd_btn" type="button" value="确认修改">');
+	        confirmLayer.push('</div>');
+	        confirmLayer.push('<div class="close-modal">X</div>');
+	        confirmLayer.push('</div>');
+	        confirmLayer.push('</div>');
+	}
+
 
 
 

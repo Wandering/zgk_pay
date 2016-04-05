@@ -142,6 +142,11 @@ $(function () {
 
     Area.init();
     Area.addEventForArea();
+
+
+
+
+
     // 登录提交
     $('#register-btn').on('click', function () {
 
@@ -200,6 +205,24 @@ $(function () {
         var shareType = util.getLinkey('shareType');
 
         var submitBtnHtml = '<div><button class="submitBtn" type="button" id="submitBtn">提交</button></div>';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         util.layer('即将进入智高考-'+ provinceTxt +'网站，注册之后地域不可修改', submitBtnHtml);
         $('body').on('click', '#submitBtn', function () {
             var md5RegisterPwdV = $.md5(registerPwdV);

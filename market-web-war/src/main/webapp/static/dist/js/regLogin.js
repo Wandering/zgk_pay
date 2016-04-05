@@ -248,6 +248,14 @@ webpackJsonp([7],[
 	    $tabContent:$('.tab-content')
 	};
 
+
+
+
+
+
+
+	//$('.mask').addClass('show');
+
 	$('#header-menu').show();
 
 	$('.tab-list').on('click','.tab', function(){
@@ -257,6 +265,8 @@ webpackJsonp([7],[
 	    UI.$tabContent.removeClass('active').eq(index).addClass('active');
 	});
 	$('.tab-list .tab').eq(0).click();
+
+
 
 
 
@@ -482,6 +492,11 @@ webpackJsonp([7],[
 
 	    Area.init();
 	    Area.addEventForArea();
+
+
+
+
+
 	    // 登录提交
 	    $('#register-btn').on('click', function () {
 
@@ -540,6 +555,24 @@ webpackJsonp([7],[
 	        var shareType = util.getLinkey('shareType');
 
 	        var submitBtnHtml = '<div><button class="submitBtn" type="button" id="submitBtn">提交</button></div>';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	        util.layer('即将进入智高考-'+ provinceTxt +'网站，注册之后地域不可修改', submitBtnHtml);
 	        $('body').on('click', '#submitBtn', function () {
 	            var md5RegisterPwdV = $.md5(registerPwdV);
