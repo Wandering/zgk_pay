@@ -94,7 +94,7 @@ public class PayController {
             Map<String,String> app=new HashMap<>();
             app.put("id", appId);
             chargeParams.put("order_no",orderNo);
-            chargeParams.put("amount",decimal.intValue()*100);
+            chargeParams.put("amount",decimal.doubleValue()*100);
             chargeParams.put("app",app);
             chargeParams.put("channel",channel);
             chargeParams.put("client_ip", IPUtil.getRemortIP(request));
