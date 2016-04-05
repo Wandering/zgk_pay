@@ -94,6 +94,9 @@ public class PayController {
             chargeParams.put("subject",StaticSource.getSource("subject"));
             chargeParams.put("body",StaticSource.getSource("body"));
             chargeParams.put("currency",CURRENCY);
+            Map<String,Object> extraMap=new HashMap<>();
+            extraMap.put("open_id","wx552f3800df25e964");
+            chargeParams.put("extra",extraMap);
             orderstatement.setPayJson(JSONObject.toJSONString(chargeParams));
             orderStatementService.insert(orderstatement);
             Charge charge=Charge.create(chargeParams);
