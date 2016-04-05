@@ -107,11 +107,15 @@
     }
 
     function getOpenId(code) {
-        util.ajaxFun('https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx552f3800df25e964&secret=8188e75b097aa62dc56272a0797d48ae&code=' + code + '&grant_type=authorization_code', 'get', {
-        }, function (res) {
+        var url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx552f3800df25e964&secret=8188e75b097aa62dc56272a0797d48ae&code=' + code + '&grant_type=authorization_code';
+        $.get(url,{}, function() {
             alert(JSON.stringify(res));
             cookie.setCookie("openId", res.openid, 4, "/");
         });
+        //util.ajaxFun('', 'get', {
+        //}, function (res) {
+        //
+        //});
     }
     $(document).ready(function() {
 
