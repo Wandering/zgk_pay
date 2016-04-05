@@ -163,16 +163,15 @@ webpackJsonp([6],{
 	        }
 	        orderFlag = true;
 	        var amount = parseInt(price || '200');
-	        var code = cookie.getCookieValue('code');
+	        var openId = cookie.getCookieValue('openId');
 	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
 	            orderNo: orderNo,
 	            userId: userId || '13',
 	            amount: amount,
 	            channel: 'wx_pub',
-	            code: code
+	            openId: openId
 	        }, function (res) {
 	            orderFlag = false;
-	            $.pgwModal('close');
 	            if (res.rtnCode == '0000000') {
 	                var charge = res.bizData;
 	                charge.credential = JSON.parse(charge.credential);

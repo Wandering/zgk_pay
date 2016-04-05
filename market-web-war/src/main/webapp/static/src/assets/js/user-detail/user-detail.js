@@ -105,10 +105,20 @@
         });
         return obj;
     }
+
+    function getOpenId(code) {
+        util.ajaxFun('https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx552f3800df25e964&secret=8188e75b097aa62dc56272a0797d48ae&code=' + code + '&grant_type=authorization_code', 'get', {
+        }, function (res) {
+            alert(res.openid);
+            cookie.setCookie("openId", res.openid, 4, "/");
+        });
+    }
     $(document).ready(function() {
 
         var obj = getQueryObject(window.location.href);
         cookie.setCookie("code", obj.code, 4, "/");
+        getOpenId(obj.code);
+
         initUserInfo();
 
         $('.modify-btn').on('click', function() {

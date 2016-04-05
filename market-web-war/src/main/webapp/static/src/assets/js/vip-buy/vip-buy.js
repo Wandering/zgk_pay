@@ -65,13 +65,13 @@ require('pgwmodal');
         orderFlag = true;
         $('#confirm-btn').html('正在支付...');
         var amount = parseFloat($('#pay_price').attr('data-price') || '200');
-        var code = cookie.getCookieValue('code');
+        var openId = cookie.getCookieValue('openId');
         util.ajaxFun(interfaceUrl.payOrder, 'POST', {
             orderNo: $('#orderNo').attr('orderNo'),
             userId: cookie.getCookieValue('userId') || '13',
             amount: amount,
             channel: 'wx_pub',
-            code: code
+            openId: openId
         }, function (res) {
             orderFlag = false;
             $('#confirm-btn').html('确认支付');
