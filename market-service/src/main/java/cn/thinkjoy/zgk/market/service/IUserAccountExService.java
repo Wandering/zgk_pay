@@ -11,7 +11,9 @@ package cn.thinkjoy.zgk.market.service;
 import cn.thinkjoy.zgk.market.domain.UserAccount;
 import cn.thinkjoy.zgk.market.pojo.UserAccountPojo;
 import cn.thinkjoy.zgk.market.pojo.UserInfoPojo;
+import com.google.zxing.WriterException;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +27,7 @@ public interface IUserAccountExService {
 
     int findUserAccountCountByPhone(String phone, long areaId);
 
-    boolean insertUserAccount(UserAccount userAccount,Long sharerId,Integer sharerType );
+    boolean insertUserAccount(UserAccount userAccount,Long sharerId,Integer sharerType ) throws WriterException, IOException;
 
     boolean updateUserAccount(UserAccount userAccount);
 

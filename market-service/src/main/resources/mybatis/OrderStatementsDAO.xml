@@ -45,7 +45,7 @@
         state,
         amount,
         pay_json,
-        callback_json,
+        callback_json
         ) VALUES (
         #{orderNo},
         #{statementNo},

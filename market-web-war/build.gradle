@@ -17,5 +17,6 @@ dependencies {
 
     }
     compile project(':market-service')
-    compile files('libs/pingpp-java-2.1.3.jar')
+    compile "cn.thinkjoy:pingpp-java:2.0.1"
+    compile "com.google.code.gson:gson:2.6.2"
 }

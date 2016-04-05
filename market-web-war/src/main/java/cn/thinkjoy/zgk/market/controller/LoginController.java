@@ -86,7 +86,6 @@ public class LoginController extends BaseCommonController {
 				setUserAccountPojo(userAccountBean, DESUtil.encrypt(token, DESUtil.key));
 				resultMap.put("token", DESUtil.encrypt(token, DESUtil.key));
 				userInfoPojo.setPassword(null);
-				userInfoPojo.setId(null);
 				userInfoPojo.setStatus(null);
 				resultMap.put("userInfo", userInfoPojo);
 			}
