@@ -51,6 +51,17 @@ public class PayController {
 
 
     public static final String  CURRENCY ="cny";
+
+
+    /**
+     *
+     */
+
+//    public String getOpenIdUrl(){
+//
+//    }
+
+
     /**
      * 支付订单
      * @return
@@ -74,7 +85,7 @@ public class PayController {
 
             Pingpp.apiKey=StaticSource.getSource("apiKey");
             String appId=StaticSource.getSource("appId");
-            String openId=StaticSource.getSource("openId");
+            String appSecret=StaticSource.getSource("appSecret");
             String statemenstNo=NumberGenUtil.genStatementNo();
             OrderStatements orderstatement=new OrderStatements();
             orderstatement.setAmount(Double.valueOf(amount)*100);
@@ -98,11 +109,12 @@ public class PayController {
             chargeParams.put("subject","智高考");
             chargeParams.put("body","智高考");
             chargeParams.put("currency",CURRENCY);
-//            WxpubOAuth.createOauthUrlForCode()
-//            WxpubOAuth.getOpenId(appId,appSecret,code);
-            Map<String,Object> extraMap=new HashMap<>();
-            extraMap.put("open_id",openId);
-            chargeParams.put("extra",extraMap);
+//            String codeUrl= WxpubOAuth.createOauthUrlForCode(StaticSource.getSource("appId"), "", false);
+//            String code= HttpRequestUtil.doGet(codeUrl);
+//            String openId= WxpubOAuth.getOpenId(appId,appSecret,code);
+//            Map<String,Object> extraMap=new HashMap<>();
+//            extraMap.put("open_id",openId);
+//            chargeParams.put("extra",extraMap);
             orderstatement.setPayJson(JSONObject.toJSONString(chargeParams));
 
             orderStatementService.insert(orderstatement);
