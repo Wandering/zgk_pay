@@ -142,14 +142,11 @@ PingppSDK.prototype = {
 
   _jsApiCall: function(){
     var self = this;
-    $('.console_msg').append('_jsApiCall</br>');
     if(self._jsApiParameters != {}){
       WeixinJSBridge.invoke(
         'getBrandWCPayRequest',
         self._jsApiParameters,
         function(res){
-          alert('_jsApiCall');
-          alert(JSON.stringify(res));
           if(res.err_msg == 'get_brand_wcpay_request:ok'){
             self._innerCallback("success");
           }else if(res.err_msg == 'get_brand_wcpay_request:cancel'){
@@ -164,9 +161,6 @@ PingppSDK.prototype = {
 
   _callpay: function(){
     var self = this;
-    //$('.console_msg').append(wx + '---' + WeixinJSBridge + '</br>')
-    $('.console_msg').append('_callpay</br>');
-    $('.console_msg').append((typeof wx) + '</br>');
     if (typeof wx != "undefined" && typeof self._signature != "undefined") {
       var wxConfigFailed = false;
       wx.config({
@@ -188,7 +182,6 @@ PingppSDK.prototype = {
           signType: self._jsApiParameters["signType"],
           paySign: self._jsApiParameters["paySign"],
           success: function(res) {
-            $('.console_msg').append(JSON.stringify(res) + '</br>')
             if (res.errMsg == "chooseWXPay:ok") {
               self._innerCallback("success");
             } else {
@@ -199,13 +192,11 @@ PingppSDK.prototype = {
             self._innerCallback("cancel");
           },
           fail: function(res) {
-            $('.console_msg').append(JSON.stringify(res) + '</br>')
             self._innerCallback("fail", self._error("wx_result_fail", res.errMsg));
           }
         });
       });
       wx.error(function(res){
-        $('.console_msg').append(JSON.stringify(res) + '</br>')
         wxConfigFailed = true;
         self._innerCallback("fail", self._error("wx_config_error", res.errMsg));
       });
