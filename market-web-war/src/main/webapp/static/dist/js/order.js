@@ -50,9 +50,28 @@ webpackJsonp([5],{
 
 
 	    var Order = (function() {
+
+	        Date.prototype.Format = function(fmt) { //author: meizz
+	            var o = {
+	                "M+" : this.getMonth()+1,                 //月份
+	                "d+" : this.getDate(),                    //日
+	                "h+" : this.getHours(),                   //小时
+	                "m+" : this.getMinutes(),                 //分
+	                "s+" : this.getSeconds(),                 //秒
+	                "q+" : Math.floor((this.getMonth()+3)/3), //季度
+	                "S"  : this.getMilliseconds()             //毫秒
+	            };
+	            if(/(y+)/.test(fmt))
+	                fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+	            for(var k in o)
+	                if(new RegExp("("+ k +")").test(fmt))
+	                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+	            return fmt;
+	        }
 	        var tmpl = function(obj) {
+	            var createDate = new Date(obj.create_date).Format('yyyy-MM-dd hh:mm:ss');
 	            var html = '';
-	            if (obj.payStatus == 1) {
+	            if (obj.status == 1) {
 	                html +=  '<div class="order-item">';
 	                html +=  '<img class="img-paid" src="/static/dist/img/icons/paid.png" alt=""/>';
 	            } else {
@@ -60,24 +79,24 @@ webpackJsonp([5],{
 	            }
 	            html +=  '<ul class="item-list">';
 	            html +=  '<li>';
-	            html +=  '<span>' + obj.name + '</span>';
-	            html +=  '<span>' + obj.price + '</span>';
-	            if (obj.payStatus == 1) {
-	                html +=  '<span class="pay-status" data-payStatus="' + obj.payStatus + '">已支付</span>';
+	            html +=  '<span>智能高考VIP服务卡</span>';
+	            html +=  '<span>' + obj.product_price + '</span>';
+	            if (obj.status == 1) {
+	                html +=  '<span class="pay-status" data-payStatus="' + obj.status + '">已支付</span>';
 	            } else {
-	                html +=  '<span class="pay-status" data-payStatus="' + obj.payStatus + '">未支付</span>';
+	                html +=  '<span class="pay-status" data-userId="' + obj.user_id + '" data-orderNo="' + obj.order_no + '" data-price="' + obj.product_price + '" data-payStatus="' + obj.status + '">未支付</span>';
 	            }
 
 	            html +=  '</li>';
 	            html +=  '<li>';
-	            html +=  '<span>成交时间：' + obj.date + '</span>';
-	            html +=  '<span>' + obj.time + '</span>';
+	            html +=  '<span>成交时间：' + createDate.split(' ')[0] + '</span>';
+	            html +=  '<span>' + createDate.split(' ')[1] + '</span>';
 	            html +=  '</li>';
 	            html +=  '<li>';
-	            html +=  '<span>取货地址：' + obj.address + '</span>';
+	            html +=  '<span>取货地址：' + obj.goods_address + '</span>';
 	            html +=  '</li>';
 	            html +=  '<li>';
-	            html +=  '<span>取货电话：' + obj.phone + '</span>';
+	            html +=  '<span>取货电话：' + obj.department_phone + '</span>';
 	            html +=  '</li>';
 	            html +=  '</ul>';
 	            html +=  '</div>';
@@ -102,30 +121,25 @@ webpackJsonp([5],{
 	                    pageSize: this.pageSize
 	                }, function (res) {
 	                    if (res.rtnCode == '0000000') {
-	                        $('.order-list').append(that.orderListRender(TEST_DATA));
-	                        $('.pay-status').off('click');
-	                        $('.pay-status').on('click', function() {
-	                            var payStatus = $(this).attr('data-payStatus');
-	                            if (payStatus == '0') {
-	                                $('#orderNo').html('订单ID：' + res.bizData.orderNo);
-	                                $('#orderNo').attr('orderNo', res.bizData.orderNo);
-	                                $('#order_time').html('订单创建日期：' + department.createDateAsDate);
-	                                $('#service_price').html('服务价格：' + department.salePrice + '元');
-	                                $('#pay_price').html('应付费用：' + department.salePrice  + '元');
-	                                $('#pay_price').attr('data-price', department.salePrice);
-	                                $.pgwModal({
-	                                    title: '订单确认',
-	                                    content: $('.modal').html()
-	                                });
-	                                $('.confirm-btn').off('click');
-	                                $('.confirm-btn').on('click', function() {
-	                                    payOrder();
-	                                });
-	                            }
-	                        });
 	                        $('.pull-text').show();
 	                        $('#scroller-pullUp').hide();
-	                        if (myScroll) myScroll.refresh();
+	                        if (res.bizData.length > 0) {
+	                            $('.order-list').append(that.orderListRender(res.bizData));
+	                            $('.pay-status').off('click');
+	                            $('.pay-status').on('click', function() {
+	                                var payStatus = $(this).attr('data-payStatus');
+	                                if (payStatus == '0') {
+	                                    var orderNo = $(this).attr('data-orderNo');
+	                                    var price = $(this).attr('data-price');
+	                                    var userId = $(this).attr('data-userId');
+	                                    payOrder(orderNo, price, userId);
+	                                }
+	                            });
+	                            if (myScroll) myScroll.refresh();
+	                        } else {
+	                            $('.pull-text').html('没有更多数据~~');
+	                            $('.pull-text').addClass('no-data');
+	                        }
 	                    }
 	                })
 	            }
@@ -143,21 +157,19 @@ webpackJsonp([5],{
 	     * 支付
 	     */
 	    var orderFlag = false;
-	    function payOrder() {
+	    function payOrder(orderNo, price, userId) {
 	        if (orderFlag) {
 	            return;
 	        }
 	        orderFlag = true;
-	        $('#confirm-btn').html('正在支付...');
-	        var amount = parseInt($('#pay_price').attr('data-price') || '200');
+	        var amount = parseInt(price || '200');
 	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
-	            orderNo: $('#orderNo').attr('orderNo'),
-	            userId: cookie.getCookieValue('userId') || '13',
+	            orderNo: orderNo,
+	            userId: userId || '13',
 	            amount: amount,
 	            channel: 'wx_pub'
 	        }, function (res) {
 	            orderFlag = false;
-	            $('#confirm-btn').html('确认支付');
 	            $.pgwModal('close');
 	            if (res.rtnCode == '0000000') {
 	                var charge = res.bizData;

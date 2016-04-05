@@ -2,12 +2,15 @@ package cn.thinkjoy.zgk.market.controller;
 
 import cn.thinkjoy.zgk.zgksystem.AgentService;
 import cn.thinkjoy.zgk.zgksystem.domain.Department;
+//import cn.thinkjoy.zgk.zgksystem.domain.SplitPrice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -22,6 +25,13 @@ public class WebCotroller {
     {
         return agentService.getAgentInfo(accountId);
     }
+
+//    @RequestMapping("/getSplitPriceInfo")
+//    @ResponseBody
+//    public List<SplitPrice> getSplitPriceInfo(@RequestParam(value = "accountId")String accountId)
+//    {
+//        return agentService.getSplitPriceInfo(accountId);
+//    }
     /**
      * login
      *
