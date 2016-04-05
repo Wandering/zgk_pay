@@ -121,20 +121,25 @@ webpackJsonp([5],{
 	                    pageSize: this.pageSize
 	                }, function (res) {
 	                    if (res.rtnCode == '0000000') {
-	                        $('.order-list').append(that.orderListRender(res.bizData));
-	                        $('.pay-status').off('click');
-	                        $('.pay-status').on('click', function() {
-	                            var payStatus = $(this).attr('data-payStatus');
-	                            if (payStatus == '0') {
-	                                var orderNo = $(this).attr('data-orderNo');
-	                                var price = $(this).attr('data-price');
-	                                var userId = $(this).attr('data-userId');
-	                                payOrder(orderNo, price, userId);
-	                            }
-	                        });
 	                        $('.pull-text').show();
 	                        $('#scroller-pullUp').hide();
-	                        if (myScroll) myScroll.refresh();
+	                        if (res.bizData.length > 0) {
+	                            $('.order-list').append(that.orderListRender(res.bizData));
+	                            $('.pay-status').off('click');
+	                            $('.pay-status').on('click', function() {
+	                                var payStatus = $(this).attr('data-payStatus');
+	                                if (payStatus == '0') {
+	                                    var orderNo = $(this).attr('data-orderNo');
+	                                    var price = $(this).attr('data-price');
+	                                    var userId = $(this).attr('data-userId');
+	                                    payOrder(orderNo, price, userId);
+	                                }
+	                            });
+	                            if (myScroll) myScroll.refresh();
+	                        } else {
+	                            $('.pull-text').html('没有更多数据~~');
+	                            $('.pull-text').addClass('no-data');
+	                        }
 	                    }
 	                })
 	            }
