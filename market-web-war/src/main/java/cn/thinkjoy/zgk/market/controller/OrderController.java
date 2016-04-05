@@ -85,9 +85,10 @@ public class OrderController extends BaseCommonController {
             order.setOrderNo(orderNo);
             order.setDepartmentName(department.getDepartmentName());
             order.setDepartmentPhone(department.getDepartmentPhone());
-            order.setGoodAddress(department.getGoodsAddress());
+            order.setGoodsAddress(department.getGoodsAddress());
             order.setProductPrice(department.getSalePrice());
             order.setUserId(Long.valueOf(userId));
+            order.setStatus(0);
             orderService.insert(order);
             map.put("orderNo",orderNo);
             map.put("department",department);
