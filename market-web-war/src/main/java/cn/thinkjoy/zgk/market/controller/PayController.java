@@ -4,6 +4,7 @@ import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
 import cn.thinkjoy.zgk.market.domain.Order;
 import cn.thinkjoy.zgk.market.domain.OrderStatements;
+import cn.thinkjoy.zgk.market.enumerate.PAYCHANNEL;
 import cn.thinkjoy.zgk.market.service.IOrderService;
 import cn.thinkjoy.zgk.market.service.IOrderStatementsService;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
@@ -121,9 +122,12 @@ public class PayController {
             chargeParams.put("subject","智高考");
             chargeParams.put("body","智高考");
             chargeParams.put("currency",CURRENCY);
-            Map<String,Object> extraMap=new HashMap<>();
-            extraMap.put("open_id",openId);
-            chargeParams.put("extra",extraMap);
+            if(channel.equals(PAYCHANNEL.WXPUB.getCode())){
+                Map<String,Object> extraMap=new HashMap<>();
+                extraMap.put("open_id",openId);
+                chargeParams.put("extra",extraMap);
+            }
+
             orderstatement.setPayJson(JSONObject.toJSONString(chargeParams));
             orderStatementService.insert(orderstatement);
             Charge charge=Charge.create(chargeParams);
