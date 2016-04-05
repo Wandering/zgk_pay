@@ -2,7 +2,6 @@ package cn.thinkjoy.zgk.market.controller;
 
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
-import cn.thinkjoy.zgk.market.domain.Order;
 import cn.thinkjoy.zgk.market.domain.OrderStatements;
 import cn.thinkjoy.zgk.market.service.IOrderService;
 import cn.thinkjoy.zgk.market.service.IOrderStatementsService;
@@ -11,7 +10,6 @@ import cn.thinkjoy.zgk.market.util.IPUtil;
 import cn.thinkjoy.zgk.market.util.NumberGenUtil;
 import cn.thinkjoy.zgk.market.util.StaticSource;
 import cn.thinkjoy.zgk.zgksystem.AgentService;
-import cn.thinkjoy.zgk.zgksystem.domain.SplitPricePojo;
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.fastjson.JSONObject;
@@ -126,6 +124,7 @@ public class PayController {
 
             return charge;
         }catch (Exception e){
+            logger.error("用户"+userId+":"+"支付失败,错误:"+e);
             throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
         }
 
@@ -136,34 +135,37 @@ public class PayController {
      * @return
      */
     @RequestMapping(value = "/callBack",method = RequestMethod.POST)
-    public void callBack(@RequestBody Charge charge ){
+    public void callBack(@RequestBody Map<String,Object> charge,HttpServletRequest request){
         try {
-            String orderNo = charge.getOrderNo();
-            Order order = new Order();
-            order.setOrderNo(orderNo);
-            order.setStatus(1);
-            orderService.updateByOrderNo(order);
-            OrderStatements orderStatements = new OrderStatements();
-            orderStatements.setOrderNo(orderNo);
-            orderStatements.setCallBackJson(JSONObject.toJSONString(charge));
-            orderStatementService.updateByOrderNo(orderStatements);
-            Map<String, Order> orderMap = orderService.queryOrderByNo(orderNo);
-            String userId= orderMap.get("user_id").toString();
-
-            List<Map<String,Object>> userRelLs= userAccountExService.getUserRelListByUserId(Long.valueOf(userId));
-            List<SplitPricePojo> splitPricePojos=new ArrayList<>();
-            for(Map<String,Object> map:userRelLs){
-                SplitPricePojo splitPricePojo=new SplitPricePojo();
-                splitPricePojo.setAccountId(Integer.valueOf(map.get("accountId").toString()));
-                splitPricePojo.setAgentLevel(Integer.valueOf(map.get("agentLevel").toString()));
-                splitPricePojo.setAccountPhone(map.get("phone").toString());
-                splitPricePojos.add(splitPricePojo);
-            }
-            agentService.SplitPriceExec(splitPricePojos, charge.getAmount(),charge.getOrderNo());
-
+//            request.get
+           JSONObject.toJSONString(charge);
+//            String orderNo = charge.getOrderNo();
+//            Order order = new Order();
+//            order.setOrderNo(orderNo);
+//            order.setStatus(1);
+//            orderService.updateByOrderNo(order);
+//            OrderStatements orderStatements = new OrderStatements();
+//            orderStatements.setOrderNo(orderNo);
+//            orderStatements.setCallBackJson(JSONObject.toJSONString(charge));
+//            orderStatementService.updateByOrderNo(orderStatements);
+//            Map<String, Order> orderMap = orderService.queryOrderByNo(orderNo);
+//            String userId= orderMap.get("user_id").toString();
+//
+//            List<Map<String,Object>> userRelLs= userAccountExService.getUserRelListByUserId(Long.valueOf(userId));
+//            List<SplitPricePojo> splitPricePojos=new ArrayList<>();
+//            for(Map<String,Object> map:userRelLs){
+//                SplitPricePojo splitPricePojo=new SplitPricePojo();
+//                splitPricePojo.setAccountId(Integer.valueOf(map.get("accountId").toString()));
+//                splitPricePojo.setAgentLevel(Integer.valueOf(map.get("agentLevel").toString()));
+//                splitPricePojo.setAccountPhone(map.get("phone").toString());
+//                splitPricePojos.add(splitPricePojo);
+//            }
+//            agentService.SplitPriceExec(splitPricePojos, charge.getAmount(),charge.getOrderNo());
+//
 
         }catch (Exception e){
             logger.error("回调错误"+e);
+            throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
         }
 
     }
