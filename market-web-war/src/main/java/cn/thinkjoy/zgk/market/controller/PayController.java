@@ -107,8 +107,7 @@ public class PayController {
 
             orderStatementService.insert(orderstatement);
             Charge charge=Charge.create(chargeParams);
-            String creMap=charge.getCredential();
-            System.out.println(creMap);
+
             return charge;
         }catch (Exception e){
             throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());

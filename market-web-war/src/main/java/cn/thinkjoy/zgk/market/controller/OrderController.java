@@ -114,7 +114,7 @@ public class OrderController extends BaseCommonController {
         List<Map<String,Object>> result=new ArrayList<>();
         try {
 
-            result=orderService.queryOrderListByUserId(userId, pageNo, pageSize);
+            result=orderService.queryOrderListByUserId(userId, (pageNo-1)*pageSize, pageSize);
             return  result;
 
         }catch (Exception e){
