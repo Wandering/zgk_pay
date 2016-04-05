@@ -92,8 +92,10 @@ public class PayController {
             chargeParams.put("app",app);
             chargeParams.put("channel",channel);
             chargeParams.put("client_ip", IPUtil.getRemortIP(request));
-            chargeParams.put("subject",StaticSource.getSource("subject"));
-            chargeParams.put("body",StaticSource.getSource("body"));
+//            chargeParams.put("subject",StaticSource.getSource("subject"));
+//            chargeParams.put("body",StaticSource.getSource("body"));
+            chargeParams.put("subject","智高考");
+            chargeParams.put("body","智高考");
             chargeParams.put("currency",CURRENCY);
             Map<String,Object> extraMap=new HashMap<>();
             extraMap.put("open_id",openId);
