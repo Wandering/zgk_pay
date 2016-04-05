@@ -164,7 +164,9 @@ PingppSDK.prototype = {
 
   _callpay: function(){
     var self = this;
-    $('.console_msg').append(wx + '---' + WeixinJSBridge + '</br>')
+    //$('.console_msg').append(wx + '---' + WeixinJSBridge + '</br>')
+    $('.console_msg').append('_callpay</br>');
+    $('.console_msg').append((typeof wx) + '</br>');
     if (typeof wx != "undefined" && typeof self._signature != "undefined") {
       var wxConfigFailed = false;
       wx.config({
