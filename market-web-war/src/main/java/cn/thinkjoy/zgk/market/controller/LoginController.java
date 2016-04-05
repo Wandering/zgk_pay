@@ -113,7 +113,7 @@ public class LoginController extends BaseCommonController {
 //			status = false;
 //			throw new BizException(ERRORCODE.FAIL.getCode(), ERRORCODE.FAIL.getMessage());
 //		}
-		return "index";
+		return "register/register";
 	}
 
 	private UserInfoPojo oldUserLogin(String account,String password){

@@ -8,6 +8,9 @@
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
 
+    $('#header-title').text('个人信息');
+    $('#header-menu').show();
+
     function initUserInfo() {
         var avatar = cookie.getCookieValue('avatar');
         if (!avatar) avatar = '/static/dist/img/icons/avatar.png';

@@ -72,6 +72,7 @@
         </div>
     </div>
 </div>
+<script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/regLogin.js"></script>
 </body>
 </html>

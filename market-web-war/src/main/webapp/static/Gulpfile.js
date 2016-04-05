@@ -78,9 +78,9 @@ gulp.task("build-js", function(callback) {
 });
 
 gulp.task('watch',function() {
-    //gulp.watch(paths.srcCss, ['minifycss']);
-    gulp.watch(paths.srcImg, ['minifyimg']);
     gulp.watch(paths.srcJs, ['build-js']);
+    //gulp.watch(paths.srcCss, ['minifycss']);
+    //gulp.watch(paths.srcImg, ['minifyimg']);
     //gulp.watch(paths.srcJs, ['minifyjs']);
 });
 
