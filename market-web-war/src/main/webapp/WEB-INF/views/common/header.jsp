@@ -23,7 +23,7 @@
             <i class="close-icon"></i>
         </div>
     </header>
-    <div class="container">
+    <div class="content">
         <div class="backdrop"></div>
         <div class="menu">
             <%--<div class="title">--%>

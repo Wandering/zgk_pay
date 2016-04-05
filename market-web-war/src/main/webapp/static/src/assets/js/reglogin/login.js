@@ -22,6 +22,7 @@ var md5=require('md5');
                 util.drawToast('请输入密码');
                 return false;
             }
+
             var md5loginPwdV = $.md5(loginPwdV);
             util.ajaxFun('/login/login', 'GET', {
                 account: loginPhoneV,
@@ -30,6 +31,7 @@ var md5=require('md5');
                 console.log(res)
                 if (res.rtnCode === "0000000") {
                     var token = res.bizData.token;  // token
+                    var userId = res.bizData.userInfo.id;  // userId
                     var userName = res.bizData.userInfo.name; // 用户名称
                     var vipStatus = res.bizData.userInfo.vipStatus; // VIP状态
                     var phone = res.bizData.userInfo.account; // 用户账号
@@ -42,6 +44,7 @@ var md5=require('md5');
                     var isSurvey = res.bizData.userInfo.isSurvey; // 专家测试次数
                     cookie.setCookie("isLogin", "true", 4, "/");
                     cookie.setCookie("token", token, 4, "/");
+                    cookie.setCookie("userId", userId, 4, "/");
                     cookie.setCookie("userName", userName, 4, "/");
                     cookie.setCookie("vipStatus", vipStatus, 4, "/");
                     cookie.setCookie("phone",phone, 4, "/");
@@ -56,9 +59,14 @@ var md5=require('md5');
                 } else {
                     util.drawToast(res.msg);
                 }
+
             });
         });
     });
+
+
+
+
 
 
 
