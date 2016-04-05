@@ -181,17 +181,6 @@
 
 	//判断是否登录=============================
 	var cookie = __webpack_require__(2);
-	$('body').on('click', '#logout-btn', function () {
-	    cookie.deleteCookie('isLogin', '');
-	    cookie.deleteCookie('token', '');
-	    cookie.deleteCookie('icon', '');
-	    cookie.deleteCookie('phone', '');
-	    cookie.deleteCookie('subjectType', '');
-	    cookie.deleteCookie('userKey', '');
-	    cookie.deleteCookie('userName', '');
-	    cookie.deleteCookie('vipStatus', '');
-	    window.location.assign('http://' + window.location.host + '/index.html')
-	});
 
 	var isLogin = function () {
 	    return cookie.getCookieValue('isLogin')

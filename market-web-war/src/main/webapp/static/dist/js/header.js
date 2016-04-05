@@ -50,6 +50,8 @@
 
 	    var isLogin = cookie.getCookieValue('isLogin');
 
+
+
 	    // 打开主菜单
 	    $('#header-menu').on('click', function () {
 	        if (isLogin) {
@@ -69,6 +71,24 @@
 	        }
 	    });
 
+	    // 切换省份
+	    $('#province-text').on('click',function(){
+	        $('#province-option').toggleClass('hide');
+	    });
+	    var urlDomain = window.location.hostname + '';
+	    var urlArr = urlDomain.split('.');
+	    var provinceKey = urlArr[0];
+	    var provinceTxt = $('#province-option-list a[data-href="http://' + provinceKey + '.m.zhigaokao.com:8084/"]').text();
+	    console.log(provinceTxt);
+	    $('#province-text').text(provinceTxt);
+
+	    var paths = window.location.pathname.split('/');
+	    var pagePath = paths[paths.length - 1];
+
+	    $('#province-option-list').on('click','a',function(){
+	        var dataHref = $(this).attr('data-href');
+	        window.location.assign(dataHref +pagePath);
+	    });
 
 
 
