@@ -111,9 +111,7 @@ webpackJsonp([13],[
 	    }
 	    $(document).ready(function() {
 
-	        alert(window.location.href);
 	        var obj = getQueryObject(window.location.href);
-	        alert(obj.code);
 	        cookie.setCookie("code", obj.code, 4, "/");
 	        initUserInfo();
 
