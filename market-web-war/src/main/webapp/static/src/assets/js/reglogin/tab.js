@@ -2,16 +2,7 @@ var UI ={
     $tabContent:$('.tab-content')
 };
 
-
-
-
-
-
-
-//$('.mask').addClass('show');
-
 $('#header-menu').show();
-
 $('.tab-list').on('click','.tab', function(){
     $(this).addClass('active').siblings().removeClass('active');
     $('#header-title').text($(this).text());

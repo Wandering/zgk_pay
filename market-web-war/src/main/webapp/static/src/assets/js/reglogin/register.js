@@ -143,9 +143,8 @@ $(function () {
     Area.init();
     Area.addEventForArea();
 
-
-
-
+    util.confirmLayer('注册','提交注册');
+    $('.mask').show();
 
     // 登录提交
     $('#register-btn').on('click', function () {
@@ -205,20 +204,6 @@ $(function () {
         var shareType = util.getLinkey('shareType');
 
         var submitBtnHtml = '<div><button class="submitBtn" type="button" id="submitBtn">提交</button></div>';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

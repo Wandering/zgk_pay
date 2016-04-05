@@ -296,7 +296,20 @@ header .location.location-icon:before {
   padding: 0 10px;
   box-sizing: border-box;
 }
-.modal-body input[type="button"] {
+
+.modal-footer button {
+  width: 94%;
+  height: 45px;
+  line-height: 45px;
+  border: 1px solid #e9e4e4;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  color: #5e5e5e;
+  font-size: 18px;
+  margin-top: 10px;
+  padding: 0;
+}
+.modal-footer button[type="button"] {
   background-color: #d80c18;
   text-align: center;
   border: none;
