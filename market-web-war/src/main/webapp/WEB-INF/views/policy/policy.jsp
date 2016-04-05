@@ -45,7 +45,7 @@
     </div>
 </div>
 
-
+<script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/policy.js"></script>
 </body>
 </html>

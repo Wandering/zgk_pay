@@ -70,6 +70,7 @@
         <div class="close-modal">X</div>
     </div>
 </div>
+<script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script type="text/javascript" src="<%=ctx%>static/dist/js/userDetail.js"></script>
 </body>
 </html>

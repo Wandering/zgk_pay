@@ -23,13 +23,18 @@
         pro.code as userKey,
         vip.endDate,
         vip.activeDate,
-        market.qrcodeUrl
+        market.qrcodeUrl,
+        pro.name as proName,
+        city.name as cityName,
+        county.name as countyName
         FROM zgk_user_account acc
         left join zgk_user_vip vip on acc.id = vip.id
         left join zgk_user_info info on acc.id = info.id
         left join zgk_user_exam exam on acc.id = exam.id
         left join zgk_province pro on pro.id = info.provinceId
         left join zgk_user_market market on acc.id = market.accountId
+        left join zgk_city city on info.cityId = city.id
+        left join zgk_county county on info.countyId = county.id
         <where>
             acc.userType = 0
             <if test="token!=null">
@@ -62,13 +67,18 @@
         pro.code as userKey,
         vip.endDate,
         vip.activeDate,
-        market.qrcodeUrl
+        market.qrcodeUrl,
+        pro.name as proName,
+        city.name as cityName,
+        county.name as countyName
         FROM zgk_user_account acc
         left join zgk_user_vip vip on acc.id = vip.id
         left join zgk_user_info info on acc.id = info.id
         left join zgk_user_exam exam on acc.id = exam.id
         left join zgk_province pro on pro.id = info.provinceId
         left join zgk_user_market market on acc.id = market.accountId
+        left join zgk_city city on info.cityId = city.id
+        left join zgk_county county on info.countyId = county.id
         <where>
             acc.userType = 0
             <if test="token!=null">

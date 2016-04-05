@@ -6,6 +6,14 @@
     var util = require('commonjs');
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
+    $('#header-title').text('修改个人信息');
+    $('#header-back').show().on('click',function(){
+        window.location.assign('/user-detail');
+    });
+
+
+
+
     function initUserInfo() {
         var avatar = cookie.getCookieValue('avatar');
         if (!avatar) avatar = '/static/dist/img/icons/avatar.png';
@@ -27,9 +35,7 @@
 
         var email = cookie.getCookieValue('email');
         $('#email').text(email || '');
-
     }
-
     $(document).ready(function() {
         initUserInfo();
         //清除input里面的值
@@ -68,9 +74,9 @@
 
             var img_url = $('#avatar-img').attr('src');
 
-            var provinceId = cookie.getCookieValue('provinceId'),
-                cityId = cookie.getCookieValue('cityId'),
-                countyId = cookie.getCookieValue('countyId');
+            var provinceId = cookie.getCookieValue('province'),
+                cityId = cookie.getCookieValue('city'),
+                countyId = cookie.getCookieValue('county');
             util.ajaxFun(interfaceUrl.postUpdateUserInfo, 'POST', {
                 name: name,
                 provinceId: provinceId,

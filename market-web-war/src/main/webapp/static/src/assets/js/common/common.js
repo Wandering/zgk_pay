@@ -1,15 +1,15 @@
 //var domainStr = 'zhigaokao.cn'; //正式
 //var domainStr = 'test.zhigaokao.cn'; //测试
-var domainStr = 'zhigaokao.com:8084';
+var domainStr = 'm.zhigaokao.com:8084';
 
 //获取域名前缀=============================
 var urlDomain = window.location.hostname + '';
 var urlArr = urlDomain.split('.');
 var provinceKey = urlArr[0];
 if (provinceKey == "www" || provinceKey == 'undefined') {
-    window.location.assign('http://zj.zhigaokao.cn');
+    window.location.assign('http://zj.m.zhigaokao.cn');
 }
-$('#current-province').text($('#select-province li a[href="http://' + provinceKey + '.zhigaokao.cn/"]').text())
+$('#current-province').text($('#select-province li a[href="http://' + provinceKey + '.m.zhigaokao.cn/"]').text())
 
 
 //判断是否登录=============================
@@ -128,6 +128,22 @@ function layer(message,btns) {
     }
 }
 
+
+function confirmLayer(){
+    var confirmLayer = [];
+        confirmLayer.push('<div class="mask">');
+        confirmLayer.push('<div class="modal">');
+        confirmLayer.push('<div class="modal-title">修改密码</div>');
+        confirmLayer.push('<div class="modal-body">');
+        confirmLayer.push('<input id="current-psd" type="text" placeholder="当前密码">');
+        confirmLayer.push('<input id="new-psd" type="text" placeholder="新密码">');
+        confirmLayer.push('<input id="confirm-psd" type="text" placeholder="确认新密码">');
+        confirmLayer.push('<input id="confirm_pwd_btn" type="button" value="确认修改">');
+        confirmLayer.push('</div>');
+        confirmLayer.push('<div class="close-modal">X</div>');
+        confirmLayer.push('</div>');
+        confirmLayer.push('</div>');
+}
 
 
 

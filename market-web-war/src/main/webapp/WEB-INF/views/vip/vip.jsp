@@ -39,6 +39,7 @@
         </div>
     </form>
 </div>
+<script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/vip.js"></script>
 </body>
 </html>

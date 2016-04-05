@@ -72,6 +72,23 @@
         </div>
     </div>
 </div>
+
+
+<div class="mask">
+    <div class="modal">
+        <div class="modal-title">修改密码</div>
+        <div class="modal-body">
+            <input id="current-psd" type="text" placeholder="当前密码">
+            <input id="new-psd" type="text" placeholder="新密码">
+            <input id="confirm-psd" type="text" placeholder="确认新密码">
+            <input id="confirm_pwd_btn" type="button" value="确认修改">
+        </div>
+        <div class="close-modal">X</div>
+    </div>
+</div>
+
+
+<script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/regLogin.js"></script>
 </body>
 </html>

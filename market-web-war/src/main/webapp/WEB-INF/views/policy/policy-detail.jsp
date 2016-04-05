@@ -28,6 +28,7 @@
         <div class="content">{{{content}}}</div>
     </script>
 </div>
+<script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/policyDetail.js"></script>
 </body>
 </html>

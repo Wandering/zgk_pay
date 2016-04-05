@@ -80,7 +80,7 @@ header .location.location-icon:before {
   margin: 3px 0;
 }
 .container .form-group .check-code {
-  width: calc(100% - 160px);
+  width: calc(100% - 150px);
 }
 .container .form-group .location-list {
   display: flex;
