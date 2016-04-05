@@ -1,11 +1,12 @@
 package cn.thinkjoy.zgk.market.pojo;
 
-import cn.thinkjoy.common.domain.BaseDomain;
+import java.io.Serializable;
 
 /**
  * Created by clei on 15/9/21.
  */
-public class UserAccountPojo extends BaseDomain<Long> {
+public class UserAccountPojo implements Serializable {
+    private Long id;
     private Integer status;
     private String name;
     private String icon;
@@ -133,5 +134,13 @@ public class UserAccountPojo extends BaseDomain<Long> {
 
     public void setQrcodeUrl(String qrcodeUrl) {
         this.qrcodeUrl = qrcodeUrl;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

@@ -68,10 +68,15 @@ header .location.location-icon:before {
   font-size: 14px;
   border-bottom: 1px solid #E9E4E4;
 }
-.detail-list li span:last-child {
+.detail-list li a.code-links {
+  color: #707070;
+  text-decoration: none;
+  display: block;
+}
+.detail-list li a.code-links span:last-child {
   float: right;
 }
-.detail-list li img {
+.detail-list li a.code-links img {
   width: 33px;
   margin-top: 5px;
 }

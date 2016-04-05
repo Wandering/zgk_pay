@@ -302,24 +302,24 @@ webpackJsonp([7],[
 	                    var vipStatus = res.bizData.userInfo.vipStatus; // VIP状态
 	                    var phone = res.bizData.userInfo.account; // 用户账号
 	                    var userKey = res.bizData.userInfo.userKey; // 省份userKey
-	                    var province = res.bizData.userInfo.province; // 选择省份
-	                    var city = res.bizData.userInfo.city; // 选择城市
-	                    var county = res.bizData.userInfo.county; // 选择县区
+	                    var province = res.bizData.userInfo.proName; // 选择省份
+	                    var city = res.bizData.userInfo.cityName; // 选择城市
+	                    var county = res.bizData.userInfo.countyName; // 选择县区
 	                    var qrcodeUrl = res.bizData.userInfo.qrcodeUrl;  // 二维码
 	                    var isReported = res.bizData.userInfo.isReported; // 智能填报次数
 	                    var isSurvey = res.bizData.userInfo.isSurvey; // 专家测试次数
-	                    cookie.setCookie("isLogin", "true", 4, "");
-	                    cookie.setCookie("token", token, 4, "");
-	                    cookie.setCookie("userName", userName, 4, "");
-	                    cookie.setCookie("vipStatus", vipStatus, 4, "");
-	                    cookie.setCookie("phone",phone, 4, "");
-	                    cookie.setCookie("userKey",userKey, 4, "");
-	                    cookie.setCookie("province",province, 4, "");
-	                    cookie.setCookie("city",city, 4, "");
-	                    cookie.setCookie("county",county, 4, "");
-	                    cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "");
-	                    cookie.setCookie("isReported",isReported, 4, "");
-	                    cookie.setCookie("isSurvey",isSurvey, 4, "");
+	                    cookie.setCookie("isLogin", "true", 4, "/");
+	                    cookie.setCookie("token", token, 4, "/");
+	                    cookie.setCookie("userName", userName, 4, "/");
+	                    cookie.setCookie("vipStatus", vipStatus, 4, "/");
+	                    cookie.setCookie("phone",phone, 4, "/");
+	                    cookie.setCookie("userKey",userKey, 4, "/");
+	                    cookie.setCookie("province",province, 4, "/");
+	                    cookie.setCookie("city",city, 4, "/");
+	                    cookie.setCookie("county",county, 4, "/");
+	                    cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
+	                    cookie.setCookie("isReported",isReported, 4, "/");
+	                    cookie.setCookie("isSurvey",isSurvey, 4, "/");
 	                    window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/user-detail');
 	                } else {
 	                    util.drawToast(res.msg);
@@ -327,6 +327,9 @@ webpackJsonp([7],[
 	            });
 	        });
 	    });
+
+
+
 
 
 
@@ -483,11 +486,6 @@ webpackJsonp([7],[
 
 	    Area.init();
 	    Area.addEventForArea();
-
-	    util.confirmLayer('注册','提交注册');
-
-	    $('.mask').show();
-
 	    // 登录提交
 	    $('#register-btn').on('click', function () {
 
@@ -500,6 +498,10 @@ webpackJsonp([7],[
 	        var provinceId = $('#province').val(),
 	            cityId = $('#city').val(),
 	            countyId = $('#county').val();
+
+
+
+
 	        if (registerPhoneV == "") {
 	            util.drawToast('请输入手机号');
 	            return false;
@@ -541,17 +543,11 @@ webpackJsonp([7],[
 	            util.drawToast('两次密码输入不一致');
 	            return false;
 	        }
-
 	        var sharerId = util.getLinkey('sharerId');
 	        var shareType = util.getLinkey('shareType');
-
-	        var submitBtnHtml = '<div><button class="submitBtn" type="button" id="submitBtn">提交</button></div>';
-
-
-
-
-	        util.layer('即将进入智高考-'+ provinceTxt +'网站，注册之后地域不可修改', submitBtnHtml);
-	        $('body').on('click', '#submitBtn', function () {
+	        var subHtml = '<p class="reg-center">进入智高考"'+ provinceTxt +'"网站，</br>注册之后地域不可修改</p>';
+	        util.confirmLayer('注册',subHtml);
+	        $('body').on('click', '#confirm-btn', function () {
 	            var md5RegisterPwdV = $.md5(registerPwdV);
 	            util.ajaxFun('/register/account', 'POST', {
 	                account: registerPhoneV, //用户账号
@@ -564,32 +560,32 @@ webpackJsonp([7],[
 	                shareType: shareType || "0"
 	            }, function (res) {
 	                console.log(res)
+	                $('#confirm-btn').attr('disabled', 'disabled');
 	                if (res.rtnCode === "0000000") {
-	                    var token = res.bizData.token;
-	                    var account = res.bizData.userInfo.account;
-	                    var userName = res.bizData.userInfo.name;
-	                    var icon = res.bizData.userInfo.icon;
-	                    var vipStatus = res.bizData.userInfo.vipStatus;
-	                    var subjectType = res.bizData.userInfo.subjectType;
-	                    var userKey = res.bizData.userInfo.userKey;
-	                    var avatar = '';
-	                    var imgIco = "";
-	                    if (icon == '' || icon == null) {
-	                        avatar = imgIco;
-	                    } else {
-	                        avatar = icon;
-	                    }
-	                    window.localStorage.icon = avatar;
-	                    cookie.setCookie("token", token, 4, "");
-	                    cookie.setCookie("isLogin", "true", 4, "");
-	                    cookie.setCookie("phone", account, 4, "");
-	                    cookie.setCookie("userName", userName, 4, "");
-	                    cookie.setCookie("icon", icon, 4, "");
-	                    cookie.setCookie("vipStatus", vipStatus, 4, "");
-	                    cookie.setCookie("subjectType", subjectType, 4, "");
-	                    cookie.setCookie("userKey", userKey, 4, "");
-	                    $('#submitBtn').attr('disabled', 'disabled');
-	                    window.location.assign('http://' + $.trim(userKey) + '.' + domain + '/user-detail');
+	                    var token = res.bizData.token;  // token
+	                    var userName = res.bizData.userInfo.name; // 用户名称
+	                    var vipStatus = res.bizData.userInfo.vipStatus; // VIP状态
+	                    var phone = res.bizData.userInfo.account; // 用户账号
+	                    var userKey = res.bizData.userInfo.userKey; // 省份userKey
+	                    var province = res.bizData.userInfo.province; // 选择省份
+	                    var city = res.bizData.userInfo.city; // 选择城市
+	                    var county = res.bizData.userInfo.county; // 选择县区
+	                    var qrcodeUrl = res.bizData.userInfo.qrcodeUrl;  // 二维码
+	                    var isReported = res.bizData.userInfo.isReported; // 智能填报次数
+	                    var isSurvey = res.bizData.userInfo.isSurvey; // 专家测试次数
+	                    cookie.setCookie("isLogin", "true", 4, "/");
+	                    cookie.setCookie("token", token, 4, "/");
+	                    cookie.setCookie("userName", userName, 4, "/");
+	                    cookie.setCookie("vipStatus", vipStatus, 4, "/");
+	                    cookie.setCookie("phone",phone, 4, "/");
+	                    cookie.setCookie("userKey",userKey, 4, "/");
+	                    cookie.setCookie("province",province, 4, "/");
+	                    cookie.setCookie("city",city, 4, "/");
+	                    cookie.setCookie("county",county, 4, "/");
+	                    cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
+	                    cookie.setCookie("isReported",isReported, 4, "/");
+	                    cookie.setCookie("isSurvey",isSurvey, 4, "/");
+	                    //window.location.assign('http://' + $.trim(userKey) + '.' + domain + '/user-detail');
 	                } else {
 	                    util.drawToast(res.msg);
 	                }

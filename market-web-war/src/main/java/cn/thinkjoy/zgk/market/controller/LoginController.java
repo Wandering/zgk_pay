@@ -86,7 +86,6 @@ public class LoginController extends BaseCommonController {
 				setUserAccountPojo(userAccountBean, DESUtil.encrypt(token, DESUtil.key));
 				resultMap.put("token", DESUtil.encrypt(token, DESUtil.key));
 				userInfoPojo.setPassword(null);
-				userInfoPojo.setId(null);
 				userInfoPojo.setStatus(null);
 				resultMap.put("userInfo", userInfoPojo);
 			}
@@ -113,7 +112,7 @@ public class LoginController extends BaseCommonController {
 //			status = false;
 //			throw new BizException(ERRORCODE.FAIL.getCode(), ERRORCODE.FAIL.getMessage());
 //		}
-		return "register/register";
+		return "index";
 	}
 
 	private UserInfoPojo oldUserLogin(String account,String password){

@@ -3,6 +3,10 @@ var util = require('commonjs');
 var urlConfig = require('urlConfig');
 var account = cookie.getCookieValue('phone');
 $('#account-number').val(account);
+
+$('#header-menu').show();
+
+
 $('.vip-btn').click(function () {
     var cardNum = $.trim($('#card-number').val());
     var cardPsd = $.trim($('#card-psd').val());

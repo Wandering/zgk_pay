@@ -19,7 +19,7 @@
 
 <div id="end-login" class="hide">
     <header>
-        <div class="header-btn" id="header-close">
+        <div class="header-btn header-close" id="">
             <i class="close-icon"></i>
         </div>
     </header>
@@ -27,51 +27,69 @@
         <div class="backdrop"></div>
         <div class="menu">
             <%--<div class="title">--%>
-                <%--<span>邓平</span>--%>
-                <%--<span>理科</span>--%>
-                <%--<span>580分</span>--%>
+            <%--<span>邓平</span>--%>
+            <%--<span>理科</span>--%>
+            <%--<span>580分</span>--%>
             <%--</div>--%>
             <div class="menu-list clearfix">
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/1-active.png" alt=""/>
-                    <div>查院校</div>
+                    <a href="">
+                        <img src="<%=ctx%>/static/dist/img/1-active.png" alt=""/>
+                        <span>查院校</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/2-active.png" alt=""/>
-                    <div>查专业</div>
+                    <a href="">
+                        <img src="<%=ctx%>/static/dist/img/2-active.png" alt=""/>
+                    </a>
+                    <span>查专业</span>
                 </div>
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/3-active.png" alt=""/>
-                    <div>省控线</div>
+                    <a href="">
+                        <img src="<%=ctx%>/static/dist/img/3-active.png" alt=""/>
+                        <span>省控线</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/4-active.png" alt=""/>
-                    <div>院校预测</div>
+                    <a href="">
+                        <img src="<%=ctx%>/static/dist/img/4-active.png" alt=""/>
+                        <span>院校预测</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/5-active.png" alt=""/>
-                    <div>录取预测</div>
+                    <a href="">
+                        <img src="<%=ctx%>/static/dist/img/5-active.png" alt=""/>
+                        <span>录取预测</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/6-active.png" alt=""/>
-                    <div>高考政策</div>
+                    <a href="/policy">
+                        <img src="<%=ctx%>/static/dist/img/6-active.png" alt=""/>
+                        <span>高考政策</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/7-active.png" alt=""/>
-                    <div>高考日程</div>
+                    <a href="">
+                        <img src="<%=ctx%>/static/dist/img/7-active.png" alt=""/>
+                        <span>高考日程</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/8-active.png" alt=""/>
-                    <div>我的钱包</div>
+                    <a href="">
+                        <img src="<%=ctx%>/static/dist/img/8-active.png" alt=""/>
+                        <span>我的钱包</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/9-active.png" alt=""/>
-                    <div>我的订单</div>
+                    <a href="">
+                        <img src="<%=ctx%>/static/dist/img/9-active.png" alt=""/>
+                        <span>我的订单</span>
+                    </a>
                 </div>
             </div>
             <div class="btn">
-                <span><a href="/login/logout">退出</a></span>
-                <span>升级VIP</span>
+                <a href="/login/logout" id="logout-btn">退出</a>
+                <a href="/vip">升级VIP</a>
             </div>
         </div>
     </div>
@@ -79,54 +97,73 @@
 
 <div class="hide" id="un-login">
     <header>
-        <div class="header-btn">
+        <div class="header-btn header-close" id="">
             <i class="close-icon"></i>
         </div>
     </header>
-    <div class="container">
+    <div class="content">
         <div class="backdrop"></div>
         <div class="menu">
             <div class="menu-list clearfix">
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/1.png" alt=""/>
-                    <div>查院校</div>
+                    <a href="">
+                        <img src="<%=ctx%>/static/dist/img/1.png" alt=""/>
+                        <span>查院校</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/2.png" alt=""/>
-                    <div>查专业</div>
+                    <a href="">
+                        <img src="<%=ctx%>/static/dist/img/2.png" alt=""/>
+                        <span>查专业</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/3.png" alt=""/>
-                    <div>省控线</div>
+                    <a href="">
+                        <img src="<%=ctx%>/static/dist/img/3.png" alt=""/>
+                        <span>省控线</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/4.png" alt=""/>
-                    <div>院校预测</div>
+                    <a href="">
+                        <img src="<%=ctx%>/static/dist/img/4.png" alt=""/>
+
+                        <span>院校预测</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/5.png" alt=""/>
-                    <div>录取预测</div>
+                    <a href="">
+                        <img src="<%=ctx%>/static/dist/img/5.png" alt=""/>
+                        <span>录取预测</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/6.png" alt=""/>
-                    <div>高考政策</div>
+                    <a href="/policy">
+                        <img src="<%=ctx%>/static/dist/img/6.png" alt=""/>
+                        <span>高考政策</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/7.png" alt=""/>
-                    <div>高考日程</div>
+                    <a href="">
+                        <img src="<%=ctx%>/static/dist/img/7.png" alt=""/>
+                        <span>高考日程</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/8.png" alt=""/>
-                    <div>我的钱包</div>
+                    <a href="">
+                        <img src="<%=ctx%>/static/dist/img/8.png" alt=""/>
+                        <span>我的钱包</span>
+                    </a>
                 </div>
                 <div class="item">
-                    <img src="<%=ctx%>/static/dist/img/9.png" alt=""/>
-                    <div>我的订单</div>
+                    <a href="">
+                        <img src="<%=ctx%>/static/dist/img/9.png" alt=""/>
+                        <span>我的订单</span>
+                    </a>
                 </div>
             </div>
             <div class="btn">
-                <span>登录/注册</span>
-                <span>升级VIP</span>
+                <a href="/login" id="login-btn">登录/注册</a>
+                <%--<a href="/vip">升级VIP</a>--%>
             </div>
         </div>
     </div>

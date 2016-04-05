@@ -1,4 +1,4 @@
-webpackJsonp([9],[
+webpackJsonp([10],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -112,6 +112,9 @@ webpackJsonp([9],[
 	                changePwd();
 	            })
 	        });
+
+	        var userId = cookie.getCookieValue('phone');
+	        $('#share-links').attr('href','/code?userId='+userId)
 
 	    });
 

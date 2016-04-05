@@ -27,6 +27,7 @@
     <div class="modal hidden">
         <div class="order-info">
             <div id="orderNo"></div>
+            <div id="order_time"></div>
             <div>购买服务名称：智能高考VIP服务卡</div>
             <div id="service_price"></div>
             <div id="pay_price"></div>
@@ -35,6 +36,7 @@
     </div>
 </div>
 <script src="<%=ctx%>/static/dist/js/commons.js"></script>
+<script src="<%=ctx%>/static/dist/js/pingpp.js"></script>
 <script src="<%=ctx%>/static/dist/js/vipBuy.js"></script>
 </body>
 </html>

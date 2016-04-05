@@ -21,9 +21,9 @@
         info.cityId as city,
         info.countyId as county,
         pro.code as userKey,
-        vip.endDate,
-        vip.activeDate,
-        market.qrcodeUrl,
+        vip.endDate as endDate,
+        vip.activeDate as activeDate,
+        market.qrcodeUrl as qrcodeUrl,
         pro.name as proName,
         city.name as cityName,
         county.name as countyName

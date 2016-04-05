@@ -1,4 +1,4 @@
-webpackJsonp([10],[
+webpackJsonp([11],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -7,6 +7,10 @@ webpackJsonp([10],[
 	var urlConfig = __webpack_require__(3);
 	var account = cookie.getCookieValue('phone');
 	$('#account-number').val(account);
+
+	$('#header-menu').show();
+
+
 	$('.vip-btn').click(function () {
 	    var cardNum = $.trim($('#card-number').val());
 	    var cardPsd = $.trim($('#card-psd').val());
