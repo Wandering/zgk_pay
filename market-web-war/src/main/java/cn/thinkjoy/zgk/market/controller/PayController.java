@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -61,6 +62,8 @@ public class PayController {
                            @RequestParam(value = "channel",required = true)String channel ,
                            HttpServletRequest request){
         Map<String,Object> resultMap=new HashMap<>();
+        BigDecimal decimal=new BigDecimal(amount);
+
         //参数错误
         if("".equals(orderNo)||orderNo==null||"".equals(amount)||amount==null||userId==0){
             throw  new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
@@ -83,7 +86,7 @@ public class PayController {
             Map<String,String> app=new HashMap<>();
             app.put("id", appId);
             chargeParams.put("order_no",orderNo);
-            chargeParams.put("amount",Double.valueOf(amount)*100);
+            chargeParams.put("amount",decimal.intValue()*100);
             chargeParams.put("app",app);
             chargeParams.put("channel",channel);
             chargeParams.put("client_ip", IPUtil.getRemortIP(request));
