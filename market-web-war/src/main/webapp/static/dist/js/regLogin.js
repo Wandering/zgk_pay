@@ -601,7 +601,7 @@ webpackJsonp([10],[
 	                    cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
 	                    cookie.setCookie("isReported",isReported, 4, "/");
 	                    cookie.setCookie("isSurvey",isSurvey, 4, "/");
-	                    window.location.assign('http://' + $.trim(userKey) + '.' + domain + '/user-detail');
+	                    window.location.assign('http://'+ domain + '/user-detail');
 	                } else {
 	                    util.drawToast(res.msg);
 	                }
