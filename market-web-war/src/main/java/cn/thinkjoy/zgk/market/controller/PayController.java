@@ -17,7 +17,6 @@ import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.fastjson.JSONObject;
 import com.pingplusplus.Pingpp;
 import com.pingplusplus.model.Charge;
-import com.pingplusplus.util.WxpubOAuth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,7 +66,7 @@ public class PayController {
                            @RequestParam(value = "amount",required = true)String amount,
                            @RequestParam(value = "userId",required = true)long userId,
                            @RequestParam(value = "channel",required = true)String channel ,
-                           @RequestParam(value = "code",required = true)String code,
+                           @RequestParam(value = "openId",required = true)String openId,
                            HttpServletRequest request){
         Map<String,Object> resultMap=new HashMap<>();
         BigDecimal decimal=new BigDecimal(amount);
@@ -101,7 +100,7 @@ public class PayController {
             chargeParams.put("subject","智高考");
             chargeParams.put("body","智高考");
             chargeParams.put("currency",CURRENCY);
-            String openId= WxpubOAuth.getOpenId(wxAppId, appSecret, code);
+//            String openId= WxpubOAuth.getOpenId(wxAppId, appSecret, code);
             Map<String,Object> extraMap=new HashMap<>();
             extraMap.put("open_id",openId);
             chargeParams.put("extra",extraMap);
