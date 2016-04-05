@@ -54,6 +54,16 @@ require('pgwmodal');
         }, 1000);
     }
 
+    function isWeiXin(){
+        var ua = window.navigator.userAgent.toLowerCase();
+        alert(ua);
+        if(ua.indexOf('micromessenger') > -1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     /**
      * 支付
      */
@@ -66,11 +76,17 @@ require('pgwmodal');
         $('#confirm-btn').html('正在支付...');
         var amount = parseFloat($('#pay_price').attr('data-price') || '200');
         var openId = cookie.getCookieValue('openId');
+
+        var channel = 'wx_pub';
+        if (!isWeiXin()) {
+            channel = 'alipay';
+        }
+
         util.ajaxFun(interfaceUrl.payOrder, 'POST', {
             orderNo: $('#orderNo').attr('orderNo'),
             userId: cookie.getCookieValue('userId') || '13',
             amount: amount,
-            channel: 'wx_pub',
+            channel: channel,
             openId: openId
         }, function (res) {
             orderFlag = false;
