@@ -75,7 +75,7 @@ webpackJsonp([14],{
 	            orderNo: $('#orderNo').attr('orderNo'),
 	            userId: cookie.getCookieValue('userId') || '13',
 	            amount: amount,
-	            channel: 'wx',
+	            channel: 'wx_pub',
 	            code: code
 	        }, function (res) {
 	            orderFlag = false;

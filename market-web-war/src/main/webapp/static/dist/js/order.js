@@ -168,7 +168,7 @@ webpackJsonp([5],{
 	            orderNo: orderNo,
 	            userId: userId || '13',
 	            amount: amount,
-	            channel: 'wx',
+	            channel: 'wx_pub',
 	            code: code
 	        }, function (res) {
 	            orderFlag = false;
