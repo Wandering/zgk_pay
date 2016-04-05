@@ -69,7 +69,7 @@ webpackJsonp([15],{
 	        }
 	        orderFlag = true;
 	        $('#confirm-btn').html('正在支付...');
-	        var amount = parseInt($('#pay_price').attr('data-price') || '200');
+	        var amount = parseFloat($('#pay_price').attr('data-price') || '200');
 	        var code = cookie.getCookieValue('code');
 	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
 	            orderNo: $('#orderNo').attr('orderNo'),
