@@ -120,12 +120,23 @@ webpackJsonp([13],[
 	            }
 	        });
 	    }
+
+	    function isWeiXin(){
+	        var ua = window.navigator.userAgent.toLowerCase();
+	        if(ua.indexOf('micromessenger') > -1){
+	            return true;
+	        }else{
+	            return false;
+	        }
+	    }
+
 	    $(document).ready(function() {
 
-	        var obj = getQueryObject(window.location.href);
-	        alert(obj.code);
-	        cookie.setCookie("code", obj.code, 4, "/");
-	        getOpenId(obj.code);
+	        if (isWeiXin()) {
+	            var obj = getQueryObject(window.location.href);
+	            cookie.setCookie("code", obj.code, 4, "/");
+	            getOpenId(obj.code);
+	        }
 
 	        initUserInfo();
 

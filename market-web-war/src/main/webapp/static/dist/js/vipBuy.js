@@ -61,7 +61,6 @@ webpackJsonp([15],{
 
 	    function isWeiXin(){
 	        var ua = window.navigator.userAgent.toLowerCase();
-	        alert(ua);
 	        if(ua.indexOf('micromessenger') > -1){
 	            return true;
 	        }else{
