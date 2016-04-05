@@ -42,6 +42,7 @@
         cookie.deleteCookie('userKey', '');
         cookie.deleteCookie('userName', '');
         cookie.deleteCookie('vipStatus', '');
+        cookie.deleteCookie('userId', '');
     })
 
 

@@ -96,9 +96,9 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	//var domainStr = 'm.zhigaokao.cn'; //正式
+	var domainStr = 'm.zhigaokao.cn'; //正式
 	//var domainStr = 'test.m.zhigaokao.cn'; //测试
-	var domainStr = 'm.zhigaokao.com:8084';
+	//var domainStr = 'm.zhigaokao.com:8084';
 
 	//获取域名前缀=============================
 	var urlDomain = window.location.hostname + '';
@@ -272,9 +272,9 @@
 
 
 
-	//var domainStr = 'zhigaokao.cn'; // 正式
-	//var domainStr = 'test.zhigaokao.cn'; // 测试
-	var domainStr = 'm.zhigaokao.com'; // 前端开发
+	var domainStr = 'm.zhigaokao.cn'; // 正式
+	//var domainStr = 'test.m.zhigaokao.cn'; // 测试
+	//var domainStr = 'm.zhigaokao.com'; // 前端开发
 
 
 
@@ -328,9 +328,9 @@
 	/*
 	 * url配置文件
 	 * */
-	//var BASE_URL = 'http://s1.service.zhigaokao.cn'; //正式
+	var BASE_URL = 'http://s1.service.zhigaokao.cn'; //正式
 	//var BASE_URL = 'http://10.136.21.171:8080';  //正式环境
-	var BASE_URL = 'http://10.136.13.233:8080';  //测试环境
+	//var BASE_URL = 'http://10.136.13.233:8080';  //测试环境
 	//var BASE_URL2 = 'http://10.254.130.33:8080';  //测试环境(智能填报)
 	//var BASE_URL = 'http://10.136.56.195:8080';  //开发环境
 	//var BASE_URL = 'http://172.16.180.150:8086';  //yyp

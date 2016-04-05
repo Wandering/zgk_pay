@@ -220,6 +220,7 @@ $(function () {
                 if (res.rtnCode === "0000000") {
                     var token = res.bizData.token;  // token
                     var userName = res.bizData.userInfo.name; // 用户名称
+                    var userId = res.bizData.userInfo.id;  // userId
                     var vipStatus = res.bizData.userInfo.vipStatus; // VIP状态
                     var phone = res.bizData.userInfo.account; // 用户账号
                     var userKey = res.bizData.userInfo.userKey; // 省份userKey
@@ -231,6 +232,7 @@ $(function () {
                     var isSurvey = res.bizData.userInfo.isSurvey; // 专家测试次数
                     cookie.setCookie("isLogin", "true", 4, "/");
                     cookie.setCookie("token", token, 4, "/");
+                    cookie.setCookie("userId", userId, 4, "/");
                     cookie.setCookie("userName", userName, 4, "/");
                     cookie.setCookie("vipStatus", vipStatus, 4, "/");
                     cookie.setCookie("phone",phone, 4, "/");
@@ -241,7 +243,7 @@ $(function () {
                     cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
                     cookie.setCookie("isReported",isReported, 4, "/");
                     cookie.setCookie("isSurvey",isSurvey, 4, "/");
-                    //window.location.assign('http://' + $.trim(userKey) + '.' + domain + '/user-detail');
+                    window.location.assign('http://' + $.trim(userKey) + '.' + domain + '/user-detail');
                 } else {
                     util.drawToast(res.msg);
                 }

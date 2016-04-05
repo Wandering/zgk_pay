@@ -113,7 +113,7 @@ webpackJsonp([10],[
 	            })
 	        });
 
-	        var userId = cookie.getCookieValue('phone');
+	        var userId = cookie.getCookieValue('userId');
 	        $('#share-links').attr('href','/code?userId='+userId)
 
 	    });
