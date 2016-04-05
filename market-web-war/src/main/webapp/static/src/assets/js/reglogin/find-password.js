@@ -8,10 +8,12 @@ var domain = util.domain; // 正式
 $('#header-back').show().on('click',function(){
     window.location.assign('/login');
 });
+
 $(function () {
     var urlDomain = window.location.hostname + '';
     var urlArr = urlDomain.split('.');
     var provinceKey = urlArr[0];
+    alert(88)
     // 登录提交
     $('#register-pwd-btn').on('click', function () {
         var registerPhoneV = $.trim($('#register-pwd-phone').val()),
@@ -58,15 +60,15 @@ $(function () {
         }, function (res) {
             console.log(res)
             if (res.rtnCode === "0000000") {
-
-                window.location.assign('http://' + $.trim(provinceKey) + '.'+ domain +'/login');
+                util.drawToast("密码修改成功!");
+                setTimeout(function(){
+                    window.location.assign('http://' + $.trim(provinceKey) + '.'+ domain +'/login');
+                },2000);
             } else {
                 util.drawToast(res.msg);
             }
-
         });
     });
-
     var captchaType = '1'; //0.注册标志  1 找回密码
     // 验证码获取
     $('#verification-pwd-btn').on('click', function () {
