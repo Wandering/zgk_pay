@@ -17,6 +17,7 @@ import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.fastjson.JSONObject;
 import com.pingplusplus.Pingpp;
 import com.pingplusplus.model.Charge;
+import com.pingplusplus.util.WxpubOAuth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,6 +59,24 @@ public class PayController {
 
 
     /**
+     * 获取openId
+     * @param code
+     * @return
+     */
+    public String getOpenId(@RequestParam(value = "code")String code){
+        String appSecret=StaticSource.getSource("appSecret");
+        String wxAppId=StaticSource.getSource("wxAppId");
+        String openId= null;
+        try {
+            openId = WxpubOAuth.getOpenId(wxAppId, appSecret, code);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            logger.error("获取openId异常:"+e);
+        }
+        return openId;
+    }
+
+    /**
      * 支付订单
      * @return
      */
@@ -77,8 +97,6 @@ public class PayController {
         try{
             Pingpp.apiKey=StaticSource.getSource("apiKey");
             String appId=StaticSource.getSource("appId");
-            String appSecret=StaticSource.getSource("appSecret");
-            String wxAppId=StaticSource.getSource("wxAppId");
             String statemenstNo=NumberGenUtil.genStatementNo();
             OrderStatements orderstatement=new OrderStatements();
             orderstatement.setAmount(Double.valueOf(amount)*100);
@@ -88,7 +106,6 @@ public class PayController {
             orderstatement.setStatus(0);
             orderstatement.setStatementNo(statemenstNo);
             orderstatement.setState("N");
-
             Map<String,Object> chargeParams=new HashMap<>();
             Map<String,String> app=new HashMap<>();
             app.put("id", appId);
@@ -100,14 +117,12 @@ public class PayController {
             chargeParams.put("subject","智高考");
             chargeParams.put("body","智高考");
             chargeParams.put("currency",CURRENCY);
-//            String openId= WxpubOAuth.getOpenId(wxAppId, appSecret, code);
             Map<String,Object> extraMap=new HashMap<>();
             extraMap.put("open_id",openId);
             chargeParams.put("extra",extraMap);
             orderstatement.setPayJson(JSONObject.toJSONString(chargeParams));
             orderStatementService.insert(orderstatement);
             Charge charge=Charge.create(chargeParams);
-
             return charge;
         }catch (Exception e){
             logger.error("用户"+userId+":"+"支付失败,错误:"+e);
