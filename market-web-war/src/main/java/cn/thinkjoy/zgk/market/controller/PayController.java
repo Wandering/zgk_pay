@@ -11,6 +11,7 @@ import cn.thinkjoy.zgk.market.util.IPUtil;
 import cn.thinkjoy.zgk.market.util.NumberGenUtil;
 import cn.thinkjoy.zgk.market.util.StaticSource;
 import cn.thinkjoy.zgk.zgksystem.AgentService;
+import cn.thinkjoy.zgk.zgksystem.domain.SplitPricePojo;
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.fastjson.JSONObject;
@@ -150,12 +151,16 @@ public class PayController {
             String userId= orderMap.get("user_id").toString();
 
             List<Map<String,Object>> userRelLs= userAccountExService.getUserRelListByUserId(Long.valueOf(userId));
+            List<SplitPricePojo> splitPricePojos=new ArrayList<>();
+            for(Map<String,Object> map:userRelLs){
+                SplitPricePojo splitPricePojo=new SplitPricePojo();
+                splitPricePojo.setAccountId(Integer.valueOf(map.get("accountId").toString()));
+                splitPricePojo.setAgentLevel(Integer.valueOf(map.get("agentLevel").toString()));
+                splitPricePojo.setAccountPhone(map.get("phone").toString());
+                splitPricePojos.add(splitPricePojo);
+            }
+            agentService.SplitPriceExec(splitPricePojos, charge.getAmount(),charge.getOrderNo());
 
-
-
-
-//            List<SplitPricePojo> splitPricePojos = new ArrayList<>();
-//            agentService.SplitPriceExec(splitPricePojos, charge.getAmount(), orderNo);
 
         }catch (Exception e){
             logger.error("回调错误"+e);
