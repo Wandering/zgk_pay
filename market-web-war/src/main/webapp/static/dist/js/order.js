@@ -162,7 +162,7 @@ webpackJsonp([6],{
 	            return;
 	        }
 	        orderFlag = true;
-	        var amount = parseInt(price || '200');
+	        var amount = parseFloat(price || '200');
 	        var openId = cookie.getCookieValue('openId');
 	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
 	            orderNo: orderNo,
