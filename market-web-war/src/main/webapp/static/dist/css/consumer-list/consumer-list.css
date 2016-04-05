@@ -73,3 +73,8 @@ header .location.location-icon:before {
   height: 42px;
   line-height: 42px;
 }
+
+#intro-img {
+  margin: 40px auto;
+  display: block;
+}

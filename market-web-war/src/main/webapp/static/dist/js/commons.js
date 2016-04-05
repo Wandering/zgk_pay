@@ -30,7 +30,7 @@
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		15:0
+/******/ 		16:0
 /******/ 	};
 
 /******/ 	// The require function
@@ -76,7 +76,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"code","2":"findPassword","4":"modifyUserDetail","5":"order","7":"policy","8":"policyDetail","9":"regLogin","11":"schoolInfo","12":"userDetail","13":"vip","14":"vipBuy"}[chunkId]||chunkId) + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"code","2":"findPassword","5":"modifyUserDetail","6":"order","8":"policy","9":"policyDetail","10":"regLogin","12":"schoolInfo","13":"userDetail","14":"vip","15":"vipBuy"}[chunkId]||chunkId) + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -521,8 +521,14 @@
 	    getVolunteerSchool: BASE_URL + '/report/main.do', // 院校清单
 	    getSpecialty: BASE_URL + '/report/get/specialty.do', // 获取专业信息
 	    volunteerSave: BASE_URL + '/report/save.do', // 保存志愿填报
-	    getVolunteerFinalInfo: BASE_URL + '/report/get/info.do' // 志愿报告结果页
+	    getVolunteerFinalInfo: BASE_URL + '/report/get/info.do', // 志愿报告结果页
 
+
+	    /**
+	     *
+	     */
+
+	    getSplitPriceInfo: '/getSplitPriceInfo'
 
 	};
 
