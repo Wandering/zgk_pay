@@ -37,7 +37,11 @@
     </mvc:annotation-driven>
 
     <!-- @Controller, @Service, @Configuration, etc. -->
-    <context:component-scan base-package="cn.thinkjoy" />
+    <context:component-scan base-package="cn.thinkjoy" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+    </context:component-scan>
+
 
     <bean
             class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">

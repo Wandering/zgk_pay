@@ -20,6 +20,7 @@
         </div>
     </div>
 </div>
+<script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script type="text/javascript" src="<%=ctx%>static/dist/js/order.js"></script>
 </body>
 </html>

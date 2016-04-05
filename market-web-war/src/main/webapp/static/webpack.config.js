@@ -13,7 +13,8 @@ module.exports = {
         order: './src/assets/js/order/order',
         policy: './src/assets/js/policy/policy',
         policyDetail: './src/assets/js/policy/policy-detail',
-        schoolInfo: './src/assets/js/school-info/school-info'
+        schoolInfo: './src/assets/js/school-info/school-info',
+        header: './src/assets/js/common/header'
     },
     output: {
         path: path.join(__dirname, "./dist/js"),
@@ -32,7 +33,20 @@ module.exports = {
         }
     },
     plugins: [
-        //new CommonsChunkPlugin("admin-commons.js", ["ap1", "ap2"]),
+        new CommonsChunkPlugin("commons.js",
+            [
+                "regLogin",
+                "vipBuy",
+                'vip',
+                'code',
+                'modifyUserDetail',
+                'findPassword',
+                'userDetail',
+                'order',
+                'policy',
+                'policyDetail',
+                'schoolInfo'
+            ]),
         //new CommonsChunkPlugin("commons.js", ["p1", "p2", "admin-commons.js"])
     ]
 };

@@ -21,13 +21,14 @@ public class Order extends BaseDomain{
     private Integer status;
     private Long createDate;
     private Long updateDate;
-    private String state;
+    private String state="N";
     //    private Double amount;
 //    private Integer productNumber;
     private String  productPrice;
-    private String  goodAddress;
+    private String  goodsAddress;
     private String  departmentName;
     private String departmentPhone;
+
 
     public Order(){
     }
@@ -45,6 +46,15 @@ public class Order extends BaseDomain{
     //    public Long getProductId() {
 //        return this.productId;
 //    }
+
+    public String getGoodsAddress() {
+        return goodsAddress;
+    }
+
+    public void setGoodsAddress(String goodsAddress) {
+        this.goodsAddress = goodsAddress;
+    }
+
     public void setOrderNo(String value) {
         this.orderNo = value;
     }
@@ -141,13 +151,7 @@ public class Order extends BaseDomain{
         this.productPrice = productPrice;
     }
 
-    public String getGoodAddress() {
-        return goodAddress;
-    }
 
-    public void setGoodAddress(String goodAddress) {
-        this.goodAddress = goodAddress;
-    }
 
     public String getDepartmentName() {
         return departmentName;

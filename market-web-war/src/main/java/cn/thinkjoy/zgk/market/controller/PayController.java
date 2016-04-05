@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -61,6 +62,8 @@ public class PayController {
                            @RequestParam(value = "channel",required = true)String channel ,
                            HttpServletRequest request){
         Map<String,Object> resultMap=new HashMap<>();
+        BigDecimal decimal=new BigDecimal(amount);
+
         //参数错误
         if("".equals(orderNo)||orderNo==null||"".equals(amount)||amount==null||userId==0){
             throw  new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
@@ -72,18 +75,19 @@ public class PayController {
             String appId=StaticSource.getSource("appId");
             String statemenstNo=NumberGenUtil.genStatementNo();
             OrderStatements orderstatement=new OrderStatements();
-//            orderstatement.setAmount(Double.valueOf(amount)*100);
-//            orderstatement.setCreateDate(System.currentTimeMillis());
-//            orderstatement.setOrderNo(orderNo);
-//            //0:交易进行中  1：交易成功  2：交易失败
-//            orderstatement.setStatus(0);
-//            orderstatement.setStatementNo(statemenstNo);
+            orderstatement.setAmount(Double.valueOf(amount)*100);
+            orderstatement.setCreateDate(System.currentTimeMillis());
+            orderstatement.setOrderNo(orderNo);
+            //0:交易进行中  1：交易成功  2：交易失败
+            orderstatement.setStatus(0);
+            orderstatement.setStatementNo(statemenstNo);
+            orderstatement.setState("N");
 
             Map<String,Object> chargeParams=new HashMap<>();
             Map<String,String> app=new HashMap<>();
             app.put("id", appId);
             chargeParams.put("order_no",orderNo);
-            chargeParams.put("amount",Double.valueOf(amount)*100);
+            chargeParams.put("amount",decimal.intValue()*100);
             chargeParams.put("app",app);
             chargeParams.put("channel",channel);
             chargeParams.put("client_ip", IPUtil.getRemortIP(request));

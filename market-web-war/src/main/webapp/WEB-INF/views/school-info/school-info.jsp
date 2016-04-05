@@ -60,6 +60,7 @@
         {{/each}}
     </script>
 </div>
+<script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script type="text/javascript" src="<%=ctx%>static/dist/js/schoolInfo.js"></script>
 </body>
 </html>

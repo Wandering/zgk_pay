@@ -1,15 +1,15 @@
-//var domainStr = 'zhigaokao.cn'; //正式
+//var domainStr = 'm.zhigaokao.cn'; //正式
 //var domainStr = 'test.zhigaokao.cn'; //测试
-var domainStr = 'zhigaokao.com:8084';
+var domainStr = 'm.zhigaokao.com:8084';
 
 //获取域名前缀=============================
 var urlDomain = window.location.hostname + '';
 var urlArr = urlDomain.split('.');
 var provinceKey = urlArr[0];
 if (provinceKey == "www" || provinceKey == 'undefined') {
-    window.location.assign('http://zj.zhigaokao.cn');
+    window.location.assign('http://zj.m.zhigaokao.cn');
 }
-$('#current-province').text($('#select-province li a[href="http://' + provinceKey + '.zhigaokao.cn/"]').text())
+$('#current-province').text($('#select-province li a[href="http://' + provinceKey + '.m.zhigaokao.cn/"]').text())
 
 
 //判断是否登录=============================
@@ -91,13 +91,11 @@ var tips = function tips(obj, txt) {
 //};
 
 
-
-
 function drawToast(message) {
     var intervalCounter = null;
     var alert = document.getElementById("toast");
     if (!alert) {
-        var toastHTML = '<div id="toast">'+ message +'</div>';
+        var toastHTML = '<div id="toast">' + message + '</div>';
 
         document.body.insertAdjacentHTML('beforeEnd', toastHTML);
     } else {
@@ -111,17 +109,15 @@ function drawToast(message) {
 }
 
 
-
-
-function layer(message,btns) {
+function layer(message, btns) {
     var alert = document.getElementById("toast");
     if (!alert) {
         var toastHTML = '<div id="toast">'
             + message;
-        if(btns){
+        if (btns) {
             toastHTML += btns;
         }
-        toastHTML+= '</div>';
+        toastHTML += '</div>';
         document.body.insertAdjacentHTML('beforeEnd', toastHTML);
     } else {
         alert.style.opacity = .9;
@@ -129,11 +125,25 @@ function layer(message,btns) {
 }
 
 
-
-
-
-
-
+function confirmLayer(title,content) {
+    var confirmLayer = [];
+    confirmLayer.push('<div class="mask">');
+    confirmLayer.push('<div class="modal">');
+    confirmLayer.push('<div class="modal-title">'+ title +'</div>');
+    confirmLayer.push('<div class="close-modal">X</div>');
+    confirmLayer.push('<div class="modal-body">');
+    confirmLayer.push(content);
+    confirmLayer.push('</div>');
+    confirmLayer.push('<div class="modal-footer">');
+    confirmLayer.push('<button id="confirm-btn" type="button">确定</button>');
+    confirmLayer.push('</div>');
+    confirmLayer.push('</div>');
+    confirmLayer.push('</div>');
+    $('body').append(confirmLayer.join(''));
+    $('.close-modal').on('click', function() {
+        $('.mask').remove();
+    });
+}
 
 
 exports.isLogin = isLogin;
@@ -145,6 +155,7 @@ exports.tips = tips;
 exports.drawToast = drawToast;
 exports.layer = layer;
 exports.ajaxFunJSON = ajaxFunJSON;
+exports.confirmLayer = confirmLayer;
 
 
 

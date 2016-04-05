@@ -23,6 +23,11 @@ header {
     text-align: center;
   }
 }
+.hide{
+  display: none;
+}
+
+
 /*icons*/
 .back-icon:before {
   content: "";
@@ -32,7 +37,22 @@ header {
   background-size: cover;
   display: inline-block;
 }
-
+.calendar-icon.active:before {
+  content: "";
+  background: url(../img/icons/calendar-active.png);
+  width: 26px;
+  height: 26px;
+  background-size: cover;
+  display: inline-block;
+}
+.calendar-icon:before {
+  content: "";
+  background: url(../img/icons/calendar.png);
+  width: 26px;
+  height: 26px;
+  background-size: cover;
+  display: inline-block;
+}
 .card-icon:before {
   content: "";
   background: url(../img/icons/card.png);
@@ -41,8 +61,42 @@ header {
   background-size: cover;
   display: inline-block;
 }
-
-
+.close-icon:before {
+  content: "";
+  background: url(../img/icons/close.png);
+  width: 20px;
+  height: 26px;
+  background-size: cover;
+  display: inline-block;
+}
+.drop-down-icon:before {
+  content: "";
+  background: url(../img/icons/drop-down.png);
+  width: 14px;
+  height: 21px;
+  background-size: cover;
+  display: inline-block;
+}
+.flag-icon:before {
+  content: "";
+  background: url(../img/icons/flag.png);
+  width: 9px;
+  height: 15px;
+  background-size: cover;
+  display: inline-block;
+  position: relative;
+  top: 4px;
+}
+.location-normal-icon:before {
+  content: "";
+  background: url(../img/icons/location-normal.png);
+  width: 9px;
+  height: 15px;
+  background-size: cover;
+  display: inline-block;
+  position: relative;
+  top: 4px;
+}
 .location-icon:before {
   content: "";
   background: url(../img/icons/location.png);
@@ -50,11 +104,7 @@ header {
   height: 21px;
   background-size: cover;
   display: inline-block;
-  position: relative;
-  top: 5px;
-  left: -5px;
 }
-
 .menu-icon:before {
   content: "";
   background: url(../img/icons/menu.png);
@@ -63,7 +113,6 @@ header {
   background-size: cover;
   display: inline-block;
 }
-
 .mobile-icon:before {
   content: "";
   background: url(../img/icons/mobile.png);
@@ -72,8 +121,6 @@ header {
   background-size: cover;
   display: inline-block;
 }
-
-
 .password-icon:before {
   content: "";
   background: url(../img/icons/password.png);
@@ -82,7 +129,14 @@ header {
   background-size: cover;
   display: inline-block;
 }
-
+.search-normal-icon:before {
+  content: "";
+  background: url(../img/icons/search-normal.png);
+  width: 25px;
+  height: 25px;
+  background-size: cover;
+  display: inline-block;
+}
 .search-icon:before {
   content: "";
   background: url(../img/icons/search.png);
@@ -91,6 +145,38 @@ header {
   background-size: cover;
   display: inline-block;
 }
+.star-icon:before {
+  content: "";
+  background: url(../img/icons/star.png);
+  width: 16px;
+  height: 18px;
+  background-size: cover;
+  display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*from*/
 .input-group {
@@ -205,12 +291,96 @@ input {
   }
 }
 
-.container{
-  position: absolute;
-  left: 0;
-  top: 39px;
-  width: 100%;
-  height: 100%;
+//.container{
+//  position: absolute;
+//  left: 0;
+//  top: 39px;
+//  width: 100%;
+//  height: 100%;
+//  overflow: hidden;
+//}
+
+
+
+
+/*功能菜单*/
+//header bar
+header {
+  position: relative;
   overflow: hidden;
+  z-index: 3;
+
+  .header-title {
+    padding-left: 46px;
+    margin-right: 46px;
+  }
+  .header-btn {
+    position: absolute;
+    height: 25px;
+    top: 6px;
+    left: 9px;
+  }
 }
 
+.menu {
+  background-color: #fff;
+  color: #8C8C8C;
+  font-size: 12px;
+  position: relative;
+  z-index: 3;
+
+  .title {
+    border-bottom: 1px solid #CFCFCF;
+    padding-bottom: 12px;
+    padding-top: 20px;
+    margin: 0 20px 10px;
+
+    span:not(:first-child) {
+      margin-left: 30px;
+      font-size: 13px;
+    }
+  }
+  .menu-list {
+    padding:20px 0;
+    .item {
+      width: 25%;
+      float: left;
+      text-align: center;
+      margin-bottom: 10px;
+      img {
+        width: 70%;
+      }
+    }
+  }
+  .btn {
+    padding: 20px;
+    display: flex;
+
+    span {
+      flex: 1;
+      text-align: center;
+      border: 1px solid #D80C18;
+      padding: 10px 0;
+      border-radius: 4px;
+      color: #D80C18;
+
+      &:first-child{
+        margin-right: 20px;
+      }
+      &:last-child {
+        color: #fff;
+        background-color: #D80C18;
+      }
+    }
+  }
+}
+.backdrop {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: #000;
+  opacity: .6;
+}
