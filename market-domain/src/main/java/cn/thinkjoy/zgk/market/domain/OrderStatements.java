@@ -21,7 +21,7 @@ public class OrderStatements extends BaseDomain{
     private Long createDate;
     private Long updateDate;
     private Long createrId;
-    private Integer status;
+    private Integer status=0;
     private String state;
     private Double amount;
     private String payJson;
