@@ -11,7 +11,6 @@ import cn.thinkjoy.zgk.market.util.IPUtil;
 import cn.thinkjoy.zgk.market.util.NumberGenUtil;
 import cn.thinkjoy.zgk.market.util.StaticSource;
 import cn.thinkjoy.zgk.zgksystem.AgentService;
-//import cn.thinkjoy.zgk.zgksystem.pojo.SplitPricePojo;
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.fastjson.JSONObject;
@@ -27,6 +26,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+//import cn.thinkjoy.zgk.zgksystem.pojo.SplitPricePojo;
 
 /**
  * Created by wpliu on 16/3/26.
@@ -97,14 +98,17 @@ public class PayController {
             chargeParams.put("subject","智高考");
             chargeParams.put("body","智高考");
             chargeParams.put("currency",CURRENCY);
+//            WxpubOAuth.createOauthUrlForCode()
+//            WxpubOAuth.getOpenId(appId,appSecret,code);
             Map<String,Object> extraMap=new HashMap<>();
             extraMap.put("open_id",openId);
             chargeParams.put("extra",extraMap);
             orderstatement.setPayJson(JSONObject.toJSONString(chargeParams));
+
             orderStatementService.insert(orderstatement);
             Charge charge=Charge.create(chargeParams);
-
-
+            String creMap=charge.getCredential();
+            System.out.println(creMap);
             return charge;
         }catch (Exception e){
             throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());

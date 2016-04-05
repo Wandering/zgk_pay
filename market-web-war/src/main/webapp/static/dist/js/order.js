@@ -82,6 +82,8 @@ webpackJsonp([5],{
 	        }
 
 	        return {
+	            pageNo: 1,
+	            pageSize: 5,
 	            orderListRender: function(listData) {
 	                var html = [];
 	                for (var i = 0, len = listData.length; i < len; i++) {
@@ -90,22 +92,23 @@ webpackJsonp([5],{
 	                return html.join('');
 	            },
 	            getOrderListData: function() {
-	                $('.order-list').append(this.orderListRender(TEST_DATA));
-	                $('.pay-status').off('click');
-	                $('.pay-status').on('click', function() {
-	                    var payStatus = $(this).attr('data-payStatus');
-	                    if (payStatus == '0') {
-	                        window.location.href = '';
-	                    }
-	                });
-	                $('.pull-text').show();
-	                $('#scroller-pullUp').hide();
-	                if (myScroll) myScroll.refresh();
-	                //util.ajaxFun(interfaceUrl.getUserInfo, 'GET', {
-	                //
-	                //}, function (res) {
-	                //
-	                //})
+	                util.ajaxFun(interfaceUrl.getUserOrderList, 'GET', {
+	                    userId: cookie.getCookieValue('userId') || '13',
+	                    pageNo: this.pageNo,
+	                    pageSize: this.pageSize
+	                }, function (res) {
+	                    $('.order-list').append(this.orderListRender(TEST_DATA));
+	                    $('.pay-status').off('click');
+	                    $('.pay-status').on('click', function() {
+	                        var payStatus = $(this).attr('data-payStatus');
+	                        if (payStatus == '0') {
+	                            window.location.href = '';
+	                        }
+	                    });
+	                    $('.pull-text').show();
+	                    $('#scroller-pullUp').hide();
+	                    if (myScroll) myScroll.refresh();
+	                })
 	            }
 	        }
 	    })();
@@ -140,9 +143,8 @@ webpackJsonp([5],{
 	                $('#scroller-pullUp').show();
 	                myScroll.refresh();
 
-	                setTimeout(function() {
-	                    Order.getOrderListData();
-	                }, 5000);
+	                Order.pageNo++;
+	                Order.getOrderListData();
 	            } else {
 	                $('.pull-text').html('没有更多数据~~');
 	            }

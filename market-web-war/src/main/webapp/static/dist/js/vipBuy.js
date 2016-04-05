@@ -52,6 +52,13 @@ webpackJsonp([14],{
 	        })
 	    }
 
+	    function orderPayStatus(msg) {
+	        util.drawToast(msg);
+	        setTimeout(function() {
+	            window.location.href = '/order';
+	        }, 1000);
+	    }
+
 	    /**
 	     * 支付
 	     */
@@ -62,27 +69,33 @@ webpackJsonp([14],{
 	        }
 	        orderFlag = true;
 	        $('#confirm-btn').html('正在支付...');
+	        var amount = parseInt($('#pay_price').attr('data-price') || '200');
 	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
 	            orderNo: $('#orderNo').attr('orderNo'),
 	            userId: cookie.getCookieValue('userId') || '13',
-	            amount: $('#pay_price').attr('data-price') || '200',
+	            amount: amount,
 	            channel: 'wx_pub'
 	        }, function (res) {
 	            orderFlag = false;
 	            $('#confirm-btn').html('确认支付');
+	            $.pgwModal('close');
 	            if (res.rtnCode == '0000000') {
+	                var charge = res.bizData;
+	                charge.credential = JSON.parse(charge.credential);
 	                pingpp.createPayment(charge, function(result, error){
 	                    if (result == "success") {
 	                        // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。
-	                        window.location.href = '/order';
+	                        orderPayStatus('支付成功');
 	                    } else if (result == "fail") {
 	                        // charge 不正确或者微信公众账号支付失败时会在此处返回
+	                        orderPayStatus('支付失败');
 	                    } else if (result == "cancel") {
 	                        // 微信公众账号支付取消支付
+	                        orderPayStatus('支付失败');
 	                    }
 	                });
 	            } else {
-	                $.pgwModal('close');
+	                orderPayStatus('支付失败');
 	            }
 	        })
 	    }
