@@ -95,6 +95,8 @@ webpackJsonp([12],[
 	        });
 	    }
 	    $(document).ready(function() {
+
+	        alert(window.location.href);
 	        initUserInfo();
 
 	        $('.modify-btn').on('click', function() {
