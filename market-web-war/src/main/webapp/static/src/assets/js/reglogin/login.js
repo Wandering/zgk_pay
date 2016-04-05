@@ -4,6 +4,16 @@ var md5=require('md5');
     var domain = util.domain; // 正式
 
     $(function () {
+
+        function isWeiXin(){
+            var ua = window.navigator.userAgent.toLowerCase();
+            alert(ua);
+            if(ua.indexOf('micromessenger') > -1){
+                return true;
+            }else{
+                return false;
+            }
+        }
         // 登录提交
         $('#submit-btn').on('click', function () {
             var loginPhoneV = $.trim($('#login-phone').val()),
@@ -56,10 +66,13 @@ var md5=require('md5');
                     cookie.setCookie("isReported",isReported, 4, "/");
                     cookie.setCookie("isSurvey",isSurvey, 4, "/");
                     var url = 'http://' + domain +'/user-detail';
-                    url = encodeURIComponent(url);
-                    var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_base&state=' + $.trim(userKey) + '#wechat_redirect';
-                    window.location.href = rUrl;
-                    //window.location.assign('http://'+ domain +'/user-detail');
+                    if (isWeiXin()) {
+                        url = encodeURIComponent(url);
+                        var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_base&state=' + $.trim(userKey) + '#wechat_redirect';
+                        window.location.href = rUrl;
+                    } else {
+                        window.location.assign(url);
+                    }
                 } else {
                     util.drawToast(res.msg);
                 }

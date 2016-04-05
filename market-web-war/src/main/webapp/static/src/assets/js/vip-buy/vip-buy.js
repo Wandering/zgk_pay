@@ -54,6 +54,15 @@ require('pgwmodal');
         }, 1000);
     }
 
+    function isWeiXin(){
+        var ua = window.navigator.userAgent.toLowerCase();
+        if(ua.indexOf('micromessenger') > -1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     /**
      * 支付
      */
@@ -66,11 +75,17 @@ require('pgwmodal');
         $('#confirm-btn').html('正在支付...');
         var amount = parseFloat($('#pay_price').attr('data-price') || '200');
         var openId = cookie.getCookieValue('openId');
+
+        var channel = 'wx_pub';
+        if (!isWeiXin()) {
+            channel = 'alipay_wap';
+        }
+
         util.ajaxFun(interfaceUrl.payOrder, 'POST', {
             orderNo: $('#orderNo').attr('orderNo'),
             userId: cookie.getCookieValue('userId') || '13',
             amount: amount,
-            channel: 'wx_pub',
+            channel: channel,
             openId: openId
         }, function (res) {
             orderFlag = false;
@@ -79,6 +94,7 @@ require('pgwmodal');
             if (res.rtnCode == '0000000') {
                 var charge = res.bizData;
                 charge.credential = JSON.parse(charge.credential);
+                alert(JSON.stringify(charge));
                 pingpp.createPayment(charge, function(result, error){
                     if (result == "success") {
                         // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。

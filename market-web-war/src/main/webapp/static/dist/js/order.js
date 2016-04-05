@@ -153,6 +153,15 @@ webpackJsonp([6],{
 	        }, 1000);
 	    }
 
+	    function isWeiXin(){
+	        var ua = window.navigator.userAgent.toLowerCase();
+	        if(ua.indexOf('micromessenger') > -1){
+	            return true;
+	        }else{
+	            return false;
+	        }
+	    }
+
 	    /**
 	     * 支付
 	     */
@@ -164,11 +173,15 @@ webpackJsonp([6],{
 	        orderFlag = true;
 	        var amount = parseFloat(price || '200');
 	        var openId = cookie.getCookieValue('openId');
+	        var channel = 'wx_pub';
+	        if (!isWeiXin()) {
+	            channel = 'alipay_wap';
+	        }
 	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
 	            orderNo: orderNo,
 	            userId: userId || '13',
 	            amount: amount,
-	            channel: 'wx_pub',
+	            channel: channel,
 	            openId: openId
 	        }, function (res) {
 	            orderFlag = false;
