@@ -73,6 +73,7 @@ public class PayController {
 
             Pingpp.apiKey=StaticSource.getSource("apiKey");
             String appId=StaticSource.getSource("appId");
+            String openId=StaticSource.getSource("openId");
             String statemenstNo=NumberGenUtil.genStatementNo();
             OrderStatements orderstatement=new OrderStatements();
             orderstatement.setAmount(Double.valueOf(amount)*100);
@@ -94,6 +95,9 @@ public class PayController {
             chargeParams.put("subject",StaticSource.getSource("subject"));
             chargeParams.put("body",StaticSource.getSource("body"));
             chargeParams.put("currency",CURRENCY);
+            Map<String,Object> extraMap=new HashMap<>();
+            extraMap.put("open_id",openId);
+            chargeParams.put("extra",extraMap);
             orderstatement.setPayJson(JSONObject.toJSONString(chargeParams));
             orderStatementService.insert(orderstatement);
             Charge charge=Charge.create(chargeParams);
