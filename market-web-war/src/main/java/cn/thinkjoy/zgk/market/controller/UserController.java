@@ -1,8 +1,11 @@
 package cn.thinkjoy.zgk.market.controller;
 
+import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.zgk.market.common.BaseCommonController;
-import cn.thinkjoy.zgk.market.pojo.UserAccountPojo;
+import cn.thinkjoy.zgk.market.common.ERRORCODE;
+import cn.thinkjoy.zgk.market.pojo.UserInfoPojo;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +22,11 @@ public class UserController extends BaseCommonController {
     private IUserAccountExService userAccountExService;
     @RequestMapping(value = "/getUserProfile")
     @ResponseBody
-    public UserAccountPojo registerAccount(@RequestParam(value="account",required = false) String account){
-        UserAccountPojo userAccountBean = userAccountExService.findUserAccountPojoByPhone(account);
-        return userAccountBean;
+    public UserInfoPojo registerAccount(@RequestParam(value="userId",required = false) String userId){
+        if(StringUtils.isBlank(userId)){
+            throw new BizException(ERRORCODE.PARAM_ISNULL.getCode(), ERRORCODE.PARAM_ISNULL.getMessage());
+        }
+        UserInfoPojo userInfoPojo=userAccountExService.getUserInfoPojoById(Long.valueOf(userId));
+        return userInfoPojo;
     }
 }
