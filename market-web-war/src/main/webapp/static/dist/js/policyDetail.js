@@ -1,4 +1,4 @@
-webpackJsonp([7],{
+webpackJsonp([6],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
@@ -9,7 +9,10 @@ webpackJsonp([7],{
 	var util = __webpack_require__(1);
 	var handlebars = __webpack_require__(6);
 	var interfaceUrl = __webpack_require__(3);
+	$('#header-title').text('详情');
 	$(function () {
+	    var domain = util.domain; // 正式
+	    var userKey = util.provinceKey;
 	    var id = util.getLinkey('id');
 	    util.ajaxFun(interfaceUrl.getGkHotInfo, 'get', {
 	        "id":id
@@ -19,6 +22,9 @@ webpackJsonp([7],{
 	            var template = handlebars.compile($('#policy-detail-tpl').html());
 	            $('#policy-detail').html(template(dataJson));
 	        }
+	    });
+	    $('#header-back').show().on('click',function(){
+	        window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/policy');
 	    });
 	});
 

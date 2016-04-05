@@ -1,4 +1,4 @@
-webpackJsonp([6],[
+webpackJsonp([5],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -20,6 +20,7 @@ webpackJsonp([6],[
 	                'rows': this.pageRow,
 	                'page': num
 	            }, function (res) {
+	                console.log(res)
 	                var dataJson = res.bizData;
 	                if (res.rtnCode == '0000000') {
 	                    var template = handlebars.compile($('#policy-list-tpl').html());
