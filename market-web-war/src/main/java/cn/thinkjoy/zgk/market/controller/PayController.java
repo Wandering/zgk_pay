@@ -63,6 +63,8 @@ public class PayController {
      * @param code
      * @return
      */
+    @RequestMapping(value = "/getOpenId",method = RequestMethod.GET)
+    @ResponseBody
     public String getOpenId(@RequestParam(value = "code")String code){
         String appSecret=StaticSource.getSource("appSecret");
         String wxAppId=StaticSource.getSource("wxAppId");
@@ -71,7 +73,7 @@ public class PayController {
             openId = WxpubOAuth.getOpenId(wxAppId, appSecret, code);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-            logger.error("获取openId异常:"+e);
+            logger.error("获取openId异常:" + e);
         }
         return openId;
     }
