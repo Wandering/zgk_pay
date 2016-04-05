@@ -30,7 +30,7 @@
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		14:0
+/******/ 		15:0
 /******/ 	};
 
 /******/ 	// The require function
@@ -76,7 +76,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"code","2":"findPassword","4":"modifyUserDetail","5":"order","7":"policy","8":"policyDetail","9":"regLogin","10":"schoolInfo","11":"userDetail","12":"vip","13":"vipBuy"}[chunkId]||chunkId) + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"code","2":"findPassword","4":"modifyUserDetail","5":"order","7":"policy","8":"policyDetail","9":"regLogin","11":"schoolInfo","12":"userDetail","13":"vip","14":"vipBuy"}[chunkId]||chunkId) + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -357,6 +357,10 @@
 	     * 订单支付
 	     */
 	    payOrder: '/pay/payOrder',
+	    /**
+	     * 获取订单列表
+	     */
+	    getUserOrderList: '/order/getUserOrderList',
 
 	    /*
 	     * 高考咨询
