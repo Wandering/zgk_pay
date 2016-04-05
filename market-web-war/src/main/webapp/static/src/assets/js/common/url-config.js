@@ -30,6 +30,10 @@ var interfaceUrl = {
      * 订单支付
      */
     payOrder: '/pay/payOrder',
+    /**
+     * 获取订单列表
+     */
+    getUserOrderList: '/order/getUserOrderList',
 
     /*
      * 高考咨询
