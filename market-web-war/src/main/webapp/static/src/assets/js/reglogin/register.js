@@ -198,6 +198,7 @@ $(function () {
 
         var sharerId = util.getLinkey('sharerId');
         var shareType = util.getLinkey('shareType');
+
         var submitBtnHtml = '<div><button class="submitBtn" type="button" id="submitBtn">提交</button></div>';
         util.layer('即将进入智高考-'+ provinceTxt +'网站，注册之后地域不可修改', submitBtnHtml);
         $('body').on('click', '#submitBtn', function () {
@@ -209,8 +210,8 @@ $(function () {
                 provinceId: provinceId, //省份
                 cityId: cityId,//市
                 countyId: countyId,//县
-                sharerId: sharerId,
-                shareType: shareType
+                sharerId: sharerId || "0",
+                shareType: shareType || "0"
             }, function (res) {
                 console.log(res)
                 if (res.rtnCode === "0000000") {

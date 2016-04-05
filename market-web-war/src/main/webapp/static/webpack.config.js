@@ -32,7 +32,7 @@ module.exports = {
         }
     },
     plugins: [
-        //new CommonsChunkPlugin("admin-commons.js", ["ap1", "ap2"]),
+        new CommonsChunkPlugin("commons.js", ["regLogin", "vipBuy",'vip']),
         //new CommonsChunkPlugin("commons.js", ["p1", "p2", "admin-commons.js"])
     ]
 };

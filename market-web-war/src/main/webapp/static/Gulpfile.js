@@ -78,7 +78,7 @@ gulp.task("build-js", function(callback) {
 });
 
 gulp.task('watch',function() {
-    gulp.watch(paths.srcCss, ['minifycss']);
+    //gulp.watch(paths.srcCss, ['minifycss']);
     gulp.watch(paths.srcImg, ['minifyimg']);
     gulp.watch(paths.srcJs, ['build-js']);
     //gulp.watch(paths.srcJs, ['minifyjs']);
@@ -88,6 +88,7 @@ gulp.task('watch',function() {
 // 默认命令
 gulp.task('default',function() {
     //gulp.start('minifycss', 'minifyimg','minifyjs');
-    gulp.start('minifycss', 'minifyimg','build-js');
+    //gulp.start('minifycss', 'minifyimg','build-js');
+    gulp.start('minifyimg','build-js');
 });
 
