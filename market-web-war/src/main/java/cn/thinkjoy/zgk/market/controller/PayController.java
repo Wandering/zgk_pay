@@ -126,6 +126,10 @@ public class PayController {
                 Map<String,Object> extraMap=new HashMap<>();
                 extraMap.put("open_id",openId);
                 chargeParams.put("extra",extraMap);
+            }else  if(channel.equals(PAYCHANNEL.ALIPAYWAP.getCode())){
+                Map<String,Object> extraMap=new HashMap<>();
+                extraMap.put("success_url","http://m.zhigaokao.cn/order");
+                chargeParams.put("extra",extraMap);
             }
 
             orderstatement.setPayJson(JSONObject.toJSONString(chargeParams));
