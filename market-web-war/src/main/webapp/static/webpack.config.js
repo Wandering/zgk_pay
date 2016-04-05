@@ -14,7 +14,8 @@ module.exports = {
         policy: './src/assets/js/policy/policy',
         policyDetail: './src/assets/js/policy/policy-detail',
         schoolInfo: './src/assets/js/school-info/school-info',
-        header: './src/assets/js/common/header'
+        header: './src/assets/js/common/header',
+        pingpp: './src/assets/js/common/pingpp'
     },
     output: {
         path: path.join(__dirname, "./dist/js"),

@@ -1,4 +1,4 @@
-webpackJsonp([11],{
+webpackJsonp([12],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
@@ -33,10 +33,21 @@ webpackJsonp([11],{
 	            price: $('#price').attr('data-price') || '200'
 	        }, function (res) {
 	            if (res.rtnCode == '0000000') {
-	                $('#orderNo').html('订单ID：');
-	                $('#orderNo').html('订单ID：');
-	                $('#service_price').html('服务价格：元');
-	                $('#pay_price').html('应付费用：元');
+	                var department = res.bizData.department;
+	                $('#orderNo').html('订单ID：' + res.bizData.orderNo);
+	                $('#orderNo').attr('orderNo', res.bizData.orderNo);
+	                $('#order_time').html('订单创建日期：' + department.createDateAsDate);
+	                $('#service_price').html('服务价格：' + department.salePrice + '元');
+	                $('#pay_price').html('应付费用：' + department.salePrice  + '元');
+	                $('#pay_price').attr('data-price', department.salePrice);
+	                $.pgwModal({
+	                   title: '订单确认',
+	                   content: $('.modal').html()
+	                });
+	                $('.confirm-btn').off('click');
+	                $('.confirm-btn').on('click', function() {
+	                    payOrder();
+	                });
 	            }
 	        })
 	    }
@@ -45,8 +56,27 @@ webpackJsonp([11],{
 	     * 支付
 	     */
 	    function payOrder() {
-
+	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
+	            orderNo: $('#orderNo').attr('orderNo'),
+	            userId: cookie.getCookieValue('userId') || '13',
+	            amount: $('#pay_price').attr('data-price') || '200',
+	            channel: 'wx_pub'
+	        }, function (res) {
+	            if (res.rtnCode == '0000000') {
+	                pingpp.createPayment(charge, function(result, error){
+	                    if (result == "success") {
+	                        // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。
+	                        window.location.href = '/order';
+	                    } else if (result == "fail") {
+	                        // charge 不正确或者微信公众账号支付失败时会在此处返回
+	                    } else if (result == "cancel") {
+	                        // 微信公众账号支付取消支付
+	                    }
+	                });
+	            }
+	        })
 	    }
+
 
 	    $(document).ready(function() {
 	        $('#header-title').text('在线购买');
@@ -55,11 +85,8 @@ webpackJsonp([11],{
 
 	        $('.vip-buy-btn').on('click', function() {
 	            commitOrder();
-	            //$.pgwModal({
-	            //    title: '订单确认',
-	            //    content: $('.modal').html()
-	            //});
 	        });
+
 	    });
 
 	})();

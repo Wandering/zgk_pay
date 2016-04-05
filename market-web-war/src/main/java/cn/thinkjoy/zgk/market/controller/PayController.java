@@ -75,12 +75,13 @@ public class PayController {
             String appId=StaticSource.getSource("appId");
             String statemenstNo=NumberGenUtil.genStatementNo();
             OrderStatements orderstatement=new OrderStatements();
-//            orderstatement.setAmount(Double.valueOf(amount)*100);
-//            orderstatement.setCreateDate(System.currentTimeMillis());
-//            orderstatement.setOrderNo(orderNo);
-//            //0:交易进行中  1：交易成功  2：交易失败
-//            orderstatement.setStatus(0);
-//            orderstatement.setStatementNo(statemenstNo);
+            orderstatement.setAmount(Double.valueOf(amount)*100);
+            orderstatement.setCreateDate(System.currentTimeMillis());
+            orderstatement.setOrderNo(orderNo);
+            //0:交易进行中  1：交易成功  2：交易失败
+            orderstatement.setStatus(0);
+            orderstatement.setStatementNo(statemenstNo);
+            orderstatement.setState("N");
 
             Map<String,Object> chargeParams=new HashMap<>();
             Map<String,String> app=new HashMap<>();
