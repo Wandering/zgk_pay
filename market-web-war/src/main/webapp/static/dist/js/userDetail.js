@@ -1,4 +1,4 @@
-webpackJsonp([9],[
+webpackJsonp([10],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -113,7 +113,7 @@ webpackJsonp([9],[
 	            })
 	        });
 
-	        var userId = cookie.getCookieValue('phone');
+	        var userId = cookie.getCookieValue('userId');
 	        $('#share-links').attr('href','/code?userId='+userId)
 
 	    });
