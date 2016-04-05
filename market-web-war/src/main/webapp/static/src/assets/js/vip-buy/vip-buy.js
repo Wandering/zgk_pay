@@ -50,7 +50,7 @@ require('pgwmodal');
     function orderPayStatus(msg) {
         util.drawToast(msg);
         setTimeout(function() {
-            window.location.href = '/order';
+            //window.location.href = '/order';
         }, 1000);
     }
 
@@ -69,7 +69,7 @@ require('pgwmodal');
             orderNo: $('#orderNo').attr('orderNo'),
             userId: cookie.getCookieValue('userId') || '13',
             amount: amount,
-            channel: 'wx_pub'
+            channel: 'wx'
         }, function (res) {
             orderFlag = false;
             $('#confirm-btn').html('确认支付');
