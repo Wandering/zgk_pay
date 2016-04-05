@@ -1,4 +1,4 @@
-webpackJsonp([12],{
+webpackJsonp([11],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
@@ -55,13 +55,21 @@ webpackJsonp([12],{
 	    /**
 	     * 支付
 	     */
+	    var orderFlag = false;
 	    function payOrder() {
+	        if (orderFlag) {
+	            return;
+	        }
+	        orderFlag = true;
+	        $('#confirm-btn').html('正在支付...');
 	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
 	            orderNo: $('#orderNo').attr('orderNo'),
 	            userId: cookie.getCookieValue('userId') || '13',
 	            amount: $('#pay_price').attr('data-price') || '200',
 	            channel: 'wx_pub'
 	        }, function (res) {
+	            orderFlag = false;
+	            $('#confirm-btn').html('确认支付');
 	            if (res.rtnCode == '0000000') {
 	                pingpp.createPayment(charge, function(result, error){
 	                    if (result == "success") {
@@ -73,6 +81,8 @@ webpackJsonp([12],{
 	                        // 微信公众账号支付取消支付
 	                    }
 	                });
+	            } else {
+	                $.pgwModal('close');
 	            }
 	        })
 	    }

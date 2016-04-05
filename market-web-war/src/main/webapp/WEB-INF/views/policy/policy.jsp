@@ -14,17 +14,19 @@
     <script id="policy-list-tpl" type="text/x-handlebars-template">
         {{#each rows}}
         <li id="{{id}}">
-            <div class="img">
-                <img src="{{image}}" alt="{{title}}"/>
-            </div>
-            <div class="summary">
-                <div class="title">{{title}}</div>
-                <div class="content">{{subContent}}</div>
-                <div class="date">
-                    <span>{{hotDate}}</span>
-                    <%--<span>14:28分</span>--%>
+            <a href="/policy-detail?id={{id}}">
+                <div class="img">
+                    <img src="{{image}}" alt="{{title}}"/>
                 </div>
-            </div>
+                <div class="summary">
+                    <div class="title">{{title}}</div>
+                    <div class="content">{{subContent}}</div>
+                    <div class="date">
+                        <span>{{hotDate}}</span>
+                        <%--<span>14:28分</span>--%>
+                    </div>
+                </div>
+            </a>
         </li>
         {{/each}}
     </script>

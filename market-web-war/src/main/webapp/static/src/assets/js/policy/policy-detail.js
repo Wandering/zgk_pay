@@ -4,7 +4,10 @@
 var util = require('commonjs');
 var handlebars = require('handlebars');
 var interfaceUrl = require('urlConfig');
+$('#header-title').text('详情');
 $(function () {
+    var domain = util.domain; // 正式
+    var userKey = util.provinceKey;
     var id = util.getLinkey('id');
     util.ajaxFun(interfaceUrl.getGkHotInfo, 'get', {
         "id":id
@@ -14,5 +17,8 @@ $(function () {
             var template = handlebars.compile($('#policy-detail-tpl').html());
             $('#policy-detail').html(template(dataJson));
         }
+    });
+    $('#header-back').show().on('click',function(){
+        window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/policy');
     });
 });

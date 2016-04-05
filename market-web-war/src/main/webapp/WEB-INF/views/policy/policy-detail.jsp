@@ -7,17 +7,7 @@
     <link rel="stylesheet" href="<%=ctx%>/static/dist/css/policy/policy-detail.css"/>
 </head>
 <body>
-<header>
-    <div class="header-btn">
-        <i class="back-icon"></i>
-    </div>
-    <div class="header-title">
-        <span>高考政策</span>
-    </div>
-    <div class="header-btn">
-        <i class="search-icon"></i>
-    </div>
-</header>
+<%@ include file="../common/header.jsp"%>
 <div class="container" id="policy-detail">
     <script id="policy-detail-tpl" type="text/x-handlebars-template">
         <div class="title">{{title}}</div>
