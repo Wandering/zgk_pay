@@ -49,8 +49,8 @@
 	var handlebars = __webpack_require__(6);
 	var getTime = __webpack_require__(10);
 
-
 	$(function(){
+	    $('#header-menu').show();
 	    $('#header-title').text('高考日程');
 	    $('.calendar-icon').on('click', function(){
 	        if($(this).hasClass('active')){
@@ -133,7 +133,7 @@
 	                        var template = handlebars.compile($("#article-detail").html());
 	                        var list = res.bizData;
 	                        var html = template(list);
-	                        $('.content').html(html);
+	                        $('#schedule-content').html(html);
 	                    }
 	                });
 	            }
@@ -161,7 +161,7 @@
 
 	//var domainStr = 'm.zhigaokao.cn'; //正式
 	//var domainStr = 'test.m.zhigaokao.cn'; //测试
-	var domainStr = 'm.zhigaokao.com:8083';
+	var domainStr = 'm.zhigaokao.com:8084';
 
 	//获取域名前缀=============================
 	var urlDomain = window.location.hostname + '';
