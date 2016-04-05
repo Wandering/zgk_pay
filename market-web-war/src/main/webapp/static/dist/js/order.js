@@ -163,11 +163,13 @@ webpackJsonp([5],{
 	        }
 	        orderFlag = true;
 	        var amount = parseInt(price || '200');
+	        var code = cookie.getCookieValue('code');
 	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
 	            orderNo: orderNo,
 	            userId: userId || '13',
 	            amount: amount,
-	            channel: 'wx_pub'
+	            channel: 'wx',
+	            code: code
 	        }, function (res) {
 	            orderFlag = false;
 	            $.pgwModal('close');

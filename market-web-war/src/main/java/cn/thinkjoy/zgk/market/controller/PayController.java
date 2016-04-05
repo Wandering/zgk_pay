@@ -11,11 +11,13 @@ import cn.thinkjoy.zgk.market.util.IPUtil;
 import cn.thinkjoy.zgk.market.util.NumberGenUtil;
 import cn.thinkjoy.zgk.market.util.StaticSource;
 import cn.thinkjoy.zgk.zgksystem.AgentService;
+import cn.thinkjoy.zgk.zgksystem.domain.SplitPricePojo;
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.fastjson.JSONObject;
 import com.pingplusplus.Pingpp;
 import com.pingplusplus.model.Charge;
+import com.pingplusplus.util.WxpubOAuth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -72,6 +74,7 @@ public class PayController {
                            @RequestParam(value = "amount",required = true)String amount,
                            @RequestParam(value = "userId",required = true)long userId,
                            @RequestParam(value = "channel",required = true)String channel ,
+                           @RequestParam(value = "code",required = true)String code,
                            HttpServletRequest request){
         Map<String,Object> resultMap=new HashMap<>();
         BigDecimal decimal=new BigDecimal(amount);
@@ -86,6 +89,7 @@ public class PayController {
             Pingpp.apiKey=StaticSource.getSource("apiKey");
             String appId=StaticSource.getSource("appId");
             String appSecret=StaticSource.getSource("appSecret");
+            String wxAppId=StaticSource.getSource("wxAppId");
             String statemenstNo=NumberGenUtil.genStatementNo();
             OrderStatements orderstatement=new OrderStatements();
             orderstatement.setAmount(Double.valueOf(amount)*100);
@@ -111,10 +115,10 @@ public class PayController {
             chargeParams.put("currency",CURRENCY);
 //            String codeUrl= WxpubOAuth.createOauthUrlForCode(StaticSource.getSource("appId"), "", false);
 //            String code= HttpRequestUtil.doGet(codeUrl);
-//            String openId= WxpubOAuth.getOpenId(appId,appSecret,code);
-//            Map<String,Object> extraMap=new HashMap<>();
-//            extraMap.put("open_id",openId);
-//            chargeParams.put("extra",extraMap);
+            String openId= WxpubOAuth.getOpenId(wxAppId, appSecret, code);
+            Map<String,Object> extraMap=new HashMap<>();
+            extraMap.put("open_id",openId);
+            chargeParams.put("extra",extraMap);
             orderstatement.setPayJson(JSONObject.toJSONString(chargeParams));
 
             orderStatementService.insert(orderstatement);
@@ -147,12 +151,16 @@ public class PayController {
             String userId= orderMap.get("user_id").toString();
 
             List<Map<String,Object>> userRelLs= userAccountExService.getUserRelListByUserId(Long.valueOf(userId));
+            List<SplitPricePojo> splitPricePojos=new ArrayList<>();
+            for(Map<String,Object> map:userRelLs){
+                SplitPricePojo splitPricePojo=new SplitPricePojo();
+                splitPricePojo.setAccountId(Integer.valueOf(map.get("accountId").toString()));
+                splitPricePojo.setAgentLevel(Integer.valueOf(map.get("agentLevel").toString()));
+                splitPricePojo.setAccountPhone(map.get("phone").toString());
+                splitPricePojos.add(splitPricePojo);
+            }
+            agentService.SplitPriceExec(splitPricePojos, charge.getAmount(),charge.getOrderNo());
 
-
-
-
-//            List<SplitPricePojo> splitPricePojos = new ArrayList<>();
-//            agentService.SplitPriceExec(splitPricePojos, charge.getAmount(), orderNo);
 
         }catch (Exception e){
             logger.error("回调错误"+e);
