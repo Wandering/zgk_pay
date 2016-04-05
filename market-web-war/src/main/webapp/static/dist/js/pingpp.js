@@ -209,7 +209,7 @@
 
 	  _callpay: function(){
 	    var self = this;
-	    alert(wx + '---' + WeixinJSBridge);
+	    //alert(wx + '---' + WeixinJSBridge);
 	    if (typeof wx != "undefined" && typeof self._signature != "undefined") {
 	      var wxConfigFailed = false;
 	      wx.config({
