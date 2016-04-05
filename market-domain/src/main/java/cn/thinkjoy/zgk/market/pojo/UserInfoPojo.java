@@ -27,7 +27,9 @@ public class UserInfoPojo extends BaseDomain<Long> {
     private String endDate;
     private String activeDate;
     private String qrcodeUrl;
-
+    private String proName;
+    private String cityName;
+    private String countyName;
     public String getQrcodeUrl() {
         return qrcodeUrl;
     }
@@ -178,5 +180,29 @@ public class UserInfoPojo extends BaseDomain<Long> {
 
     public void setUserKey(String userKey) {
         this.userKey = userKey;
+    }
+
+    public String getProName() {
+        return proName;
+    }
+
+    public void setProName(String proName) {
+        this.proName = proName;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public String getCountyName() {
+        return countyName;
+    }
+
+    public void setCountyName(String countyName) {
+        this.countyName = countyName;
     }
 }

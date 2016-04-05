@@ -7,6 +7,7 @@ import cn.thinkjoy.zgk.market.constant.RedisConst;
 import cn.thinkjoy.zgk.market.domain.Province;
 import cn.thinkjoy.zgk.market.domain.UserAccount;
 import cn.thinkjoy.zgk.market.pojo.UserAccountPojo;
+import cn.thinkjoy.zgk.market.pojo.UserInfoPojo;
 import cn.thinkjoy.zgk.market.service.IProvinceService;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
 import cn.thinkjoy.zgk.market.util.DESUtil;
@@ -51,7 +52,7 @@ public class RegisterController extends BaseCommonController {
      */
     @RequestMapping(value = "/account",method = RequestMethod.POST)
     @ResponseBody
-    public String registerAccount(@RequestParam(value="account",required = false) String account,
+    public Map<String, Object> registerAccount(@RequestParam(value="account",required = false) String account,
                                   @RequestParam(value="captcha",required = false) String captcha,
                                   @RequestParam(value="password",required = false) String password,
                                   @RequestParam(value="provinceId",required = false) String provinceId,
@@ -84,7 +85,7 @@ public class RegisterController extends BaseCommonController {
             if (!checkCaptcha(account,captcha)){
                 throw new BizException(ERRORCODE.PARAM_ERROR.getCode(), "验证码有误!");
             }
-
+        UserInfoPojo userInfoPojo=null;
             //保存用户
         UserAccount userAccount = new UserAccount();
         userAccount.setAccount(account);
@@ -109,6 +110,8 @@ public class RegisterController extends BaseCommonController {
             }
 
         userAccountBean = userAccountExService.findUserAccountPojoByPhone(account);
+
+        userInfoPojo=userAccountExService.getUserInfoPojoById(userAccountBean.getId());
         Long id = userAccountBean.getId();
         Map<String, Object> resultMap = new HashMap<>();
         String token = DESUtil.getEightByteMultypleStr(String.valueOf(id), account);
@@ -122,10 +125,11 @@ public class RegisterController extends BaseCommonController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        userAccountBean.setPassword(null);
-        userAccountBean.setId(null);
-        resultMap.put("userInfo", userAccountBean);
-        return "registerSuccess";
+        userInfoPojo.setPassword(null);
+        userInfoPojo.setId(null);
+        userInfoPojo.setStatus(null);
+        resultMap.put("userInfo", userInfoPojo);
+        return resultMap;
     }
     /**
      * 找回密码
@@ -239,8 +243,7 @@ public class RegisterController extends BaseCommonController {
      */
     @RequestMapping(value = "/getRegisterCaptcha")
     @ResponseBody
-    public String getRegisterCaptcha(String account)
-    {
+    public String getRegisterCaptcha(String account) {
         String key = RedisConst.USER_CAPTCHA_KEY+account;
         if (RedisUtil.getInstance().get(key)==null){
             throw new BizException(ERRORCODE.PARAM_ERROR.getCode(), "验证码过期或不存在，请重新获取!");
