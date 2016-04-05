@@ -1,29 +1,26 @@
-//var domainStr = 'm.zhigaokao.cn'; //正式
+var domainStr = 'm.zhigaokao.cn'; //正式
 //var domainStr = 'test.m.zhigaokao.cn'; //测试
-var domainStr = 'm.zhigaokao.com:8084';
+//var domainStr = 'm.zhigaokao.com:8084';
 
 //获取域名前缀=============================
 var urlDomain = window.location.hostname + '';
 var urlArr = urlDomain.split('.');
 var provinceKey = urlArr[0];
-if (provinceKey == "www" || provinceKey == 'undefined') {
-    window.location.assign('http://zj.m.zhigaokao.cn');
-}
-$('#current-province').text($('#select-province li a[href="http://' + provinceKey + '.m.zhigaokao.cn/"]').text())
+
+console.log(window.location.hostname);
 
 
-//判断是否登录=============================
 var cookie = require('cookie');
+
 
 var isLogin = function () {
     return cookie.getCookieValue('isLogin')
 };
-
 function ajaxFun(url, method, data, callback) {
     if (cookie.getCookieValue('token')) {
         data.token = cookie.getCookieValue('token');
     }
-    data.userKey = provinceKey;
+    data.userKey = cookie.getCookieValue('userKey');
     var strParameter = '';
     for (var i in data) {
         strParameter += "&" + i + "=" + data[i];
