@@ -9,7 +9,7 @@
         </div>
         <div class="header-title">
             <span id="header-title"></span>
-            <span class="location location-icon">陕西</span>
+            <span class="location location-icon" id="province-text">陕西</span>
         </div>
         <div class="header-btn header-search hide" id="header-search">
             <i class="search-icon"></i>
@@ -33,34 +33,34 @@
             <%--</div>--%>
             <div class="menu-list clearfix">
                 <%--<div class="item">--%>
-                    <%--<a href="">--%>
-                        <%--<img src="<%=ctx%>/static/dist/img/1-active.png" alt=""/>--%>
-                        <%--<span>查院校</span>--%>
-                    <%--</a>--%>
+                <%--<a href="">--%>
+                <%--<img src="<%=ctx%>/static/dist/img/1-active.png" alt=""/>--%>
+                <%--<span>查院校</span>--%>
+                <%--</a>--%>
                 <%--</div>--%>
                 <%--<div class="item">--%>
-                    <%--<a href="">--%>
-                        <%--<img src="<%=ctx%>/static/dist/img/2-active.png" alt=""/>--%>
-                    <%--</a>--%>
-                    <%--<span>查专业</span>--%>
+                <%--<a href="">--%>
+                <%--<img src="<%=ctx%>/static/dist/img/2-active.png" alt=""/>--%>
+                <%--</a>--%>
+                <%--<span>查专业</span>--%>
                 <%--</div>--%>
                 <%--<div class="item">--%>
-                    <%--<a href="">--%>
-                        <%--<img src="<%=ctx%>/static/dist/img/3-active.png" alt=""/>--%>
-                        <%--<span>省控线</span>--%>
-                    <%--</a>--%>
+                <%--<a href="">--%>
+                <%--<img src="<%=ctx%>/static/dist/img/3-active.png" alt=""/>--%>
+                <%--<span>省控线</span>--%>
+                <%--</a>--%>
                 <%--</div>--%>
                 <%--<div class="item">--%>
-                    <%--<a href="">--%>
-                        <%--<img src="<%=ctx%>/static/dist/img/4-active.png" alt=""/>--%>
-                        <%--<span>院校预测</span>--%>
-                    <%--</a>--%>
+                <%--<a href="">--%>
+                <%--<img src="<%=ctx%>/static/dist/img/4-active.png" alt=""/>--%>
+                <%--<span>院校预测</span>--%>
+                <%--</a>--%>
                 <%--</div>--%>
                 <%--<div class="item">--%>
-                    <%--<a href="">--%>
-                        <%--<img src="<%=ctx%>/static/dist/img/5-active.png" alt=""/>--%>
-                        <%--<span>录取预测</span>--%>
-                    <%--</a>--%>
+                <%--<a href="">--%>
+                <%--<img src="<%=ctx%>/static/dist/img/5-active.png" alt=""/>--%>
+                <%--<span>录取预测</span>--%>
+                <%--</a>--%>
                 <%--</div>--%>
                 <div class="item">
                     <a href="/policy">
@@ -106,35 +106,35 @@
         <div class="menu">
             <div class="menu-list clearfix">
                 <%--<div class="item">--%>
-                    <%--<a href="">--%>
-                        <%--<img src="<%=ctx%>/static/dist/img/1.png" alt=""/>--%>
-                        <%--<span>查院校</span>--%>
-                    <%--</a>--%>
+                <%--<a href="">--%>
+                <%--<img src="<%=ctx%>/static/dist/img/1.png" alt=""/>--%>
+                <%--<span>查院校</span>--%>
+                <%--</a>--%>
                 <%--</div>--%>
                 <%--<div class="item">--%>
-                    <%--<a href="">--%>
-                        <%--<img src="<%=ctx%>/static/dist/img/2.png" alt=""/>--%>
-                        <%--<span>查专业</span>--%>
-                    <%--</a>--%>
+                <%--<a href="">--%>
+                <%--<img src="<%=ctx%>/static/dist/img/2.png" alt=""/>--%>
+                <%--<span>查专业</span>--%>
+                <%--</a>--%>
                 <%--</div>--%>
                 <%--<div class="item">--%>
-                    <%--<a href="">--%>
-                        <%--<img src="<%=ctx%>/static/dist/img/3.png" alt=""/>--%>
-                        <%--<span>省控线</span>--%>
-                    <%--</a>--%>
+                <%--<a href="">--%>
+                <%--<img src="<%=ctx%>/static/dist/img/3.png" alt=""/>--%>
+                <%--<span>省控线</span>--%>
+                <%--</a>--%>
                 <%--</div>--%>
                 <%--<div class="item">--%>
-                    <%--<a href="">--%>
-                        <%--<img src="<%=ctx%>/static/dist/img/4.png" alt=""/>--%>
+                <%--<a href="">--%>
+                <%--<img src="<%=ctx%>/static/dist/img/4.png" alt=""/>--%>
 
-                        <%--<span>院校预测</span>--%>
-                    <%--</a>--%>
+                <%--<span>院校预测</span>--%>
+                <%--</a>--%>
                 <%--</div>--%>
                 <%--<div class="item">--%>
-                    <%--<a href="">--%>
-                        <%--<img src="<%=ctx%>/static/dist/img/5.png" alt=""/>--%>
-                        <%--<span>录取预测</span>--%>
-                    <%--</a>--%>
+                <%--<a href="">--%>
+                <%--<img src="<%=ctx%>/static/dist/img/5.png" alt=""/>--%>
+                <%--<span>录取预测</span>--%>
+                <%--</a>--%>
                 <%--</div>--%>
                 <div class="item">
                     <a href="/policy">
@@ -168,5 +168,45 @@
         </div>
     </div>
 </div>
+
+
+<div class="hide" id="province-option">
+    <div class="content">
+        <div class="backdrop"></div>
+        <div class="menu">
+            <div class="province-option-list" id="province-option-list">
+                <a class="province-item" data-href="http://zj.m.zhigaokao.com:8084/">浙江</a>
+                <a class="province-item" data-href="http://sn.m.zhigaokao.com:8084/">陕西</a>
+                <a class="province-item" data-href="http://fj.m.zhigaokao.com:8084/">福建</a>
+                <a class="province-item" data-href="http://gd.m.zhigaokao.com:8084/">广东</a>
+                <a class="province-item" data-href="http://hb.m.zhigaokao.com:8084/">湖北</a>
+                <a class="province-item" data-href="http://hn.m.zhigaokao.com:8084/">湖南</a>
+                <a class="province-item" data-href="http://gx.m.zhigaokao.com:8084/">广西</a>
+                <a class="province-item" data-href="http://ha.m.zhigaokao.com:8084/">河南</a>
+                <a class="province-item" data-href="http://sd.m.zhigaokao.com:8084/">山东</a>
+                <a class="province-item" data-href="http://he.m.zhigaokao.com:8084/">河北</a>
+                <a class="province-item" data-href="http://sc.m.zhigaokao.com:8084/">四川</a>
+                <a class="province-item" data-href="http://sh.m.zhigaokao.com:8084/">上海</a>
+                <a class="province-item" data-href="http://cq.m.zhigaokao.com:8084/">重庆</a>
+                <a class="province-item" data-href="http://jx.m.zhigaokao.com:8084/">江西</a>
+                <a class="province-item" data-href="http://yn.m.zhigaokao.com:8084/">云南</a>
+                <a class="province-item" data-href="http://bj.m.zhigaokao.com:8084/">北京</a>
+                <a class="province-item" data-href="http://tj.m.zhigaokao.com:8084/">天津</a>
+                <a class="province-item" data-href="http://hi.m.zhigaokao.com:8084/">海南</a>
+                <a class="province-item" data-href="http://ah.m.zhigaokao.com:8084/">安徽</a>
+                <a class="province-item" data-href="http://js.m.zhigaokao.com:8084/">江苏</a>
+                <a class="province-item" data-href="http://jl.m.zhigaokao.com:8084/">吉林</a>
+                <a class="province-item" data-href="http://ln.m.zhigaokao.com:8084/">辽宁</a>
+                <a class="province-item" data-href="http://gs.m.zhigaokao.com:8084/">甘肃</a>
+                <a class="province-item" data-href="http://sx.m.zhigaokao.com:8084/">山西</a>
+                <a class="province-item" data-href="http://gz.m.zhigaokao.com:8084/">贵州</a>
+                <a class="province-item" data-href="http://nx.m.zhigaokao.com:8084/">宁夏</a>
+                <a class="province-item" data-href="http://xj.m.zhigaokao.com:8084/">新疆</a>
+                <a class="province-item" data-href="http://hl.m.zhigaokao.com:8084/">黑龙江</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="<%=ctx%>/static/dist/js/header.js"></script>
