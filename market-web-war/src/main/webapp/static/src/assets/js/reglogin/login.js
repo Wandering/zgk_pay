@@ -58,8 +58,8 @@ var md5=require('md5');
                     var url = 'http://' + domain +'/user-detail';
                     url = encodeURIComponent(url);
                     var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_userinfo&state=' + $.trim(userKey) + '#wechat_redirect';
-                    //window.location.href = rUrl;
-                    window.location.assign('http://'+ domain +'/user-detail');
+                    window.location.href = rUrl;
+                    //window.location.assign('http://'+ domain +'/user-detail');
                 } else {
                     util.drawToast(res.msg);
                 }
