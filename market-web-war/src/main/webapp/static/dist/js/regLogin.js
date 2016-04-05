@@ -1,4 +1,4 @@
-webpackJsonp([7],[
+webpackJsonp([8],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -485,7 +485,6 @@ webpackJsonp([7],[
 	    Area.addEventForArea();
 
 	    util.confirmLayer('注册','提交注册');
-
 	    $('.mask').show();
 
 	    // 登录提交
