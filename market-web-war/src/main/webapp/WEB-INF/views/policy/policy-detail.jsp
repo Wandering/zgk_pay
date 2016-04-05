@@ -13,7 +13,7 @@
         <div class="title">{{title}}</div>
         <div class="date">{{hotDate}}</div>
         <div class="banner">
-            <img src="{{image}}" alt="{{title}}"/>
+            <img src="{{image}}@base@tag=imgScale&w=150" alt="{{title}}"/>
         </div>
         <div class="content">{{{content}}}</div>
     </script>

@@ -31,7 +31,7 @@
         <span id="cur_date">03月/2016年</span>
         <i class="calendar-icon"></i>
     </div>
-    <div class="content">
+    <div class="content" id="schedule-content">
     </div>
     <script id="article-detail" type="text/x-handlebars-template">
         <div class="title">{{title}}</div>

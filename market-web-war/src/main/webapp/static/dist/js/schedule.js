@@ -49,8 +49,8 @@
 	var handlebars = __webpack_require__(6);
 	var getTime = __webpack_require__(10);
 
-
 	$(function(){
+	    $('#header-menu').show();
 	    $('#header-title').text('高考日程');
 	    $('.calendar-icon').on('click', function(){
 	        if($(this).hasClass('active')){
@@ -133,7 +133,7 @@
 	                        var template = handlebars.compile($("#article-detail").html());
 	                        var list = res.bizData;
 	                        var html = template(list);
-	                        $('.content').html(html);
+	                        $('#schedule-content').html(html);
 	                    }
 	                });
 	            }
@@ -175,17 +175,6 @@
 
 	//判断是否登录=============================
 	var cookie = __webpack_require__(2);
-	$('body').on('click', '#logout-btn', function () {
-	    cookie.deleteCookie('isLogin', '');
-	    cookie.deleteCookie('token', '');
-	    cookie.deleteCookie('icon', '');
-	    cookie.deleteCookie('phone', '');
-	    cookie.deleteCookie('subjectType', '');
-	    cookie.deleteCookie('userKey', '');
-	    cookie.deleteCookie('userName', '');
-	    cookie.deleteCookie('vipStatus', '');
-	    window.location.assign('http://' + window.location.host + '/index.html')
-	});
 
 	var isLogin = function () {
 	    return cookie.getCookieValue('isLogin')

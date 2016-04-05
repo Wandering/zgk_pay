@@ -3,8 +3,8 @@ var urlConfig = require('urlConfig');
 var handlebars = require('handlebars');
 var getTime = require('timeFormat');
 
-
 $(function(){
+    $('#header-menu').show();
     $('#header-title').text('高考日程');
     $('.calendar-icon').on('click', function(){
         if($(this).hasClass('active')){
@@ -87,7 +87,7 @@ $(function(){
                         var template = handlebars.compile($("#article-detail").html());
                         var list = res.bizData;
                         var html = template(list);
-                        $('.content').html(html);
+                        $('#schedule-content').html(html);
                     }
                 });
             }
