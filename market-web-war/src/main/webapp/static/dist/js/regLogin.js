@@ -4,13 +4,13 @@ webpackJsonp([9],[
 
 	
 	// 切换
-	__webpack_require__(7);
-
-	// 登录
 	__webpack_require__(8);
 
-	// 注册
+	// 登录
 	__webpack_require__(9);
+
+	// 注册
+	__webpack_require__(10);
 
 
 
@@ -19,7 +19,8 @@ webpackJsonp([9],[
 /* 1 */,
 /* 2 */,
 /* 3 */,
-/* 4 */
+/* 4 */,
+/* 5 */
 /***/ function(module, exports) {
 
 		/**
@@ -239,9 +240,9 @@ webpackJsonp([9],[
 
 
 /***/ },
-/* 5 */,
 /* 6 */,
-/* 7 */
+/* 7 */,
+/* 8 */
 /***/ function(module, exports) {
 
 	var UI ={
@@ -263,12 +264,12 @@ webpackJsonp([9],[
 
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var util=__webpack_require__(1);
 	var cookie=__webpack_require__(2);
-	var md5=__webpack_require__(4);
+	var md5=__webpack_require__(5);
 	    var domain = util.domain; // 正式
 
 	    $(function () {
@@ -326,8 +327,8 @@ webpackJsonp([9],[
 	                    var url = 'http://' + domain +'/user-detail';
 	                    url = encodeURIComponent(url);
 	                    var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_userinfo&state=' + $.trim(userKey) + '#wechat_redirect';
-	                    window.location.href = rUrl;
-	                    //window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/user-detail');
+	                    //window.location.href = rUrl;
+	                    window.location.assign('http://'+ domain +'/user-detail');
 	                } else {
 	                    util.drawToast(res.msg);
 	                }
@@ -352,12 +353,12 @@ webpackJsonp([9],[
 
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var util = __webpack_require__(1);
 	var cookie = __webpack_require__(2);
-	var md5 = __webpack_require__(4);
+	var md5 = __webpack_require__(5);
 	var urlConfig = __webpack_require__(3);
 
 	//var dialog = require('dialog');

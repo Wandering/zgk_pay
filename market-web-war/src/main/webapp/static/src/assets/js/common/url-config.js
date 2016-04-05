@@ -208,8 +208,14 @@ var interfaceUrl = {
     getVolunteerSchool: BASE_URL + '/report/main.do', // 院校清单
     getSpecialty: BASE_URL + '/report/get/specialty.do', // 获取专业信息
     volunteerSave: BASE_URL + '/report/save.do', // 保存志愿填报
-    getVolunteerFinalInfo: BASE_URL + '/report/get/info.do' // 志愿报告结果页
+    getVolunteerFinalInfo: BASE_URL + '/report/get/info.do', // 志愿报告结果页
 
+
+    /**
+     *
+     */
+
+    getSplitPriceInfo: '/getSplitPriceInfo'
 
 };
 

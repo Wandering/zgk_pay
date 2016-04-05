@@ -12,33 +12,15 @@
     <div class="container-header">
         <div class="right">
             <img src="<%=ctx%>static/dist/img/icons/info.png" alt=""/>
-            <a href="">盈利规则</a>
+            <a href="/intro">盈利规则</a>
         </div>
         <div class="clearfix"></div>
         <div class="count">
-            总金额：￥802.02元
+            总金额：￥<span id="total-sum"></span>元
         </div>
     </div>
-    <div class="container-content">
-        <ul class="detail-list">
-            <li>2016/03月共计收入￥234.05元，明细如下</li>
-            <li>
-                <span>收入 + 12.00元</span>
-                <span class="right">03/16 09:21:23</span>
-            </li>
-            <li>
-                <span>收入 + 12.00元</span>
-                <span class="right">03/16 09:21:23</span>
-            </li>
-            <li>
-                <span>收入 + 12.00元</span>
-                <span class="right">03/16 09:21:23</span>
-            </li>
-            <li>
-                <span>收入 + 12.00元</span>
-                <span class="right">03/16 09:21:23</span>
-            </li>
-        </ul>
+    <div class="container-content" id="detail-list">
+
     </div>
 </div>
 <script type="text/javascript" src="<%=ctx%>/static/dist/js/commons.js"></script>
