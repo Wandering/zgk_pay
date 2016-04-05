@@ -112,8 +112,16 @@ public class OrderController extends BaseCommonController {
                                                      @RequestParam("pageNo")int pageNo,
                                                      @RequestParam("pageSize")int pageSize){
         List<Map<String,Object>> result=new ArrayList<>();
-        result=orderService.queryOrderListByUserId(userId, pageNo, pageSize);
-        return  result;
+        try {
+
+            result=orderService.queryOrderListByUserId(userId, pageNo, pageSize);
+            return  result;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            logger.error("获取用户订单数据失败:"+e);
+            throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
+        }
     }
 
 
