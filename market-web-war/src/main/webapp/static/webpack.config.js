@@ -17,6 +17,7 @@ module.exports = {
         header: './src/assets/js/common/header',
         pingpp: './src/assets/js/common/pingpp',
         consumerList: './src/assets/js/consumer-list/consumer-list',
+        intro: './src/assets/js/consumer-list/intro',
         schedule: './src/assets/js/schedule/schedule'
     },
     output: {

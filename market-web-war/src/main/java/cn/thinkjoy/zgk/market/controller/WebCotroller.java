@@ -184,6 +184,15 @@ public class WebCotroller {
         return new ModelAndView("/consumer-list/consumer-list");
     }
     /**
+     * inventory
+     *
+     * @return
+     */
+    @RequestMapping("/intro")
+    public ModelAndView intro() {
+        return new ModelAndView("/consumer-list/intro");
+    }
+    /**
      * schedule
      *
      * @return

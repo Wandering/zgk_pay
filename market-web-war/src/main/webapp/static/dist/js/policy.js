@@ -6,9 +6,9 @@ webpackJsonp([7],[
 	 * Created by pdeng on 16/3/31.
 	 */
 	var util = __webpack_require__(1);
-	var handlebars = __webpack_require__(6);
+	var handlebars = __webpack_require__(7);
 	var interfaceUrl = __webpack_require__(3);
-	var IScroll = __webpack_require__(5);
+	var IScroll = __webpack_require__(6);
 	$(function () {
 	    $('#header-menu').show();
 	    $('#header-title').text('高考政策');
@@ -90,7 +90,8 @@ webpackJsonp([7],[
 /* 2 */,
 /* 3 */,
 /* 4 */,
-/* 5 */
+/* 5 */,
+/* 6 */
 /***/ function(module, exports) {
 
 	/*! iScroll v5.1.3 ~ (c) 2008-2016 Matteo Spinelli ~ http://cubiq.org/license */
@@ -2186,7 +2187,7 @@ webpackJsonp([7],[
 	})(window, document, Math);
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!

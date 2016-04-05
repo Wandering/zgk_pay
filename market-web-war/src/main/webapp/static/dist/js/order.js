@@ -45,7 +45,7 @@ webpackJsonp([5],{
 
 	    var util = __webpack_require__(1);
 	    var interfaceUrl = __webpack_require__(3);
-	    var IScroll = __webpack_require__(5);
+	    var IScroll = __webpack_require__(6);
 	    var myScroll = null;
 
 
@@ -237,7 +237,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 5:
+/***/ 6:
 /***/ function(module, exports) {
 
 	/*! iScroll v5.1.3 ~ (c) 2008-2016 Matteo Spinelli ~ http://cubiq.org/license */
