@@ -34,7 +34,10 @@ var interfaceUrl = {
      * 获取订单列表
      */
     getUserOrderList: '/order/getUserOrderList',
-
+    /**
+     * 获取openId
+     */
+    getOpenId: '/pay/getOpenId',
     /*
      * 高考咨询
      * */
