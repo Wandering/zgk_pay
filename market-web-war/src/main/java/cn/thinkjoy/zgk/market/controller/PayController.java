@@ -82,8 +82,6 @@ public class PayController {
             throw  new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
         }
         try{
-
-
             Pingpp.apiKey=StaticSource.getSource("apiKey");
             String appId=StaticSource.getSource("appId");
             String appSecret=StaticSource.getSource("appSecret");
