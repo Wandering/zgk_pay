@@ -1,15 +1,15 @@
 //var domainStr = 'zhigaokao.cn'; //正式
 //var domainStr = 'test.zhigaokao.cn'; //测试
-var domainStr = 'zhigaokao.com:8084';
+var domainStr = 'm.zhigaokao.com:8084';
 
 //获取域名前缀=============================
 var urlDomain = window.location.hostname + '';
 var urlArr = urlDomain.split('.');
 var provinceKey = urlArr[0];
 if (provinceKey == "www" || provinceKey == 'undefined') {
-    window.location.assign('http://zj.zhigaokao.cn');
+    window.location.assign('http://zj.m.zhigaokao.cn');
 }
-$('#current-province').text($('#select-province li a[href="http://' + provinceKey + '.zhigaokao.cn/"]').text())
+$('#current-province').text($('#select-province li a[href="http://' + provinceKey + '.m.zhigaokao.cn/"]').text())
 
 
 //判断是否登录=============================

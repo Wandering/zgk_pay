@@ -2,7 +2,7 @@ html {
   height: 100%;
   background-color: #F6F6F6;
 }
-$mainColor:#D80C18;
+
 //header bar
 header {
   position: relative;
@@ -88,7 +88,7 @@ header {
       margin: 3px 0;
     }
     .check-code {
-      width: calc(100% - 160px);
+      width: calc(100% - 130px);
     }
     .location-list {
       display: flex;
@@ -149,7 +149,6 @@ header {
     }
   }
 }
-
 #login {
   .form-group {
     margin-top: 35px;
@@ -168,6 +167,14 @@ header {
     margin-top: 13px;
   }
 }
+
+
+
+
+
+
+
+
 
 .tab-content {
   display: none;

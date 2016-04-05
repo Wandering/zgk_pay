@@ -5,7 +5,7 @@
   vertical-align: middle;
 }
 
-.icons-sprite, .icon-avatar, .icon-back, .icon-banner, .icon-card, .icon-clear, .icon-code, .icon-code2, .icon-detail, .icon-img, .icon-location, .icon-menu, .icon-mobile, .icon-paid, .icon-password, .icon-search, .icon-vip {
+.icons-sprite, .icon-avatar, .icon-back, .icon-banner, .icon-calendar, .icon-card, .icon-clear, .icon-close, .icon-code, .icon-code2, .icon-drop-down, .icon-flag, .icon-info, .icon-location-normal, .icon-location, .icon-menu, .icon-mobile, .icon-paid, .icon-password, .icon-search-normal, .icon-search, .icon-star, .icon-vip {
   background-image: url('../img/sprites-icons.png');
   background-repeat: no-repeat;
 }
@@ -28,210 +28,305 @@
   width: 390px;
 }
 
-.icon-card {
+.icon-calendar {
+  background-position: 0 -472px;
+  height: 60px;
+  width: 60px;
+}
+.icon-calendar:active, .icon-calendar.calendar-active {
   background-position: 0 -410px;
+}
+
+.icon-card {
+  background-position: 0 -534px;
   height: 60px;
   width: 64px;
 }
 
 .icon-clear {
-  background-position: 0 -472px;
+  background-position: 0 -596px;
   height: 56px;
   width: 56px;
 }
 
+.icon-close {
+  background-position: 0 -654px;
+  height: 60px;
+  width: 60px;
+}
+
 .icon-code {
-  background-position: 0 -530px;
+  background-position: 0 -716px;
   height: 187px;
   width: 187px;
 }
 
 .icon-code2 {
-  background-position: 0 -719px;
+  background-position: 0 -905px;
   height: 152px;
   width: 152px;
 }
 
-.icon-detail {
-  background-position: 0 -873px;
-  height: 175px;
-  width: 301px;
+.icon-drop-down {
+  background-position: 0 -1059px;
+  height: 56px;
+  width: 56px;
 }
 
-.icon-img {
-  background-position: 0 -1050px;
-  height: 123px;
-  width: 175px;
+.icon-flag {
+  background-position: 0 -1117px;
+  height: 52px;
+  width: 52px;
+}
+
+.icon-info {
+  background-position: 0 -1171px;
+  height: 40px;
+  width: 40px;
+}
+
+.icon-location-normal {
+  background-position: 0 -1213px;
+  height: 52px;
+  width: 36px;
 }
 
 .icon-location {
-  background-position: 0 -1175px;
+  background-position: 0 -1267px;
   height: 44px;
   width: 32px;
 }
 
 .icon-menu {
-  background-position: 0 -1221px;
+  background-position: 0 -1313px;
   height: 60px;
   width: 60px;
 }
 
 .icon-mobile {
-  background-position: 0 -1283px;
+  background-position: 0 -1375px;
   height: 64px;
   width: 64px;
 }
 
 .icon-paid {
-  background-position: 0 -1349px;
+  background-position: 0 -1441px;
   height: 181px;
   width: 181px;
 }
 
 .icon-password {
-  background-position: 0 -1532px;
+  background-position: 0 -1624px;
   height: 64px;
   width: 64px;
 }
 
+.icon-search-normal {
+  background-position: 0 -1690px;
+  height: 34px;
+  width: 34px;
+}
+
 .icon-search {
-  background-position: 0 -1598px;
+  background-position: 0 -1726px;
   height: 52px;
   width: 52px;
 }
 
+.icon-star {
+  background-position: 0 -1780px;
+  height: 56px;
+  width: 56px;
+}
+
 .icon-vip {
-  background-position: 0 -1652px;
+  background-position: 0 -1838px;
   height: 242px;
   width: 392px;
 }
 
 .icon-avatar {
-  -webkit-background-size: 64px 356px;
-  background-size: 64px 356px;
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
   width: 132px;
   height: 132px;
   background-position: 0 0;
 }
 
 .icon-back {
-  -webkit-background-size: 64px 356px;
-  background-size: 64px 356px;
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
   width: 60px;
   height: 62px;
   background-position: 0 -134px;
 }
 
 .icon-banner {
-  -webkit-background-size: 64px 356px;
-  background-size: 64px 356px;
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
   width: 390px;
   height: 210px;
   background-position: 0 -198px;
 }
 
-.icon-card {
-  -webkit-background-size: 64px 356px;
-  background-size: 64px 356px;
-  width: 64px;
+.icon-calendar-active {
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
+  width: 60px;
   height: 60px;
   background-position: 0 -410px;
 }
 
-.icon-clear {
-  -webkit-background-size: 64px 356px;
-  background-size: 64px 356px;
-  width: 56px;
-  height: 56px;
+.icon-calendar {
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
+  width: 60px;
+  height: 60px;
   background-position: 0 -472px;
 }
 
+.icon-card {
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
+  width: 64px;
+  height: 60px;
+  background-position: 0 -534px;
+}
+
+.icon-clear {
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
+  width: 56px;
+  height: 56px;
+  background-position: 0 -596px;
+}
+
+.icon-close {
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
+  width: 60px;
+  height: 60px;
+  background-position: 0 -654px;
+}
+
 .icon-code {
-  -webkit-background-size: 64px 356px;
-  background-size: 64px 356px;
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
   width: 187px;
   height: 187px;
-  background-position: 0 -530px;
+  background-position: 0 -716px;
 }
 
 .icon-code2 {
-  -webkit-background-size: 64px 356px;
-  background-size: 64px 356px;
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
   width: 152px;
   height: 152px;
-  background-position: 0 -719px;
+  background-position: 0 -905px;
 }
 
-.icon-detail {
-  -webkit-background-size: 64px 356px;
-  background-size: 64px 356px;
-  width: 301px;
-  height: 175px;
-  background-position: 0 -873px;
+.icon-drop-down {
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
+  width: 56px;
+  height: 56px;
+  background-position: 0 -1059px;
 }
 
-.icon-img {
-  -webkit-background-size: 64px 356px;
-  background-size: 64px 356px;
-  width: 175px;
-  height: 123px;
-  background-position: 0 -1050px;
+.icon-flag {
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
+  width: 52px;
+  height: 52px;
+  background-position: 0 -1117px;
+}
+
+.icon-info {
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
+  width: 40px;
+  height: 40px;
+  background-position: 0 -1171px;
+}
+
+.icon-location-normal {
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
+  width: 36px;
+  height: 52px;
+  background-position: 0 -1213px;
 }
 
 .icon-location {
-  -webkit-background-size: 64px 356px;
-  background-size: 64px 356px;
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
   width: 32px;
   height: 44px;
-  background-position: 0 -1175px;
+  background-position: 0 -1267px;
 }
 
 .icon-menu {
-  -webkit-background-size: 64px 356px;
-  background-size: 64px 356px;
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
   width: 60px;
   height: 60px;
-  background-position: 0 -1221px;
+  background-position: 0 -1313px;
 }
 
 .icon-mobile {
-  -webkit-background-size: 64px 356px;
-  background-size: 64px 356px;
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
   width: 64px;
   height: 64px;
-  background-position: 0 -1283px;
+  background-position: 0 -1375px;
 }
 
 .icon-paid {
-  -webkit-background-size: 64px 356px;
-  background-size: 64px 356px;
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
   width: 181px;
   height: 181px;
-  background-position: 0 -1349px;
+  background-position: 0 -1441px;
 }
 
 .icon-password {
-  -webkit-background-size: 64px 356px;
-  background-size: 64px 356px;
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
   width: 64px;
   height: 64px;
-  background-position: 0 -1532px;
+  background-position: 0 -1624px;
+}
+
+.icon-search-normal {
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
+  width: 34px;
+  height: 34px;
+  background-position: 0 -1690px;
 }
 
 .icon-search {
-  -webkit-background-size: 64px 356px;
-  background-size: 64px 356px;
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
   width: 52px;
   height: 52px;
-  background-position: 0 -1598px;
+  background-position: 0 -1726px;
+}
+
+.icon-star {
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
+  width: 56px;
+  height: 56px;
+  background-position: 0 -1780px;
 }
 
 .icon-vip {
-  -webkit-background-size: 64px 356px;
-  background-size: 64px 356px;
+  -webkit-background-size: 392px 2002px;
+  background-size: 392px 2002px;
   width: 392px;
   height: 242px;
-  background-position: 0 -1652px;
+  background-position: 0 -1838px;
 }
 
 /*reset css*/
@@ -288,11 +383,34 @@ header .header-title {
   text-align: center;
 }
 
+#end-login,
+#un-login {
+  display: none;
+}
+
 /*icons*/
 .back-icon:before {
   content: "";
   background: url(../img/icons/back.png);
   width: 16px;
+  height: 26px;
+  background-size: cover;
+  display: inline-block;
+}
+
+.calendar-icon.active:before {
+  content: "";
+  background: url(../img/icons/calendar-active.png);
+  width: 26px;
+  height: 26px;
+  background-size: cover;
+  display: inline-block;
+}
+
+.calendar-icon:before {
+  content: "";
+  background: url(../img/icons/calendar.png);
+  width: 26px;
   height: 26px;
   background-size: cover;
   display: inline-block;
@@ -307,6 +425,46 @@ header .header-title {
   display: inline-block;
 }
 
+.close-icon:before {
+  content: "";
+  background: url(../img/icons/close.png);
+  width: 20px;
+  height: 26px;
+  background-size: cover;
+  display: inline-block;
+}
+
+.drop-down-icon:before {
+  content: "";
+  background: url(../img/icons/drop-down.png);
+  width: 14px;
+  height: 21px;
+  background-size: cover;
+  display: inline-block;
+}
+
+.flag-icon:before {
+  content: "";
+  background: url(../img/icons/flag.png);
+  width: 9px;
+  height: 15px;
+  background-size: cover;
+  display: inline-block;
+  position: relative;
+  top: 4px;
+}
+
+.location-normal-icon:before {
+  content: "";
+  background: url(../img/icons/location-normal.png);
+  width: 9px;
+  height: 15px;
+  background-size: cover;
+  display: inline-block;
+  position: relative;
+  top: 4px;
+}
+
 .location-icon:before {
   content: "";
   background: url(../img/icons/location.png);
@@ -314,9 +472,6 @@ header .header-title {
   height: 21px;
   background-size: cover;
   display: inline-block;
-  position: relative;
-  top: 5px;
-  left: -5px;
 }
 
 .menu-icon:before {
@@ -346,11 +501,29 @@ header .header-title {
   display: inline-block;
 }
 
+.search-normal-icon:before {
+  content: "";
+  background: url(../img/icons/search-normal.png);
+  width: 25px;
+  height: 25px;
+  background-size: cover;
+  display: inline-block;
+}
+
 .search-icon:before {
   content: "";
   background: url(../img/icons/search.png);
   width: 25px;
   height: 25px;
+  background-size: cover;
+  display: inline-block;
+}
+
+.star-icon:before {
+  content: "";
+  background: url(../img/icons/star.png);
+  width: 16px;
+  height: 18px;
   background-size: cover;
   display: inline-block;
 }
@@ -465,11 +638,79 @@ input {
     transform: rotate(360deg);
   }
 }
-.container {
+/*功能菜单*/
+header {
+  position: relative;
+  overflow: hidden;
+  z-index: 3;
+}
+header .header-title {
+  padding-left: 46px;
+  margin-right: 46px;
+}
+header .header-btn {
   position: absolute;
-  left: 0;
-  top: 39px;
+  height: 25px;
+  top: 6px;
+  left: 9px;
+}
+
+.menu {
+  background-color: #fff;
+  color: #8C8C8C;
+  font-size: 12px;
+  position: relative;
+  z-index: 3;
+}
+.menu .title {
+  border-bottom: 1px solid #CFCFCF;
+  padding-bottom: 12px;
+  padding-top: 20px;
+  margin: 0 20px 10px;
+}
+.menu .title span:not(:first-child) {
+  margin-left: 30px;
+  font-size: 13px;
+}
+.menu .menu-list {
+  padding: 20px 0;
+}
+.menu .menu-list .item {
+  width: 25%;
+  float: left;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.menu .menu-list .item img {
+  width: 70%;
+}
+.menu .btn {
+  padding: 20px;
+  display: flex;
+}
+.menu .btn span {
+  flex: 1;
+  text-align: center;
+  border: 1px solid #D80C18;
+  padding: 10px 0;
+  border-radius: 4px;
+  color: #D80C18;
+}
+.menu .btn span:first-child {
+  margin-right: 20px;
+}
+.menu .btn span:last-child {
+  color: #fff;
+  background-color: #D80C18;
+}
+
+.backdrop {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: #000;
+  opacity: .6;
 }

@@ -46,13 +46,13 @@
 
 	
 	// 切换
-	__webpack_require__(6);
-
-	// 登录
 	__webpack_require__(7);
 
+	// 登录
+	__webpack_require__(8);
+
 	// 注册
-	__webpack_require__(9);
+	__webpack_require__(10);
 
 
 
@@ -63,16 +63,16 @@
 
 	//var domainStr = 'zhigaokao.cn'; //正式
 	//var domainStr = 'test.zhigaokao.cn'; //测试
-	var domainStr = 'zhigaokao.com:8084';
+	var domainStr = 'm.zhigaokao.com:8084';
 
 	//获取域名前缀=============================
 	var urlDomain = window.location.hostname + '';
 	var urlArr = urlDomain.split('.');
 	var provinceKey = urlArr[0];
 	if (provinceKey == "www" || provinceKey == 'undefined') {
-	    window.location.assign('http://zj.zhigaokao.cn');
+	    window.location.assign('http://zj.m.zhigaokao.cn');
 	}
-	$('#current-province').text($('#select-province li a[href="http://' + provinceKey + '.zhigaokao.cn/"]').text())
+	$('#current-province').text($('#select-province li a[href="http://' + provinceKey + '.m.zhigaokao.cn/"]').text())
 
 
 	//判断是否登录=============================
@@ -237,7 +237,7 @@
 
 	//var domainStr = 'zhigaokao.cn'; // 正式
 	//var domainStr = 'test.zhigaokao.cn'; // 测试
-	var domainStr = 'zhigaokao.com'; // 前端开发
+	var domainStr = 'm.zhigaokao.com'; // 前端开发
 
 
 
@@ -725,16 +725,18 @@
 
 /***/ },
 /* 5 */,
-/* 6 */
+/* 6 */,
+/* 7 */
 /***/ function(module, exports) {
 
 	var UI ={
 	    $tabContent:$('.tab-content')
 	};
 
-	$('#header-title').text('登录&注册');
+
 	$('.tab-list').on('click','.tab', function(){
 	    $(this).addClass('active').siblings().removeClass('active');
+	    $('#header-title').text($(this).text());
 	    var index = $(this).index();
 	    UI.$tabContent.removeClass('active').eq(index).addClass('active');
 	});
@@ -742,13 +744,13 @@
 
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var util=__webpack_require__(1);
 	var cookie=__webpack_require__(2);
 	var md5=__webpack_require__(4);
-	var getTime=__webpack_require__(8);
+	var getTime=__webpack_require__(9);
 	    var domain = util.domain; // 正式
 
 	    $(function () {
@@ -819,7 +821,7 @@
 
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
@@ -852,7 +854,7 @@
 
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var util = __webpack_require__(1);
