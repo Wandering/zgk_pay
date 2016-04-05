@@ -37,6 +37,7 @@
         </div>
     </div>
 </div>
+<script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/findPassword.js"></script>
 </body>
 </html>

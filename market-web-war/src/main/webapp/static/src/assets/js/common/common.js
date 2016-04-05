@@ -1,5 +1,5 @@
 //var domainStr = 'm.zhigaokao.cn'; //正式
-//var domainStr = 'test.zhigaokao.cn'; //测试
+//var domainStr = 'test.m.zhigaokao.cn'; //测试
 var domainStr = 'm.zhigaokao.com:8084';
 
 //获取域名前缀=============================
@@ -80,15 +80,6 @@ var tips = function tips(obj, txt) {
     }, 1000);
 };
 
-//return {
-//    isLogin: isLogin,
-//    ajaxFun: ajaxFun,
-//    getLinkey: getLinkey,
-//    cookie: cookie,
-//    domain: domainStr,
-//    provinceKey: provinceKey,
-//    tips: tips
-//};
 
 
 function drawToast(message) {
@@ -127,23 +118,23 @@ function layer(message, btns) {
 
 function confirmLayer(title,content) {
     var confirmLayer = [];
-    confirmLayer.push('<div class="mask">');
+    confirmLayer.push('<div class="mask show">');
     confirmLayer.push('<div class="modal">');
     confirmLayer.push('<div class="modal-title">'+ title +'</div>');
-    confirmLayer.push('<div class="close-modal">X</div>');
     confirmLayer.push('<div class="modal-body">');
     confirmLayer.push(content);
     confirmLayer.push('</div>');
     confirmLayer.push('<div class="modal-footer">');
+    confirmLayer.push('<button id="close-modal" type="button">取消</button>');
     confirmLayer.push('<button id="confirm-btn" type="button">确定</button>');
     confirmLayer.push('</div>');
     confirmLayer.push('</div>');
     confirmLayer.push('</div>');
-    $('body').append(confirmLayer.join(''));
-    $('.close-modal').on('click', function() {
+    $('body').append(confirmLayer.join('')).on('click','#close-modal',function() {
         $('.mask').remove();
     });
 }
+
 
 
 exports.isLogin = isLogin;

@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <%@ include file="../common/meta.jsp"%>
+    <%@ include file="../common/meta.jsp" %>
     <title>登录页</title>
     <link rel="stylesheet" href="<%=ctx%>/static/dist/css/user-detail/style.css"/>
 </head>
 <body>
-<%@ include file="../common/header.jsp"%>
+<%@ include file="../common/header.jsp" %>
 <div class="container">
     <div class="user-info">
         <span class="modify-btn">
@@ -46,10 +46,12 @@
                 <span id="email"></span>
             </li>
             <li>
-                <span>我的二维码：</span>
-                <span>
-                    <img id="qrcodeUrl" src="<%=ctx%>/static/dist/img/icons/code.png" alt=""/>
-                </span>
+                <a href="javascript:;" class="code-links" id="share-links">
+                    <span>我的二维码：</span>
+                    <span>
+                        <img id="qrcodeUrl" src="" alt=""/>
+                    </span>
+                </a>
             </li>
         </ul>
     </div>

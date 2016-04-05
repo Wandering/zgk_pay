@@ -113,6 +113,9 @@ webpackJsonp([9],[
 	            })
 	        });
 
+	        var userId = cookie.getCookieValue('phone');
+	        $('#share-links').attr('href','/code?userId='+userId)
+
 	    });
 
 	})();

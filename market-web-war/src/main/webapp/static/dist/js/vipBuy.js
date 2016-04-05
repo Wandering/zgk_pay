@@ -6,6 +6,7 @@ webpackJsonp([11],{
 	__webpack_require__(10);
 	(function() {
 
+	    $('#header-menu').show();
 	    var util = __webpack_require__(1);
 	    var interfaceUrl = __webpack_require__(3);
 	    var cookie = __webpack_require__(2);
@@ -23,7 +24,6 @@ webpackJsonp([11],{
 	            }
 	        })
 	    }
-
 	    /**
 	     * 订单确定
 	     */

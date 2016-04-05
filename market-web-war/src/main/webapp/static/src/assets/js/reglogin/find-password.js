@@ -5,7 +5,9 @@ var urlConfig=require('urlConfig');
 
 var domain = util.domain; // 正式
 
-
+$('#header-back').show().on('click',function(){
+    window.location.assign('/login');
+});
 $(function () {
     var urlDomain = window.location.hostname + '';
     var urlArr = urlDomain.split('.');

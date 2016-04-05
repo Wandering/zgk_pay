@@ -680,25 +680,34 @@ header .header-btn {
   text-align: center;
   margin-bottom: 10px;
 }
-.menu .menu-list .item img {
+.menu .menu-list .item a {
+  display: inline-block;
+  color: #8C8C8C;
+  text-decoration: none;
+}
+.menu .menu-list .item a img {
   width: 70%;
+}
+.menu .menu-list .item a span {
+  display: block;
 }
 .menu .btn {
   padding: 20px;
   display: flex;
 }
-.menu .btn span {
+.menu .btn a {
   flex: 1;
   text-align: center;
   border: 1px solid #D80C18;
   padding: 10px 0;
   border-radius: 4px;
   color: #D80C18;
+  text-decoration: none;
 }
-.menu .btn span:first-child {
+.menu .btn a:first-child {
   margin-right: 20px;
 }
-.menu .btn span:last-child {
+.menu .btn a:last-child {
   color: #fff;
   background-color: #D80C18;
 }
@@ -712,4 +721,100 @@ header .header-btn {
   z-index: 2;
   background: #000;
   opacity: .6;
+}
+
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: 1s;
+  -moz-transition: 1s;
+  /* Firefox 4 */
+  -webkit-transition: 1s;
+  /* Safari 和 Chrome */
+  -o-transition: 1s;
+  /* Opera */
+  transform: scale(0);
+  -ms-transform: scale(0);
+  /* IE 9 */
+  -webkit-transform: scale(0);
+  /* Safari 和 Chrome */
+  -o-transform: scale(0);
+  /* Opera */
+  -moz-transform: scale(0);
+  /* Firefox */
+}
+.mask.show {
+  transform: scale(1);
+  -ms-transform: scale(1);
+  /* IE 9 */
+  -webkit-transform: scale(1);
+  /* Safari 和 Chrome */
+  -o-transform: scale(1);
+  /* Opera */
+  -moz-transform: scale(1);
+  /* Firefox */
+  opacity: 1;
+}
+.mask .modal {
+  width: 80%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 20px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #fff;
+  margin-top: 150px;
+  position: relative;
+}
+.mask .close-modal {
+  position: absolute;
+  right: -15px;
+  top: -15px;
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+  background-color: #B61F28;
+  color: #fff;
+  font-size: 20px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.mask .modal-title {
+  text-align: center;
+  width: 100%;
+  height: 30px;
+  line-height: 20px;
+  border-bottom: 1px solid #e9e4e4;
+  color: #5e5e5e;
+  font-size: 20px;
+}
+.mask .modal-body {
+  width: 100%;
+}
+.mask .modal-footer {
+  text-align: center;
+}
+.mask .modal-footer button {
+  width: 40%;
+  height: 39px;
+  margin: 10px 4%;
+  line-height: 39px;
+  border: 1px solid #e9e4e4;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  color: #5e5e5e;
+  font-size: 14px;
+  padding: 0;
+}
+.mask .modal-footer button[type="button"] {
+  background-color: #B61F28;
+  text-align: center;
+  border: none;
+  color: #fff;
 }

@@ -10,6 +10,8 @@ webpackJsonp([5],[
 	var interfaceUrl = __webpack_require__(3);
 	var IScroll = __webpack_require__(5);
 	$(function () {
+	    $('#header-menu').show();
+	    $('#header-title').text('高考政策');
 	    var Policy = {
 	        page: 0,
 	        pageRow: 5,
