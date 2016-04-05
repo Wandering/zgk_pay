@@ -6,6 +6,9 @@ webpackJsonp([4],{
 	
 	(function() {
 	    $('#header-menu').show();
+	    var util = __webpack_require__(1);
+	    var interfaceUrl = __webpack_require__(3);
+	    var cookie = __webpack_require__(2);
 	    var TEST_DATA = [{
 	        payStatus: 1,
 	        name: 'zhigao',
@@ -92,26 +95,90 @@ webpackJsonp([4],{
 	                return html.join('');
 	            },
 	            getOrderListData: function() {
+	                var that = this;
 	                util.ajaxFun(interfaceUrl.getUserOrderList, 'GET', {
 	                    userId: cookie.getCookieValue('userId') || '13',
 	                    pageNo: this.pageNo,
 	                    pageSize: this.pageSize
 	                }, function (res) {
-	                    $('.order-list').append(this.orderListRender(TEST_DATA));
-	                    $('.pay-status').off('click');
-	                    $('.pay-status').on('click', function() {
-	                        var payStatus = $(this).attr('data-payStatus');
-	                        if (payStatus == '0') {
-	                            window.location.href = '';
-	                        }
-	                    });
-	                    $('.pull-text').show();
-	                    $('#scroller-pullUp').hide();
-	                    if (myScroll) myScroll.refresh();
+	                    if (res.rtnCode == '0000000') {
+	                        $('.order-list').append(that.orderListRender(TEST_DATA));
+	                        $('.pay-status').off('click');
+	                        $('.pay-status').on('click', function() {
+	                            var payStatus = $(this).attr('data-payStatus');
+	                            if (payStatus == '0') {
+	                                $('#orderNo').html('订单ID：' + res.bizData.orderNo);
+	                                $('#orderNo').attr('orderNo', res.bizData.orderNo);
+	                                $('#order_time').html('订单创建日期：' + department.createDateAsDate);
+	                                $('#service_price').html('服务价格：' + department.salePrice + '元');
+	                                $('#pay_price').html('应付费用：' + department.salePrice  + '元');
+	                                $('#pay_price').attr('data-price', department.salePrice);
+	                                $.pgwModal({
+	                                    title: '订单确认',
+	                                    content: $('.modal').html()
+	                                });
+	                                $('.confirm-btn').off('click');
+	                                $('.confirm-btn').on('click', function() {
+	                                    payOrder();
+	                                });
+	                            }
+	                        });
+	                        $('.pull-text').show();
+	                        $('#scroller-pullUp').hide();
+	                        if (myScroll) myScroll.refresh();
+	                    }
 	                })
 	            }
 	        }
 	    })();
+
+	    function orderPayStatus(msg) {
+	        util.drawToast(msg);
+	        setTimeout(function() {
+	            window.location.href = '/order';
+	        }, 1000);
+	    }
+
+	    /**
+	     * 支付
+	     */
+	    var orderFlag = false;
+	    function payOrder() {
+	        if (orderFlag) {
+	            return;
+	        }
+	        orderFlag = true;
+	        $('#confirm-btn').html('正在支付...');
+	        var amount = parseInt($('#pay_price').attr('data-price') || '200');
+	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
+	            orderNo: $('#orderNo').attr('orderNo'),
+	            userId: cookie.getCookieValue('userId') || '13',
+	            amount: amount,
+	            channel: 'wx_pub'
+	        }, function (res) {
+	            orderFlag = false;
+	            $('#confirm-btn').html('确认支付');
+	            $.pgwModal('close');
+	            if (res.rtnCode == '0000000') {
+	                var charge = res.bizData;
+	                charge.credential = JSON.parse(charge.credential);
+	                pingpp.createPayment(charge, function(result, error){
+	                    if (result == "success") {
+	                        // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。
+	                        orderPayStatus('支付成功');
+	                    } else if (result == "fail") {
+	                        // charge 不正确或者微信公众账号支付失败时会在此处返回
+	                        orderPayStatus('支付失败');
+	                    } else if (result == "cancel") {
+	                        // 微信公众账号支付取消支付
+	                        orderPayStatus('支付失败');
+	                    }
+	                });
+	            } else {
+	                orderPayStatus('支付失败');
+	            }
+	        })
+	    }
 
 	    $(document).ready(function() {
 	        $('#container').css('height', window.innerHeight - 39);
