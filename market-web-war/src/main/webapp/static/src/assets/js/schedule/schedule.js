@@ -1,6 +1,7 @@
 var util = require('commonjs');
 var urlConfig = require('urlConfig');
 var handlebars = require('handlebars');
+var getTime = require('timeFormat');
 
 
 $(function(){
@@ -71,31 +72,24 @@ $(function(){
         }, function (res) {
             console.log(res)
             if (res.rtnCode == '0000000') {
-                var jsonData = res.bizData;
-                console.log(typeof jsonData.schedules);
-                //for(var i=0;i<jsonData.length;i++){
-                //    var id  =res.bizData.schedules[i];
-                //    var month  =res.bizData.schedules[i].month;
-                //    var title  =res.bizData.schedules[i].title;
-                //    var years  =res.bizData.schedules[i].years;
-                //    console.log(id)
-                //    console.log(month)
-                //    console.log(title)
-                //    console.log(years)
-                //}
+                var schedules = res.bizData;
+                var curMonth = schedules[0];
+                var month = curMonth.month > 9 ? curMonth.month : '0' + curMonth.month;
+
+                $('#cur_date').html(month + '月/' + curMonth.years + '年');
 
 
-                //util.ajaxFun(urlConfig.getScheduleInfo, 'get', {id: id}, function (res) {
-                //    if (res.rtnCode == '0000000') {
-                //        handlebars.registerHelper('formatDate', function (date) {
-                //            return getTime(date);
-                //        });
-                //        var template = handlebars.compile($("#article-detail").html());
-                //        var list = res.bizData;
-                //        var html = template(list);
-                //        $('.article-detail').html(html);
-                //    }
-                //});
+                util.ajaxFun(urlConfig.getScheduleInfo, 'get', {id: curMonth.schedules[0].id}, function (res) {
+                    if (res.rtnCode == '0000000') {
+                        handlebars.registerHelper('formatDate', function (date) {
+                            return getTime(date);
+                        });
+                        var template = handlebars.compile($("#article-detail").html());
+                        var list = res.bizData;
+                        var html = template(list);
+                        $('.content').html(html);
+                    }
+                });
             }
         })
     }

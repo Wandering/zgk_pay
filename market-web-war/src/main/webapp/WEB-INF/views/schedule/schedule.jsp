@@ -28,18 +28,18 @@
         </div>
     </div>
     <div class="header">
-        <span>03月/2016年</span>
+        <span id="cur_date">03月/2016年</span>
         <i class="calendar-icon"></i>
     </div>
     <div class="content">
-        <script id="article-detail" type="text/x-handlebars-template">
-            <div class="title">{{title}}</div>
-            <div class="date">{{formatDate lastModDate}}</div>
-            <div class="detail">
-                {{{content}}}
-            </div>
-        </script>
     </div>
+    <script id="article-detail" type="text/x-handlebars-template">
+        <div class="title">{{title}}</div>
+        <div class="date">{{formatDate lastModDate}}</div>
+        <div class="detail">
+            {{{content}}}
+        </div>
+    </script>
 </div>
 <script type="text/javascript" src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script type="text/javascript" src="<%=ctx%>static/dist/js/schedule.js"></script>

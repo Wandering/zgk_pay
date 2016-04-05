@@ -1,9 +1,9 @@
-webpackJsonp([12],{
+webpackJsonp([14],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(10);
+	__webpack_require__(11);
 	(function() {
 
 	    $('#header-menu').show();
@@ -55,7 +55,7 @@ webpackJsonp([12],{
 	    function orderPayStatus(msg) {
 	        util.drawToast(msg);
 	        setTimeout(function() {
-	            window.location.href = '/order';
+	            //window.location.href = '/order';
 	        }, 1000);
 	    }
 
@@ -74,7 +74,7 @@ webpackJsonp([12],{
 	            orderNo: $('#orderNo').attr('orderNo'),
 	            userId: cookie.getCookieValue('userId') || '13',
 	            amount: amount,
-	            channel: 'wx_pub'
+	            channel: 'wx'
 	        }, function (res) {
 	            orderFlag = false;
 	            $('#confirm-btn').html('确认支付');
@@ -116,7 +116,7 @@ webpackJsonp([12],{
 
 /***/ },
 
-/***/ 10:
+/***/ 11:
 /***/ function(module, exports) {
 
 	/**

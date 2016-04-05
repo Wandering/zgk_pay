@@ -47,6 +47,7 @@
 	var util = __webpack_require__(1);
 	var urlConfig = __webpack_require__(3);
 	var handlebars = __webpack_require__(6);
+	var getTime = __webpack_require__(10);
 
 
 	$(function(){
@@ -117,31 +118,24 @@
 	        }, function (res) {
 	            console.log(res)
 	            if (res.rtnCode == '0000000') {
-	                var jsonData = res.bizData;
-	                console.log(typeof jsonData.schedules);
-	                //for(var i=0;i<jsonData.length;i++){
-	                //    var id  =res.bizData.schedules[i];
-	                //    var month  =res.bizData.schedules[i].month;
-	                //    var title  =res.bizData.schedules[i].title;
-	                //    var years  =res.bizData.schedules[i].years;
-	                //    console.log(id)
-	                //    console.log(month)
-	                //    console.log(title)
-	                //    console.log(years)
-	                //}
+	                var schedules = res.bizData;
+	                var curMonth = schedules[0];
+	                var month = curMonth.month > 9 ? curMonth.month : '0' + curMonth.month;
+
+	                $('#cur_date').html(month + '月/' + curMonth.years + '年');
 
 
-	                //util.ajaxFun(urlConfig.getScheduleInfo, 'get', {id: id}, function (res) {
-	                //    if (res.rtnCode == '0000000') {
-	                //        handlebars.registerHelper('formatDate', function (date) {
-	                //            return getTime(date);
-	                //        });
-	                //        var template = handlebars.compile($("#article-detail").html());
-	                //        var list = res.bizData;
-	                //        var html = template(list);
-	                //        $('.article-detail').html(html);
-	                //    }
-	                //});
+	                util.ajaxFun(urlConfig.getScheduleInfo, 'get', {id: curMonth.schedules[0].id}, function (res) {
+	                    if (res.rtnCode == '0000000') {
+	                        handlebars.registerHelper('formatDate', function (date) {
+	                            return getTime(date);
+	                        });
+	                        var template = handlebars.compile($("#article-detail").html());
+	                        var list = res.bizData;
+	                        var html = template(list);
+	                        $('.content').html(html);
+	                    }
+	                });
 	            }
 	        })
 	    }
@@ -167,7 +161,7 @@
 
 	//var domainStr = 'm.zhigaokao.cn'; //正式
 	//var domainStr = 'test.m.zhigaokao.cn'; //测试
-	var domainStr = 'm.zhigaokao.com:8084';
+	var domainStr = 'm.zhigaokao.com:8083';
 
 	//获取域名前缀=============================
 	var urlDomain = window.location.hostname + '';
@@ -5227,6 +5221,42 @@
 	/******/ ])
 	});
 	;
+
+/***/ },
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+	//时间戳转换
+	    Date.prototype.Format = function (fmt) {
+	        var o = {
+	            "M+": this.getMonth() + 1, //月份
+	            "d+": this.getDate(), //日
+	            "h+": this.getHours(), //小时
+	            "m+": this.getMinutes(), //分
+	            "s+": this.getSeconds(), //秒
+	            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+	            "S": this.getMilliseconds() //毫秒
+	        };
+	        if (/(y+)/.test(fmt))
+	            fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+	        for (var k in o)
+	            if (new RegExp("(" + k + ")").test(fmt))
+	                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+	        return fmt;
+	    };
+	    var getTime = function (timestamp,formatStr) {
+	        var newDate = new Date();
+	        newDate.setTime(timestamp);
+	        return newDate.Format(formatStr || "yyyy-MM-dd hh:mm:ss");
+	    };
+
+	    return getTime;
+	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
 
 /***/ }
 /******/ ]);
