@@ -55,9 +55,9 @@ var md5=require('md5');
                     cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
                     cookie.setCookie("isReported",isReported, 4, "/");
                     cookie.setCookie("isSurvey",isSurvey, 4, "/");
-                    var url = 'http://' + domain +'/' + $.trim(userKey) + '/user-detail';
+                    var url = 'http://' + domain +'/user-detail';
                     url = encodeURIComponent(url);
-                    var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+                    var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_userinfo&state=' + $.trim(userKey) + '#wechat_redirect';
                     window.location.href = rUrl;
                     //window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/user-detail');
                 } else {
