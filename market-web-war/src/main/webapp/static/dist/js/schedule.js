@@ -173,7 +173,6 @@
 
 	var cookie = __webpack_require__(2);
 
-
 	var isLogin = function () {
 	    return cookie.getCookieValue('isLogin')
 	};

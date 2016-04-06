@@ -136,7 +136,6 @@ webpackJsonp([13],[
 	        util.ajaxFun(interfaceUrl.getOpenId, 'get', {
 	            code: code
 	        }, function (res) {
-	            alert(JSON.stringify(res));
 	            if (res.rtnCode == '0000000') {
 	                cookie.setCookie("openId", res.bizData.openId, 4, "/");
 	            }
