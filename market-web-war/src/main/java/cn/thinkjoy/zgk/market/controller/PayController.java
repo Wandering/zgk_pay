@@ -4,6 +4,7 @@ import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
 import cn.thinkjoy.zgk.market.domain.Order;
 import cn.thinkjoy.zgk.market.domain.OrderStatements;
+import cn.thinkjoy.zgk.market.enumerate.PAYCHANNEL;
 import cn.thinkjoy.zgk.market.service.IOrderService;
 import cn.thinkjoy.zgk.market.service.IOrderStatementsService;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
@@ -11,22 +12,28 @@ import cn.thinkjoy.zgk.market.util.IPUtil;
 import cn.thinkjoy.zgk.market.util.NumberGenUtil;
 import cn.thinkjoy.zgk.market.util.StaticSource;
 import cn.thinkjoy.zgk.zgksystem.AgentService;
-//import cn.thinkjoy.zgk.zgksystem.pojo.SplitPricePojo;
+import cn.thinkjoy.zgk.zgksystem.domain.SplitPricePojo;
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.fastjson.JSONObject;
 import com.pingplusplus.Pingpp;
 import com.pingplusplus.model.Charge;
+import com.pingplusplus.util.WxpubOAuth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 /**
  * Created by wpliu on 16/3/26.
@@ -50,6 +57,30 @@ public class PayController {
 
 
     public static final String  CURRENCY ="cny";
+
+
+    /**
+     * 获取openId
+     * @param code
+     * @return
+     */
+    @RequestMapping(value = "/getOpenId",method = RequestMethod.GET)
+    @ResponseBody
+    public Map getOpenId(@RequestParam(value = "code")String code){
+        String appSecret=StaticSource.getSource("appSecret");
+        String wxAppId=StaticSource.getSource("wxAppId");
+        Map<String,Object> map=new HashMap<>();
+        String openId= null;
+        try {
+            openId = WxpubOAuth.getOpenId(wxAppId, appSecret, code);
+            map.put("openId",openId);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            logger.error("获取openId异常:" + e);
+        }
+        return map;
+    }
+
     /**
      * 支付订单
      * @return
@@ -60,20 +91,17 @@ public class PayController {
                            @RequestParam(value = "amount",required = true)String amount,
                            @RequestParam(value = "userId",required = true)long userId,
                            @RequestParam(value = "channel",required = true)String channel ,
+                           @RequestParam(value = "openId",required = true)String openId,
                            HttpServletRequest request){
         Map<String,Object> resultMap=new HashMap<>();
         BigDecimal decimal=new BigDecimal(amount);
-
         //参数错误
         if("".equals(orderNo)||orderNo==null||"".equals(amount)||amount==null||userId==0){
             throw  new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
         }
         try{
-
-
             Pingpp.apiKey=StaticSource.getSource("apiKey");
             String appId=StaticSource.getSource("appId");
-            String openId=StaticSource.getSource("openId");
             String statemenstNo=NumberGenUtil.genStatementNo();
             OrderStatements orderstatement=new OrderStatements();
             orderstatement.setAmount(Double.valueOf(amount)*100);
@@ -83,30 +111,33 @@ public class PayController {
             orderstatement.setStatus(0);
             orderstatement.setStatementNo(statemenstNo);
             orderstatement.setState("N");
-
             Map<String,Object> chargeParams=new HashMap<>();
             Map<String,String> app=new HashMap<>();
             app.put("id", appId);
             chargeParams.put("order_no",orderNo);
-            chargeParams.put("amount",decimal.intValue()*100);
+            chargeParams.put("amount",decimal.doubleValue()*100);
             chargeParams.put("app",app);
             chargeParams.put("channel",channel);
             chargeParams.put("client_ip", IPUtil.getRemortIP(request));
-//            chargeParams.put("subject",StaticSource.getSource("subject"));
-//            chargeParams.put("body",StaticSource.getSource("body"));
             chargeParams.put("subject","智高考");
             chargeParams.put("body","智高考");
             chargeParams.put("currency",CURRENCY);
-            Map<String,Object> extraMap=new HashMap<>();
-            extraMap.put("open_id",openId);
-            chargeParams.put("extra",extraMap);
+            if(channel.equals(PAYCHANNEL.WXPUB.getCode())){
+                Map<String,Object> extraMap=new HashMap<>();
+                extraMap.put("open_id",openId);
+                chargeParams.put("extra",extraMap);
+            }else  if(channel.equals(PAYCHANNEL.ALIPAYWAP.getCode())){
+                Map<String,Object> extraMap=new HashMap<>();
+                extraMap.put("success_url","http://m.zhigaokao.cn/order");
+                chargeParams.put("extra",extraMap);
+            }
+
             orderstatement.setPayJson(JSONObject.toJSONString(chargeParams));
             orderStatementService.insert(orderstatement);
             Charge charge=Charge.create(chargeParams);
-
-
             return charge;
         }catch (Exception e){
+            logger.error("用户"+userId+":"+"支付失败,错误:"+e);
             throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
         }
 
@@ -117,30 +148,54 @@ public class PayController {
      * @return
      */
     @RequestMapping(value = "/callBack",method = RequestMethod.POST)
-    public void callBack(@RequestBody Charge charge ){
+    @ResponseBody
+    public String callBack(HttpServletRequest request){
         try {
-            String orderNo = charge.getOrderNo();
+
+            int contentLength = request.getContentLength();
+            if(contentLength<0){
+                logger.error("回调参数为空");
+            }
+            byte buffer[] = new byte[contentLength];
+            for (int i = 0; i < contentLength;) {
+                int readlen = request.getInputStream().read(buffer, i,
+                        contentLength - i);
+                if (readlen == -1) {
+                    break;
+                }
+                i += readlen;
+            }
+            String requestJson=new String(buffer,"UTF-8");
+            JSONObject object=   JSONObject.parseObject(requestJson);
+
+            Map<String,Object> callBackMap= (Map) ((Map)object.get("data")).get("object");
+            String orderNo = callBackMap.get("order_no").toString();
             Order order = new Order();
             order.setOrderNo(orderNo);
             order.setStatus(1);
             orderService.updateByOrderNo(order);
             OrderStatements orderStatements = new OrderStatements();
             orderStatements.setOrderNo(orderNo);
-            orderStatements.setCallBackJson(JSONObject.toJSONString(charge));
+            orderStatements.setCallBackJson(requestJson);
             orderStatementService.updateByOrderNo(orderStatements);
-            Map<String, Order> orderMap = orderService.queryOrderByNo(orderNo);
+            Map<String, Object> orderMap = orderService.queryOrderByNo(orderNo);
             String userId= orderMap.get("user_id").toString();
 
             List<Map<String,Object>> userRelLs= userAccountExService.getUserRelListByUserId(Long.valueOf(userId));
+            List<SplitPricePojo> splitPricePojos=new ArrayList<>();
+            for(Map<String,Object> map:userRelLs){
+                SplitPricePojo splitPricePojo=new SplitPricePojo();
+                splitPricePojo.setAccountId(Integer.valueOf(map.get("accountId").toString()));
+                splitPricePojo.setAgentLevel(Integer.valueOf(map.get("agentLevel").toString()));
+                splitPricePojo.setAccountPhone(map.get("phone").toString());
+                splitPricePojos.add(splitPricePojo);
+            }
+            agentService.SplitPriceExec(splitPricePojos, Integer.valueOf(callBackMap.get("amount").toString()), orderNo);
 
-
-
-
-//            List<SplitPricePojo> splitPricePojos = new ArrayList<>();
-//            agentService.SplitPriceExec(splitPricePojos, charge.getAmount(), orderNo);
-
+            return "success";
         }catch (Exception e){
             logger.error("回调错误"+e);
+            throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
         }
 
     }

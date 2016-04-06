@@ -132,19 +132,3 @@ header {
     transform: rotate(360deg);
   }
 }
-
-.container{
-  position: absolute;
-  left: 0;
-  top: 39px;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-header{
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-}

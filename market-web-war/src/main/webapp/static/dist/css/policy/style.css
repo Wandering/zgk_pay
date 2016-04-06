@@ -11,15 +11,6 @@ header .header-btn {
   top: 6px;
   left: 9px;
 }
-header .location {
-  font-size: 12px;
-  vertical-align: 2px;
-  margin-left: 1px;
-}
-header .location.location-icon:before {
-  vertical-align: -6px;
-  margin-right: 4px;
-}
 
 .container li {
   padding: 12px;

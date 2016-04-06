@@ -30,7 +30,7 @@
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		13:0
+/******/ 		16:0
 /******/ 	};
 
 /******/ 	// The require function
@@ -76,7 +76,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"code","1":"findPassword","3":"modifyUserDetail","4":"order","6":"policy","7":"policyDetail","8":"regLogin","9":"schoolInfo","10":"userDetail","11":"vip","12":"vipBuy"}[chunkId]||chunkId) + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"code","2":"findPassword","5":"modifyUserDetail","6":"order","8":"policy","9":"policyDetail","10":"regLogin","12":"schoolInfo","13":"userDetail","14":"vip","15":"vipBuy"}[chunkId]||chunkId) + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -97,42 +97,28 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var domainStr = 'm.zhigaokao.cn'; //正式
-	//var domainStr = 'test.m.zhigaokao.cn'; //测试
+	//var domainStr = 'test.zhigaokao.cn'; //测试
 	//var domainStr = 'm.zhigaokao.com:8084';
 
 	//获取域名前缀=============================
 	var urlDomain = window.location.hostname + '';
 	var urlArr = urlDomain.split('.');
 	var provinceKey = urlArr[0];
-	if (provinceKey == "www" || provinceKey == 'undefined') {
-	    window.location.assign('http://zj.m.zhigaokao.cn');
-	}
-	$('#current-province').text($('#select-province li a[href="http://' + provinceKey + '.m.zhigaokao.cn/"]').text())
+
+	console.log(window.location.hostname);
 
 
-	//判断是否登录=============================
 	var cookie = __webpack_require__(2);
-	$('body').on('click', '#logout-btn', function () {
-	    cookie.deleteCookie('isLogin', '');
-	    cookie.deleteCookie('token', '');
-	    cookie.deleteCookie('icon', '');
-	    cookie.deleteCookie('phone', '');
-	    cookie.deleteCookie('subjectType', '');
-	    cookie.deleteCookie('userKey', '');
-	    cookie.deleteCookie('userName', '');
-	    cookie.deleteCookie('vipStatus', '');
-	    window.location.assign('http://' + window.location.host + '/index.html')
-	});
+
 
 	var isLogin = function () {
 	    return cookie.getCookieValue('isLogin')
 	};
-
 	function ajaxFun(url, method, data, callback) {
 	    if (cookie.getCookieValue('token')) {
 	        data.token = cookie.getCookieValue('token');
 	    }
-	    data.userKey = provinceKey;
+	    data.userKey = cookie.getCookieValue('userKey');
 	    var strParameter = '';
 	    for (var i in data) {
 	        strParameter += "&" + i + "=" + data[i];
@@ -272,9 +258,9 @@
 
 
 
-	var domainStr = 'm.zhigaokao.cn'; // 正式
-	//var domainStr = 'test.m.zhigaokao.cn'; // 测试
-	//var domainStr = 'm.zhigaokao.com'; // 前端开发
+	var domainStr = 'zhigaokao.cn'; // 正式
+	//var domainStr = 'test.zhigaokao.cn'; // 测试
+	//var domainStr = 'zhigaokao.com'; // 前端开发
 
 
 
@@ -331,13 +317,15 @@
 	var BASE_URL = 'http://s1.service.zhigaokao.cn'; //正式
 	//var BASE_URL = 'http://10.136.21.171:8080';  //正式环境
 	//var BASE_URL = 'http://10.136.13.233:8080';  //测试环境
+	//var BASE_URL = 'http://172.16.170.166:8080';  //小文本地
 	//var BASE_URL2 = 'http://10.254.130.33:8080';  //测试环境(智能填报)
 	//var BASE_URL = 'http://10.136.56.195:8080';  //开发环境
 	//var BASE_URL = 'http://172.16.180.150:8086';  //yyp
 	//var BASE_URL = 'http://127.0.0.1:8080';
 
-	var interfaceUrl = {
 
+
+	var interfaceUrl = {
 	    /*
 	     * ==================================================
 	     * new  interface
@@ -357,7 +345,14 @@
 	     * 订单支付
 	     */
 	    payOrder: '/pay/payOrder',
-
+	    /**
+	     * 获取订单列表
+	     */
+	    getUserOrderList: '/order/getUserOrderList',
+	    /**
+	     * 获取openId
+	     */
+	    getOpenId: '/pay/getOpenId',
 	    /*
 	     * 高考咨询
 	     * */
@@ -531,8 +526,14 @@
 	    getVolunteerSchool: BASE_URL + '/report/main.do', // 院校清单
 	    getSpecialty: BASE_URL + '/report/get/specialty.do', // 获取专业信息
 	    volunteerSave: BASE_URL + '/report/save.do', // 保存志愿填报
-	    getVolunteerFinalInfo: BASE_URL + '/report/get/info.do' // 志愿报告结果页
+	    getVolunteerFinalInfo: BASE_URL + '/report/get/info.do', // 志愿报告结果页
 
+
+	    /**
+	     *
+	     */
+
+	    getSplitPriceInfo: '/getSplitPriceInfo'
 
 	};
 

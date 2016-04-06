@@ -4,13 +4,15 @@
 var BASE_URL = 'http://s1.service.zhigaokao.cn'; //正式
 //var BASE_URL = 'http://10.136.21.171:8080';  //正式环境
 //var BASE_URL = 'http://10.136.13.233:8080';  //测试环境
+//var BASE_URL = 'http://172.16.170.166:8080';  //小文本地
 //var BASE_URL2 = 'http://10.254.130.33:8080';  //测试环境(智能填报)
 //var BASE_URL = 'http://10.136.56.195:8080';  //开发环境
 //var BASE_URL = 'http://172.16.180.150:8086';  //yyp
 //var BASE_URL = 'http://127.0.0.1:8080';
 
-var interfaceUrl = {
 
+
+var interfaceUrl = {
     /*
      * ==================================================
      * new  interface
@@ -30,7 +32,14 @@ var interfaceUrl = {
      * 订单支付
      */
     payOrder: '/pay/payOrder',
-
+    /**
+     * 获取订单列表
+     */
+    getUserOrderList: '/order/getUserOrderList',
+    /**
+     * 获取openId
+     */
+    getOpenId: '/pay/getOpenId',
     /*
      * 高考咨询
      * */
@@ -204,8 +213,14 @@ var interfaceUrl = {
     getVolunteerSchool: BASE_URL + '/report/main.do', // 院校清单
     getSpecialty: BASE_URL + '/report/get/specialty.do', // 获取专业信息
     volunteerSave: BASE_URL + '/report/save.do', // 保存志愿填报
-    getVolunteerFinalInfo: BASE_URL + '/report/get/info.do' // 志愿报告结果页
+    getVolunteerFinalInfo: BASE_URL + '/report/get/info.do', // 志愿报告结果页
 
+
+    /**
+     *
+     */
+
+    getSplitPriceInfo: '/getSplitPriceInfo'
 
 };
 

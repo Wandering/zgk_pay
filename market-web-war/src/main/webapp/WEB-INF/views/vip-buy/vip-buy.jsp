@@ -24,6 +24,7 @@
     <div class="vip-buy-btn">
         立即购买
     </div>
+    <div class="console_msg"></div>
     <div class="modal hidden">
         <div class="order-info">
             <div id="orderNo"></div>

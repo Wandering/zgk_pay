@@ -63,6 +63,12 @@ gulp.task('clean', function() {
         .pipe(clean());
 });
 
+gulp.task('cleanJs', function() {
+    gulp.src(['./dist/js'],
+        {read: false})
+        .pipe(clean());
+});
+
 
 
 var myDevConfig = Object.create(webpackConfig);

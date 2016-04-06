@@ -1,4 +1,4 @@
-webpackJsonp([7],{
+webpackJsonp([9],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
@@ -7,7 +7,7 @@ webpackJsonp([7],{
 	 * Created by pdeng on 16/3/31.
 	 */
 	var util = __webpack_require__(1);
-	var handlebars = __webpack_require__(6);
+	var handlebars = __webpack_require__(7);
 	var interfaceUrl = __webpack_require__(3);
 	$('#header-title').text('详情');
 	$(function () {
@@ -30,7 +30,7 @@ webpackJsonp([7],{
 
 /***/ },
 
-/***/ 6:
+/***/ 7:
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!

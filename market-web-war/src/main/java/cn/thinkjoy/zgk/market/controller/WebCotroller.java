@@ -2,12 +2,16 @@ package cn.thinkjoy.zgk.market.controller;
 
 import cn.thinkjoy.zgk.zgksystem.AgentService;
 import cn.thinkjoy.zgk.zgksystem.domain.Department;
+import cn.thinkjoy.zgk.zgksystem.domain.SplitPrice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.math.BigDecimal;
+import java.util.*;
 
 @Controller
 @RequestMapping("/")
@@ -21,6 +25,35 @@ public class WebCotroller {
     public Department getAgentInfo(@RequestParam(value = "accountId")String accountId)
     {
         return agentService.getAgentInfo(accountId);
+    }
+
+    @RequestMapping("/getSplitPriceInfo")
+    @ResponseBody
+    public Map<String,List<SplitPrice>> getSplitPriceInfo(@RequestParam(value = "accountId")String accountId)
+    {
+        List<SplitPrice> list = agentService.getSplitPriceInfo(accountId);
+        Map<String,List<SplitPrice>> priceMap = new HashMap<>();
+        if(null != list && list.size()>0)
+        {
+            for (SplitPrice price: list) {
+                BigDecimal realPrice = new BigDecimal(price.getPrice()).
+                        divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_DOWN);
+                price.setPrice(realPrice.doubleValue());
+                Calendar cal = Calendar.getInstance();
+                cal.setTimeInMillis(price.getCreateTime());
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH) + 1;
+                String key = year + "-" + month;
+                List<SplitPrice> pList = priceMap.get(key);
+                if(null == pList)
+                {
+                    pList = new ArrayList<>();
+                    priceMap.put(key, pList);
+                }
+                pList.add(price);
+            }
+        }
+        return priceMap;
     }
     /**
      * login
@@ -140,6 +173,33 @@ public class WebCotroller {
     @RequestMapping("/code")
     public ModelAndView code() {
         return new ModelAndView("/code/code");
+    }
+    /**
+     * inventory
+     *
+     * @return
+     */
+    @RequestMapping("/consumer-list")
+    public ModelAndView inventory() {
+        return new ModelAndView("/consumer-list/consumer-list");
+    }
+    /**
+     * inventory
+     *
+     * @return
+     */
+    @RequestMapping("/intro")
+    public ModelAndView intro() {
+        return new ModelAndView("/consumer-list/intro");
+    }
+    /**
+     * schedule
+     *
+     * @return
+     */
+    @RequestMapping("/schedule")
+    public ModelAndView schedule() {
+        return new ModelAndView("/schedule/schedule");
     }
 
 

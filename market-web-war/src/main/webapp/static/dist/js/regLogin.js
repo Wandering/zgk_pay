@@ -1,16 +1,16 @@
-webpackJsonp([8],[
+webpackJsonp([10],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 	// 切换
-	__webpack_require__(7);
-
-	// 登录
 	__webpack_require__(8);
 
-	// 注册
+	// 登录
 	__webpack_require__(9);
+
+	// 注册
+	__webpack_require__(10);
 
 
 
@@ -19,7 +19,8 @@ webpackJsonp([8],[
 /* 1 */,
 /* 2 */,
 /* 3 */,
-/* 4 */
+/* 4 */,
+/* 5 */
 /***/ function(module, exports) {
 
 		/**
@@ -239,9 +240,9 @@ webpackJsonp([8],[
 
 
 /***/ },
-/* 5 */,
 /* 6 */,
-/* 7 */
+/* 7 */,
+/* 8 */
 /***/ function(module, exports) {
 
 	var UI ={
@@ -263,15 +264,25 @@ webpackJsonp([8],[
 
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var util=__webpack_require__(1);
 	var cookie=__webpack_require__(2);
-	var md5=__webpack_require__(4);
+	var md5=__webpack_require__(5);
 	    var domain = util.domain; // 正式
 
 	    $(function () {
+
+	        function isWeiXin(){
+	            var ua = window.navigator.userAgent.toLowerCase();
+	            //alert(ua);
+	            if(ua.indexOf('micromessenger') > -1){
+	                return true;
+	            }else{
+	                return false;
+	            }
+	        }
 	        // 登录提交
 	        $('#submit-btn').on('click', function () {
 	            var loginPhoneV = $.trim($('#login-phone').val()),
@@ -299,14 +310,17 @@ webpackJsonp([8],[
 	                console.log(res)
 	                if (res.rtnCode === "0000000") {
 	                    var token = res.bizData.token;  // token
-	                    var userId = res.bizData.userInfo.id;  // userId
 	                    var userName = res.bizData.userInfo.name; // 用户名称
+	                    var userId = res.bizData.userInfo.id;  // userId
 	                    var vipStatus = res.bizData.userInfo.vipStatus; // VIP状态
 	                    var phone = res.bizData.userInfo.account; // 用户账号
 	                    var userKey = res.bizData.userInfo.userKey; // 省份userKey
-	                    var province = res.bizData.userInfo.proName; // 选择省份
-	                    var city = res.bizData.userInfo.cityName; // 选择城市
-	                    var county = res.bizData.userInfo.countyName; // 选择县区
+	                    var province = res.bizData.userInfo.province; // 选择省份
+	                    var proName = res.bizData.userInfo.proName; // 选择省份
+	                    var city = res.bizData.userInfo.city; // 选择城市
+	                    var cityName = res.bizData.userInfo.cityName; // 选择城市
+	                    var county = res.bizData.userInfo.county; // 选择县区
+	                    var countyName = res.bizData.userInfo.countyName; // 选择县区
 	                    var qrcodeUrl = res.bizData.userInfo.qrcodeUrl;  // 二维码
 	                    var isReported = res.bizData.userInfo.isReported; // 智能填报次数
 	                    var isSurvey = res.bizData.userInfo.isSurvey; // 专家测试次数
@@ -317,17 +331,26 @@ webpackJsonp([8],[
 	                    cookie.setCookie("vipStatus", vipStatus, 4, "/");
 	                    cookie.setCookie("phone",phone, 4, "/");
 	                    cookie.setCookie("userKey",userKey, 4, "/");
+	                    cookie.setCookie("proName",proName, 4, "/");
+	                    cookie.setCookie("cityName",cityName, 4, "/");
+	                    cookie.setCookie("countyName",countyName, 4, "/");
 	                    cookie.setCookie("province",province, 4, "/");
 	                    cookie.setCookie("city",city, 4, "/");
 	                    cookie.setCookie("county",county, 4, "/");
 	                    cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
 	                    cookie.setCookie("isReported",isReported, 4, "/");
 	                    cookie.setCookie("isSurvey",isSurvey, 4, "/");
-	                    window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/user-detail');
+	                    var url = 'http://' + domain +'/user-detail';
+	                    if (isWeiXin()) {
+	                        url = encodeURIComponent(url);
+	                        var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_base&state=' + $.trim(userKey) + '#wechat_redirect';
+	                        window.location.href = rUrl;
+	                    } else {
+	                        window.location.assign(url);
+	                    }
 	                } else {
 	                    util.drawToast(res.msg);
 	                }
-
 	            });
 	        });
 	    });
@@ -346,13 +369,15 @@ webpackJsonp([8],[
 
 
 
+
+
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var util = __webpack_require__(1);
 	var cookie = __webpack_require__(2);
-	var md5 = __webpack_require__(4);
+	var md5 = __webpack_require__(5);
 	var urlConfig = __webpack_require__(3);
 
 	//var dialog = require('dialog');
@@ -577,8 +602,11 @@ webpackJsonp([8],[
 	                    var phone = res.bizData.userInfo.account; // 用户账号
 	                    var userKey = res.bizData.userInfo.userKey; // 省份userKey
 	                    var province = res.bizData.userInfo.province; // 选择省份
+	                    var proName = res.bizData.userInfo.proName; // 选择省份
 	                    var city = res.bizData.userInfo.city; // 选择城市
+	                    var cityName = res.bizData.userInfo.cityName; // 选择城市
 	                    var county = res.bizData.userInfo.county; // 选择县区
+	                    var countyName = res.bizData.userInfo.countyName; // 选择县区
 	                    var qrcodeUrl = res.bizData.userInfo.qrcodeUrl;  // 二维码
 	                    var isReported = res.bizData.userInfo.isReported; // 智能填报次数
 	                    var isSurvey = res.bizData.userInfo.isSurvey; // 专家测试次数
@@ -589,20 +617,24 @@ webpackJsonp([8],[
 	                    cookie.setCookie("vipStatus", vipStatus, 4, "/");
 	                    cookie.setCookie("phone",phone, 4, "/");
 	                    cookie.setCookie("userKey",userKey, 4, "/");
+	                    cookie.setCookie("proName",proName, 4, "/");
+	                    cookie.setCookie("cityName",cityName, 4, "/");
+	                    cookie.setCookie("countyName",countyName, 4, "/");
 	                    cookie.setCookie("province",province, 4, "/");
 	                    cookie.setCookie("city",city, 4, "/");
 	                    cookie.setCookie("county",county, 4, "/");
 	                    cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
 	                    cookie.setCookie("isReported",isReported, 4, "/");
 	                    cookie.setCookie("isSurvey",isSurvey, 4, "/");
-	                    window.location.assign('http://' + $.trim(userKey) + '.' + domain + '/user-detail');
+	                    window.location.assign('http://'+ domain +'/user-detail?userKey='+userKey);
 	                } else {
 	                    util.drawToast(res.msg);
 	                }
 	            });
 	        });
-
 	    });
+
+
 
 	    var captchaType = '0'; //0.注册标志  1 找回密码
 	    // 验证码获取

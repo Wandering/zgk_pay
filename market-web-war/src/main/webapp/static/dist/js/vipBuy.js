@@ -1,9 +1,9 @@
-webpackJsonp([12],{
+webpackJsonp([15],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(10);
+	__webpack_require__(11);
 	(function() {
 
 	    $('#header-menu').show();
@@ -52,6 +52,22 @@ webpackJsonp([12],{
 	        })
 	    }
 
+	    function orderPayStatus(msg) {
+	        util.drawToast(msg);
+	        setTimeout(function() {
+	            window.location.href = '/order';
+	        }, 1000);
+	    }
+
+	    function isWeiXin(){
+	        var ua = window.navigator.userAgent.toLowerCase();
+	        if(ua.indexOf('micromessenger') > -1){
+	            return true;
+	        }else{
+	            return false;
+	        }
+	    }
+
 	    /**
 	     * 支付
 	     */
@@ -62,27 +78,42 @@ webpackJsonp([12],{
 	        }
 	        orderFlag = true;
 	        $('#confirm-btn').html('正在支付...');
+	        var amount = parseFloat($('#pay_price').attr('data-price') || '200');
+	        var openId = cookie.getCookieValue('openId');
+
+	        var channel = 'wx_pub';
+	        if (!isWeiXin()) {
+	            channel = 'alipay_wap';
+	        }
+
 	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
 	            orderNo: $('#orderNo').attr('orderNo'),
 	            userId: cookie.getCookieValue('userId') || '13',
-	            amount: $('#pay_price').attr('data-price') || '200',
-	            channel: 'wx_pub'
+	            amount: amount,
+	            channel: channel,
+	            openId: openId
 	        }, function (res) {
 	            orderFlag = false;
 	            $('#confirm-btn').html('确认支付');
+	            $.pgwModal('close');
 	            if (res.rtnCode == '0000000') {
+	                var charge = res.bizData;
+	                charge.credential = JSON.parse(charge.credential);
+	                alert(JSON.stringify(charge));
 	                pingpp.createPayment(charge, function(result, error){
 	                    if (result == "success") {
 	                        // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。
-	                        window.location.href = '/order';
+	                        orderPayStatus('支付成功');
 	                    } else if (result == "fail") {
 	                        // charge 不正确或者微信公众账号支付失败时会在此处返回
+	                        orderPayStatus('支付失败');
 	                    } else if (result == "cancel") {
 	                        // 微信公众账号支付取消支付
+	                        orderPayStatus('支付失败');
 	                    }
 	                });
 	            } else {
-	                $.pgwModal('close');
+	                orderPayStatus('支付失败');
 	            }
 	        })
 	    }
@@ -103,7 +134,7 @@ webpackJsonp([12],{
 
 /***/ },
 
-/***/ 10:
+/***/ 11:
 /***/ function(module, exports) {
 
 	/**

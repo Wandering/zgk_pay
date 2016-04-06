@@ -33,10 +33,10 @@
         var subject = ['文科', '理科'];
         $('#subject').text(subject[subjectType || 1]);
 
-        var province = cookie.getCookieValue('province');
+        var province = cookie.getCookieValue('proName');
         $('#province').text(province || '');
 
-        var city = cookie.getCookieValue('city');
+        var city = cookie.getCookieValue('cityName');
         $('#city').text(city || '');
 
         var email = cookie.getCookieValue('email');
@@ -45,6 +45,8 @@
         var qrcodeUrl = cookie.getCookieValue('qrcodeUrl');
         $('#qrcodeUrl').attr('src', qrcodeUrl || '/static/dist/img/icons/code.png');
     }
+
+
 
     //修改密码
     function changePwd() {
@@ -83,14 +85,77 @@
             oldPassword: currentPsd.val(),//旧密码
             password: newPsd.val()//新密码
         }, function (res) {
+            console.log(res)
             if (res.rtnCode == '0000000') {
+                cookie.deleteCookie('city', '');
+                cookie.deleteCookie('county', '');
+                cookie.deleteCookie('icon', '');
+                cookie.deleteCookie('isLogin', '');
+                cookie.deleteCookie('isReported', '');
+                cookie.deleteCookie('isSurvey', '');
+                cookie.deleteCookie('phone', '');
+                cookie.deleteCookie('province', '');
+                cookie.deleteCookie('qrcodeUrl', '');
+                cookie.deleteCookie('subjectType', '');
+                cookie.deleteCookie('token', '');
+                cookie.deleteCookie('userKey', '');
+                cookie.deleteCookie('userName', '');
+                cookie.deleteCookie('vipStatus', '');
+                cookie.deleteCookie('userId', '');
+                cookie.deleteCookie('proName', '');
+                cookie.deleteCookie('cityName', '');
+                cookie.deleteCookie('countyName', '');
                 window.location.href = '/login';
             } else {
                 util.drawToast(res.msg);
             }
         });
     }
+
+
+    function getQueryObject(url) {
+        url = url == null ? window.location.href : url;
+        var search = url.substring(url.lastIndexOf("?") + 1);
+        var obj = {};
+        var reg = /([^?&=]+)=([^?&=]*)/g;
+        search.replace(reg, function (rs, $1, $2) {
+            var name = decodeURIComponent($1);
+            var val = decodeURIComponent($2);
+            val = String(val);
+            obj[name] = val;
+            return rs;
+        });
+        return obj;
+    }
+
+    function getOpenId(code) {
+        util.ajaxFun(interfaceUrl.getOpenId, 'get', {
+            code: code
+        }, function (res) {
+            alert(JSON.stringify(res));
+            if (res.rtnCode == '0000000') {
+                cookie.setCookie("openId", res.bizData.openId, 4, "/");
+            }
+        });
+    }
+
+    function isWeiXin(){
+        var ua = window.navigator.userAgent.toLowerCase();
+        if(ua.indexOf('micromessenger') > -1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     $(document).ready(function() {
+
+        if (isWeiXin()) {
+            var obj = getQueryObject(window.location.href);
+            cookie.setCookie("code", obj.code, 4, "/");
+            getOpenId(obj.code);
+        }
+
         initUserInfo();
 
         $('.modify-btn').on('click', function() {

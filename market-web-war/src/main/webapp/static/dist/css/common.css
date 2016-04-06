@@ -382,6 +382,17 @@ header {
 header .header-title {
   text-align: center;
 }
+header .location {
+  font-size: 12px;
+  vertical-align: 2px;
+  margin-left: 1px;
+  height: 39px;
+  display: inline-block;
+}
+header .location.location-icon:before {
+  vertical-align: -6px;
+  margin-right: 4px;
+}
 
 .hide {
   display: none;
@@ -816,5 +827,30 @@ header .header-btn {
   background-color: #B61F28;
   text-align: center;
   border: none;
+  color: #fff;
+}
+
+.province-option-list {
+  width: 400px;
+  font-size: 13px;
+  padding: 17px 10px;
+  position: absolute;
+  z-index: 3;
+  background-color: #fff;
+}
+.province-option-list .province-item {
+  display: inline-block;
+  width: 55px;
+  text-align: center;
+  height: 27px;
+  line-height: 30px;
+  border-radius: 2px;
+  border: 1px solid #979797;
+  color: #979797;
+  margin: 12px 6px;
+}
+.province-option-list .province-item.active {
+  background-color: #D80C18;
+  border-color: #D80C18;
   color: #fff;
 }
