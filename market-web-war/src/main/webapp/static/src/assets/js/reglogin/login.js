@@ -37,7 +37,6 @@ var md5=require('md5');
                 account: loginPhoneV,
                 password: md5loginPwdV
             }, function (res) {
-                alert(82)
                 console.log(res)
                 if (res.rtnCode === "0000000") {
                     var token = res.bizData.token;  // token

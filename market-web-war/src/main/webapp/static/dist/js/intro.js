@@ -55,9 +55,9 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	//var domainStr = 'm.zhigaokao.cn'; //正式
+	var domainStr = 'zgkser.zhigaokao.cn'; //正式
 	//var domainStr = 'test.zhigaokao.cn'; //测试
-	var domainStr = 'm.zhigaokao.com:8084';
+	//var domainStr = 'm.zhigaokao.com:8084';
 
 	//获取域名前缀=============================
 	var urlDomain = window.location.hostname + '';
