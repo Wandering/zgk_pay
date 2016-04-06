@@ -31,10 +31,8 @@ var cookie = require('cookie');
         $('#province-option').toggleClass('hide');
     });
     if(!cookie.getCookieValue('userKey')){
-        alert(2)
         cookie.setCookie("userKey", 'zj', 4, "/");
         $('#province-text').text('浙江');
-        alert(3)
     }
 
 

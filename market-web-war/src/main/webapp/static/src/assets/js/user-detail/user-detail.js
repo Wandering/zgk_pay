@@ -11,6 +11,17 @@
     $('#header-title').text('个人信息');
     $('#header-menu').show();
 
+
+
+
+
+
+
+
+
+
+
+
     function initUserInfo() {
         var avatar = cookie.getCookieValue('avatar');
         if (!avatar) avatar = '/static/dist/img/icons/avatar.png';
@@ -46,6 +57,20 @@
         $('#qrcodeUrl').attr('src', qrcodeUrl || '/static/dist/img/icons/code.png');
     }
 
+    util.ajaxFun(interfaceUrl.getUserInfo, 'GET', {}, function (res) {
+        console.log(res)
+        if (res.rtnCode == '0000000') {
+            var personListData = res.bizData;
+            $('#header-user-name').text(personListData.name);
+            $('#school-name').text(personListData.schoolName);
+            $('#email').text(personListData.mail);
+            var sexTxt = personListData.sex;
+            sexTxt == "0" ? $('#sex').text('女生'):$('#sex').text('男生');
+            var subjectTypeTxt = personListData.subjectType;
+            subjectTypeTxt == "0" ? $('#subject').text('文史'):$('#subject').text('理工');
+
+        }
+    });
 
 
     //修改密码

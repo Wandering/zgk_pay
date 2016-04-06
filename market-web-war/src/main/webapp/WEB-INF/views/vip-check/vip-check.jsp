@@ -10,15 +10,17 @@
 <%@ include file="../common/header.jsp"%>
 <div class="container">
     <div class="banner">
-        <img src="<%=ctx%>/static/img/vip/banner.png" alt=""/>
+        <img src="<%=ctx%>/static/dist/img/icons/banner.png" alt=""/>
     </div>
     <div class="vip-check-info">
-        <img src="<%=ctx%>/static/img/vip-check/vip.png" alt=""/>
+        <img src="<%=ctx%>/static/dist/img/icons/vip.png" alt=""/>
         <div class="text">
             <div>您已VIP是会员</div>
-            <div>VIP时效：从2016-02-25到2019-09-01</div>
+            <div>VIP时效：从 <span id="startDate"></span> 到 <span id="endDate"></span></div>
         </div>
     </div>
 </div>
+<script src="<%=ctx%>/static/dist/js/commons.js"></script>
+<script src="<%=ctx%>/static/dist/js/vipCheck.js"></script>
 </body>
 </html>
