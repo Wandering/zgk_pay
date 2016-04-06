@@ -27,6 +27,7 @@ public class UserController extends BaseCommonController {
             throw new BizException(ERRORCODE.PARAM_ISNULL.getCode(), ERRORCODE.PARAM_ISNULL.getMessage());
         }
         UserInfoPojo userInfoPojo=userAccountExService.getUserInfoPojoById(Long.valueOf(userId));
+        userInfoPojo.setPassword(null);
         return userInfoPojo;
     }
 }
