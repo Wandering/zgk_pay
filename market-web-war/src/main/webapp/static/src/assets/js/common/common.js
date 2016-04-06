@@ -1,4 +1,4 @@
-var domainStr = 'm.zhigaokao.cn'; //正式
+var domainStr = 'zgkser.zhigaokao.cn'; //正式
 //var domainStr = 'test.zhigaokao.cn'; //测试
 //var domainStr = 'm.zhigaokao.com:8084';
 
@@ -11,7 +11,6 @@ console.log(window.location.hostname);
 
 
 var cookie = require('cookie');
-
 
 var isLogin = function () {
     return cookie.getCookieValue('isLogin')

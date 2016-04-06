@@ -5,7 +5,7 @@ var account = cookie.getCookieValue('phone');
 $('#account-number').val(account);
 
 $('#header-menu').show();
-
+$('#header-title').text('VIP');
 
 $('.vip-btn').click(function () {
     var cardNum = $.trim($('#card-number').val());
@@ -30,20 +30,24 @@ $('.vip-btn').click(function () {
         "cardNumber": cardNum,
         "password": cardPsd
     }, function (res) {
+        console.log(res)
         if (res.rtnCode == '0000000') {
             var vipStatus = res.bizData.vipStatus;
             var vipActiveDate = res.bizData.vipActiveDate;
             var vipEndDate = res.bizData.vipEndDate;
-            util.cookie.setCookie("vipStatus", vipStatus, 4, "");
-            util.cookie.setCookie("vipActiveDate", vipActiveDate, 4, "");
-            util.cookie.setCookie("vipEndDate", vipEndDate, 4, "");
+            cookie.setCookie("vipStatus", vipStatus, 4, "/");
+            cookie.setCookie("vipActiveDate", vipActiveDate, 4, "/");
+            cookie.setCookie("vipEndDate", vipEndDate, 4, "/");
             util.drawToast('申请成功');
+            window.location.assign('/vip-check')
         } else {
-            util.drawToast('res.msg');
+            util.drawToast(res.msg);
         }
         if (res.rtnCode == '0900002' || res.rtnCode == '0900001') {
-            util.drawToast('res.msg');
+            util.drawToast(res.msg);
         }
     });
 });
+
+
 

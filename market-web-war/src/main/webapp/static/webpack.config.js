@@ -18,6 +18,7 @@ module.exports = {
         pingpp: './src/assets/js/common/pingpp',
         consumerList: './src/assets/js/consumer-list/consumer-list',
         intro: './src/assets/js/consumer-list/intro',
+        vipCheck: './src/assets/js/vip-check/vipCheck',
         schedule: './src/assets/js/schedule/schedule'
     },
     output: {

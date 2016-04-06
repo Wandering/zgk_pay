@@ -15,6 +15,17 @@ webpackJsonp([13],[
 	    $('#header-title').text('个人信息');
 	    $('#header-menu').show();
 
+
+
+
+
+
+
+
+
+
+
+
 	    function initUserInfo() {
 	        var avatar = cookie.getCookieValue('avatar');
 	        if (!avatar) avatar = '/static/dist/img/icons/avatar.png';
@@ -37,10 +48,10 @@ webpackJsonp([13],[
 	        var subject = ['文科', '理科'];
 	        $('#subject').text(subject[subjectType || 1]);
 
-	        var province = cookie.getCookieValue('province');
+	        var province = cookie.getCookieValue('proName');
 	        $('#province').text(province || '');
 
-	        var city = cookie.getCookieValue('city');
+	        var city = cookie.getCookieValue('cityName');
 	        $('#city').text(city || '');
 
 	        var email = cookie.getCookieValue('email');
@@ -49,6 +60,22 @@ webpackJsonp([13],[
 	        var qrcodeUrl = cookie.getCookieValue('qrcodeUrl');
 	        $('#qrcodeUrl').attr('src', qrcodeUrl || '/static/dist/img/icons/code.png');
 	    }
+
+	    util.ajaxFun(interfaceUrl.getUserInfo, 'GET', {}, function (res) {
+	        console.log(res)
+	        if (res.rtnCode == '0000000') {
+	            var personListData = res.bizData;
+	            $('#header-user-name').text(personListData.name);
+	            $('#school-name').text(personListData.schoolName);
+	            $('#email').text(personListData.mail);
+	            var sexTxt = personListData.sex;
+	            sexTxt == "0" ? $('#sex').text('女生'):$('#sex').text('男生');
+	            var subjectTypeTxt = personListData.subjectType;
+	            subjectTypeTxt == "0" ? $('#subject').text('文史'):$('#subject').text('理工');
+
+	        }
+	    });
+
 
 	    //修改密码
 	    function changePwd() {
@@ -87,13 +114,33 @@ webpackJsonp([13],[
 	            oldPassword: currentPsd.val(),//旧密码
 	            password: newPsd.val()//新密码
 	        }, function (res) {
+	            console.log(res)
 	            if (res.rtnCode == '0000000') {
+	                cookie.deleteCookie('city', '');
+	                cookie.deleteCookie('county', '');
+	                cookie.deleteCookie('icon', '');
+	                cookie.deleteCookie('isLogin', '');
+	                cookie.deleteCookie('isReported', '');
+	                cookie.deleteCookie('isSurvey', '');
+	                cookie.deleteCookie('phone', '');
+	                cookie.deleteCookie('province', '');
+	                cookie.deleteCookie('qrcodeUrl', '');
+	                cookie.deleteCookie('subjectType', '');
+	                cookie.deleteCookie('token', '');
+	                cookie.deleteCookie('userKey', '');
+	                cookie.deleteCookie('userName', '');
+	                cookie.deleteCookie('vipStatus', '');
+	                cookie.deleteCookie('userId', '');
+	                cookie.deleteCookie('proName', '');
+	                cookie.deleteCookie('cityName', '');
+	                cookie.deleteCookie('countyName', '');
 	                window.location.href = '/login';
 	            } else {
 	                util.drawToast(res.msg);
 	            }
 	        });
 	    }
+
 
 	    function getQueryObject(url) {
 	        url = url == null ? window.location.href : url;
@@ -114,7 +161,6 @@ webpackJsonp([13],[
 	        util.ajaxFun(interfaceUrl.getOpenId, 'get', {
 	            code: code
 	        }, function (res) {
-	            alert(JSON.stringify(res));
 	            if (res.rtnCode == '0000000') {
 	                cookie.setCookie("openId", res.bizData.openId, 4, "/");
 	            }
