@@ -98,7 +98,7 @@
 
 	//var domainStr = 'm.zhigaokao.cn'; //正式
 	//var domainStr = 'test.zhigaokao.cn'; //测试
-	var domainStr = 'm.zhigaokao.com:8084';
+	var domainStr = 'm.zhigaokao.com:8088';
 
 	//获取域名前缀=============================
 	var urlDomain = window.location.hostname + '';
@@ -318,7 +318,7 @@
 	//var BASE_URL = 'http://10.136.21.171:8080';  //正式环境
 	//var BASE_URL = 'http://10.136.13.233:8080';  //测试环境
 	//var BASE_URL = 'http://172.16.170.166:8080';  //小文本地
-	var BASE_URL = 'http://172.16.160.72:8088';  //左浩本地
+	var BASE_URL = 'http://172.16.160.72:8089';  //左浩本地
 	//var BASE_URL2 = 'http://10.254.130.33:8080';  //测试环境(智能填报)
 	//var BASE_URL = 'http://10.136.56.195:8080';  //开发环境
 	//var BASE_URL = 'http://172.16.180.150:8086';  //yyp
