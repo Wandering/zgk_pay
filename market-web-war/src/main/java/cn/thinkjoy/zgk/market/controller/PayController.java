@@ -182,7 +182,14 @@ public class PayController {
             String userId= orderMap.get("user_id").toString();
 
             List<Map<String,Object>> userRelLs= userAccountExService.getUserRelListByUserId(Long.valueOf(userId));
+
+            if(userRelLs==null ||userRelLs.size()==0 ){
+                logger.error("获取用户关系链为空,用户:"+userId);
+                return "fail";
+            }
             List<SplitPricePojo> splitPricePojos=new ArrayList<>();
+
+
             for(Map<String,Object> map:userRelLs){
                 SplitPricePojo splitPricePojo=new SplitPricePojo();
                 splitPricePojo.setAccountId(Integer.valueOf(map.get("accountId").toString()));
@@ -191,7 +198,6 @@ public class PayController {
                 splitPricePojos.add(splitPricePojo);
             }
             agentService.SplitPriceExec(splitPricePojos, Integer.valueOf(callBackMap.get("amount").toString()), orderNo);
-
             return "success";
         }catch (Exception e){
             logger.error("回调错误"+e);
