@@ -22,9 +22,6 @@
         <div class="form-group">
             <div class="label">姓名</div>
             <input id="name" type="text"/>
-            <div class="clear">
-                <img src="<%=ctx%>static/dist/img/icons/clear.png" alt=""/>
-            </div>
         </div>
         <div class="form-group">
             <div class="label">性别选择：</div>
@@ -36,9 +33,6 @@
         <div class="form-group">
             <div class="label">所在学校：</div>
             <input id="school_name" type="text"/>
-            <div class="clear">
-                <img src="<%=ctx%>static/dist/img/icons/clear.png" alt=""/>
-            </div>
         </div>
         <div class="form-group">
             <div class="label">科目选择：</div>
@@ -50,9 +44,6 @@
         <div class="form-group">
             <div class="label">Email</div>
             <input id="email" type="text"/>
-            <div class="clear">
-                <img src="<%=ctx%>static/dist/img/icons/clear.png" alt=""/>
-            </div>
         </div>
         <div class="submit-btn">
             提交

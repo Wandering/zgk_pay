@@ -1,6 +1,6 @@
-(function () {
+var cookie = require('cookie');
 
-    var cookie = require('cookie');
+
 
     var isLogin = cookie.getCookieValue('isLogin');
 
@@ -31,9 +31,13 @@
         $('#province-option').toggleClass('hide');
     });
     if(!cookie.getCookieValue('userKey')){
+        alert(2)
         cookie.setCookie("userKey", 'zj', 4, "/");
         $('#province-text').text('浙江');
+        alert(3)
     }
+
+
 
 
     var userKey = cookie.getCookieValue('userKey');
@@ -73,7 +77,9 @@
         cookie.deleteCookie('userName', '');
         cookie.deleteCookie('vipStatus', '');
         cookie.deleteCookie('userId', '');
-    })
+        cookie.deleteCookie('proName', '');
+        cookie.deleteCookie('cityName', '');
+        cookie.deleteCookie('countyName', '');
+    });
 
 
-})();

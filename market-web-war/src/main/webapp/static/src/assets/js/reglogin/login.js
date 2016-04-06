@@ -7,7 +7,7 @@ var md5=require('md5');
 
         function isWeiXin(){
             var ua = window.navigator.userAgent.toLowerCase();
-            alert(ua);
+            //alert(ua);
             if(ua.indexOf('micromessenger') > -1){
                 return true;
             }else{
@@ -41,14 +41,17 @@ var md5=require('md5');
                 console.log(res)
                 if (res.rtnCode === "0000000") {
                     var token = res.bizData.token;  // token
-                    var userId = res.bizData.userInfo.id;  // userId
                     var userName = res.bizData.userInfo.name; // 用户名称
+                    var userId = res.bizData.userInfo.id;  // userId
                     var vipStatus = res.bizData.userInfo.vipStatus; // VIP状态
                     var phone = res.bizData.userInfo.account; // 用户账号
                     var userKey = res.bizData.userInfo.userKey; // 省份userKey
-                    var province = res.bizData.userInfo.proName; // 选择省份
-                    var city = res.bizData.userInfo.cityName; // 选择城市
-                    var county = res.bizData.userInfo.countyName; // 选择县区
+                    var province = res.bizData.userInfo.province; // 选择省份
+                    var proName = res.bizData.userInfo.proName; // 选择省份
+                    var city = res.bizData.userInfo.city; // 选择城市
+                    var cityName = res.bizData.userInfo.cityName; // 选择城市
+                    var county = res.bizData.userInfo.county; // 选择县区
+                    var countyName = res.bizData.userInfo.countyName; // 选择县区
                     var qrcodeUrl = res.bizData.userInfo.qrcodeUrl;  // 二维码
                     var isReported = res.bizData.userInfo.isReported; // 智能填报次数
                     var isSurvey = res.bizData.userInfo.isSurvey; // 专家测试次数
@@ -59,6 +62,9 @@ var md5=require('md5');
                     cookie.setCookie("vipStatus", vipStatus, 4, "/");
                     cookie.setCookie("phone",phone, 4, "/");
                     cookie.setCookie("userKey",userKey, 4, "/");
+                    cookie.setCookie("proName",proName, 4, "/");
+                    cookie.setCookie("cityName",cityName, 4, "/");
+                    cookie.setCookie("countyName",countyName, 4, "/");
                     cookie.setCookie("province",province, 4, "/");
                     cookie.setCookie("city",city, 4, "/");
                     cookie.setCookie("county",county, 4, "/");
