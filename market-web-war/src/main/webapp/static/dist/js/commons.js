@@ -96,9 +96,9 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	//var domainStr = 'm.zhigaokao.cn'; //正式
+	var domainStr = 'zgkser.zhigaokao.cn'; //正式
 	//var domainStr = 'test.zhigaokao.cn'; //测试
-	var domainStr = 'm.zhigaokao.com:8088';
+	//var domainStr = 'm.zhigaokao.com:8084';
 
 	//获取域名前缀=============================
 	var urlDomain = window.location.hostname + '';
@@ -258,11 +258,9 @@
 
 
 
-	//var domainStr = 'zhigaokao.cn'; // 正式
+	var domainStr = 'zhigaokao.cn'; // 正式
 	//var domainStr = 'test.zhigaokao.cn'; // 测试
-	var domainStr = 'zhigaokao.com'; // 前端开发
-
-
+	//var domainStr = 'zhigaokao.com'; // 前端开发
 
 	// hours为空字符串时,cookie的生存期至浏览器会话结束。
 	// hours为数字0时,建立的是一个失效的cookie,这个cookie会覆盖已经建立过的同名、同path的cookie（如果这个cookie存在）。
@@ -314,11 +312,11 @@
 	/*
 	 * url配置文件
 	 * */
-	//var BASE_URL = 'http://s1.service.zhigaokao.cn'; //正式
+	var BASE_URL = 'http://s1.service.zhigaokao.cn'; //正式
 	//var BASE_URL = 'http://10.136.21.171:8080';  //正式环境
 	//var BASE_URL = 'http://10.136.13.233:8080';  //测试环境
 	//var BASE_URL = 'http://172.16.170.166:8080';  //小文本地
-	var BASE_URL = 'http://172.16.160.72:8089';  //左浩本地
+	//var BASE_URL = 'http://172.16.160.72:8088';  //左浩本地
 	//var BASE_URL2 = 'http://10.254.130.33:8080';  //测试环境(智能填报)
 	//var BASE_URL = 'http://10.136.56.195:8080';  //开发环境
 	//var BASE_URL = 'http://172.16.180.150:8086';  //yyp
@@ -331,6 +329,7 @@
 	     * ==================================================
 	     * */
 	    getCaptchaImg: 'user/getUserProfile',//分享二维码
+
 
 	    /**
 	     * 在线购买初始化

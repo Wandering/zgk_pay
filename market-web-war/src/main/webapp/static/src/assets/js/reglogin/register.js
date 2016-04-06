@@ -199,6 +199,7 @@ $(function () {
             util.drawToast('两次密码输入不一致');
             return false;
         }
+
         var sharerId = util.getLinkey('sharerId');
         var shareType = util.getLinkey('shareType');
         var subHtml = '<p class="reg-center">进入智高考"'+ provinceTxt +'"网站，</br>注册之后地域不可修改</p>';
