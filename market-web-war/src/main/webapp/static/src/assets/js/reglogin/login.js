@@ -32,12 +32,12 @@ var md5=require('md5');
                 util.drawToast('请输入密码');
                 return false;
             }
-
             var md5loginPwdV = $.md5(loginPwdV);
             util.ajaxFun('/login/login', 'GET', {
                 account: loginPhoneV,
                 password: md5loginPwdV
             }, function (res) {
+                alert(82)
                 console.log(res)
                 if (res.rtnCode === "0000000") {
                     var token = res.bizData.token;  // token
@@ -84,6 +84,9 @@ var md5=require('md5');
                 }
             });
         });
+
+
+
     });
 
 

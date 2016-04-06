@@ -5,7 +5,7 @@ var account = cookie.getCookieValue('phone');
 $('#account-number').val(account);
 
 $('#header-menu').show();
-
+$('#header-title').text('VIP');
 
 $('.vip-btn').click(function () {
     var cardNum = $.trim($('#card-number').val());
@@ -39,10 +39,10 @@ $('.vip-btn').click(function () {
             util.cookie.setCookie("vipEndDate", vipEndDate, 4, "");
             util.drawToast('申请成功');
         } else {
-            util.drawToast('res.msg');
+            util.drawToast(res.msg);
         }
         if (res.rtnCode == '0900002' || res.rtnCode == '0900001') {
-            util.drawToast('res.msg');
+            util.drawToast(res.msg);
         }
     });
 });

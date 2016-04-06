@@ -5,9 +5,9 @@ exports.deleteCookie = deleteCookie;
 
 
 
-var domainStr = 'zhigaokao.cn'; // 正式
+//var domainStr = 'zhigaokao.cn'; // 正式
 //var domainStr = 'test.zhigaokao.cn'; // 测试
-//var domainStr = 'zhigaokao.com'; // 前端开发
+var domainStr = 'zhigaokao.com'; // 前端开发
 
 
 
