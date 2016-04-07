@@ -15,7 +15,7 @@ dependencies {
         exclude group: 'cn.thinkjoy.common', module: 'thinkjoy-mu-common'
     }
 
-    compile project(':market-api')
+    compile project(':market-api  ')
 //
 //    compile "cn.thinkjoy.zgk.zgksystem:menuAuthority-service:0.0.4-SNAPSHOT"
 //    compile "cn.thinkjoy.zgk.zgksystem:menuAuthority-domain:0.0.4-SNAPSHOT"
