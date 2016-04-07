@@ -102,6 +102,7 @@ public class PayController {
         try{
             Pingpp.apiKey=StaticSource.getSource("apiKey");
             String appId=StaticSource.getSource("appId");
+            String alipayCallBack=StaticSource.getSource("alipayCallBack");
             String statemenstNo=NumberGenUtil.genStatementNo();
             OrderStatements orderstatement=new OrderStatements();
             orderstatement.setAmount(Double.valueOf(amount)*100);
@@ -128,7 +129,8 @@ public class PayController {
                 chargeParams.put("extra",extraMap);
             }else  if(channel.equals(PAYCHANNEL.ALIPAYWAP.getCode())){
                 Map<String,Object> extraMap=new HashMap<>();
-                extraMap.put("success_url","http://m.zhigaokao.cn/order");
+
+                extraMap.put("success_url",alipayCallBack);
                 chargeParams.put("extra",extraMap);
             }
 
@@ -150,6 +152,7 @@ public class PayController {
     @RequestMapping(value = "/callBack",method = RequestMethod.POST)
     @ResponseBody
     public String callBack(HttpServletRequest request){
+        String orderNo="";
         try {
 
             int contentLength = request.getContentLength();
@@ -169,7 +172,7 @@ public class PayController {
             JSONObject object=   JSONObject.parseObject(requestJson);
 
             Map<String,Object> callBackMap= (Map) ((Map)object.get("data")).get("object");
-            String orderNo = callBackMap.get("order_no").toString();
+            orderNo = callBackMap.get("order_no").toString();
             Order order = new Order();
             order.setOrderNo(orderNo);
             order.setStatus(1);
@@ -189,7 +192,6 @@ public class PayController {
             }
             List<SplitPricePojo> splitPricePojos=new ArrayList<>();
 
-
             for(Map<String,Object> map:userRelLs){
                 SplitPricePojo splitPricePojo=new SplitPricePojo();
                 splitPricePojo.setAccountId(Integer.valueOf(map.get("accountId").toString()));
@@ -197,10 +199,15 @@ public class PayController {
                 splitPricePojo.setAccountPhone(map.get("account").toString());
                 splitPricePojos.add(splitPricePojo);
             }
-            agentService.SplitPriceExec(splitPricePojos, Integer.valueOf(callBackMap.get("amount").toString()), orderNo);
+            boolean result = agentService.SplitPriceExec(splitPricePojos, Integer.valueOf(callBackMap.get("amount").toString()), orderNo);
+            if(!result)
+            {
+                logger.error("订单"+orderNo+":分成失败.");
+                throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
+            }
             return "success";
         }catch (Exception e){
-            logger.error("回调错误"+e);
+            logger.error("订单"+orderNo+":回调错误"+e);
             throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
         }
 
