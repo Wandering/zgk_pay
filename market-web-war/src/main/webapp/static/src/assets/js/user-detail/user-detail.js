@@ -1,26 +1,14 @@
 /**
  * Created by kepeng on 16/4/1.
  */
-
-(function() {
-
+$(document).ready(function () {
+    var md5=require('md5');
     var util = require('commonjs');
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
 
     $('#header-title').text('个人信息');
     $('#header-menu').show();
-
-
-
-
-
-
-
-
-
-
-
 
     function initUserInfo() {
         var avatar = cookie.getCookieValue('avatar');
@@ -54,6 +42,9 @@
         $('#email').text(email || '');
 
         var qrcodeUrl = cookie.getCookieValue('qrcodeUrl');
+        if(!qrcodeUrl){
+            $('#code-item').hide();
+        }
         $('#qrcodeUrl').attr('src', qrcodeUrl || '/static/dist/img/icons/code.png');
     }
 
@@ -65,77 +56,12 @@
             $('#school-name').text(personListData.schoolName);
             $('#email').text(personListData.mail);
             var sexTxt = personListData.sex;
-            sexTxt == "0" ? $('#sex').text('女生'):$('#sex').text('男生');
+            sexTxt == "0" ? $('#sex').text('女生') : $('#sex').text('男生');
             var subjectTypeTxt = personListData.subjectType;
-            subjectTypeTxt == "0" ? $('#subject').text('文史'):$('#subject').text('理工');
+            subjectTypeTxt == "0" ? $('#subject').text('文史') : $('#subject').text('理工');
 
         }
     });
-
-
-    //修改密码
-    function changePwd() {
-        var currentPsd = $('#current-psd');
-        var newPsd = $('#new-psd');
-        var confirmPsd = $('#confirm-psd');
-        if (currentPsd.val() == '') {
-            util.drawToast('当前密码不能为空');
-            return false;
-        }
-        if ($.trim(currentPsd.val()).length > 16 && $.trim(currentPsd.val()).length < 6) {
-            util.drawToast('密码输入有误，6-16位');
-            return false;
-        }
-        if (newPsd.val() == '') {
-            util.drawToast('新密码不能为空');
-            return false;
-        }
-        if ($.trim(newPsd.val()).length > 16 && $.trim(newPsd.val()).length < 6) {
-            util.drawToast('新输入有误，6-16位');
-            return false;
-        }
-        if (confirmPsd.val() == '') {
-            util.drawToast('确认密码不能为空');
-            return false;
-        }
-        if ($.trim(confirmPsd.val()).length > 16 && $.trim(confirmPsd.val()).length < 6) {
-            util.drawToast('新输入有误，6-16位');
-            return false;
-        }
-        if ($.trim(confirmPsd.val()) != $.trim(newPsd.val())) {
-            util.drawToast('两次密码输入不一致');
-            return false;
-        }
-        util.ajaxFun(interfaceUrl.postModifyPassword, 'POST', {
-            oldPassword: currentPsd.val(),//旧密码
-            password: newPsd.val()//新密码
-        }, function (res) {
-            console.log(res)
-            if (res.rtnCode == '0000000') {
-                cookie.deleteCookie('city', '');
-                cookie.deleteCookie('county', '');
-                cookie.deleteCookie('icon', '');
-                cookie.deleteCookie('isLogin', '');
-                cookie.deleteCookie('isReported', '');
-                cookie.deleteCookie('isSurvey', '');
-                cookie.deleteCookie('phone', '');
-                cookie.deleteCookie('province', '');
-                cookie.deleteCookie('qrcodeUrl', '');
-                cookie.deleteCookie('subjectType', '');
-                cookie.deleteCookie('token', '');
-                cookie.deleteCookie('userKey', '');
-                cookie.deleteCookie('userName', '');
-                cookie.deleteCookie('vipStatus', '');
-                cookie.deleteCookie('userId', '');
-                cookie.deleteCookie('proName', '');
-                cookie.deleteCookie('cityName', '');
-                cookie.deleteCookie('countyName', '');
-                window.location.href = '/login';
-            } else {
-                util.drawToast(res.msg);
-            }
-        });
-    }
 
 
     function getQueryObject(url) {
@@ -163,55 +89,101 @@
         });
     }
 
-    function isWeiXin(){
+
+    function isWeiXin() {
         var ua = window.navigator.userAgent.toLowerCase();
-        if(ua.indexOf('micromessenger') > -1){
+        if (ua.indexOf('micromessenger') > -1) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    $(document).ready(function() {
+    if (isWeiXin()) {
+        var obj = getQueryObject(window.location.href);
+        cookie.setCookie("code", obj.code, 4, "/");
+        getOpenId(obj.code);
+    }
+    initUserInfo();
+    $('.modify-btn').on('click', function () {
+        window.location.href = '/modify-user-detail';
+    });
+    $('.change-password-btn').on('click', function () {
+        var subHtml = ''
+            + '<input id="current-psd" type="password" placeholder="当前密码">'
+            + '<input id="new-psd" type="password" placeholder="新密码">'
+            + '<input id="confirm-psd" type="password" placeholder="确认新密码">'
+        util.confirmLayer('修改密码', subHtml);
 
-        if (isWeiXin()) {
-            var obj = getQueryObject(window.location.href);
-            cookie.setCookie("code", obj.code, 4, "/");
-            getOpenId(obj.code);
-        }
-
-        initUserInfo();
-
-        $('.modify-btn').on('click', function() {
-            window.location.href = '/modify-user-detail';
-        });
-
-
-
-
-
-
-        $('body').on('click','.mask', function() {
-            $(this).removeClass('show');
-        });
-
-        $('.change-password-btn').on('click', function() {
-            //$('.mask').addClass('show');
-
-            var subHtml = '' +
-                '' +
-                '<p class="reg-center">进入智高网站，</br>注册之后地域不可修改</p>';
-            util.confirmLayer('修改密码',subHtml);
-
-
-            $('#confirm_pwd_btn').off('click');
-            $('#confirm_pwd_btn').on('click', function() {
-                changePwd();
-            })
-        });
-
-        var userId = cookie.getCookieValue('userId');
-        $('#share-links').attr('href','/code?userId='+userId)
     });
 
-})();
+    $('body').on('click', '#close-modal', function () {
+        $(this).removeClass('show');
+    });
+
+    var userId = cookie.getCookieValue('userId');
+    $('#share-links').attr('href', '/code?userId=' + userId)
+
+    $('body').on('click', '#confirm-btn', function () {
+        var currentPsd = $.trim($('#current-psd').val());
+        var newPsd = $.trim($('#new-psd').val());
+        var confirmPsd = $.trim($('#confirm-psd').val());
+        if (currentPsd == '') {
+            util.drawToast('当前密码不能为空');
+            return false;
+        }
+        if (currentPsd.length > 16 && currentPsd.length < 6) {
+            util.drawToast('密码输入有误，6-16位');
+            return false;
+        }
+        if (newPsd == '') {
+            util.drawToast('新密码不能为空');
+            return false;
+        }
+        if (newPsd.length > 16 && newPsd.length < 6) {
+            util.drawToast('新密码输入有误，6-16位');
+            return false;
+        }
+        if (confirmPsd == '') {
+            util.drawToast('确认密码不能为空');
+            return false;
+        }
+        if (newPsd != confirmPsd) {
+            util.drawToast('两次密码输入不一致');
+            return false;
+        }
+        util.ajaxFun(interfaceUrl.postModifyPassword, 'POST', {
+            oldPassword: currentPsd,//旧密码
+            password: newPsd//新密码'
+        }, function (res) {
+            console.log(res)
+            if (res.rtnCode == '0000000') {
+                cookie.deleteCookie('city', '');
+                cookie.deleteCookie('county', '');
+                cookie.deleteCookie('icon', '');
+                cookie.deleteCookie('isLogin', '');
+                cookie.deleteCookie('isReported', '');
+                cookie.deleteCookie('isSurvey', '');
+                cookie.deleteCookie('phone', '');
+                cookie.deleteCookie('province', '');
+                cookie.deleteCookie('qrcodeUrl', '');
+                cookie.deleteCookie('subjectType', '');
+                cookie.deleteCookie('token', '');
+                cookie.deleteCookie('userKey', '');
+                cookie.deleteCookie('userName', '');
+                cookie.deleteCookie('vipStatus', '');
+                cookie.deleteCookie('userId', '');
+                cookie.deleteCookie('proName', '');
+                cookie.deleteCookie('cityName', '');
+                cookie.deleteCookie('countyName', '');
+                window.location.href = '/login';
+            } else {
+                alert(8)
+                util.drawToast(res.msg);
+            }
+        });
+    });
+
+
+});
+

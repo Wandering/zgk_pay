@@ -45,7 +45,7 @@
                 <span>Email：</span>
                 <span id="email"></span>
             </li>
-            <li>
+            <li class="code-item" id="code-item">
                 <a href="javascript:;" class="code-links" id="share-links">
                     <span>我的二维码：</span>
                     <span>
@@ -57,18 +57,6 @@
     </div>
     <div class="change-password-btn">
         修改密码
-    </div>
-</div>
-
-<div class="mask">
-    <div class="modal">
-        <div class="modal-title">修改密码</div>
-        <div class="modal-body">
-            <input id="current-psd" type="password" placeholder="当前密码">
-            <input id="new-psd" type="password" placeholder="新密码">
-            <input id="confirm-psd" type="password" placeholder="确认新密码">
-            <input id="confirm_pwd_btn" type="button" value="确认修改">
-        </div>
     </div>
 </div>
 <script src="<%=ctx%>/static/dist/js/commons.js"></script>

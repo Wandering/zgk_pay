@@ -629,7 +629,7 @@ webpackJsonp([10],[
 	                    cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
 	                    cookie.setCookie("isReported",isReported, 4, "/");
 	                    cookie.setCookie("isSurvey",isSurvey, 4, "/");
-	                    window.location.assign('http://'+ domain +'/user-detail?userKey='+userKey);
+	                    window.location.assign('/user-detail');
 	                } else {
 	                    util.drawToast(res.msg);
 	                }

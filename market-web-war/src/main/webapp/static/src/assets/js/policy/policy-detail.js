@@ -19,6 +19,6 @@ $(function () {
         }
     });
     $('#header-back').show().on('click',function(){
-        window.location.assign('http://' + $.trim(userKey) + '.'+ domain +'/policy');
+        window.location.assign('/policy');
     });
 });

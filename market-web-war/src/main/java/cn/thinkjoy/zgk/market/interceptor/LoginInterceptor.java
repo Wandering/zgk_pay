@@ -1,7 +1,4 @@
 package cn.thinkjoy.zgk.market.interceptor;
-
-import cn.thinkjoy.common.exception.BizException;
-import cn.thinkjoy.zgk.market.constant.ServletPathConst;
 import cn.thinkjoy.zgk.market.constant.UserRedisConst;
 import cn.thinkjoy.zgk.market.util.CookieUtil;
 import cn.thinkjoy.zgk.market.util.RedisUtil;
@@ -10,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,9 +22,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     @Override
 	public boolean preHandle(HttpServletRequest request,HttpServletResponse response, Object handler) throws Exception {
 		String url = request.getServletPath();
-		if(!ServletPathConst.MAPPING_URLS.contains(url)){
-			return true;
-		}
+//		if(!ServletPathConst.MAPPING_URLS.contains(url)){
+//			return true;
+//		}
 //		System.out.println("===========HandlerInterceptor1 preHandle");
 
 		LOGGER.info("url:"+url);
@@ -42,8 +40,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		LOGGER.info("redis is exists:"+ redisFlag);
 
 		if (StringUtils.isEmpty(value)||!redisFlag) {
-//			request.getRequestDispatcher().forward(request, response);
-			throw new BizException("1000004","请先登录后再进行操作");
+			response.sendRedirect("login");
+			return false;
 		}
 
 		return true;

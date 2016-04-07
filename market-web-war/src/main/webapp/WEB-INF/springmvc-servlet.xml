@@ -72,10 +72,17 @@
             <!-- 一级目录 -->
             <mvc:mapping path="/*" />
             <!-- 需排除拦截的地址 -->
-            <mvc:exclude-mapping path="/login"/>
+            <!--登录需要全部放开-->
+            <mvc:exclude-mapping path="login"/>
+            <!--二维码分享页面数据请求接口-->
+            <mvc:exclude-mapping path="/user/getUserProfile"/>
+            <!--二维码分享页面请求路径-->
+            <mvc:exclude-mapping path="code"/>
+            <mvc:exclude-mapping path="/find-password"/>
+            <!--找回密码数据请求-->
+            <mvc:exclude-mapping path="/register/retrievePassword"/>
             <mvc:exclude-mapping path="/register/*"/>
-            <mvc:exclude-mapping path="/login/*"/>
-            <mvc:exclude-mapping path="/login/*"/>
+            <mvc:exclude-mapping path="login/*"/>
             <mvc:exclude-mapping path="/*.js"/>
             <mvc:exclude-mapping path="/*.css"/>
             <mvc:exclude-mapping path="/static/*"/>

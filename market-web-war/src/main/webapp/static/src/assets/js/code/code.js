@@ -5,7 +5,15 @@ var util = require('commonjs');
 var interfaceUrl = require('urlConfig');
 var cookie = require('cookie');
 $(function () {
-
+    function isWeiXin(){
+        var ua = window.navigator.userAgent.toLowerCase();
+        //alert(ua);
+        if(ua.indexOf('micromessenger') > -1){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 
     var userId = util.getLinkey('userId');
@@ -21,19 +29,14 @@ $(function () {
         }
     });
 
-    //function confirmLayer(content) {
-    //    var confirmLayer = [];
-    //    confirmLayer.push('<div class="mask show">');
-    //    confirmLayer.push(content);
-    //    confirmLayer.push('</div>');
-    //    $('body').append(confirmLayer.join(''))
-    //}
+
 
     //分享
     $('.share-btn').click(function () {
-        //var subHtml = '<img src="/static/dist/img/sharer.png" />';
-        //confirmLayer(subHtml);
-        $('.mask').addClass('show');
+        if (isWeiXin()) {
+            $('.mask').addClass('show');
+        }
+
     });
     $('body').on('click','.mask',function () {
         $(this).removeClass('show');

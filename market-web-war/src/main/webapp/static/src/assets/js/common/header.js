@@ -29,6 +29,9 @@ var cookie = require('cookie');
     // 切换省份
     $('#province-text').on('click',function(){
         $('#province-option').toggleClass('hide');
+        if(isLogin){
+            $('#province-option').hide();
+        }
     });
     if(!cookie.getCookieValue('userKey')){
         cookie.setCookie("userKey", 'zj', 4, "/");
