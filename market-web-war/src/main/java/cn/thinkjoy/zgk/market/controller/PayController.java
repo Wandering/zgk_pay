@@ -121,7 +121,7 @@ public class PayController {
             chargeParams.put("channel",channel);
             chargeParams.put("client_ip", IPUtil.getRemortIP(request));
             chargeParams.put("subject","智高考");
-            chargeParams.put("body","智高考");
+            chargeParams.put("body","智高考VIP会员");
             chargeParams.put("currency",CURRENCY);
             if(channel.equals(PAYCHANNEL.WXPUB.getCode())){
                 Map<String,Object> extraMap=new HashMap<>();
