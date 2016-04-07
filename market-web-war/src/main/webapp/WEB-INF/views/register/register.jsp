@@ -10,8 +10,8 @@
 <%@ include file="../common/header.jsp" %>
 <div class="container">
     <div class="tab-list">
-        <div class="tab tab-login">登录</div>
-        <div class="tab tab-register type-res active" typeRes="1">注册</div>
+        <span class="tab tab-login">登录</span>
+        <span class="tab tab-register type-res active" typeRes="1">注册</span>
     </div>
     <div class="tab-content" id="login">
         <div class="form-group">

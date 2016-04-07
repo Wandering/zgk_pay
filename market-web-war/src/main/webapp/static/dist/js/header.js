@@ -95,7 +95,7 @@
 	    $('#province-option-list').on('click','a',function(){
 	        var dataHref = $(this).attr('data-href');
 	        var domainProvince = $(this).attr('domain');
-	        window.location.assign(dataHref +pagePath);
+	        window.location.href= dataHref +pagePath;
 	        console.log(domainProvince);
 	        if (!isLogin) {
 	            cookie.setCookie("userKey", domainProvince, 4, "/");

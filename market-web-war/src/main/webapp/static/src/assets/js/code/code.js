@@ -5,6 +5,9 @@ var util = require('commonjs');
 var interfaceUrl = require('urlConfig');
 var cookie = require('cookie');
 $(function () {
+
+
+
     var userId = util.getLinkey('userId');
     util.ajaxFun(interfaceUrl.getCaptchaImg, 'get', {
         'userId': userId
@@ -23,5 +26,13 @@ $(function () {
     });
     $('.mask').click(function () {
         $(this).hide();
-    })
+    });
+
+
+    $('#header-title').text('二维码');
+    $('#header-back').show().on('click',function(){
+        window.location.href = '/user-detail';
+    });
+
+
 });

@@ -671,6 +671,7 @@ header .header-btn {
   font-size: 12px;
   position: relative;
   z-index: 3;
+  width: 100%;
 }
 .menu .title {
   border-bottom: 1px solid #CFCFCF;
@@ -831,9 +832,8 @@ header .header-btn {
 }
 
 .province-option-list {
-  width: 400px;
+  padding: 10px 0 10px 39px;
   font-size: 13px;
-  padding: 17px 10px;
   position: absolute;
   z-index: 3;
   background-color: #fff;
@@ -847,10 +847,14 @@ header .header-btn {
   border-radius: 2px;
   border: 1px solid #979797;
   color: #979797;
-  margin: 12px 6px;
+  margin: 8px 6px;
 }
 .province-option-list .province-item.active {
   background-color: #D80C18;
   border-color: #D80C18;
   color: #fff;
+}
+
+#end-login {
+  position: absolute;
 }

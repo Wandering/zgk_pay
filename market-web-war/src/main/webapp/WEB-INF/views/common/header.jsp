@@ -86,6 +86,12 @@
                         <span>我的订单</span>
                     </a>
                 </div>
+                <div class="item">
+                    <a href="/user-detail">
+                        <img src="<%=ctx%>/static/dist/img/10-active.png" alt=""/>
+                        <span>个人信息</span>
+                    </a>
+                </div>
             </div>
             <div class="btn">
                 <a href="/login/logout" id="logout-btn">退出</a>
@@ -158,6 +164,12 @@
                     <a href="/order">
                         <img src="<%=ctx%>/static/dist/img/9.png" alt=""/>
                         <span>我的订单</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="/user-detail">
+                        <img src="<%=ctx%>/static/dist/img/10.png" alt=""/>
+                        <span>个人信息</span>
                     </a>
                 </div>
             </div>

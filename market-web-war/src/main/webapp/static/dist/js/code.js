@@ -9,6 +9,9 @@ webpackJsonp([0],[
 	var interfaceUrl = __webpack_require__(3);
 	var cookie = __webpack_require__(2);
 	$(function () {
+
+
+
 	    var userId = util.getLinkey('userId');
 	    util.ajaxFun(interfaceUrl.getCaptchaImg, 'get', {
 	        'userId': userId
@@ -27,7 +30,15 @@ webpackJsonp([0],[
 	    });
 	    $('.mask').click(function () {
 	        $(this).hide();
-	    })
+	    });
+
+
+	    $('#header-title').text('二维码');
+	    $('#header-back').show().on('click',function(){
+	        window.location.href = '/user-detail';
+	    });
+
+
 	});
 
 /***/ }
