@@ -66,7 +66,7 @@ webpackJsonp([2],{
 	            if (res.rtnCode === "0000000") {
 	                util.drawToast("密码修改成功!");
 	                setTimeout(function(){
-	                    window.location.assign('http://' + $.trim(provinceKey) + '.'+ domain +'/login');
+	                    window.location.assign('/login');
 	                },2000);
 	            } else {
 	                util.drawToast(res.msg);

@@ -26,11 +26,11 @@
     <div class="content">
         <div class="backdrop"></div>
         <div class="menu">
-            <%--<div class="title">--%>
-            <%--<span>邓平</span>--%>
+            <div class="title">
+            <span id="userName"></span>
             <%--<span>理科</span>--%>
             <%--<span>580分</span>--%>
-            <%--</div>--%>
+            </div>
             <div class="menu-list clearfix">
                 <%--<div class="item">--%>
                 <%--<a href="">--%>
@@ -95,7 +95,7 @@
             </div>
             <div class="btn">
                 <a href="/login/logout" id="logout-btn">退出</a>
-                <a href="/vip">升级VIP</a>
+                <a id="vipStatus" href="/vip">升级VIP</a>
             </div>
         </div>
     </div>

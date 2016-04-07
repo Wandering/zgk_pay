@@ -11,7 +11,6 @@ webpackJsonp([0],[
 	$(function () {
 	    function isWeiXin(){
 	        var ua = window.navigator.userAgent.toLowerCase();
-	        //alert(ua);
 	        if(ua.indexOf('micromessenger') > -1){
 	            return true;
 	        }else{
@@ -34,14 +33,15 @@ webpackJsonp([0],[
 	    });
 
 
-
 	    //分享
-	    $('.share-btn').click(function () {
-	        if (isWeiXin()) {
+	    if (isWeiXin()) {
+	        $('.share-btn').click(function () {
 	            $('.mask').addClass('show');
-	        }
+	        });
+	    }else{
+	        $('.share-btn').hide();
+	    }
 
-	    });
 	    $('body').on('click','.mask',function () {
 	        $(this).removeClass('show');
 	    });

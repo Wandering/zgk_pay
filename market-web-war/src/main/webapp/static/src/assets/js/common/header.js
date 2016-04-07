@@ -4,7 +4,14 @@ var cookie = require('cookie');
 
     var isLogin = cookie.getCookieValue('isLogin');
 
-
+    if(isLogin){
+        var userName = cookie.getCookieValue('userName');
+        $('#userName').text(userName);
+    }
+    var vipStatus = cookie.getCookieValue('vipStatus');
+    if(vipStatus=="1"){
+        $('#vipStatus').attr('href','/vip-check');
+    }
 
     // 打开主菜单
     $('#header-menu').on('click', function () {
@@ -81,6 +88,8 @@ var cookie = require('cookie');
         cookie.deleteCookie('proName', '');
         cookie.deleteCookie('cityName', '');
         cookie.deleteCookie('countyName', '');
+        cookie.deleteCookie('vipActiveDate', '');
+        cookie.deleteCookie('vipEndDate', '');
     });
 
 

@@ -50,3 +50,12 @@ header .location.location-icon:before {
   font-size: 15px;
   margin-bottom: 5px;
 }
+
+.link {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 12px;
+}
+.link a {
+  color: #D80C18;
+}

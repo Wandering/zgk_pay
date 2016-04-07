@@ -15,16 +15,16 @@
             {{#each rows}}
             <li id="{{id}}">
                 <a href="/policy-detail?id={{id}}">
-                    <div class="img">
-                        <img src="{{image}}@base@tag=imgScale&w=150" alt="{{title}}"/>
-                    </div>
-                    <div class="summary">
-                        <div class="title">{{title}}</div>
-                        <div class="content">{{subContent}}</div>
-                        <div class="date">
+                    <p class="img">
+                        <img src="{{image}}@base@tag=imgScale&w=123" alt="{{title}}"/>
+                    </p>
+                    <p class="summary">
+                        <span class="title">{{title}}</span>
+                        <span class="content">{{subContent}}</span>
+                        <span class="date">
                             <span>{{hotDate}}</span>
-                        </div>
-                    </div>
+                        </span>
+                    </p>
                 </a>
             </li>
             {{/each}}

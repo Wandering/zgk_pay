@@ -19,6 +19,9 @@
             <div>VIP时效：从 <span id="startDate"></span> 到 <span id="endDate"></span></div>
         </div>
     </div>
+    <div class="link">
+        <a href="/vip-buy">在线购买VIP特权</a>
+    </div>
 </div>
 <script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/vipCheck.js"></script>

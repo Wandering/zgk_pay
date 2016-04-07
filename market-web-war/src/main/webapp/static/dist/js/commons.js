@@ -30,7 +30,7 @@
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		16:0
+/******/ 		17:0
 /******/ 	};
 
 /******/ 	// The require function
@@ -76,7 +76,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"code","2":"findPassword","4":"modifyUserDetail","5":"order","7":"policy","8":"policyDetail","9":"regLogin","11":"schoolInfo","12":"userDetail","13":"vip","14":"vipBuy"}[chunkId]||chunkId) + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"code","2":"findPassword","5":"modifyUserDetail","6":"order","8":"policy","9":"policyDetail","10":"regLogin","12":"schoolInfo","13":"userDetail","14":"vip","15":"vipBuy"}[chunkId]||chunkId) + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -96,9 +96,9 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	//var domainStr = 'zgkser.zhigaokao.cn'; //正式
+	var domainStr = 'zgkser.zhigaokao.cn'; //正式
 	//var domainStr = 'test.zhigaokao.cn'; //测试
-	var domainStr = 'm.zhigaokao.com:8084';
+	//var domainStr = 'm.zhigaokao.com:8084';
 
 	//获取域名前缀=============================
 	var urlDomain = window.location.hostname + '';
@@ -257,9 +257,9 @@
 
 
 
-	//var domainStr = 'zhigaokao.cn'; // 正式
+	var domainStr = 'zhigaokao.cn'; // 正式
 	//var domainStr = 'test.zhigaokao.cn'; // 测试
-	var domainStr = 'zhigaokao.com'; // 前端开发
+	//var domainStr = 'zhigaokao.com'; // 前端开发
 
 	// hours为空字符串时,cookie的生存期至浏览器会话结束。
 	// hours为数字0时,建立的是一个失效的cookie,这个cookie会覆盖已经建立过的同名、同path的cookie（如果这个cookie存在）。

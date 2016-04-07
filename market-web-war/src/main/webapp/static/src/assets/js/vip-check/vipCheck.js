@@ -1,9 +1,7 @@
 var cookie = require('cookie');
 $(function(){
     $('#header-title').text('VIP');
-    $('#header-back').show().on('click',function(){
-        window.location.href = '/vip';
-    });
+    $('#header-menu').show();
     var vipActiveDate = cookie.getCookieValue('vipActiveDate');
     var vipEndDate = cookie.getCookieValue('vipEndDate');
 

@@ -50,7 +50,14 @@
 
 	    var isLogin = cookie.getCookieValue('isLogin');
 
-
+	    if(isLogin){
+	        var userName = cookie.getCookieValue('userName');
+	        $('#userName').text(userName);
+	    }
+	    var vipStatus = cookie.getCookieValue('vipStatus');
+	    if(vipStatus=="1"){
+	        $('#vipStatus').attr('href','/vip-check');
+	    }
 
 	    // 打开主菜单
 	    $('#header-menu').on('click', function () {
@@ -127,6 +134,8 @@
 	        cookie.deleteCookie('proName', '');
 	        cookie.deleteCookie('cityName', '');
 	        cookie.deleteCookie('countyName', '');
+	        cookie.deleteCookie('vipActiveDate', '');
+	        cookie.deleteCookie('vipEndDate', '');
 	    });
 
 
@@ -144,9 +153,9 @@
 
 
 
-	//var domainStr = 'zhigaokao.cn'; // 正式
+	var domainStr = 'zhigaokao.cn'; // 正式
 	//var domainStr = 'test.zhigaokao.cn'; // 测试
-	var domainStr = 'zhigaokao.com'; // 前端开发
+	//var domainStr = 'zhigaokao.com'; // 前端开发
 
 	// hours为空字符串时,cookie的生存期至浏览器会话结束。
 	// hours为数字0时,建立的是一个失效的cookie,这个cookie会覆盖已经建立过的同名、同path的cookie（如果这个cookie存在）。

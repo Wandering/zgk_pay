@@ -18,11 +18,6 @@ header .header-btn {
   cursor: pointer;
 }
 
-.container .img,
-.summary {
-  display: inline-block;
-}
-
 .container .img {
   width: 123px;
   vertical-align: top;
@@ -31,14 +26,17 @@ header .header-btn {
 }
 .container .img img {
   border-radius: 3px;
-  width: 144px;
-  height: 88px;
 }
 
-.summary {
-  margin-left: 28px;
-  width: calc(100% - 157px);
+#policy-list a {
+  text-decoration: none;
 }
+
+#policy-list .img {
+  float: left;
+  margin-right: 15px;
+}
+
 .summary .title {
   font-size: 15px;
   color: #575757;

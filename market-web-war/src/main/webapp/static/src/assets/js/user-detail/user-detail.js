@@ -35,7 +35,7 @@ $(document).ready(function () {
         var province = cookie.getCookieValue('proName');
         $('#province').text(province || '');
 
-        var city = cookie.getCookieValue('cityName');
+        var city = cookie.getCookieValue('countyName');
         $('#city').text(city || '');
 
         var email = cookie.getCookieValue('email');
@@ -176,9 +176,10 @@ $(document).ready(function () {
                 cookie.deleteCookie('proName', '');
                 cookie.deleteCookie('cityName', '');
                 cookie.deleteCookie('countyName', '');
+                cookie.deleteCookie('vipActiveDate', '');
+                cookie.deleteCookie('vipEndDate', '');
                 window.location.href = '/login';
             } else {
-                alert(8)
                 util.drawToast(res.msg);
             }
         });

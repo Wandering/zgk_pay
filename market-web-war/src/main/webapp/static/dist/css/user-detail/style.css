@@ -80,6 +80,9 @@ header .location.location-icon:before {
   width: 33px;
   margin-top: 5px;
 }
+.detail-list li span:last-child {
+  float: right;
+}
 
 .change-password-btn {
   height: 39px;

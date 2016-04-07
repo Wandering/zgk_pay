@@ -1,5 +1,6 @@
 
 (function() {
+    $('#header-title').text('我的订单');
     $('#header-menu').show();
     var util = require('commonjs');
     var interfaceUrl = require('urlConfig');

@@ -22,7 +22,6 @@ header {
 
 .container .img,
 .summary {
-  display: inline-block;
 }
 
 .container .img {
@@ -33,14 +32,18 @@ header {
 
   img {
     border-radius: 3px;
-    width: 144px;
-    height: 88px;
   }
+}
+#policy-list a{
+  text-decoration: none;
+}
+#policy-list .img{
+  float: left;
+  margin-right:15px;
 }
 
 .summary {
-  margin-left: 28px;
-  width: calc(100% - 157px);
+  //width: calc(100% - 157px);
   .title {
     font-size: 15px;
     color: #575757;
