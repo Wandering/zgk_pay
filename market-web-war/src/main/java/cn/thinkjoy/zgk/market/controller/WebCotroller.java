@@ -32,7 +32,7 @@ public class WebCotroller {
     public Map<String,List<SplitPrice>> getSplitPriceInfo(@RequestParam(value = "accountId")String accountId)
     {
         List<SplitPrice> list = agentService.getSplitPriceInfo(accountId);
-        Map<String,List<SplitPrice>> priceMap = new HashMap<>();
+        Map<String,List<SplitPrice>> priceMap = new LinkedHashMap<>();
         if(null != list && list.size()>0)
         {
             for (SplitPrice price: list) {
