@@ -10,8 +10,8 @@
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
         <sourceRoots>
-          <root url="file://$MODULE_DIR$/src/main/java" />
           <root url="file://$MODULE_DIR$/src/main/resources" />
+          <root url="file://$MODULE_DIR$/src/main/java" />
         </sourceRoots>
       </configuration>
     </facet>
@@ -52,7 +52,6 @@
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-aop:4.1.0.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-context:4.1.0.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-web:4.1.0.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.springframework.security:spring-security-core:3.2.4.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework.security:spring-security-web:3.2.0.M1" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework.security:spring-security-config:3.2.0.M1" level="project" />
     <orderEntry type="library" exported="" name="Gradle: commons-codec:commons-codec:1.9" level="project" />
@@ -114,5 +113,6 @@
     <orderEntry type="library" exported="" name="Gradle: commons-collections:commons-collections:3.2.1" level="project" />
     <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.mock:mock-domain:1.0.3-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.mock:mock-api:1.0.3-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework.security:spring-security-core:3.2.4.RELEASE" level="project" />
   </component>
 </module>
