@@ -137,13 +137,22 @@
 
     <select id="getUserRelListByUserId" resultType="java.util.Map">
 
+
+       select * from(
+
+    select a.accountId,b.account,a.agentLevel from zgk_user_market a left join zgk_user_account b
+
+     on a.accountId=b.id  where a.accountId=#{userId}
+
+       UNION
+
       select b.accountId ,c.account as phone , b.agentLevel from zgk_user_market a left join
 
          zgk_user_market b on b.accountId=a.sharerId left join  zgk_user_account
 
           c on c.id = b.accountId where  a.accountId=#{userId}
 
-         union all
+         union
 
           select c.accountId ,d.account as phone , c.agentLevel from zgk_user_market a left join
 
@@ -151,7 +160,7 @@
 
          c.accountId=b.sharerId left join  zgk_user_account d on d.id=c.accountId where
 
-          a.accountId=#{userId}
+          a.accountId=#{userId} ) m where m.accountId is not null
 
     </select>
 
