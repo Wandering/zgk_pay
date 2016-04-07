@@ -194,7 +194,7 @@ public class PayController {
                 SplitPricePojo splitPricePojo=new SplitPricePojo();
                 splitPricePojo.setAccountId(Integer.valueOf(map.get("accountId").toString()));
                 splitPricePojo.setAgentLevel(Integer.valueOf(map.get("agentLevel").toString()));
-                splitPricePojo.setAccountPhone(map.get("phone").toString());
+                splitPricePojo.setAccountPhone(map.get("account").toString());
                 splitPricePojos.add(splitPricePojo);
             }
             agentService.SplitPriceExec(splitPricePojos, Integer.valueOf(callBackMap.get("amount").toString()), orderNo);
