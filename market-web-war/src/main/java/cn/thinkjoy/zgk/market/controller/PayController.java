@@ -102,6 +102,7 @@ public class PayController {
         try{
             Pingpp.apiKey=StaticSource.getSource("apiKey");
             String appId=StaticSource.getSource("appId");
+            String alipayCallBack=StaticSource.getSource("alipayCallBack");
             String statemenstNo=NumberGenUtil.genStatementNo();
             OrderStatements orderstatement=new OrderStatements();
             orderstatement.setAmount(Double.valueOf(amount)*100);
@@ -128,7 +129,8 @@ public class PayController {
                 chargeParams.put("extra",extraMap);
             }else  if(channel.equals(PAYCHANNEL.ALIPAYWAP.getCode())){
                 Map<String,Object> extraMap=new HashMap<>();
-                extraMap.put("success_url","http://m.zhigaokao.cn/order");
+
+                extraMap.put("success_url",alipayCallBack);
                 chargeParams.put("extra",extraMap);
             }
 
@@ -188,7 +190,6 @@ public class PayController {
                 return "fail";
             }
             List<SplitPricePojo> splitPricePojos=new ArrayList<>();
-
 
             for(Map<String,Object> map:userRelLs){
                 SplitPricePojo splitPricePojo=new SplitPricePojo();
