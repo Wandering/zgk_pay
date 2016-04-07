@@ -187,34 +187,34 @@
         <div class="backdrop"></div>
         <div class="menu">
             <div class="province-option-list" id="province-option-list">
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="zj">浙江</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="sn">陕西</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="fj">福建</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="gd">广东</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="hb">湖北</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="hn">湖南</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="gx">广西</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="ha">河南</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="sd">山东</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="he">河北</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="sc">四川</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="sh">上海</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="cq">重庆</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="jx">江西</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="yn">云南</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="bj">北京</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="tj">天津</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="hi">海南</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="ah">安徽</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="js">江苏</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="jl">吉林</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="ln">辽宁</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="gs">甘肃</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="sx">山西</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="gz">贵州</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="nx">宁夏</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="xj">新疆</a>
-                <a class="province-item" data-href="http://m.zhigaokao.com:8084/" domain="hl">黑龙江</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="zj">浙江</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="sn">陕西</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="fj">福建</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="gd">广东</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="hb">湖北</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="hn">湖南</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="gx">广西</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="ha">河南</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="sd">山东</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="he">河北</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="sc">四川</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="sh">上海</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="cq">重庆</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="jx">江西</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="yn">云南</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="bj">北京</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="tj">天津</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="hi">海南</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="ah">安徽</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="js">江苏</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="jl">吉林</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="ln">辽宁</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="gs">甘肃</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="sx">山西</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="gz">贵州</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="nx">宁夏</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="xj">新疆</a>
+                <a class="province-item" data-href="http://zgkser.zhigaokao.cn/" domain="hl">黑龙江</a>
             </div>
         </div>
     </div>

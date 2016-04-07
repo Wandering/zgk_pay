@@ -20,19 +20,31 @@ $(function () {
             $('#captchImg').attr('src', dataJson.qrcodeUrl);
         }
     });
+
+    //function confirmLayer(content) {
+    //    var confirmLayer = [];
+    //    confirmLayer.push('<div class="mask show">');
+    //    confirmLayer.push(content);
+    //    confirmLayer.push('</div>');
+    //    $('body').append(confirmLayer.join(''))
+    //}
+
     //分享
     $('.share-btn').click(function () {
-        $('.mask').show();
+        //var subHtml = '<img src="/static/dist/img/sharer.png" />';
+        //confirmLayer(subHtml);
+        $('.mask').addClass('show');
     });
-    $('.mask').click(function () {
-        $(this).hide();
+    $('body').on('click','.mask',function () {
+        $(this).removeClass('show');
     });
-
 
     $('#header-title').text('二维码');
     $('#header-back').show().on('click',function(){
         window.location.href = '/user-detail';
     });
+
+
 
 
 });

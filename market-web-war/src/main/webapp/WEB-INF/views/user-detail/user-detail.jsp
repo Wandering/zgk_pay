@@ -69,7 +69,6 @@
             <input id="confirm-psd" type="password" placeholder="确认新密码">
             <input id="confirm_pwd_btn" type="button" value="确认修改">
         </div>
-        <div class="close-modal">X</div>
     </div>
 </div>
 <script src="<%=ctx%>/static/dist/js/commons.js"></script>

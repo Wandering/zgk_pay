@@ -25,6 +25,10 @@
         分享二维码
     </div>
 </div>
+<div class="mask">
+    <img class="sharer-png" src="/static/dist/img/sharer.png" />
+    <p class="sharer-txt">分享二维码</p>
+</div>
 <script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/code.js"></script>
 </body>

@@ -190,12 +190,24 @@ webpackJsonp([13],[
 	            window.location.href = '/modify-user-detail';
 	        });
 
-	        $('.close-modal').on('click', function() {
-	            $('.mask').removeClass('show');
+
+
+
+
+
+	        $('body').on('click','.mask', function() {
+	            $(this).removeClass('show');
 	        });
 
 	        $('.change-password-btn').on('click', function() {
-	            $('.mask').addClass('show');
+	            //$('.mask').addClass('show');
+
+	            var subHtml = '' +
+	                '' +
+	                '<p class="reg-center">进入智高网站，</br>注册之后地域不可修改</p>';
+	            util.confirmLayer('修改密码',subHtml);
+
+
 	            $('#confirm_pwd_btn').off('click');
 	            $('#confirm_pwd_btn').on('click', function() {
 	                changePwd();
@@ -204,7 +216,6 @@ webpackJsonp([13],[
 
 	        var userId = cookie.getCookieValue('userId');
 	        $('#share-links').attr('href','/code?userId='+userId)
-
 	    });
 
 	})();
