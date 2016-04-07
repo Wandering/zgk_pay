@@ -11,6 +11,27 @@
         window.location.assign('/user-detail');
     });
 
+    util.ajaxFun(interfaceUrl.getUserInfo, 'GET', {}, function (res) {
+        console.log(res)
+        if (res.rtnCode == '0000000') {
+            var personListData = res.bizData;
+            $('#name').val(personListData.name);
+            $('#school_name').val(personListData.schoolName);
+            $('#email').val(personListData.mail);
+            var sexTxt = personListData.sex;
+            $('.sex').removeClass('active');
+            $('.sex[data-value="'+ sexTxt +'"]').addClass('active');
+            var subjectTxt = personListData.subjectType;
+            $('.subject').removeClass('active');
+            $('.subject[data-value="'+ subjectTxt +'"]').addClass('active');
+
+
+        }
+    });
+
+
+
+
 
 
 
@@ -71,9 +92,7 @@
                 util.drawToast('学校名不能大于20个字');
                 return false;
             }
-
             var img_url = $('#avatar-img').attr('src');
-
             var provinceId = cookie.getCookieValue('province'),
                 cityId = cookie.getCookieValue('city'),
                 countyId = cookie.getCookieValue('county');
@@ -84,7 +103,7 @@
                 countyId: countyId,
                 schoolName: school,
                 sex: sex,
-                birthdayDate: birthdayDate,
+                birthdayDate: birthdayDate || "0",
                 subjectType: subject,
                 mail: email,
                 icon: img_url,
@@ -100,5 +119,10 @@
 
         });
     });
+
+
+
+
+
 
 })();

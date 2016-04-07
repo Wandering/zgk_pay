@@ -11,6 +11,17 @@
     $('#header-title').text('个人信息');
     $('#header-menu').show();
 
+
+
+
+
+
+
+
+
+
+
+
     function initUserInfo() {
         var avatar = cookie.getCookieValue('avatar');
         if (!avatar) avatar = '/static/dist/img/icons/avatar.png';
@@ -46,6 +57,20 @@
         $('#qrcodeUrl').attr('src', qrcodeUrl || '/static/dist/img/icons/code.png');
     }
 
+    util.ajaxFun(interfaceUrl.getUserInfo, 'GET', {}, function (res) {
+        console.log(res)
+        if (res.rtnCode == '0000000') {
+            var personListData = res.bizData;
+            $('#header-user-name').text(personListData.name);
+            $('#school-name').text(personListData.schoolName);
+            $('#email').text(personListData.mail);
+            var sexTxt = personListData.sex;
+            sexTxt == "0" ? $('#sex').text('女生'):$('#sex').text('男生');
+            var subjectTypeTxt = personListData.subjectType;
+            subjectTypeTxt == "0" ? $('#subject').text('文史'):$('#subject').text('理工');
+
+        }
+    });
 
 
     //修改密码
@@ -132,7 +157,6 @@
         util.ajaxFun(interfaceUrl.getOpenId, 'get', {
             code: code
         }, function (res) {
-            alert(JSON.stringify(res));
             if (res.rtnCode == '0000000') {
                 cookie.setCookie("openId", res.bizData.openId, 4, "/");
             }
@@ -162,12 +186,24 @@
             window.location.href = '/modify-user-detail';
         });
 
-        $('.close-modal').on('click', function() {
-            $('.mask').removeClass('show');
+
+
+
+
+
+        $('body').on('click','.mask', function() {
+            $(this).removeClass('show');
         });
 
         $('.change-password-btn').on('click', function() {
-            $('.mask').addClass('show');
+            //$('.mask').addClass('show');
+
+            var subHtml = '' +
+                '' +
+                '<p class="reg-center">进入智高网站，</br>注册之后地域不可修改</p>';
+            util.confirmLayer('修改密码',subHtml);
+
+
             $('#confirm_pwd_btn').off('click');
             $('#confirm_pwd_btn').on('click', function() {
                 changePwd();
@@ -176,7 +212,6 @@
 
         var userId = cookie.getCookieValue('userId');
         $('#share-links').attr('href','/code?userId='+userId)
-
     });
 
 })();

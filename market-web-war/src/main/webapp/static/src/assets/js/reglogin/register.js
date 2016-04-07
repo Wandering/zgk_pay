@@ -201,7 +201,7 @@ $(function () {
         }
 
         var sharerId = util.getLinkey('sharerId');
-        var shareType = util.getLinkey('shareType');
+        var sharerType = util.getLinkey('sharerType');
         var subHtml = '<p class="reg-center">进入智高考"'+ provinceTxt +'"网站，</br>注册之后地域不可修改</p>';
         util.confirmLayer('注册',subHtml);
         $('body').on('click', '#confirm-btn', function () {
@@ -214,7 +214,7 @@ $(function () {
                 cityId: cityId,//市
                 countyId: countyId,//县
                 sharerId: sharerId || "0",
-                shareType: shareType || "0"
+                sharerType: sharerType || "0"
             }, function (res) {
                 console.log(res)
                 $('#confirm-btn').attr('disabled', 'disabled');

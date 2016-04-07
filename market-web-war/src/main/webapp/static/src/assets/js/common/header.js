@@ -31,10 +31,8 @@ var cookie = require('cookie');
         $('#province-option').toggleClass('hide');
     });
     if(!cookie.getCookieValue('userKey')){
-        alert(2)
         cookie.setCookie("userKey", 'zj', 4, "/");
         $('#province-text').text('浙江');
-        alert(3)
     }
 
 
@@ -51,7 +49,7 @@ var cookie = require('cookie');
     $('#province-option-list').on('click','a',function(){
         var dataHref = $(this).attr('data-href');
         var domainProvince = $(this).attr('domain');
-        window.location.assign(dataHref +pagePath);
+        window.location.href= dataHref +pagePath;
         console.log(domainProvince);
         if (!isLogin) {
             cookie.setCookie("userKey", domainProvince, 4, "/");

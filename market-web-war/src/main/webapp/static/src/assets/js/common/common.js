@@ -12,7 +12,6 @@ console.log(window.location.hostname);
 
 var cookie = require('cookie');
 
-
 var isLogin = function () {
     return cookie.getCookieValue('isLogin')
 };

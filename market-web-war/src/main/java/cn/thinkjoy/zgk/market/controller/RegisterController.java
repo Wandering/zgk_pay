@@ -59,7 +59,7 @@ public class RegisterController extends BaseCommonController {
                                   @RequestParam(value="cityId",required = false) String cityId,
                                   @RequestParam(value="countyId",required = false) String countyId,
                                   @RequestParam(value = "sharerId",required = false) Long sharerId,
-                                  @RequestParam(value = "shareType",required = false) Integer sharerType) {
+                                  @RequestParam(value = "sharerType",required = false) Integer sharerType) {
         Long  areaId= getAreaId();
         if (StringUtils.isEmpty(account)) {
                 throw new BizException(ERRORCODE.PARAM_ERROR.getCode(), "请输入账号!");

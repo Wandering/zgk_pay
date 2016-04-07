@@ -13,7 +13,6 @@ $(function () {
     var urlDomain = window.location.hostname + '';
     var urlArr = urlDomain.split('.');
     var provinceKey = urlArr[0];
-    alert(88)
     // 登录提交
     $('#register-pwd-btn').on('click', function () {
         var registerPhoneV = $.trim($('#register-pwd-phone').val()),
