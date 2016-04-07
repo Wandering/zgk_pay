@@ -197,7 +197,12 @@ public class PayController {
                 splitPricePojo.setAccountPhone(map.get("account").toString());
                 splitPricePojos.add(splitPricePojo);
             }
-            agentService.SplitPriceExec(splitPricePojos, Integer.valueOf(callBackMap.get("amount").toString()), orderNo);
+            boolean result = agentService.SplitPriceExec(splitPricePojos, Integer.valueOf(callBackMap.get("amount").toString()), orderNo);
+            if(!result)
+            {
+                logger.error(orderNo+":分成失败");
+                throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
+            }
             return "success";
         }catch (Exception e){
             logger.error("回调错误"+e);
