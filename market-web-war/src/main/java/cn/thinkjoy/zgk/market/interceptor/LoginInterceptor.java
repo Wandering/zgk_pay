@@ -27,7 +27,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		String key = UserRedisConst.USER_KEY+value;
 		boolean redisFlag = RedisUtil.getInstance().exists(key);
 		if ((StringUtils.isEmpty(value) && ServletPathConst.MAPPING_URLS.contains(url))||!redisFlag) {
-			response.sendRedirect("login");
+			response.sendRedirect("http://zgkuser.zhigaokao.cn/login");
 			return false;
 		}
 		return true;
