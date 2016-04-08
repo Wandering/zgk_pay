@@ -3,7 +3,6 @@ $(function () {
     var util = require('commonjs');
     var urlConfig = require('urlConfig');
     var account = cookie.getCookieValue('phone');
-    var getTime = require('timeFormat');
 
     var isLogin = cookie.getCookieValue('isLogin');
     var token = cookie.getCookieValue('token');
@@ -11,9 +10,6 @@ $(function () {
     if(isLogin){
         $('#vip-buy').attr('href','/vip-buy?token='+token);
     }
-
-
-
 
     $('#account-number').val(account);
 
@@ -44,7 +40,6 @@ $(function () {
             "cardNumber": cardNum,
             "password": cardPsd
         }, function (res) {
-            console.log(res)
             if (res.rtnCode == '0000000') {
                 var vipStatus = res.bizData.vipStatus;
                 var vipActiveDate = res.bizData.vipActiveDate;
