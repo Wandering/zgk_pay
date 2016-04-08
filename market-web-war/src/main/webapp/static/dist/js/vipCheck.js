@@ -47,19 +47,16 @@
 	var urlConfig = __webpack_require__(3);
 	var cookie = __webpack_require__(2);
 	var timeFormat = __webpack_require__(4);
+	var token = cookie.getCookieValue('token');
 	$(function () {
 	    $('#header-title').text('VIP');
 	    $('#header-menu').show();
 	    var vipActiveDate = cookie.getCookieValue('vipActiveDate');
 	    var vipEndDate = cookie.getCookieValue('vipEndDate');
-
-	    $('#startDate').text(timeFormat(vipActiveDate).substr(0, 10));
-	    $('#endDate').text(timeFormat(vipEndDate).substr(0, 10));
+	    $('#startDate').text(vipActiveDate);
+	    $('#endDate').text(vipEndDate);
+	    window.location.href = '/vip-buy?token='+token;
 	});
-
-
-
-
 
 
 
@@ -384,7 +381,7 @@
 	    var getTime = function (timestamp,formatStr) {
 	        var newDate = new Date();
 	        newDate.setTime(timestamp);
-	        return newDate.Format(formatStr || "yyyy-MM-dd hh:mm:ss");
+	        return newDate.Format(formatStr || "yyyy-MM-dd");
 	    };
 
 	    return getTime;

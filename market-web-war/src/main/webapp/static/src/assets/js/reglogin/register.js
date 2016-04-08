@@ -3,8 +3,6 @@ var cookie = require('cookie');
 var md5 = require('md5');
 var urlConfig = require('urlConfig');
 
-//var dialog = require('dialog');
-//var domain = util.domain; // 正式
 $(function () {
     //省市地区
     var province = '';
@@ -251,7 +249,7 @@ $(function () {
                     cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
                     cookie.setCookie("isReported",isReported, 4, "/");
                     cookie.setCookie("isSurvey",isSurvey, 4, "/");
-                    window.location.assign('/user-detail');
+                    window.location.assign('/user-detail?token='+token);
                 } else {
                     util.drawToast(res.msg);
                 }

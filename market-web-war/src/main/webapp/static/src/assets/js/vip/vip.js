@@ -47,11 +47,13 @@ $(function () {
                 var vipStatus = res.bizData.vipStatus;
                 var vipActiveDate = res.bizData.vipActiveDate;
                 var vipEndDate = res.bizData.vipEndDate;
+                console.log(vipActiveDate)
+                console.log(vipEndDate)
                 cookie.setCookie("vipStatus", vipStatus, 4, "/");
-                cookie.setCookie("vipActiveDate", vipActiveDate, 4, "/");
-                cookie.setCookie("vipEndDate", vipEndDate, 4, "/");
+                cookie.setCookie("vipActiveDate", vipActiveDate.substr(0, 10), 4, "/");
+                cookie.setCookie("vipEndDate", vipEndDate.substr(0, 10), 4, "/");
                 util.drawToast('申请成功');
-                window.location.assign('/vip-check')
+                //window.location.assign('/vip-check?token='+token)
             } else {
                 util.drawToast(res.msg);
             }

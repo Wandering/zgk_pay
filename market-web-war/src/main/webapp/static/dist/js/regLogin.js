@@ -389,8 +389,6 @@ webpackJsonp([10],[
 	var md5 = __webpack_require__(5);
 	var urlConfig = __webpack_require__(3);
 
-	//var dialog = require('dialog');
-	//var domain = util.domain; // 正式
 	$(function () {
 	    //省市地区
 	    var province = '';
@@ -637,7 +635,7 @@ webpackJsonp([10],[
 	                    cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
 	                    cookie.setCookie("isReported",isReported, 4, "/");
 	                    cookie.setCookie("isSurvey",isSurvey, 4, "/");
-	                    window.location.assign('/user-detail');
+	                    window.location.assign('/user-detail?token='+token);
 	                } else {
 	                    util.drawToast(res.msg);
 	                }
