@@ -1,4 +1,5 @@
 package cn.thinkjoy.zgk.market.interceptor;
+import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.zgk.market.constant.ServletPathConst;
 import cn.thinkjoy.zgk.market.constant.UserRedisConst;
 import cn.thinkjoy.zgk.market.util.CookieUtil;
@@ -26,9 +27,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		String value = request.getParameter("token");
 		String key = UserRedisConst.USER_KEY+value;
 		boolean redisFlag = RedisUtil.getInstance().exists(key);
-		if ((StringUtils.isEmpty(value) && ServletPathConst.MAPPING_URLS.contains(url))||!redisFlag) {
-			response.sendRedirect("http://zgkuser.zhigaokao.cn/login");
-			return false;
+		if ((StringUtils.isEmpty(value) ||!redisFlag)&& ServletPathConst.MAPPING_URLS.contains(url)) {
+			response.sendRedirect("http://zgkser.zhigaokao.cn/login");
+			throw new BizException("0000001","请在登陆后访问!");
 		}
 		return true;
 	}
