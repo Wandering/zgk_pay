@@ -8,7 +8,6 @@
     var cookie = require('cookie');
     $('#header-title').text('修改个人信息');
 
-    var isLogin = cookie.getCookieValue('isLogin');
     var token = cookie.getCookieValue('token');
 
 

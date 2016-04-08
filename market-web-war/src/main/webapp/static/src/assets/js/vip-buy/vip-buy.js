@@ -5,7 +5,6 @@ require('pgwmodal');
     var util = require('commonjs');
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
-    var isLogin = cookie.getCookieValue('isLogin');
     var token = cookie.getCookieValue('token');
 
     /**

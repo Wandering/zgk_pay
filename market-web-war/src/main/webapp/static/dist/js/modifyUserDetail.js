@@ -12,7 +12,6 @@ webpackJsonp([5],[
 	    var cookie = __webpack_require__(2);
 	    $('#header-title').text('修改个人信息');
 
-	    var isLogin = cookie.getCookieValue('isLogin');
 	    var token = cookie.getCookieValue('token');
 
 

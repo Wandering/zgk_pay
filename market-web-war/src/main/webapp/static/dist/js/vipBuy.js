@@ -10,7 +10,6 @@ webpackJsonp([15],{
 	    var util = __webpack_require__(1);
 	    var interfaceUrl = __webpack_require__(3);
 	    var cookie = __webpack_require__(2);
-	    var isLogin = cookie.getCookieValue('isLogin');
 	    var token = cookie.getCookieValue('token');
 
 	    /**
