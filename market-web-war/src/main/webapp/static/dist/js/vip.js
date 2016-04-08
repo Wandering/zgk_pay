@@ -16,8 +16,6 @@ webpackJsonp([14],[
 	        $('#vip-buy').attr('href','/vip-buy?token='+token);
 	    }
 
-
-
 	    $('#account-number').val(account);
 
 	    $('#header-menu').show();
