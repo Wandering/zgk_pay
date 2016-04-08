@@ -16,6 +16,7 @@ public class ServletPathConst {
 
     static{
         MAPPING_URLS.add("/user-detail");
+        MAPPING_URLS.add("/modify-user-detail");
         MAPPING_URLS.add("/consumer-list");
         MAPPING_URLS.add("/order");
         MAPPING_URLS.add("/vip");
