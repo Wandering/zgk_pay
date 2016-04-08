@@ -116,7 +116,7 @@ webpackJsonp([5],[
 	                    $('#userName').html(name);
 	                    cookie.setCookie("userName", name, 4, "");
 	                    util.drawToast('信息更新成功');
-	                    window.location.href = "/user-detail";
+	                    window.location.href = "/user-detail?token="+token;
 	                } else {
 	                    util.drawToast(res.msg || '信息更新失败');
 	                }
@@ -124,9 +124,9 @@ webpackJsonp([5],[
 
 	        });
 	    });
-
-
 	})();
+
+
 
 
 /***/ }

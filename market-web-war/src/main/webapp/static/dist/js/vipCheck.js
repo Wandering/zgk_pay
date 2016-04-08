@@ -46,7 +46,7 @@
 
 	var urlConfig = __webpack_require__(3);
 	var cookie = __webpack_require__(2);
-	var timeFormat = __webpack_require__(4);
+	var getTime = __webpack_require__(4);
 	var token = cookie.getCookieValue('token');
 	var isLogin = cookie.getCookieValue('isLogin');
 	$(function () {
@@ -54,12 +54,16 @@
 	    $('#header-menu').show();
 	    var vipActiveDate = cookie.getCookieValue('vipActiveDate');
 	    var vipEndDate = cookie.getCookieValue('vipEndDate');
-	    $('#startDate').text(vipActiveDate);
-	    $('#endDate').text(vipEndDate);
+	    var vipActiveDateV = getTime(vipActiveDate,'yyyy-MM-dd').substr(0, 10);
+	    var vipEndDateV = getTime(vipEndDate,'yyyy-MM-dd').substr(0, 10);
+	    $('#startDate').text(vipActiveDateV);
+	    $('#endDate').text(vipEndDateV);
 	    if(isLogin){
 	        $('#vip-buy').attr('href','/vip-buy?token='+token);
 	    }
 	});
+
+
 
 
 
@@ -387,7 +391,7 @@
 	    var getTime = function (timestamp,formatStr) {
 	        var newDate = new Date();
 	        newDate.setTime(timestamp);
-	        return newDate.Format(formatStr || "yyyy-MM-dd");
+	        return newDate.Format(formatStr || "yyyy-MM-dd hh:mm:ss");
 	    };
 
 	    return getTime;

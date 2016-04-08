@@ -3,6 +3,7 @@ $(function () {
     var util = require('commonjs');
     var urlConfig = require('urlConfig');
     var account = cookie.getCookieValue('phone');
+    var getTime = require('timeFormat');
 
     var isLogin = cookie.getCookieValue('isLogin');
     var token = cookie.getCookieValue('token');
@@ -47,13 +48,15 @@ $(function () {
                 var vipStatus = res.bizData.vipStatus;
                 var vipActiveDate = res.bizData.vipActiveDate;
                 var vipEndDate = res.bizData.vipEndDate;
-                console.log(vipActiveDate)
-                console.log(vipEndDate)
+                console.log(getTime(vipActiveDate,'yyyy-MM-dd'))
+                console.log(getTime(vipEndDate,'yyyy-MM-dd'))
+                var vipActiveDateV = getTime(vipActiveDate,'yyyy-MM-dd').substr(0, 10);
+                var vipEndDateV = getTime(vipEndDate,'yyyy-MM-dd').substr(0, 10);
                 cookie.setCookie("vipStatus", vipStatus, 4, "/");
-                cookie.setCookie("vipActiveDate", vipActiveDate.substr(0, 10), 4, "/");
-                cookie.setCookie("vipEndDate", vipEndDate.substr(0, 10), 4, "/");
+                cookie.setCookie("vipActiveDate", vipActiveDateV, 4, "/");
+                cookie.setCookie("vipEndDate", vipEndDateV, 4, "/");
                 util.drawToast('申请成功');
-                window.location.assign('/vip-check?token='+token)
+                //window.location.assign('/vip-check?token='+token)
             } else {
                 util.drawToast(res.msg);
             }
@@ -63,6 +66,8 @@ $(function () {
         });
     });
 });
+
+
 
 
 

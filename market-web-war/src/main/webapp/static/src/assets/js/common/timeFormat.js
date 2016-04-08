@@ -20,7 +20,7 @@ define([], function () {
     var getTime = function (timestamp,formatStr) {
         var newDate = new Date();
         newDate.setTime(timestamp);
-        return newDate.Format(formatStr || "yyyy-MM-dd");
+        return newDate.Format(formatStr || "yyyy-MM-dd hh:mm:ss");
     };
 
     return getTime;

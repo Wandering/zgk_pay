@@ -1,6 +1,6 @@
 var urlConfig = require('urlConfig');
 var cookie = require('cookie');
-var timeFormat = require('timeFormat');
+var getTime = require('timeFormat');
 var token = cookie.getCookieValue('token');
 var isLogin = cookie.getCookieValue('isLogin');
 $(function () {
@@ -8,12 +8,16 @@ $(function () {
     $('#header-menu').show();
     var vipActiveDate = cookie.getCookieValue('vipActiveDate');
     var vipEndDate = cookie.getCookieValue('vipEndDate');
-    $('#startDate').text(vipActiveDate);
-    $('#endDate').text(vipEndDate);
+    var vipActiveDateV = getTime(vipActiveDate,'yyyy-MM-dd').substr(0, 10);
+    var vipEndDateV = getTime(vipEndDate,'yyyy-MM-dd').substr(0, 10);
+    $('#startDate').text(vipActiveDateV);
+    $('#endDate').text(vipEndDateV);
     if(isLogin){
         $('#vip-buy').attr('href','/vip-buy?token='+token);
     }
 });
+
+
 
 
 
