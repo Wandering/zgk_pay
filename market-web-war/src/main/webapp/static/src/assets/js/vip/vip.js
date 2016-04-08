@@ -11,9 +11,15 @@ $(function () {
     if(isLogin){
         $('#vip-buy').attr('href','/vip-buy?token='+token);
     }
+
+
+
     $('#account-number').val(account);
+
     $('#header-menu').show();
     $('#header-title').text('VIP');
+
+
     $('.vip-btn').click(function () {
         var cardNum = $.trim($('#card-number').val());
         var cardPsd = $.trim($('#card-psd').val());
@@ -41,8 +47,8 @@ $(function () {
                 var vipStatus = res.bizData.vipStatus;
                 var vipActiveDate = res.bizData.vipActiveDate;
                 var vipEndDate = res.bizData.vipEndDate;
-                var vipActiveDateV = getTime(vipActiveDate,'yyyy-MM-dd');
-                var vipEndDateV = getTime(vipEndDate,'yyyy-MM-dd');
+                var vipActiveDateV = getTime(vipActiveDate).substr(0,10);
+                var vipEndDateV = getTime(vipEndDate).substr(0,10);
                 cookie.setCookie("vipStatus", vipStatus, 4, "/");
                 cookie.setCookie("vipActiveDate", vipActiveDateV, 4, "/");
                 cookie.setCookie("vipEndDate", vipEndDateV, 4, "/");
@@ -57,9 +63,6 @@ $(function () {
         });
     });
 });
-
-
-
 
 
 
