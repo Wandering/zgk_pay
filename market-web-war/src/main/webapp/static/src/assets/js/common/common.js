@@ -1,13 +1,13 @@
 //var domainStr = 'zgkser.zhigaokao.cn'; //正式
 //var domainStr = 'test.zhigaokao.cn'; //测试
-var domainStr = 'm.zhigaokao.com:8080';
+//var domainStr = 'm.zhigaokao.com:8080';
 
 //获取域名前缀=============================
-var urlDomain = window.location.hostname + '';
-var urlArr = urlDomain.split('.');
-var provinceKey = urlArr[0];
+//var urlDomain = window.location.hostname + '';
+//var urlArr = urlDomain.split('.');
+//var provinceKey = urlArr[0];
 
-console.log(window.location.hostname);
+//console.log(window.location.hostname);
 
 
 var cookie = require('cookie');
@@ -37,7 +37,7 @@ function ajaxFunJSON(url, method, data, callback) {
     if (cookie.getCookieValue('token')) {
         data.token = cookie.getCookieValue('token');
     }
-    data.userKey = provinceKey;
+    //data.userKey = provinceKey;
     console.log(JSON.stringify(data));
     $.ajax({
         url: url,
@@ -125,8 +125,8 @@ function confirmLayer(title,content) {
 exports.isLogin = isLogin;
 exports.ajaxFun = ajaxFun;
 exports.getLinkey = getLinkey;
-exports.domain = domainStr;
-exports.provinceKey = provinceKey;
+//exports.domain = domainStr;
+//exports.provinceKey = provinceKey;
 exports.tips = tips;
 exports.drawToast = drawToast;
 exports.layer = layer;

@@ -6,8 +6,8 @@ var handlebars = require('handlebars');
 var interfaceUrl = require('urlConfig');
 $('#header-title').text('详情');
 $(function () {
-    var domain = util.domain; // 正式
-    var userKey = util.provinceKey;
+    //var domain = util.domain; // 正式
+    //var userKey = util.provinceKey;
     var id = util.getLinkey('id');
     util.ajaxFun(interfaceUrl.getGkHotInfo, 'get', {
         "id":id

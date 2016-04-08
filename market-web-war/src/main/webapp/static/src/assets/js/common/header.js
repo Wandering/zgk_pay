@@ -3,10 +3,15 @@ var cookie = require('cookie');
 
 
     var isLogin = cookie.getCookieValue('isLogin');
+    var token = cookie.getCookieValue('token');
 
     if(isLogin){
         var userName = cookie.getCookieValue('userName');
         $('#userName').text(userName);
+        $('#consumerLinks').attr('href','/consumer-list?token='+token);
+        $('#orderLinks').attr('href','/order?token='+token);
+        $('#userLinks').attr('href','/user-detail?token='+token);
+
     }
     var vipStatus = cookie.getCookieValue('vipStatus');
     if(vipStatus=="1"){
@@ -58,11 +63,11 @@ var cookie = require('cookie');
 
     $('#province-option-list').on('click','a',function(){
         var dataHref = $(this).attr('data-href');
-        var domainProvince = $(this).attr('domain');
+        //var domainProvince = $(this).attr('domain');
         window.location.href= dataHref +pagePath;
-        console.log(domainProvince);
+        //console.log(domainProvince);
         if (!isLogin) {
-            cookie.setCookie("userKey", domainProvince, 4, "/");
+            cookie.setCookie("userKey", 'zj', 4, "/");
         }
     });
 

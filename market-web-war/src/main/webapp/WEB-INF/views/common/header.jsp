@@ -75,19 +75,19 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/consumer-list">
+                    <a  id="consumerLinks" href="javascript:void(0)">
                         <img src="<%=ctx%>/static/dist/img/8-active.png" alt=""/>
                         <span>我的钱包</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/order">
+                    <a id="orderLinks" href="javascript:void(0)">
                         <img src="<%=ctx%>/static/dist/img/9-active.png" alt=""/>
                         <span>我的订单</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/user-detail">
+                    <a id="userLinks" href="javascript:void(0)">
                         <img src="<%=ctx%>/static/dist/img/10-active.png" alt=""/>
                         <span>个人信息</span>
                     </a>

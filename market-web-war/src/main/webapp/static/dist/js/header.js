@@ -49,10 +49,15 @@
 
 
 	    var isLogin = cookie.getCookieValue('isLogin');
+	    var token = cookie.getCookieValue('token');
 
 	    if(isLogin){
 	        var userName = cookie.getCookieValue('userName');
 	        $('#userName').text(userName);
+	        $('#consumerLinks').attr('href','/consumer-list?token='+token);
+	        $('#orderLinks').attr('href','/order?token='+token);
+	        $('#userLinks').attr('href','/user-detail?token='+token);
+
 	    }
 	    var vipStatus = cookie.getCookieValue('vipStatus');
 	    if(vipStatus=="1"){
@@ -104,11 +109,11 @@
 
 	    $('#province-option-list').on('click','a',function(){
 	        var dataHref = $(this).attr('data-href');
-	        var domainProvince = $(this).attr('domain');
+	        //var domainProvince = $(this).attr('domain');
 	        window.location.href= dataHref +pagePath;
-	        console.log(domainProvince);
+	        //console.log(domainProvince);
 	        if (!isLogin) {
-	            cookie.setCookie("userKey", domainProvince, 4, "/");
+	            cookie.setCookie("userKey", 'zj', 4, "/");
 	        }
 	    });
 
@@ -155,7 +160,7 @@
 
 	//var domainStr = 'zhigaokao.cn'; // 正式
 	//var domainStr = 'test.zhigaokao.cn'; // 测试
-	var domainStr = 'zhigaokao.com'; // 前端开发
+	//var domainStr = 'zhigaokao.com'; // 前端开发
 
 	// hours为空字符串时,cookie的生存期至浏览器会话结束。
 	// hours为数字0时,建立的是一个失效的cookie,这个cookie会覆盖已经建立过的同名、同path的cookie（如果这个cookie存在）。
@@ -167,9 +172,9 @@
 	    //expires.setTime(expires.getTime() + days*24*60*60*1000);
 	    expires.setTime(expires.getTime() + hours*60*60*1000);
 	    path = path == "" ? "": ";path=" + path;
-	    var domain = ";domain="+domainStr;
+	    //var domain = ";domain="+domainStr;
 	    expires = (typeof hours) == "string" ? "" : ";expires=" + expires.toUTCString();
-	    document.cookie = name + "=" + value + expires + path + domain;
+	    document.cookie = name + "=" + value + expires + path;
 	}
 	// 获取cookie
 	function getCookieValue(name){
@@ -195,8 +200,8 @@
 	    var name = escape(name);
 	    var expires = new Date(0);
 	    path = path == "" ? "" : ";path=" + path;
-	    var domain = ";domain="+domainStr;
-	    document.cookie = name + "="+ ";expires=" + expires.toUTCString() + path + domain;
+	    //var domain = ";domain="+domainStr;
+	    document.cookie = name + "="+ ";expires=" + expires.toUTCString() + path ;
 	}
 
 
