@@ -49,10 +49,15 @@
 
 
 	    var isLogin = cookie.getCookieValue('isLogin');
+	    var token = cookie.getCookieValue('token');
 
 	    if(isLogin){
 	        var userName = cookie.getCookieValue('userName');
 	        $('#userName').text(userName);
+	        $('#consumerLinks').attr('href','/consumer-list?token='+token);
+	        $('#orderLinks').attr('href','/order?token='+token);
+	        $('#userLinks').attr('href','/user-detail?token='+token);
+
 	    }
 	    var vipStatus = cookie.getCookieValue('vipStatus');
 	    if(vipStatus=="1"){
