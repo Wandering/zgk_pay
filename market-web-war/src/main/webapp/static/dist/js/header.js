@@ -57,11 +57,12 @@
 	        $('#consumerLinks').attr('href','/consumer-list?token='+token);
 	        $('#orderLinks').attr('href','/order?token='+token);
 	        $('#userLinks').attr('href','/user-detail?token='+token);
-
+	        $('#userLinks').attr('href','/user-detail?token='+token);
+	        $('#vipStatus').attr('href','/vip?token='+token);
 	    }
 	    var vipStatus = cookie.getCookieValue('vipStatus');
 	    if(vipStatus=="1"){
-	        $('#vipStatus').attr('href','/vip-check');
+	        $('#vipStatus').attr('href','/vip-check?token='+token);
 	    }
 
 	    // 打开主菜单

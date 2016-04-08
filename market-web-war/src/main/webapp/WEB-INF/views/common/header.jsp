@@ -95,7 +95,7 @@
             </div>
             <div class="btn">
                 <a href="/login/logout" id="logout-btn">退出</a>
-                <a id="vipStatus" href="/vip">升级VIP</a>
+                <a id="vipStatus" href="javascript:void(0)">升级VIP</a>
             </div>
         </div>
     </div>
