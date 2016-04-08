@@ -198,7 +198,7 @@
 	    if (cookie.getCookieValue('token')) {
 	        data.token = cookie.getCookieValue('token');
 	    }
-	    //data.userKey = provinceKey;
+	    data.userKey = cookie.getCookieValue('userKey');
 	    console.log(JSON.stringify(data));
 	    $.ajax({
 	        url: url,

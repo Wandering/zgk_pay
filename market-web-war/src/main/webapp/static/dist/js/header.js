@@ -97,28 +97,21 @@
 	        $('#province-text').text('浙江');
 	    }
 
-
-
-
 	    var userKey = cookie.getCookieValue('userKey');
-
 	    var provinceTxt = $('#province-option-list a[domain="'+ userKey +'"]').text();
 	    $('#province-text').text(provinceTxt);
-
 	    var paths = window.location.pathname.split('/');
 	    var pagePath = paths[paths.length - 1];
-
 	    $('#province-option-list').on('click','a',function(){
-	        var dataHref = $(this).attr('data-href');
-	        //var domainProvince = $(this).attr('domain');
-	        window.location.href= dataHref +pagePath;
-	        //console.log(domainProvince);
-	        if (!isLogin) {
+	        var domainProvince = $(this).attr('domain');
+	        window.location.href= '/'+pagePath;
+	        console.log(domainProvince);
+	        if (!userKey) {
 	            cookie.setCookie("userKey", 'zj', 4, "/");
+	        }else{
+	            cookie.setCookie("userKey", domainProvince, 4, "/");
 	        }
 	    });
-
-
 
 	    // 退出
 	    $('#logout-btn').on('click', function () {
