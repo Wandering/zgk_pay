@@ -103,7 +103,7 @@ public class PayController {
         try{
             Pingpp.apiKey=StaticSource.getSource("apiKey");
             String appId=StaticSource.getSource("appId");
-            String alipayCallBack=StaticSource.getSource("alipayCallBack")+"/token=?"+token;
+            String alipayCallBack=StaticSource.getSource("alipayCallBack")+"?token="+token;
             String statemenstNo=NumberGenUtil.genStatementNo();
             OrderStatements orderstatement=new OrderStatements();
             orderstatement.setAmount(Double.valueOf(amount)*100);
