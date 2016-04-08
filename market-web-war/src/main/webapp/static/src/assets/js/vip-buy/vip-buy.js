@@ -46,11 +46,13 @@ require('pgwmodal');
             }
         })
     }
+    var isLogin = cookie.getCookieValue('isLogin');
+    var token = cookie.getCookieValue('token');
 
     function orderPayStatus(msg) {
         util.drawToast(msg);
         setTimeout(function() {
-            window.location.href = '/order';
+            window.location.href = '/order?token='+token;
         }, 1000);
     }
 
@@ -111,7 +113,6 @@ require('pgwmodal');
             }
         })
     }
-
 
     $(document).ready(function() {
         $('#header-title').text('在线购买');
