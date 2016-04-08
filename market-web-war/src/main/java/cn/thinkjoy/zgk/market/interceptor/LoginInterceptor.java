@@ -23,13 +23,26 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
     @Override
 	public boolean preHandle(HttpServletRequest request,HttpServletResponse response, Object handler) throws Exception {
-//		String url = request.getServletPath();
-//		String value = request.getParameter("token");
-//		String key = UserRedisConst.USER_KEY+value;
-//		boolean redisFlag = RedisUtil.getInstance().exists(key);
-//		if ((StringUtils.isEmpty(value) ||!redisFlag)&& ServletPathConst.MAPPING_URLS.contains(url)) {
-//			throw new BizException("0000001","请在登陆后访问!");
-//		}
+		String url = request.getServletPath();
+		String value = request.getParameter("token");
+		if(StringUtils.isEmpty(value)&& !ServletPathConst.MAPPING_URLS.contains(url))
+		{
+			return true;
+		}else if(StringUtils.isEmpty(value) && ServletPathConst.MAPPING_URLS.contains(url))
+		{
+			response.sendRedirect("login");
+			throw new BizException("0000001","请登陆后再操作!");
+		}
+
+		String key = UserRedisConst.USER_KEY+value;
+		boolean redisFlag = RedisUtil.getInstance().exists(key);
+		if(redisFlag)
+		{
+			return true;
+		}else if (ServletPathConst.MAPPING_URLS.contains(url)) {
+			response.sendRedirect("login");
+			throw new BizException("0000001","请登陆后再操作!");
+		}
 		return true;
 	}
 
