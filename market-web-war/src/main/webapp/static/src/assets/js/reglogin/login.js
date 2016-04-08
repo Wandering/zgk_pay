@@ -48,10 +48,11 @@ var getTime = require('timeFormat');
                     var vipActiveDate = res.bizData.userInfo.activeDate;
                     var vipEndDate = res.bizData.userInfo.endDate;
 
-                    var vipActiveDateV = getTime(vipActiveDate).substr(0,10);
-                    var vipEndDateV = getTime(vipEndDate).substr(0,10);
+                    var vipActiveDateV = getTime(vipActiveDate);
+                    var vipEndDateV = getTime(vipEndDate);
 
-
+                    console.log(vipActiveDateV)
+                    console.log(vipEndDateV)
 
                     var phone = res.bizData.userInfo.account; // 用户账号
                     var userKey = res.bizData.userInfo.userKey; // 省份userKey
