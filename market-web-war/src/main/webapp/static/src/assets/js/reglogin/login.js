@@ -6,6 +6,10 @@ var getTime = require('timeFormat');
 
     $(function () {
 
+        //var vipActiveDate = "1460117164642";
+        //
+        //var vipActiveDateV = getTime(vipActiveDate).substr(0,10);
+
         function isWeiXin(){
             var ua = window.navigator.userAgent.toLowerCase();
             //alert(ua);
@@ -48,11 +52,8 @@ var getTime = require('timeFormat');
                     var vipActiveDate = res.bizData.userInfo.activeDate;
                     var vipEndDate = res.bizData.userInfo.endDate;
 
-                    var vipActiveDateV = getTime(vipActiveDate);
-                    var vipEndDateV = getTime(vipEndDate);
-
-                    console.log(vipActiveDateV)
-                    console.log(vipEndDateV)
+                    var vipActiveDateV = getTime(vipActiveDate).substr(0,10);
+                    var vipEndDateV = getTime(vipEndDate).substr(0,10);
 
                     var phone = res.bizData.userInfo.account; // 用户账号
                     var userKey = res.bizData.userInfo.userKey; // 省份userKey
