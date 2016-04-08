@@ -21,7 +21,7 @@
     <div class="code">
         <img src="" class='captchImg' id="captchImg"/>
     </div>
-    <p class="code-txt">长按识别二维码</p>
+    <p class="code-txt">分享二维码，获取盈利</p>
     <div class="share-btn">
         分享二维码
     </div>
