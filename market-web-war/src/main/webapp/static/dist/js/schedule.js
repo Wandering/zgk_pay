@@ -52,7 +52,8 @@
 	$(function(){
 	    $('#header-menu').show();
 	    $('#header-title').text('高考日程');
-	    $('.calendar-icon').on('click', function(){
+	    $('.calendar-icon').on('click', function(event){
+	        event.stopPropagation();
 	        if($(this).hasClass('active')){
 	            $(this).removeClass('active');
 	            $('.calendar-drop-down').addClass('hidden');
@@ -61,8 +62,10 @@
 	            $('.calendar-drop-down').removeClass('hidden');
 	        }
 	    });
-
-
+	    $('body').on('click',function(){
+	        $('.calendar-icon').removeClass('active');
+	        $('.calendar-drop-down').addClass('hidden');
+	    });
 
 
 	    //    高考时间倒计时
@@ -97,13 +100,18 @@
 	    $('.a').text(gkTime[2]);
 
 	    //获取高考日程list
-	    $(document).on('click', '.calendar-list li', function () {
+	    $('#calendar-list').on('click', ' li', function () {
 	        $(".article-list").html("");
 	        $(this).addClass('active').siblings().removeClass('active');
 	        var month = $(this).html();
 	        month = month.substring(0, month.length - 1);
 	        getMonth(month);
 	    });
+
+
+
+
+
 	    //获取当前月分的新闻
 	    var nowMonth = new Date().getMonth() + 1;
 	    $('.calendar-list li').eq(nowMonth-1).addClass('active');
@@ -198,7 +206,7 @@
 	    if (cookie.getCookieValue('token')) {
 	        data.token = cookie.getCookieValue('token');
 	    }
-	    //data.userKey = provinceKey;
+	    data.userKey = cookie.getCookieValue('userKey');
 	    console.log(JSON.stringify(data));
 	    $.ajax({
 	        url: url,

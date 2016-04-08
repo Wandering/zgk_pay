@@ -11,7 +11,7 @@
 <div class="container">
     <div class="calendar-drop-down hidden">
         <div class="year">
-            <ul class="calendar-list">
+            <ul class="calendar-list" id="calendar-list">
                 <li data-id="1">1月</li>
                 <li data-id="2">2月</li>
                 <li data-id="3">3月</li>

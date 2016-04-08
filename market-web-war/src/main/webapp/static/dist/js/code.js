@@ -5,10 +5,14 @@ webpackJsonp([0],[
 	/**
 	 * Created by pdeng on 16/3/31.
 	 */
-	var util = __webpack_require__(1);
-	var interfaceUrl = __webpack_require__(3);
-	var cookie = __webpack_require__(2);
 	$(function () {
+	    var util = __webpack_require__(1);
+	    var interfaceUrl = __webpack_require__(3);
+	    var cookie = __webpack_require__(2);
+	    var isLogin = cookie.getCookieValue('isLogin');
+	    var token = cookie.getCookieValue('token');
+
+
 	    function isWeiXin(){
 	        var ua = window.navigator.userAgent.toLowerCase();
 	        if(ua.indexOf('micromessenger') > -1){
@@ -49,11 +53,10 @@ webpackJsonp([0],[
 	    $('#header-title').text('二维码');
 	    $('#header-back').show().on('click',function(){
 	        window.location.href = '/user-detail';
+	        if(isLogin){
+	            window.location.href = '/user-detail?token='+token;
+	        }
 	    });
-
-
-
-
 	});
 
 /***/ }

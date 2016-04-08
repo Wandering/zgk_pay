@@ -95,6 +95,7 @@ public class PayController {
                            HttpServletRequest request){
         Map<String,Object> resultMap=new HashMap<>();
         BigDecimal decimal=new BigDecimal(amount);
+        String token = request.getParameter("token");
         //参数错误
         if("".equals(orderNo)||orderNo==null||"".equals(amount)||amount==null||userId==0){
             throw  new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
@@ -102,7 +103,7 @@ public class PayController {
         try{
             Pingpp.apiKey=StaticSource.getSource("apiKey");
             String appId=StaticSource.getSource("appId");
-            String alipayCallBack=StaticSource.getSource("alipayCallBack");
+            String alipayCallBack=StaticSource.getSource("alipayCallBack")+"?token="+token;
             String statemenstNo=NumberGenUtil.genStatementNo();
             OrderStatements orderstatement=new OrderStatements();
             orderstatement.setAmount(Double.valueOf(amount)*100);

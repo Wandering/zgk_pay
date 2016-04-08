@@ -348,7 +348,8 @@ webpackJsonp([10],[
 	                    var url = '/user-detail?token='+token;
 	                    if (isWeiXin()) {
 	                        url = encodeURIComponent(url);
-	                        var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_base&state=' + $.trim(userKey) + '#wechat_redirect';
+	                        //var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_base&state=' + $.trim(userKey) + '#wechat_redirect';
+	                        var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=http://zgkser.zhigaokao.cn/user-detail?token='+token+'&response_type=code&scope=snsapi_base&state=' + $.trim(userKey) + '#wechat_redirect';
 	                        window.location.href = rUrl;
 	                    } else {
 	                        window.location.assign(url);
@@ -388,8 +389,6 @@ webpackJsonp([10],[
 	var md5 = __webpack_require__(5);
 	var urlConfig = __webpack_require__(3);
 
-	//var dialog = require('dialog');
-	//var domain = util.domain; // 正式
 	$(function () {
 	    //省市地区
 	    var province = '';
@@ -636,7 +635,7 @@ webpackJsonp([10],[
 	                    cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
 	                    cookie.setCookie("isReported",isReported, 4, "/");
 	                    cookie.setCookie("isSurvey",isSurvey, 4, "/");
-	                    window.location.assign('/user-detail');
+	                    window.location.assign('/user-detail?token='+token);
 	                } else {
 	                    util.drawToast(res.msg);
 	                }

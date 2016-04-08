@@ -6,12 +6,12 @@ webpackJsonp([13],{
 	/**
 	 * Created by kepeng on 16/4/1.
 	 */
-	$(document).ready(function () {
+	$(function(){
 	    var md5=__webpack_require__(5);
 	    var util = __webpack_require__(1);
 	    var interfaceUrl = __webpack_require__(3);
 	    var cookie = __webpack_require__(2);
-
+	    var token = cookie.getCookieValue('token');
 	    $('#header-title').text('个人信息');
 	    $('#header-menu').show();
 
@@ -111,7 +111,7 @@ webpackJsonp([13],{
 	    }
 	    initUserInfo();
 	    $('.modify-btn').on('click', function () {
-	        window.location.href = '/modify-user-detail';
+	        window.location.href = '/modify-user-detail?token='+token;
 	    });
 	    $('.change-password-btn').on('click', function () {
 	        var subHtml = ''

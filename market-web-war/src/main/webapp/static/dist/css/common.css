@@ -708,7 +708,7 @@ header .header-btn {
   display: flex;
 }
 .menu .btn a {
-  flex: 1;
+  display: inline-block;
   text-align: center;
   border: 1px solid #D80C18;
   padding: 10px 0;
@@ -722,6 +722,13 @@ header .header-btn {
 .menu .btn a:last-child {
   color: #fff;
   background-color: #D80C18;
+}
+.menu .btn a#login-btn {
+  width: 98%;
+}
+.menu .btn.login-btn a {
+  width: 48%;
+  display: inline-block;
 }
 
 .backdrop {

@@ -1,12 +1,12 @@
 /**
  * Created by kepeng on 16/4/1.
  */
-$(document).ready(function () {
+$(function(){
     var md5=require('md5');
     var util = require('commonjs');
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
-
+    var token = cookie.getCookieValue('token');
     $('#header-title').text('个人信息');
     $('#header-menu').show();
 
@@ -106,7 +106,7 @@ $(document).ready(function () {
     }
     initUserInfo();
     $('.modify-btn').on('click', function () {
-        window.location.href = '/modify-user-detail';
+        window.location.href = '/modify-user-detail?token='+token;
     });
     $('.change-password-btn').on('click', function () {
         var subHtml = ''

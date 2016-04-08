@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="link">
-        <a href="/vip-buy">在线购买VIP特权</a>
+        <a id="vip-buy" href="javascript:void(0)">在线购买VIP特权</a>
     </div>
 </div>
 <script src="<%=ctx%>/static/dist/js/commons.js"></script>

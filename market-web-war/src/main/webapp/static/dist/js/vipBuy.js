@@ -10,6 +10,7 @@ webpackJsonp([15],{
 	    var util = __webpack_require__(1);
 	    var interfaceUrl = __webpack_require__(3);
 	    var cookie = __webpack_require__(2);
+	    var token = cookie.getCookieValue('token');
 
 	    /**
 	     * 在线购买初始化
@@ -55,7 +56,7 @@ webpackJsonp([15],{
 	    function orderPayStatus(msg) {
 	        util.drawToast(msg);
 	        setTimeout(function() {
-	            window.location.href = '/order';
+	            window.location.href = '/order?token='+token;
 	        }, 1000);
 	    }
 
@@ -86,7 +87,7 @@ webpackJsonp([15],{
 	            channel = 'alipay_wap';
 	        }
 
-	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
+	        util.ajaxFun(interfaceUrl.payOrder+'?token='+token, 'POST', {
 	            orderNo: $('#orderNo').attr('orderNo'),
 	            userId: cookie.getCookieValue('userId') || '13',
 	            amount: amount,
@@ -116,7 +117,6 @@ webpackJsonp([15],{
 	            }
 	        })
 	    }
-
 
 	    $(document).ready(function() {
 	        $('#header-title').text('在线购买');

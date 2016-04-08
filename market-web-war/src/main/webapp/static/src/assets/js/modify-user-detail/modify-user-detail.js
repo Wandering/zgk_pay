@@ -7,8 +7,13 @@
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
     $('#header-title').text('修改个人信息');
+
+    var token = cookie.getCookieValue('token');
+
+
+
     $('#header-back').show().on('click', function () {
-        window.location.assign('/user-detail');
+        window.location.assign('/user-detail?token='+token);
     });
 
     util.ajaxFun(interfaceUrl.getUserInfo, 'GET', {}, function (res) {
@@ -24,8 +29,6 @@
             var subjectTxt = personListData.subjectType;
             $('.subject').removeClass('active');
             $('.subject[data-value="' + subjectTxt + '"]').addClass('active');
-
-
         }
     });
 
@@ -109,7 +112,7 @@
                     $('#userName').html(name);
                     cookie.setCookie("userName", name, 4, "");
                     util.drawToast('信息更新成功');
-                    window.location.href = "/user-detail";
+                    window.location.href = "/user-detail?token="+token;
                 } else {
                     util.drawToast(res.msg || '信息更新失败');
                 }
@@ -117,6 +120,6 @@
 
         });
     });
-
-
 })();
+
+

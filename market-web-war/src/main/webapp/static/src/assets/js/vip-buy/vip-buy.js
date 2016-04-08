@@ -5,6 +5,7 @@ require('pgwmodal');
     var util = require('commonjs');
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
+    var token = cookie.getCookieValue('token');
 
     /**
      * 在线购买初始化
@@ -50,7 +51,7 @@ require('pgwmodal');
     function orderPayStatus(msg) {
         util.drawToast(msg);
         setTimeout(function() {
-            window.location.href = '/order';
+            window.location.href = '/order?token='+token;
         }, 1000);
     }
 
@@ -81,7 +82,7 @@ require('pgwmodal');
             channel = 'alipay_wap';
         }
 
-        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
+        util.ajaxFun(interfaceUrl.payOrder+'?token='+token, 'POST', {
             orderNo: $('#orderNo').attr('orderNo'),
             userId: cookie.getCookieValue('userId') || '13',
             amount: amount,
@@ -111,7 +112,6 @@ require('pgwmodal');
             }
         })
     }
-
 
     $(document).ready(function() {
         $('#header-title').text('在线购买');
