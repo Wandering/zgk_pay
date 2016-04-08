@@ -18,5 +18,7 @@ public class ServletPathConst {
         MAPPING_URLS.add("/user-detail");
         MAPPING_URLS.add("/consumer-list");
         MAPPING_URLS.add("/order");
+        MAPPING_URLS.add("/vip");
+        MAPPING_URLS.add("/vip-buy");
     }
 }
