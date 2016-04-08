@@ -52,7 +52,8 @@
 	$(function(){
 	    $('#header-menu').show();
 	    $('#header-title').text('高考日程');
-	    $('.calendar-icon').on('click', function(){
+	    $('.calendar-icon').on('click', function(event){
+	        event.stopPropagation();
 	        if($(this).hasClass('active')){
 	            $(this).removeClass('active');
 	            $('.calendar-drop-down').addClass('hidden');
@@ -61,8 +62,10 @@
 	            $('.calendar-drop-down').removeClass('hidden');
 	        }
 	    });
-
-
+	    $('body').on('click',function(){
+	        $('.calendar-icon').removeClass('active');
+	        $('.calendar-drop-down').addClass('hidden');
+	    });
 
 
 	    //    高考时间倒计时
@@ -104,6 +107,11 @@
 	        month = month.substring(0, month.length - 1);
 	        getMonth(month);
 	    });
+
+
+
+
+
 	    //获取当前月分的新闻
 	    var nowMonth = new Date().getMonth() + 1;
 	    $('.calendar-list li').eq(nowMonth-1).addClass('active');

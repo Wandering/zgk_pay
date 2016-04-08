@@ -56,7 +56,7 @@ $(function () {
                 cookie.setCookie("vipActiveDate", vipActiveDateV, 4, "/");
                 cookie.setCookie("vipEndDate", vipEndDateV, 4, "/");
                 util.drawToast('申请成功');
-                //window.location.assign('/vip-check?token='+token)
+                window.location.assign('/vip-check?token='+token)
             } else {
                 util.drawToast(res.msg);
             }
@@ -66,6 +66,8 @@ $(function () {
         });
     });
 });
+
+
 
 
 
