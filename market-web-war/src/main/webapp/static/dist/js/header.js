@@ -44,28 +44,25 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var cookie = __webpack_require__(2);
-
-
-
+	$(function () {
+	    var cookie = __webpack_require__(2);
 	    var isLogin = cookie.getCookieValue('isLogin');
 	    var token = cookie.getCookieValue('token');
-
-	    if(isLogin){
+	    if (isLogin) {
 	        var userName = cookie.getCookieValue('userName');
 	        $('#userName').text(userName);
-	        $('#consumerLinks').attr('href','/consumer-list?token='+token);
-	        $('#orderLinks').attr('href','/order?token='+token);
-	        $('#userLinks').attr('href','/user-detail?token='+token);
-	        $('#userLinks').attr('href','/user-detail?token='+token);
-	        $('#vipStatus').attr('href','/vip?token='+token);
+	        $('#consumerLinks').attr('href', '/consumer-list?token=' + token);
+	        $('#orderLinks').attr('href', '/order?token=' + token);
+	        $('#userLinks').attr('href', '/user-detail?token=' + token);
+	        $('#vipStatus').attr('href', '/vip?token=' + token);
 	    }
 	    var vipStatus = cookie.getCookieValue('vipStatus');
-	    if(vipStatus=="1"){
-	        $('#vipStatus').attr('href','/vip-check?token='+token);
+	    if (vipStatus == "1") {
+	        $('#vipStatus').attr('href', '/vip-check?token=' + token);
+	    } else {
+	        $('#vipStatus').attr('href', '/vip?token=' + token);
 	    }
-
-	    // 打开主菜单
+	// 打开主菜单
 	    $('#header-menu').on('click', function () {
 	        if (isLogin) {
 	            $('#menu-header').hide();
@@ -85,35 +82,35 @@
 	    });
 
 
-	    // 切换省份
-	    $('#province-text').on('click',function(){
+	// 切换省份
+	    $('#province-text').on('click', function () {
 	        $('#province-option').toggleClass('hide');
-	        if(isLogin){
+	        if (isLogin) {
 	            $('#province-option').hide();
 	        }
 	    });
-	    if(!cookie.getCookieValue('userKey')){
+	    if (!cookie.getCookieValue('userKey')) {
 	        cookie.setCookie("userKey", 'zj', 4, "/");
 	        $('#province-text').text('浙江');
 	    }
 
 	    var userKey = cookie.getCookieValue('userKey');
-	    var provinceTxt = $('#province-option-list a[domain="'+ userKey +'"]').text();
+	    var provinceTxt = $('#province-option-list a[domain="' + userKey + '"]').text();
 	    $('#province-text').text(provinceTxt);
 	    var paths = window.location.pathname.split('/');
 	    var pagePath = paths[paths.length - 1];
-	    $('#province-option-list').on('click','a',function(){
+	    $('#province-option-list').on('click', 'a', function () {
 	        var domainProvince = $(this).attr('domain');
-	        window.location.href= '/'+pagePath;
+	        window.location.href = '/' + pagePath;
 	        console.log(domainProvince);
 	        if (!userKey) {
 	            cookie.setCookie("userKey", 'zj', 4, "/");
-	        }else{
+	        } else {
 	            cookie.setCookie("userKey", domainProvince, 4, "/");
 	        }
 	    });
 
-	    // 退出
+	// 退出
 	    $('#logout-btn').on('click', function () {
 	        cookie.deleteCookie('city', '');
 	        cookie.deleteCookie('county', '');
@@ -136,9 +133,7 @@
 	        cookie.deleteCookie('vipActiveDate', '');
 	        cookie.deleteCookie('vipEndDate', '');
 	    });
-
-
-
+	});
 
 /***/ },
 /* 1 */,
