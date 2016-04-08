@@ -42,6 +42,9 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
     </context:component-scan>
 
+    <mvc:interceptors >
+        <bean class="cn.thinkjoy.zgk.market.interceptor.LoginInterceptor"></bean>
+    </mvc:interceptors>
 
     <bean
             class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
@@ -66,31 +69,6 @@
         </property>
     </bean>
 
-    <mvc:interceptors >
-        <mvc:interceptor>
-            <!-- 需拦截的地址 -->
-            <!-- 一级目录 -->
-            <mvc:mapping path="/" />
-            <!-- 需排除拦截的地址 -->
-            <!--登录需要全部放开-->
-            <mvc:exclude-mapping path="login"/>
-            <!--二维码分享页面数据请求接口-->
-            <mvc:exclude-mapping path="user/getUserProfile"/>
-            <!--二维码分享页面请求路径-->
-            <mvc:exclude-mapping path="code"/>
-            <mvc:exclude-mapping path="find-password"/>
-            <!--找回密码数据请求-->
-            <mvc:exclude-mapping path="register/retrievePassword"/>
-            <mvc:exclude-mapping path="register/*"/>
-            <mvc:exclude-mapping path="login/*"/>
-            <mvc:exclude-mapping path="*.js"/>
-            <mvc:exclude-mapping path="*.css"/>
-            <mvc:exclude-mapping path="*.ico"/>
-            <mvc:exclude-mapping path="*.jpg"/>
-            <mvc:exclude-mapping path="*.png"/>
-            <mvc:exclude-mapping path="static/*"/>
-            <mvc:exclude-mapping path="find-password"/>
-            <bean class="cn.thinkjoy.zgk.market.interceptor.LoginInterceptor"></bean>
-        </mvc:interceptor>
-    </mvc:interceptors>
+
+
 </beans>

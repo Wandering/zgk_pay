@@ -1,4 +1,6 @@
 package cn.thinkjoy.zgk.market.interceptor;
+import cn.thinkjoy.common.exception.BizException;
+import cn.thinkjoy.zgk.market.constant.ServletPathConst;
 import cn.thinkjoy.zgk.market.constant.UserRedisConst;
 import cn.thinkjoy.zgk.market.util.CookieUtil;
 import cn.thinkjoy.zgk.market.util.RedisUtil;
@@ -21,29 +23,26 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
     @Override
 	public boolean preHandle(HttpServletRequest request,HttpServletResponse response, Object handler) throws Exception {
-		String url = request.getServletPath();
-//		if(!ServletPathConst.MAPPING_URLS.contains(url)){
+//		String url = request.getServletPath();
+//		String value = request.getParameter("token");
+//		if(StringUtils.isEmpty(value)&& !ServletPathConst.MAPPING_URLS.contains(url))
+//		{
 //			return true;
+//		}else if(StringUtils.isEmpty(value) && ServletPathConst.MAPPING_URLS.contains(url))
+//		{
+//			response.sendRedirect("login");
+//			throw new BizException("0000001","请登陆后再操作!");
 //		}
-//		System.out.println("===========HandlerInterceptor1 preHandle");
-
-		LOGGER.info("url:"+url);
-
-		String value = CookieUtil.getCookieValue(request);
-
-		LOGGER.info("cookie:"+value);
-//		RedisUtil.getInstance().del(key);
-		String key = UserRedisConst.USER_KEY+value;
-
-		boolean redisFlag = RedisUtil.getInstance().exists(key);
-
-		LOGGER.info("redis is exists:"+ redisFlag);
-
-		if (StringUtils.isEmpty(value)||!redisFlag) {
-			response.sendRedirect("login");
-			return false;
-		}
-
+//
+//		String key = UserRedisConst.USER_KEY+value;
+//		boolean redisFlag = RedisUtil.getInstance().exists(key);
+//		if(redisFlag)
+//		{
+//			return true;
+//		}else if (ServletPathConst.MAPPING_URLS.contains(url)) {
+//			response.sendRedirect("login");
+//			throw new BizException("0000001","请登陆后再操作!");
+//		}
 		return true;
 	}
 
