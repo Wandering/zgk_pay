@@ -8,16 +8,16 @@ webpackJsonp([2],{
 	var md5=__webpack_require__(5);
 	var urlConfig=__webpack_require__(3);
 
-	var domain = util.domain; // 正式
+	//var domain = util.domain; // 正式
 
 	$('#header-back').show().on('click',function(){
 	    window.location.assign('/login');
 	});
 
 	$(function () {
-	    var urlDomain = window.location.hostname + '';
-	    var urlArr = urlDomain.split('.');
-	    var provinceKey = urlArr[0];
+	    //var urlDomain = window.location.hostname + '';
+	    //var urlArr = urlDomain.split('.');
+	    //var provinceKey = urlArr[0];
 	    // 登录提交
 	    $('#register-pwd-btn').on('click', function () {
 	        var registerPhoneV = $.trim($('#register-pwd-phone').val()),

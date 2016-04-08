@@ -4,7 +4,7 @@ var md5 = require('md5');
 var urlConfig = require('urlConfig');
 
 //var dialog = require('dialog');
-var domain = util.domain; // 正式
+//var domain = util.domain; // 正式
 $(function () {
     //省市地区
     var province = '';
@@ -28,6 +28,7 @@ $(function () {
                 }
             });
         },
+
         render: function (data, flag) {
             var html = [];
             if (flag) {

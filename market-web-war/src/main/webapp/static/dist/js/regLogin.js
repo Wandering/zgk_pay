@@ -270,7 +270,7 @@ webpackJsonp([10],[
 	var util=__webpack_require__(1);
 	var cookie=__webpack_require__(2);
 	var md5=__webpack_require__(5);
-	    var domain = util.domain; // 正式
+	    //var domain = util.domain; // 正式
 
 	    $(function () {
 
@@ -339,7 +339,7 @@ webpackJsonp([10],[
 	                    cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
 	                    cookie.setCookie("isReported",isReported, 4, "/");
 	                    cookie.setCookie("isSurvey",isSurvey, 4, "/");
-	                    var url = 'http://' + domain +'/user-detail';
+	                    var url = '/user-detail';
 	                    if (isWeiXin()) {
 	                        url = encodeURIComponent(url);
 	                        var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_base&state=' + $.trim(userKey) + '#wechat_redirect';
@@ -383,7 +383,7 @@ webpackJsonp([10],[
 	var urlConfig = __webpack_require__(3);
 
 	//var dialog = require('dialog');
-	var domain = util.domain; // 正式
+	//var domain = util.domain; // 正式
 	$(function () {
 	    //省市地区
 	    var province = '';
@@ -407,6 +407,7 @@ webpackJsonp([10],[
 	                }
 	            });
 	        },
+
 	        render: function (data, flag) {
 	            var html = [];
 	            if (flag) {

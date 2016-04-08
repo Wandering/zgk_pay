@@ -58,11 +58,11 @@ var cookie = require('cookie');
 
     $('#province-option-list').on('click','a',function(){
         var dataHref = $(this).attr('data-href');
-        var domainProvince = $(this).attr('domain');
+        //var domainProvince = $(this).attr('domain');
         window.location.href= dataHref +pagePath;
-        console.log(domainProvince);
+        //console.log(domainProvince);
         if (!isLogin) {
-            cookie.setCookie("userKey", domainProvince, 4, "/");
+            cookie.setCookie("userKey", 'zj', 4, "/");
         }
     });
 

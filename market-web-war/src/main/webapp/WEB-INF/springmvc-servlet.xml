@@ -46,8 +46,7 @@
         <bean class="cn.thinkjoy.zgk.market.interceptor.LoginInterceptor"></bean>
     </mvc:interceptors>
 
-    <bean
-            class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
         <property name="caseSensitive" value="true" />
     </bean>
 

@@ -45,10 +45,10 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var util = __webpack_require__(1);
-	var domain = util.domain; // 正式
+	//var domain = util.domain; // 正式
 	$('#header-title').text('盈利规则');
 	$('#header-back').show().on('click',function(){
-	    window.location.assign('http://'+ domain +'/consumer-list');
+	    window.location.assign('/consumer-list');
 	});
 
 /***/ },
@@ -57,14 +57,14 @@
 
 	//var domainStr = 'zgkser.zhigaokao.cn'; //正式
 	//var domainStr = 'test.zhigaokao.cn'; //测试
-	var domainStr = 'm.zhigaokao.com:8084';
+	//var domainStr = 'm.zhigaokao.com:8084';
 
 	//获取域名前缀=============================
-	var urlDomain = window.location.hostname + '';
-	var urlArr = urlDomain.split('.');
-	var provinceKey = urlArr[0];
+	//var urlDomain = window.location.hostname + '';
+	//var urlArr = urlDomain.split('.');
+	//var provinceKey = urlArr[0];
 
-	console.log(window.location.hostname);
+	//console.log(window.location.hostname);
 
 
 	var cookie = __webpack_require__(2);
@@ -94,7 +94,7 @@
 	    if (cookie.getCookieValue('token')) {
 	        data.token = cookie.getCookieValue('token');
 	    }
-	    data.userKey = provinceKey;
+	    //data.userKey = provinceKey;
 	    console.log(JSON.stringify(data));
 	    $.ajax({
 	        url: url,
@@ -182,8 +182,8 @@
 	exports.isLogin = isLogin;
 	exports.ajaxFun = ajaxFun;
 	exports.getLinkey = getLinkey;
-	exports.domain = domainStr;
-	exports.provinceKey = provinceKey;
+	//exports.domain = domainStr;
+	//exports.provinceKey = provinceKey;
 	exports.tips = tips;
 	exports.drawToast = drawToast;
 	exports.layer = layer;
@@ -218,7 +218,7 @@
 
 	//var domainStr = 'zhigaokao.cn'; // 正式
 	//var domainStr = 'test.zhigaokao.cn'; // 测试
-	var domainStr = 'zhigaokao.com'; // 前端开发
+	//var domainStr = 'zhigaokao.com'; // 前端开发
 
 	// hours为空字符串时,cookie的生存期至浏览器会话结束。
 	// hours为数字0时,建立的是一个失效的cookie,这个cookie会覆盖已经建立过的同名、同path的cookie（如果这个cookie存在）。
@@ -230,9 +230,9 @@
 	    //expires.setTime(expires.getTime() + days*24*60*60*1000);
 	    expires.setTime(expires.getTime() + hours*60*60*1000);
 	    path = path == "" ? "": ";path=" + path;
-	    var domain = ";domain="+domainStr;
+	    //var domain = ";domain="+domainStr;
 	    expires = (typeof hours) == "string" ? "" : ";expires=" + expires.toUTCString();
-	    document.cookie = name + "=" + value + expires + path + domain;
+	    document.cookie = name + "=" + value + expires + path;
 	}
 	// 获取cookie
 	function getCookieValue(name){
@@ -258,8 +258,8 @@
 	    var name = escape(name);
 	    var expires = new Date(0);
 	    path = path == "" ? "" : ";path=" + path;
-	    var domain = ";domain="+domainStr;
-	    document.cookie = name + "="+ ";expires=" + expires.toUTCString() + path + domain;
+	    //var domain = ";domain="+domainStr;
+	    document.cookie = name + "="+ ";expires=" + expires.toUTCString() + path ;
 	}
 
 
