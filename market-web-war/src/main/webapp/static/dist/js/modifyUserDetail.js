@@ -11,8 +11,14 @@ webpackJsonp([5],[
 	    var interfaceUrl = __webpack_require__(3);
 	    var cookie = __webpack_require__(2);
 	    $('#header-title').text('修改个人信息');
+
+	    var isLogin = cookie.getCookieValue('isLogin');
+	    var token = cookie.getCookieValue('token');
+
+
+
 	    $('#header-back').show().on('click', function () {
-	        window.location.assign('/user-detail');
+	        window.location.assign('/user-detail?token='+token);
 	    });
 
 	    util.ajaxFun(interfaceUrl.getUserInfo, 'GET', {}, function (res) {
@@ -28,8 +34,6 @@ webpackJsonp([5],[
 	            var subjectTxt = personListData.subjectType;
 	            $('.subject').removeClass('active');
 	            $('.subject[data-value="' + subjectTxt + '"]').addClass('active');
-
-
 	        }
 	    });
 
