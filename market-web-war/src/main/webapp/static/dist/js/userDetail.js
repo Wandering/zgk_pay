@@ -6,7 +6,7 @@ webpackJsonp([13],{
 	/**
 	 * Created by kepeng on 16/4/1.
 	 */
-	$(document).ready(function () {
+	$(function(){
 	    var md5=__webpack_require__(5);
 	    var util = __webpack_require__(1);
 	    var interfaceUrl = __webpack_require__(3);

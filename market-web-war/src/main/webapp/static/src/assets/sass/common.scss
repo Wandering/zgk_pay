@@ -375,7 +375,7 @@ header {
     padding: 20px;
     display: flex;
     a {
-      flex: 1;
+      display: inline-block;
       text-align: center;
       border: 1px solid #D80C18;
       padding: 10px 0;
@@ -389,7 +389,16 @@ header {
         color: #fff;
         background-color: #D80C18;
       }
+    }
+    a#login-btn{
+      width: 98%;
+    }
+  }
 
+  .btn.login-btn{
+    a{
+      width:48%;
+      display: inline-block;
     }
   }
 }

@@ -3,6 +3,7 @@ $(function () {
     var util = require('commonjs');
     var urlConfig = require('urlConfig');
     var account = cookie.getCookieValue('phone');
+    var getTime = require('timeFormat');
 
     var isLogin = cookie.getCookieValue('isLogin');
     var token = cookie.getCookieValue('token');
@@ -10,12 +11,9 @@ $(function () {
     if(isLogin){
         $('#vip-buy').attr('href','/vip-buy?token='+token);
     }
-
     $('#account-number').val(account);
-
     $('#header-menu').show();
     $('#header-title').text('VIP');
-
     $('.vip-btn').click(function () {
         var cardNum = $.trim($('#card-number').val());
         var cardPsd = $.trim($('#card-psd').val());
@@ -43,8 +41,8 @@ $(function () {
                 var vipStatus = res.bizData.vipStatus;
                 var vipActiveDate = res.bizData.vipActiveDate;
                 var vipEndDate = res.bizData.vipEndDate;
-                var vipActiveDateV = vipActiveDate.substr(0,10);
-                var vipEndDateV = vipEndDate.substr(0,10);
+                var vipActiveDateV = getTime(vipActiveDate,'yyyy-MM-dd');
+                var vipEndDateV = getTime(vipEndDate,'yyyy-MM-dd');
                 cookie.setCookie("vipStatus", vipStatus, 4, "/");
                 cookie.setCookie("vipActiveDate", vipActiveDateV, 4, "/");
                 cookie.setCookie("vipEndDate", vipEndDateV, 4, "/");
@@ -58,8 +56,10 @@ $(function () {
             }
         });
     });
-
 });
+
+
+
 
 
 

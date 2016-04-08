@@ -93,7 +93,7 @@
                     </a>
                 </div>
             </div>
-            <div class="btn">
+            <div class="btn login-btn">
                 <a href="/login/logout" id="logout-btn">退出</a>
                 <a id="vipStatus" href="javascript:void(0)">升级VIP</a>
             </div>

@@ -1,7 +1,7 @@
 /**
  * Created by kepeng on 16/4/1.
  */
-$(document).ready(function () {
+$(function(){
     var md5=require('md5');
     var util = require('commonjs');
     var interfaceUrl = require('urlConfig');
