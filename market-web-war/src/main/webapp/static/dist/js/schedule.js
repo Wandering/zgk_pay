@@ -97,7 +97,7 @@
 	    $('.a').text(gkTime[2]);
 
 	    //获取高考日程list
-	    $(document).on('click', '.calendar-list li', function () {
+	    $('#calendar-list').on('click', ' li', function () {
 	        $(".article-list").html("");
 	        $(this).addClass('active').siblings().removeClass('active');
 	        var month = $(this).html();
