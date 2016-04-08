@@ -10,6 +10,8 @@ webpackJsonp([15],{
 	    var util = __webpack_require__(1);
 	    var interfaceUrl = __webpack_require__(3);
 	    var cookie = __webpack_require__(2);
+	    var isLogin = cookie.getCookieValue('isLogin');
+	    var token = cookie.getCookieValue('token');
 
 	    /**
 	     * 在线购买初始化
@@ -51,8 +53,6 @@ webpackJsonp([15],{
 	            }
 	        })
 	    }
-	    var isLogin = cookie.getCookieValue('isLogin');
-	    var token = cookie.getCookieValue('token');
 
 	    function orderPayStatus(msg) {
 	        util.drawToast(msg);
@@ -88,7 +88,7 @@ webpackJsonp([15],{
 	            channel = 'alipay_wap';
 	        }
 
-	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
+	        util.ajaxFun(interfaceUrl.payOrder+'?token='+token, 'POST', {
 	            orderNo: $('#orderNo').attr('orderNo'),
 	            userId: cookie.getCookieValue('userId') || '13',
 	            amount: amount,
