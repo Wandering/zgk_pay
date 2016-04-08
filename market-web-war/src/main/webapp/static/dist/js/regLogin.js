@@ -345,7 +345,7 @@ webpackJsonp([10],[
 	                    cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
 	                    cookie.setCookie("isReported",isReported, 4, "/");
 	                    cookie.setCookie("isSurvey",isSurvey, 4, "/");
-	                    var url = '/user-detail';
+	                    var url = '/user-detail?token='+token;
 	                    if (isWeiXin()) {
 	                        url = encodeURIComponent(url);
 	                        var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_base&state=' + $.trim(userKey) + '#wechat_redirect';
