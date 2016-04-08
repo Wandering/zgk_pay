@@ -1,6 +1,7 @@
 var util=require('commonjs');
 var cookie=require('cookie');
 var md5=require('md5');
+var getTime = require('timeFormat');
     //var domain = util.domain; // 正式
 
     $(function () {
@@ -47,6 +48,11 @@ var md5=require('md5');
                     var vipActiveDate = res.bizData.userInfo.activeDate;
                     var vipEndDate = res.bizData.userInfo.endDate;
 
+                    var vipActiveDateV = getTime(vipActiveDate).substr(0,10);
+                    var vipEndDateV = getTime(vipEndDate).substr(0,10);
+
+
+
                     var phone = res.bizData.userInfo.account; // 用户账号
                     var userKey = res.bizData.userInfo.userKey; // 省份userKey
                     var province = res.bizData.userInfo.province; // 选择省份
@@ -58,8 +64,8 @@ var md5=require('md5');
                     var qrcodeUrl = res.bizData.userInfo.qrcodeUrl;  // 二维码
                     var isReported = res.bizData.userInfo.isReported; // 智能填报次数
                     var isSurvey = res.bizData.userInfo.isSurvey; // 专家测试次数
-                    cookie.setCookie("vipActiveDate", vipActiveDate, 4, "/");
-                    cookie.setCookie("vipEndDate", vipEndDate, 4, "/");
+                    cookie.setCookie("vipActiveDate", vipActiveDateV, 4, "/");
+                    cookie.setCookie("vipEndDate", vipEndDateV, 4, "/");
                     cookie.setCookie("isLogin", "true", 4, "/");
                     cookie.setCookie("token", token, 4, "/");
                     cookie.setCookie("userId", userId, 4, "/");
@@ -90,9 +96,6 @@ var md5=require('md5');
                 }
             });
         });
-
-
-
     });
 
 

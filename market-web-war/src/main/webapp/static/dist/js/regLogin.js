@@ -19,7 +19,39 @@ webpackJsonp([10],[
 /* 1 */,
 /* 2 */,
 /* 3 */,
-/* 4 */,
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+	//时间戳转换
+	    Date.prototype.Format = function (fmt) {
+	        var o = {
+	            "M+": this.getMonth() + 1, //月份
+	            "d+": this.getDate(), //日
+	            "h+": this.getHours(), //小时
+	            "m+": this.getMinutes(), //分
+	            "s+": this.getSeconds(), //秒
+	            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+	            "S": this.getMilliseconds() //毫秒
+	        };
+	        if (/(y+)/.test(fmt))
+	            fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+	        for (var k in o)
+	            if (new RegExp("(" + k + ")").test(fmt))
+	                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+	        return fmt;
+	    };
+	    var getTime = function (timestamp,formatStr) {
+	        var newDate = new Date();
+	        newDate.setTime(timestamp);
+	        return newDate.Format(formatStr || "yyyy-MM-dd hh:mm:ss");
+	    };
+
+	    return getTime;
+	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+
+/***/ },
 /* 5 */
 /***/ function(module, exports) {
 
@@ -270,6 +302,7 @@ webpackJsonp([10],[
 	var util=__webpack_require__(1);
 	var cookie=__webpack_require__(2);
 	var md5=__webpack_require__(5);
+	var getTime = __webpack_require__(4);
 	    //var domain = util.domain; // 正式
 
 	    $(function () {
@@ -316,6 +349,11 @@ webpackJsonp([10],[
 	                    var vipActiveDate = res.bizData.userInfo.activeDate;
 	                    var vipEndDate = res.bizData.userInfo.endDate;
 
+	                    var vipActiveDateV = getTime(vipActiveDate).substr(0,10);
+	                    var vipEndDateV = getTime(vipEndDate).substr(0,10);
+
+
+
 	                    var phone = res.bizData.userInfo.account; // 用户账号
 	                    var userKey = res.bizData.userInfo.userKey; // 省份userKey
 	                    var province = res.bizData.userInfo.province; // 选择省份
@@ -327,8 +365,8 @@ webpackJsonp([10],[
 	                    var qrcodeUrl = res.bizData.userInfo.qrcodeUrl;  // 二维码
 	                    var isReported = res.bizData.userInfo.isReported; // 智能填报次数
 	                    var isSurvey = res.bizData.userInfo.isSurvey; // 专家测试次数
-	                    cookie.setCookie("vipActiveDate", vipActiveDate, 4, "/");
-	                    cookie.setCookie("vipEndDate", vipEndDate, 4, "/");
+	                    cookie.setCookie("vipActiveDate", vipActiveDateV, 4, "/");
+	                    cookie.setCookie("vipEndDate", vipEndDateV, 4, "/");
 	                    cookie.setCookie("isLogin", "true", 4, "/");
 	                    cookie.setCookie("token", token, 4, "/");
 	                    cookie.setCookie("userId", userId, 4, "/");
@@ -359,9 +397,6 @@ webpackJsonp([10],[
 	                }
 	            });
 	        });
-
-
-
 	    });
 
 
