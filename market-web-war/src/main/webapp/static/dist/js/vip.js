@@ -20,7 +20,6 @@ webpackJsonp([14],[
 	    $('#header-menu').show();
 	    $('#header-title').text('VIP');
 
-
 	    $('.vip-btn').click(function () {
 	        var cardNum = $.trim($('#card-number').val());
 	        var cardPsd = $.trim($('#card-psd').val());
