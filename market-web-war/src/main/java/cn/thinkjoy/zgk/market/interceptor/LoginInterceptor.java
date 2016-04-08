@@ -23,28 +23,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     @Override
 	public boolean preHandle(HttpServletRequest request,HttpServletResponse response, Object handler) throws Exception {
 		String url = request.getServletPath();
-
-		LOGGER.info("url:"+url);
-
-		String value = CookieUtil.getCookieValue(request);
-
-		LOGGER.info("cookie:"+value);
-//		RedisUtil.getInstance().del(key);
+		String value = request.getParameter("token");
 		String key = UserRedisConst.USER_KEY+value;
-
 		boolean redisFlag = RedisUtil.getInstance().exists(key);
-
-		LOGGER.info("redis is exists:"+ redisFlag);
-
-		if (StringUtils.isEmpty(value)||!redisFlag) {
+		if ((StringUtils.isEmpty(value) && ServletPathConst.MAPPING_URLS.contains(url))||!redisFlag) {
 			response.sendRedirect("login");
 			return false;
 		}
-
-		if(!ServletPathConst.MAPPING_URLS.contains(url)){
-			return true;
-		}
-
 		return true;
 	}
 
