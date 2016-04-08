@@ -1,4 +1,5 @@
 package cn.thinkjoy.zgk.market.interceptor;
+import cn.thinkjoy.zgk.market.constant.ServletPathConst;
 import cn.thinkjoy.zgk.market.constant.UserRedisConst;
 import cn.thinkjoy.zgk.market.util.CookieUtil;
 import cn.thinkjoy.zgk.market.util.RedisUtil;
@@ -22,10 +23,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     @Override
 	public boolean preHandle(HttpServletRequest request,HttpServletResponse response, Object handler) throws Exception {
 		String url = request.getServletPath();
-//		if(!ServletPathConst.MAPPING_URLS.contains(url)){
-//			return true;
-//		}
-//		System.out.println("===========HandlerInterceptor1 preHandle");
 
 		LOGGER.info("url:"+url);
 
@@ -42,6 +39,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		if (StringUtils.isEmpty(value)||!redisFlag) {
 			response.sendRedirect("login");
 			return false;
+		}
+
+		if(!ServletPathConst.MAPPING_URLS.contains(url)){
+			return true;
 		}
 
 		return true;
