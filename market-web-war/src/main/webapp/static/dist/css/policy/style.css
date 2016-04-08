@@ -18,13 +18,13 @@ header .header-btn {
   cursor: pointer;
 }
 
-.container .img {
+.container .img img {
   width: 123px;
   vertical-align: top;
   border-radius: 3px;
   height: 85px;
 }
-.container .img img {
+.container .img img img {
   border-radius: 3px;
 }
 

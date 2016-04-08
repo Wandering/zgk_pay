@@ -15,7 +15,7 @@
     <div class="vip-check-info">
         <img src="<%=ctx%>/static/dist/img/icons/vip.png" alt=""/>
         <div class="text">
-            <div>您已VIP是会员</div>
+            <div>您已是VIP会员</div>
             <div>VIP时效：从 <span id="startDate"></span> 到 <span id="endDate"></span></div>
         </div>
     </div>
