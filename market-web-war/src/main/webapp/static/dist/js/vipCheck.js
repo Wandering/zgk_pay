@@ -48,6 +48,7 @@
 	var cookie = __webpack_require__(2);
 	var timeFormat = __webpack_require__(4);
 	var token = cookie.getCookieValue('token');
+	var isLogin = cookie.getCookieValue('isLogin');
 	$(function () {
 	    $('#header-title').text('VIP');
 	    $('#header-menu').show();
@@ -55,8 +56,13 @@
 	    var vipEndDate = cookie.getCookieValue('vipEndDate');
 	    $('#startDate').text(vipActiveDate);
 	    $('#endDate').text(vipEndDate);
-	    window.location.href = '/vip-buy?token='+token;
+	    if(isLogin){
+	        $('#vip-buy').attr('href','/vip-buy?token='+token);
+	    }
 	});
+
+
+
 
 
 
