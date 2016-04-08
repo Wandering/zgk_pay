@@ -1,13 +1,13 @@
 /**
  * Created by kepeng on 16/3/31.
  */
-(function() {
+(function () {
 
     var util = require('commonjs');
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
     $('#header-title').text('修改个人信息');
-    $('#header-back').show().on('click',function(){
+    $('#header-back').show().on('click', function () {
         window.location.assign('/user-detail');
     });
 
@@ -20,19 +20,14 @@
             $('#email').val(personListData.mail);
             var sexTxt = personListData.sex;
             $('.sex').removeClass('active');
-            $('.sex[data-value="'+ sexTxt +'"]').addClass('active');
+            $('.sex[data-value="' + sexTxt + '"]').addClass('active');
             var subjectTxt = personListData.subjectType;
             $('.subject').removeClass('active');
-            $('.subject[data-value="'+ subjectTxt +'"]').addClass('active');
+            $('.subject[data-value="' + subjectTxt + '"]').addClass('active');
 
 
         }
     });
-
-
-
-
-
 
 
     function initUserInfo() {
@@ -57,18 +52,19 @@
         var email = cookie.getCookieValue('email');
         $('#email').text(email || '');
     }
-    $(document).ready(function() {
+
+    $(document).ready(function () {
         initUserInfo();
         //清除input里面的值
-        $('.clear').on('click', function() {
+        $('.clear').on('click', function () {
             $(this).parent().find('input').val('');
         });
-        $('.sex, .subject').on('click', function() {
+        $('.sex, .subject').on('click', function () {
             $(this).addClass('active');
             $(this).siblings().removeClass('active');
         });
         //修改提交
-        $('.submit-btn').on('click', function() {
+        $('.submit-btn').on('click', function () {
             var name = $.trim($('#name').val()),//姓名
                 sex = $('.sex.active').attr('data-value'),//性别
                 school = $.trim($('#school_name').val()), //学校名字
@@ -110,6 +106,8 @@
                 qq: qq
             }, function (res) {
                 if (res.rtnCode == '0000000') {
+                    $('#userName').html(name);
+                    cookie.setCookie("userName", name, 4, "");
                     util.drawToast('信息更新成功');
                     window.location.href = "/user-detail";
                 } else {
@@ -119,10 +117,6 @@
 
         });
     });
-
-
-
-
 
 
 })();

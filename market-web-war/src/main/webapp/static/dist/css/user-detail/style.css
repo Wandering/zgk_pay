@@ -168,7 +168,7 @@ header .location.location-icon:before {
   line-height: 50px;
   border-bottom: 1px solid #e9e4e4;
   color: #5e5e5e;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .modal-body {
@@ -176,16 +176,17 @@ header .location.location-icon:before {
   text-align: center;
 }
 .modal-body input {
-  width: 94%;
-  height: 45px;
-  line-height: 45px;
+  width: 87%;
+  height: 40px;
+  line-height: 40px;
   border: 1px solid #e9e4e4;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   color: #5e5e5e;
-  font-size: 18px;
   margin-top: 10px;
-  padding: 0;
+  font-size: 14px;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 .modal-body input[type="text"] {
   padding: 0 10px;
