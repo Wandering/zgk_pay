@@ -110,6 +110,11 @@
 	        }
 	    });
 
+	    var userId = cookie.getCookieValue('userId');
+	    $('.invite-friend').click(function () {
+	        window.location.href = '/code?userId=' + userId;
+	    });
+
 	// 退出
 	    $('#logout-btn').on('click', function () {
 	        cookie.deleteCookie('city', '');

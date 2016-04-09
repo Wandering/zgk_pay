@@ -27,9 +27,9 @@
         <div class="backdrop"></div>
         <div class="menu">
             <div class="title">
-            <span id="userName"></span>
-            <%--<span>理科</span>--%>
-            <%--<span>580分</span>--%>
+                <span id="userName"></span>
+                <%--<span>理科</span>--%>
+                <%--<span>580分</span>--%>
             </div>
             <div class="menu-list clearfix">
                 <%--<div class="item">--%>
@@ -75,7 +75,7 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a  id="consumerLinks" href="javascript:void(0)">
+                    <a id="consumerLinks" href="javascript:void(0)">
                         <img src="<%=ctx%>/static/dist/img/8-active.png" alt=""/>
                         <span>我的钱包</span>
                     </a>
@@ -90,6 +90,12 @@
                     <a id="userLinks" href="javascript:void(0)">
                         <img src="<%=ctx%>/static/dist/img/10-active.png" alt=""/>
                         <span>个人信息</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0)" class="invite-friend">
+                        <img src="<%=ctx%>/static/dist/img/11-active.png" alt=""/>
+                        <span>邀请好友</span>
                     </a>
                 </div>
             </div>
@@ -170,6 +176,12 @@
                     <a href="/user-detail">
                         <img src="<%=ctx%>/static/dist/img/10.png" alt=""/>
                         <span>个人信息</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="javascript:void(0)" class="invite-friend">
+                        <img src="<%=ctx%>/static/dist/img/11.png" alt=""/>
+                        <span>邀请好友</span>
                     </a>
                 </div>
             </div>
