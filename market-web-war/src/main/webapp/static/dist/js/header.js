@@ -112,6 +112,11 @@
 
 	    var userId = cookie.getCookieValue('userId');
 	    $('.invite-friend').click(function () {
+	        var loginFlag = cookie.getCookieValue('isLogin');
+	        if (loginFlag != 'true') {
+	            window.location.href = '/login';
+	            return false;
+	        }
 	        window.location.href = '/code?userId=' + userId;
 	    });
 

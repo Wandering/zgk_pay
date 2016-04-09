@@ -12,12 +12,11 @@ webpackJsonp([0],[
 	    var isLogin = cookie.getCookieValue('isLogin');
 	    var token = cookie.getCookieValue('token');
 
-
-	    function isWeiXin(){
+	    function isWeiXin() {
 	        var ua = window.navigator.userAgent.toLowerCase();
-	        if(ua.indexOf('micromessenger') > -1){
+	        if (ua.indexOf('micromessenger') > -1) {
 	            return true;
-	        }else{
+	        } else {
 	            return false;
 	        }
 	    }
@@ -42,19 +41,19 @@ webpackJsonp([0],[
 	        $('.share-btn').click(function () {
 	            $('.mask').addClass('show');
 	        });
-	    }else{
+	    } else {
 	        $('.share-btn').hide();
 	    }
 
-	    $('body').on('click','.mask',function () {
+	    $('body').on('click', '.mask', function () {
 	        $(this).removeClass('show');
 	    });
 
 	    $('#header-title').text('二维码');
-	    $('#header-back').show().on('click',function(){
+	    $('#header-back').show().on('click', function () {
 	        window.location.href = '/user-detail';
-	        if(isLogin){
-	            window.location.href = '/user-detail?token='+token;
+	        if (isLogin) {
+	            window.location.href = '/user-detail?token=' + token;
 	        }
 	    });
 	});
