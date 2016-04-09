@@ -717,7 +717,7 @@ header .header-btn {
   text-decoration: none;
 }
 .menu .btn a:first-child {
-  margin-right: 20px;
+  margin-right: 8px;
 }
 .menu .btn a:last-child {
   color: #fff;

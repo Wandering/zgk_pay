@@ -307,6 +307,10 @@ webpackJsonp([10],[
 
 	    $(function () {
 
+	        //var vipActiveDate = "1460117164642";
+	        //
+	        //var vipActiveDateV = getTime(vipActiveDate).substr(0,10);
+
 	        function isWeiXin(){
 	            var ua = window.navigator.userAgent.toLowerCase();
 	            //alert(ua);
@@ -351,8 +355,6 @@ webpackJsonp([10],[
 
 	                    var vipActiveDateV = getTime(vipActiveDate).substr(0,10);
 	                    var vipEndDateV = getTime(vipEndDate).substr(0,10);
-
-
 
 	                    var phone = res.bizData.userInfo.account; // 用户账号
 	                    var userKey = res.bizData.userInfo.userKey; // 省份userKey
