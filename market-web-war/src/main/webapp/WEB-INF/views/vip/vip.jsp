@@ -19,32 +19,33 @@
         <p class="txt">
             这一现象的背后是高考信息不对称，考生和家长对自身特点不了解。在这种情况下，全通教育旗下的战略性产品——智高考应运而生。智高考本着“不浪费孩子的每一分”的理念，致力于让每个孩子上到满意的大学。</p>
         <img class="img" src="<%=ctx%>/static/dist/img/vip-pic2.png" alt="">
-        <p class="txt">使用智高考，把孩子的每一分发挥到极致，让孩子进入最满意的大学</p>
-        <p class="txt">模拟填报，帮助考生合理制定报考目标</p>
+        <p class="txt cred">使用智高考，把孩子的每一分发挥到极致，让孩子进入最满意的大学</p>
+        <p class="txt cred"><span class="dash-red-number">1</span>模拟填报，帮助考生合理制定报考目标</p>
         <img class="img" src="<%=ctx%>/static/dist/img/vip-pic3.png" alt="">
         <p class="txt">模拟估分选大学，输入分数一键预测适合院校和录取指数</p>
-        <p class="txt">一键查询目标院校录取概率，量化与理想的距离</p>
+        <p class="txt cred"><span class="dash-red-number">2</span>一键查询目标院校录取概率，量化与理想的距离</p>
         <img class="img" src="<%=ctx%>/static/dist/img/vip-pic4.png" alt="">
-        <p class="txt">定位目标院校，时时查看与目标院校的差距并督促学习</p>
-        <p class="txt">智能填报，准确推荐报考院校，科学评估报考方案</p>
+        <p class="txt"><span class="black-dash"></span>定位目标院校，时时查看与目标院校的差距并督促学习</p>
+        <p class="txt cred"><span class="dash-red-number">3</span>智能填报，准确推荐报考院校，科学评估报考方案</p>
         <img class="img" src="<%=ctx%>/static/dist/img/vip-pic5.png" alt="">
         <ul>
-            <li>综合考虑理想地区、大学类型、专业倾向</li>
-            <li>全面分析考生的分数、位次，结合高校录取分数和名额</li>
-            <li>将每一分发挥到极致，为考生制定最合理的填报方案</li>
+            <li><span class="black-dash"></span>综合考虑理想地区、大学类型、专业倾向</li>
+            <li><span class="black-dash"></span>全面分析考生的分数、位次，结合高校录取分数和名额</li>
+            <li><span class="black-dash"></span>将每一分发挥到极致，为考生制定最合理的填报方案</li>
         </ul>
-        <p class="txt">报考前，掌握最靠谱、最及时的高考信息</p>
+        <p class="txt cred"><span class="red-dash-number">4</span>报考前，掌握最靠谱、最及时的高考信息</p>
         <ul>
-            <li>高考资讯时时掌握，不错过每一个好机会</li>
-            <li>知晓大学真实情况，不被虚假信息蒙蔽双眼</li>
-            <li>充分了解专业概况，不被相似名称混淆视听</li>
+            <li><span class="black-dash"></span>高考资讯时时掌握，不错过每一个好机会</li>
+            <li><span class="black-dash"></span>知晓大学真实情况，不被虚假信息蒙蔽双眼</li>
+            <li><span class="black-dash"></span>充分了解专业概况，不被相似名称混淆视听</li>
+            <p class="kouhao">七分成绩定，三分志愿拼</p>
         </ul>
-        <p>七分成绩定，三分志愿拼</p>
     </div>
 </div>
 
-<div class="link">
-    <a id="vip-buy" href="javascript:void(0)">在线购买VIP特权</a>
+<div class="fix-link-box">
+    <a class="col-1 red-link" href="javascript:void(0)">购买</a>
+    <a class="col-1" href="javascript:void(0)">邀请好友</a>
 </div>
 
 
