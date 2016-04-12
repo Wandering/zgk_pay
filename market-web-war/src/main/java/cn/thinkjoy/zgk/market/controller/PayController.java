@@ -8,6 +8,7 @@ import cn.thinkjoy.zgk.market.enumerate.PAYCHANNEL;
 import cn.thinkjoy.zgk.market.service.IOrderService;
 import cn.thinkjoy.zgk.market.service.IOrderStatementsService;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
+import cn.thinkjoy.zgk.market.util.HttpRequestUtil;
 import cn.thinkjoy.zgk.market.util.IPUtil;
 import cn.thinkjoy.zgk.market.util.NumberGenUtil;
 import cn.thinkjoy.zgk.market.util.StaticSource;
@@ -15,10 +16,16 @@ import cn.thinkjoy.zgk.zgksystem.AgentService;
 import cn.thinkjoy.zgk.zgksystem.pojo.SplitPricePojo;
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.pingplusplus.Pingpp;
 import com.pingplusplus.model.Charge;
 import com.pingplusplus.util.WxpubOAuth;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,6 +65,50 @@ public class PayController {
 
     public static final String  CURRENCY ="cny";
 
+    private static final String queryAccessTokenUrl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s";
+
+    private static final String queryJsapiUrl = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=%s&type=jsapi";
+
+    /**
+     * 获取openId
+     * @return
+     */
+    @RequestMapping(value = "/getAccessToken",method = RequestMethod.GET)
+    @ResponseBody
+    public Map getAccessToken() throws Exception {
+        String appSecret=StaticSource.getSource("appSecret");
+        String wxAppId=StaticSource.getSource("wxAppId");
+        Map<String,Object> map=new HashMap<>();
+        String accessToken = "";
+        String jsApi = "";
+        try {
+            String queryUrl = String.format(queryAccessTokenUrl,wxAppId, appSecret);
+            DefaultHttpClient client = new DefaultHttpClient();
+            HttpGet httpGetToken = new HttpGet(queryUrl);
+            httpGetToken.addHeader("Content-type" , "text/html;charset=utf-8");
+            HttpResponse httpResponse = client.execute(httpGetToken);
+            if (httpResponse.getStatusLine().getStatusCode() == 200) {
+                accessToken = EntityUtils.toString(httpResponse.getEntity(), HTTP.UTF_8);
+                Map<String, String> tokenMap = JSON.parseObject(accessToken, Map.class);
+                map.put("accessToken",tokenMap.get("access_token"));
+
+                String queryJsapiUrl2 = String.format(queryJsapiUrl,tokenMap.get("access_token"));
+                HttpGet httpGetJsapi = new HttpGet(queryJsapiUrl2);
+                httpGetJsapi.addHeader("Content-type" , "text/html;charset=utf-8");
+                HttpResponse httpResponseJsapi = client.execute(httpGetJsapi);
+                if (httpResponseJsapi.getStatusLine().getStatusCode() == 200) {
+                    jsApi = EntityUtils.toString(httpResponseJsapi.getEntity(), HTTP.UTF_8);
+                    Map<String, String> ticketMap = JSON.parseObject(jsApi, Map.class);
+                    map.put("ticket", ticketMap.get("ticket"));
+                }
+            }
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            logger.error("获取accessToken异常:" + e);
+        }
+        return map;
+    }
 
     /**
      * 获取openId
