@@ -3,6 +3,7 @@ var path = require('path');
 var webpack = require('webpack');
 module.exports = {
     entry: {
+        index: "./src/assets/js/index/index",
         vipBuy: "./src/assets/js/vip-buy/vip-buy",
         vip: "./src/assets/js/vip/vip",
         code: "./src/assets/js/code/code",

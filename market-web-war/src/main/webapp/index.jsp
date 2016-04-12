@@ -6,7 +6,7 @@
 </head>
 <body>
 <script>
-    window.location.href="/login";
+    window.location.href="/index";
 </script>
 </body>
 </html>

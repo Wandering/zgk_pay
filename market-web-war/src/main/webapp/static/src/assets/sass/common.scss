@@ -390,11 +390,10 @@ header {
         background-color: #D80C18;
       }
     }
-    a#login-btn{
-      width: 98%;
-    }
+    //a#login-btn{
+    //  width: 98%;
+    //}
   }
-
   .btn.login-btn{
     a{
       width:48%;
@@ -402,11 +401,19 @@ header {
     }
   }
 }
+#un-login .btn {
+  a {
+    &:last-child {
+      color: #D80C18;
+      background:none ;
+    }
+  }
+}
 .backdrop {
   width: 100%;
   height: 100%;
   position: fixed;
-  top: 0;
+  top: 40px;
   left: 0;
   z-index: 2;
   background: #000;
@@ -511,7 +518,7 @@ header {
     }
   }
 }
-
 #end-login{
   position: absolute;
+  top:0;
 }

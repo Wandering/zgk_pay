@@ -2,6 +2,10 @@ html {
   height: 100%;
   background-color: #F6F6F6;
 }
+body{
+  background: #fff;
+}
+
 //header bar
 header {
   position: relative;
@@ -45,7 +49,6 @@ form {
 .form-group {
   margin-bottom: 13px;
 }
-
 .vip-btn {
   height: 39px;
   line-height: 39px;
@@ -58,7 +61,6 @@ form {
   width: 270px;
   margin: 16px auto 40px;
 }
-
 .link {
   text-align: center;
   font-size: 12px;
@@ -66,3 +68,34 @@ form {
     color: #D80C18;
   }
 }
+.vip-main{
+  img.img{
+    display: block;
+    width:90%;
+    margin:0 auto;
+  }
+  p.txt{
+    padding:0 15px;
+    font-size:14px;
+    line-height:20px;
+    color: #575757;
+  }
+  .t1{
+    font-size:16px;
+    line-height:24px;
+    color: #D80C18;
+    text-align: center;
+  }
+  .t2{
+    font-size:14px;
+    line-height:20px;
+    color: #575757;
+    text-align: center;
+  }
+
+}
+
+
+
+
+
