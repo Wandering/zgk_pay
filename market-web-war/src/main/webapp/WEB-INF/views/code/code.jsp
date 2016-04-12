@@ -33,13 +33,10 @@
 <script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/code.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="<%=ctx%>/static/src/lib/sha1/sha1.js"></script>
 <script>
 
     $(function () {
-
-        $.getJSON('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx552f3800df25e964&secret=8188e75b097aa62dc56272a0797d48ae')
-
-
         // app_id
         var app_id = "wx552f3800df25e964";
         //时间戳
@@ -58,14 +55,22 @@
 
         // 签名
         function getSign() {
-            var string1 = "jsapi_ticket="+ "&noncestr="+ getNonceStr() + "&timestamp="+timestamp + "&url="+'http://zgkser.zhigaokao.cn/code?userId='+ userId;
+            $.ajaxSettings.async = false;
+            var signStr = '';
+            $.getJSON('<%=ctx%>/pay/getAccessToken',function(res){
+                if(res.rtnCode =="0000000"){
+                    var ticket = res.bizData.ticket;
+                    var string1 = "jsapi_ticket="+ ticket +  "&noncestr="+ getNonceStr() + "&timestamp="+timestamp + "&url="+'http://www.baidu.com';
+                    var sign =  CryptoJS.SHA1(string1) ;
+                    console.log(sign.toString());
+                    signStr = sign.toString();
+                }
 
-            var sign;
-
-            return sign;
+            });
+            $.ajaxSettings.async = true;
+            return signStr;
         }
 
-        console.log(getSign());
 
         wx.config({
             debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
@@ -85,10 +90,12 @@
                 type: '', // 分享类型,music、video或link，不填默认为link
                 dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                 success: function () {
+                    alert("成功");
                     // 用户确认分享后执行的回调函数
                 },
                 cancel: function () {
                     // 用户取消分享后执行的回调函数
+                    alert("失败");
                 }
             });
         });

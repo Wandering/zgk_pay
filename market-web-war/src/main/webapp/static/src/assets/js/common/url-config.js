@@ -221,7 +221,14 @@ var interfaceUrl = {
      *
      */
 
-    getSplitPriceInfo: '/getSplitPriceInfo'
+    getSplitPriceInfo: '/getSplitPriceInfo',
+
+
+
+    /**
+     * 微信分享获取jsapi_ticket
+     */
+    getAccessToken : '/pay/getAccessToken'
 
 };
 

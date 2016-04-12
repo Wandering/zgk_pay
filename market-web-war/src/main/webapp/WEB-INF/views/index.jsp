@@ -82,7 +82,7 @@
             </div>
             <div class="btn login-btn">
                 <a href="/login" id="login-btn">登录/注册</a>
-                <a class="vipStatus" href="javascript:void(0)">升级VIP</a>
+                <a class="vipStatus" href="/login">升级VIP</a>
             </div>
         </div>
     </div>
@@ -167,7 +167,7 @@
             </div>
             <div class="btn login-btn">
                 <a href="/login/logout" id="logout-index-btn">退出</a>
-                <a class="vipStatus" href="javascript:void(0)">升级VIP</a>
+                <a class="vipStatus" href="/vip">升级VIP</a>
             </div>
         </div>
     </div>

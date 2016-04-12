@@ -85,7 +85,17 @@ public class WebCotroller {
     }
 
     /**
-     * user-detail
+     * vip
+     *
+     * @return
+     */
+    @RequestMapping("/vipLogin")
+    public ModelAndView vipLogin() {
+        return new ModelAndView("/vip/vip-login");
+    }
+
+    /**
+     * vip
      *
      * @return
      */

@@ -7,10 +7,14 @@ $(function () {
 
     var isLogin = cookie.getCookieValue('isLogin');
     var token = cookie.getCookieValue('token');
+    var userId = cookie.getCookieValue('userId');
 
     if(isLogin){
         $('#vip-buy').attr('href','/vip-buy?token='+token);
+        $('#invite-friends').attr('href','/code?userId=' + userId);
     }
+
+
 
     $('#account-number').val(account);
 

@@ -31,7 +31,6 @@ webpackJsonp([0],[
 	    util.ajaxFun(interfaceUrl.getCaptchaImg, 'get', {
 	        'userId': userId
 	    }, function (res) {
-	        console.log(res);
 	        if (res.rtnCode = '0000000') {
 	            var dataJson = res.bizData;
 	            $('.name').text(dataJson.name);

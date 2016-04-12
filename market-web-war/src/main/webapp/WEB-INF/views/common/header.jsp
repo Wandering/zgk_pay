@@ -198,9 +198,9 @@
                     </a>
                 </div>
             </div>
-            <div class="btn">
+            <div class="btn login-btn">
                 <a href="/login" id="login-btn">登录/注册</a>
-                <%--<a href="/vip">升级VIP</a>--%>
+                <a class="vipStatus" href="/vip">升级VIP</a>
             </div>
         </div>
     </div>

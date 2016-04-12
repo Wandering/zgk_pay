@@ -3,7 +3,7 @@
 <html>
 <head lang="en">
     <%@ include file="../common/meta.jsp" %>
-    <title>登录页</title>
+    <title>升级VIP</title>
     <link rel="stylesheet" href="<%=ctx%>/static/dist/css/vip/style.css"/>
 </head>
 <body>
@@ -44,8 +44,8 @@
 </div>
 
 <div class="fix-link-box">
-    <a class="col-1 red-link" id="vip-buy" href="javascript:void(0)">购买</a>
-    <a class="col-1" id="invite-friends" href="javascript:void(0)">邀请好友</a>
+    <a class="col-1 red-link" href="/index">购买</a>
+    <a class="col-1" href="/index">邀请好友</a>
 </div>
 
 
