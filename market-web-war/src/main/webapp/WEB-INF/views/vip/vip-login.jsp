@@ -45,7 +45,7 @@
 
 <div class="fix-link-box">
     <a class="col-1 red-link" href="/index">购买</a>
-    <a class="col-1" href="/index">邀请好友</a>
+    <a class="col-1" id="login-vip" href="/index">邀请好友</a>
 </div>
 
 

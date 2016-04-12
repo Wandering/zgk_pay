@@ -15,10 +15,8 @@ webpackJsonp([15],[
 
 	    if(isLogin){
 	        $('#vip-buy').attr('href','/vip-buy?token='+token);
-	        $('#invite-friends').attr('href','/code?userId=' + userId);
+	        $('#invite-friends,#login-vip').attr('href','/code?userId=' + userId);
 	    }
-
-
 
 	    $('#account-number').val(account);
 
