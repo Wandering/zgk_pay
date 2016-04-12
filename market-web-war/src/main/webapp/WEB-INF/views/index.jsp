@@ -31,7 +31,7 @@
                     <%--</a>--%>
                 <%--</div>--%>
                 <div class="item">
-                    <a href="">
+                    <a href="http://dev.zhigaokao.cn/weixin/index.html#/simulationSchool">
                         <img src="<%=ctx%>/static/dist/img/4.png" alt=""/>
 
                         <span>院校预测</span>
@@ -56,19 +56,19 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/user-detail">
+                    <a href="/login">
                         <img src="<%=ctx%>/static/dist/img/10.png" alt=""/>
                         <span>个人信息</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/consumer-list">
+                    <a href="/login">
                         <img src="<%=ctx%>/static/dist/img/8.png" alt=""/>
                         <span>我的钱包</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/order">
+                    <a href="/login">
                         <img src="<%=ctx%>/static/dist/img/9.png" alt=""/>
                         <span>我的订单</span>
                     </a>
@@ -116,7 +116,7 @@
                     <%--</a>--%>
                 <%--</div>--%>
                 <div class="item">
-                    <a href="">
+                    <a href="http://dev.zhigaokao.cn/weixin/index.html#/simulationSchool">
                         <img src="<%=ctx%>/static/dist/img/4-active.png" alt=""/>
                         <span>院校预测</span>
                     </a>
@@ -167,7 +167,7 @@
             </div>
             <div class="btn login-btn">
                 <a href="/login/logout" id="logout-index-btn">退出</a>
-                <a class="vipStatus" href="/vip">升级VIP</a>
+                <a class="vipStatus" id="vipStatus-login" href="javascript:void(0)">升级VIP</a>
             </div>
         </div>
     </div>

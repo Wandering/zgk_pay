@@ -49,6 +49,17 @@
 	    var cookie = __webpack_require__(2);
 	    var isLogin = cookie.getCookieValue('isLogin');
 	    var userName = cookie.getCookieValue('userName');
+	    var token = cookie.getCookieValue('token');
+	    if (isLogin) {
+	        $('#userName').text(userName);
+	        $('#consumerLinks').attr('href', '/consumer-list?token=' + token);
+	        $('#orderLinks').attr('href', '/order?token=' + token);
+	        $('#userLinks').attr('href', '/user-detail?token=' + token);
+	        $('#vipStatus-login').attr('href', '/vip?token=' + token);
+	    }
+
+
+
 	    if(isLogin){
 	        $('#index-end-login').show();
 	        $('#userName-txt').text(userName);
