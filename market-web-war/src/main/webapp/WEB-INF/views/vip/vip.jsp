@@ -20,13 +20,13 @@
             这一现象的背后是高考信息不对称，考生和家长对自身特点不了解。在这种情况下，全通教育旗下的战略性产品——智高考应运而生。智高考本着“不浪费孩子的每一分”的理念，致力于让每个孩子上到满意的大学。</p>
         <img class="img" src="<%=ctx%>/static/dist/img/vip-pic2.png" alt="">
         <p class="txt cred">使用智高考，把孩子的每一分发挥到极致，让孩子进入最满意的大学</p>
-        <p class="txt cred"><span class="dash-red-number">1</span>模拟填报，帮助考生合理制定报考目标</p>
+        <p class="txt cred"><span class="red-dash-number">1</span>模拟填报，帮助考生合理制定报考目标</p>
         <img class="img" src="<%=ctx%>/static/dist/img/vip-pic3.png" alt="">
         <p class="txt">模拟估分选大学，输入分数一键预测适合院校和录取指数</p>
-        <p class="txt cred"><span class="dash-red-number">2</span>一键查询目标院校录取概率，量化与理想的距离</p>
+        <p class="txt cred"><span class="red-dash-number">2</span>一键查询目标院校录取概率，量化与理想的距离</p>
         <img class="img" src="<%=ctx%>/static/dist/img/vip-pic4.png" alt="">
         <p class="txt"><span class="black-dash"></span>定位目标院校，时时查看与目标院校的差距并督促学习</p>
-        <p class="txt cred"><span class="dash-red-number">3</span>智能填报，准确推荐报考院校，科学评估报考方案</p>
+        <p class="txt cred"><span class="red-dash-number">3</span>智能填报，准确推荐报考院校，科学评估报考方案</p>
         <img class="img" src="<%=ctx%>/static/dist/img/vip-pic5.png" alt="">
         <ul>
             <li><span class="black-dash"></span>综合考虑理想地区、大学类型、专业倾向</li>
