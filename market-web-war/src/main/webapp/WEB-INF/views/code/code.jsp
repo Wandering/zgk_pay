@@ -40,17 +40,11 @@
         $.getJSON('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx552f3800df25e964&secret=8188e75b097aa62dc56272a0797d48ae')
 
 
-        $.getJSON('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=ACCESS_TOKEN&type=jsapi', function (res) {
-            console.log(res);
-        });
-
-
-        function getAppKey() {
-            return "2Wozy2aksie1puXUBpWD8oZxiD1DfQuEaiC7KcRATv1Ino3mdopKaPGQQ7TtkNySuAmCaDCrw4xhPY5qKTBl7Fzm0RgR3c0WaVYIXZARsxzHV2x7iwPPzOz94dnwPWSn";
-        }
-
+        // app_id
+        var app_id = "wx552f3800df25e964";
         //时间戳
         var timestamp = parseInt(new Date().getTime() / 1000);
+        var userId = '1977';
         //随机串
         function getNonceStr() {
             var $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -64,24 +58,22 @@
 
         // 签名
         function getSign() {
-            var app_id = "wx552f3800df25e964";
-            var nonce_str = getNonceStr();
-            var time_stamp = timestamp;
-            //第一步，对所有需要传入的参数加上appkey作一次key＝value字典序的排序
-            var keyvaluestring = "appid=" + app_id + "&noncestr=" + nonce_str + "&timestamp=" + time_stamp;
-            var sign = CryptoJS.SHA1(keyvaluestring).toString();
+            var string1 = "jsapi_ticket="+ "&noncestr="+ getNonceStr() + "&timestamp="+timestamp + "&url="+'http://zgkser.zhigaokao.cn/code?userId='+ userId;
+
+            var sign;
+
             return sign;
         }
 
-//        console.log(getSign());
+        console.log(getSign());
 
         wx.config({
             debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
             appId: 'wx552f3800df25e964', // 必填，公众号的唯一标识
             timestamp: timestamp, // 必填，生成签名的时间戳
             nonceStr: getNonceStr(), // 必填，生成签名的随机串
-            signature: '',// 必填，签名，见附录1
-            jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+            signature: getSign(),// 必填，签名，见附录1
+            jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
         });
         wx.ready(function () {
             // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
