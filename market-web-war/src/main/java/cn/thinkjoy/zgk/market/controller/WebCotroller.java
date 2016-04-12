@@ -64,6 +64,15 @@ public class WebCotroller {
     public ModelAndView test() {
         return new ModelAndView("/register/register");
     }
+    /**
+     * index
+     *
+     * @return
+     */
+    @RequestMapping("/index")
+    public ModelAndView index() {
+        return new ModelAndView("/index");
+    }
 
     /**
      * user-detail
