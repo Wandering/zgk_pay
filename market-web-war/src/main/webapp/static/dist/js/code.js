@@ -2,10 +2,15 @@ webpackJsonp([0],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/**
-	 * Created by pdeng on 16/3/31.
-	 */
 	$(function () {
+	    $('#header-title').text('二维码');
+	    $('#header-back').show().on('click', function () {
+	        window.location.href = '/user-detail';
+	        if (isLogin) {
+	            window.location.href = '/user-detail?token=' + token;
+	        }
+	    });
+
 	    var util = __webpack_require__(1);
 	    var interfaceUrl = __webpack_require__(3);
 	    var cookie = __webpack_require__(2);
@@ -35,7 +40,6 @@ webpackJsonp([0],[
 	        }
 	    });
 
-
 	    //分享
 	    if (isWeiXin()) {
 	        $('.share-btn').click(function () {
@@ -49,13 +53,12 @@ webpackJsonp([0],[
 	        $(this).removeClass('show');
 	    });
 
-	    $('#header-title').text('二维码');
-	    $('#header-back').show().on('click', function () {
-	        window.location.href = '/user-detail';
-	        if (isLogin) {
-	            window.location.href = '/user-detail?token=' + token;
-	        }
-	    });
+
+
+
+
+
+
 	});
 
 /***/ }

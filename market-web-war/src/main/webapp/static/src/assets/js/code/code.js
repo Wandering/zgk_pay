@@ -1,7 +1,12 @@
-/**
- * Created by pdeng on 16/3/31.
- */
 $(function () {
+    $('#header-title').text('二维码');
+    $('#header-back').show().on('click', function () {
+        window.location.href = '/user-detail';
+        if (isLogin) {
+            window.location.href = '/user-detail?token=' + token;
+        }
+    });
+
     var util = require('commonjs');
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
@@ -31,7 +36,6 @@ $(function () {
         }
     });
 
-
     //分享
     if (isWeiXin()) {
         $('.share-btn').click(function () {
@@ -45,11 +49,10 @@ $(function () {
         $(this).removeClass('show');
     });
 
-    $('#header-title').text('二维码');
-    $('#header-back').show().on('click', function () {
-        window.location.href = '/user-detail';
-        if (isLogin) {
-            window.location.href = '/user-detail?token=' + token;
-        }
-    });
+
+
+
+
+
+
 });
