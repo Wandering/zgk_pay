@@ -51,7 +51,7 @@ header .location.location-icon:before {
   margin: 3px 0;
 }
 .container .form-group .check-code {
-  width: calc(100% - 190px);
+  width: calc(100% - 158px);
   padding-left: 40px;
 }
 .container .form-group .location-list {
@@ -108,19 +108,27 @@ header .location.location-icon:before {
   text-align: center;
   font-size: 14px;
   color: #fff;
-  background-color: #B61F28;
+  background-color: #D80C18;
   width: 100%;
   border: none;
   border-radius: 2px;
 }
+.container .form-group .submit-btn:hover {
+  background-color: #B61F28;
+}
 
 .btn-code {
   outline: none;
-  border: none;
-  background-color: #d80c18;
-  border-radius: 40px;
+  background-color: #fff;
+  border: 1px solid #d80c18;
+  color: #d80c18;
   line-height: 20px;
-  color: #fff;
   margin-left: 10px;
   padding: 9px 9pt;
+  border-radius: 2px;
+  font-size: 13px;
+}
+.btn-code:hover {
+  background-color: #d80c18;
+  color: #fff;
 }

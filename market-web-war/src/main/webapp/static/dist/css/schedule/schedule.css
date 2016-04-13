@@ -45,7 +45,9 @@ header .location.location-icon:before {
 .container .content .title {
   color: #575757;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 22.5px;
+  font-weight: bold;
 }
 .container .content .date {
   color: #8C8C8C;
@@ -54,9 +56,9 @@ header .location.location-icon:before {
   margin-top: 10px;
 }
 .container .content .detail p {
-  color: #707070;
-  font-size: 12px;
-  line-height: 23px;
+  color: #707070 !important;
+  font-size: 14px;
+  line-height: 24px;
   text-indent: 24px;
 }
 

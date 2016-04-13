@@ -53,7 +53,7 @@
                 <span class="select"><select name="" id="city" class="form-control"></select></span>
                 <span class="select"><select name="" id="county" class="form-control"></select></span>
             </div>
-            <label class="areaSel-result" id="areaSel-result"></label>
+            <label class="areaSel-result" id="areaSel-result" style="font-size: 13px;color: #7F7B7B"></label>
         </div>
         <div class="form-group">
             <div class="input-group">
