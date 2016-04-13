@@ -113,6 +113,6 @@
     <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.mock:mock-domain:1.0.3-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.mock:mock-api:1.0.3-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework.security:spring-security-core:3.2.4.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: javax.servlet:servlet-api:2.5" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: javax.servlet:servlet-api:2.5" level="project" />
   </component>
 </module>
