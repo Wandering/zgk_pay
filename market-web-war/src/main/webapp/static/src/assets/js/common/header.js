@@ -105,6 +105,6 @@ $(function () {
         cookie.deleteCookie('vipActiveDate', '');
         cookie.deleteCookie('vipEndDate', '');
         cookie.deleteCookie("flag", '');
-        window.location.href='/login?toUrl=' + toUrl;
+        window.location.href='login?toUrl=' + toUrl;
     });
 });
