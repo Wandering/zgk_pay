@@ -1,52 +1,19 @@
-
 (function() {
     $('#header-title').text('我的订单');
     $('#header-menu').show();
     var util = require('commonjs');
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
-    var TEST_DATA = [{
-        payStatus: 1,
-        name: 'zhigao',
-        price: '780',
-        date: '2016/09/12',
-        time: '12:12',
-        address: 'sdfasdfasfd',
-        phone: '132842347'
-    },{
-        payStatus: 0,
-        name: 'zhigao',
-        price: '780',
-        date: '2016/09/12',
-        time: '12:12',
-        address: 'sdfasdfasfd',
-        phone: '132842347'
-    },{
-        payStatus: 0,
-        name: 'zhigao',
-        price: '480',
-        date: '2016/09/12',
-        time: '12:12',
-        address: 'sdfasdfasfd',
-        phone: '132842347'
-    },{
-        payStatus: 0,
-        name: 'zhigao',
-        price: '480',
-        date: '2016/09/12',
-        time: '12:12',
-        address: 'sdfasdfasfd',
-        phone: '132842347'
-    }]
 
-    var util = require('commonjs');
-    var interfaceUrl = require('urlConfig');
+
+
+
+
+
+
     var IScroll = require('iscroll');
     var myScroll = null;
-
-
     var Order = (function() {
-
         Date.prototype.Format = function(fmt) { //author: meizz
             var o = {
                 "M+" : this.getMonth()+1,                 //月份

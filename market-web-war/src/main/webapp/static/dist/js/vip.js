@@ -13,7 +13,10 @@ webpackJsonp([15],[
 	    var token = cookie.getCookieValue('token');
 	    var userId = cookie.getCookieValue('userId');
 
-	    console.log(util.getLinkey('toUrl'));
+
+
+
+
 
 
 	    if(isLogin){

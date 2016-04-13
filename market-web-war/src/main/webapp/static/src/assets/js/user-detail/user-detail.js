@@ -7,9 +7,21 @@ $(function(){
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
     var token = cookie.getCookieValue('token');
+
     $('#header-title').text('个人信息');
     $('#header-menu').show();
 
+    var menuV = util.getLinkey('menu');
+    alert(menuV)
+    if(menuV=="1"){
+        cookie.setCookie("flag", "0", 4, "/");
+        alert(8)
+    }
+    var flag = cookie.getCookieValue('flag');
+    if(flag=="0"){
+        cookie.setCookie("flag", "1", 4, "/");
+        window.location.assign('/user-detail?toUrl=user-detail&token=' + token);
+    }
     function initUserInfo() {
         var avatar = cookie.getCookieValue('avatar');
         if (!avatar) avatar = '/static/dist/img/icons/avatar.png';

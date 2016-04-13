@@ -2,55 +2,22 @@ webpackJsonp([7],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
 	(function() {
 	    $('#header-title').text('我的订单');
 	    $('#header-menu').show();
 	    var util = __webpack_require__(1);
 	    var interfaceUrl = __webpack_require__(3);
 	    var cookie = __webpack_require__(2);
-	    var TEST_DATA = [{
-	        payStatus: 1,
-	        name: 'zhigao',
-	        price: '780',
-	        date: '2016/09/12',
-	        time: '12:12',
-	        address: 'sdfasdfasfd',
-	        phone: '132842347'
-	    },{
-	        payStatus: 0,
-	        name: 'zhigao',
-	        price: '780',
-	        date: '2016/09/12',
-	        time: '12:12',
-	        address: 'sdfasdfasfd',
-	        phone: '132842347'
-	    },{
-	        payStatus: 0,
-	        name: 'zhigao',
-	        price: '480',
-	        date: '2016/09/12',
-	        time: '12:12',
-	        address: 'sdfasdfasfd',
-	        phone: '132842347'
-	    },{
-	        payStatus: 0,
-	        name: 'zhigao',
-	        price: '480',
-	        date: '2016/09/12',
-	        time: '12:12',
-	        address: 'sdfasdfasfd',
-	        phone: '132842347'
-	    }]
 
-	    var util = __webpack_require__(1);
-	    var interfaceUrl = __webpack_require__(3);
+
+
+
+
+
+
 	    var IScroll = __webpack_require__(6);
 	    var myScroll = null;
-
-
 	    var Order = (function() {
-
 	        Date.prototype.Format = function(fmt) { //author: meizz
 	            var o = {
 	                "M+" : this.getMonth()+1,                 //月份

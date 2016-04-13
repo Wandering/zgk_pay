@@ -46,16 +46,30 @@
 
 	$(function () {
 	    var cookie = __webpack_require__(2);
-	    var isLogin = cookie.getCookieValue('isLogin');
-	    var token = cookie.getCookieValue('token');
 	    if (isLogin) {
+	        var isLogin = cookie.getCookieValue('isLogin');
+	        var token = cookie.getCookieValue('token');
 	        var userName = cookie.getCookieValue('userName');
 	        $('#userName').text(userName);
-	        $('#consumerLinks').attr('href', '/consumer-list?token=' + token);
-	        $('#orderLinks').attr('href', '/order?token=' + token);
-	        $('#userLinks').attr('href', '/user-detail?token=' + token);
-	        $('#vipStatus').attr('href', '/vip?token=' + token);
+	        $('#consumerLinks').attr('href', '/consumer-list?toUrl=consumer-list&token=' + token);
+	        $('#orderLinks').attr('href', '/order?toUrl=order&token=' + token);
+	        $('#userLinks').attr('href', '/user-detail?toUrl=user-detail&token=' + token);
+	        $('#vipStatus').attr('href', '/vip?toUrl=vip&token=' + token);
 	    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	    var vipStatus = cookie.getCookieValue('vipStatus');
 	    if (vipStatus == "1") {
 	        $('#vipStatus').attr('href', '/vip-check?token=' + token);
