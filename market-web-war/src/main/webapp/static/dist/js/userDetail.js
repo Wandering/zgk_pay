@@ -46,28 +46,6 @@ webpackJsonp([14],[
 	        var schoolName = cookie.getCookieValue('schoolName');
 	        $('#school-name').text(schoolName || '');
 
-	        var sexType = cookie.getCookieValue('sexType');
-	        if(sexType){
-	            if(sexType=="0"){
-	                $('#sex').text("女");
-	            }else{
-	                $('#sex').text("男");
-	            }
-	        }else{
-	            $('#sex').text("");
-	        }
-
-
-	        var subjectType = cookie.getCookieValue('subjectType');
-	        if(subjectType){
-	            if(sexType=="0"){
-	                $('#subject').text("文史");
-	            }else{
-	                $('#subject').text("理工");
-	            }
-	        }else{
-	            $('#subject').text("");
-	        }
 
 	        var province = cookie.getCookieValue('proName');
 	        $('#province').text(province || '');
@@ -93,9 +71,18 @@ webpackJsonp([14],[
 	            $('#school-name').text(personListData.schoolName);
 	            $('#email').text(personListData.mail);
 	            var sexTxt = personListData.sex;
-	            sexTxt == "0" ? $('#sex').text('女生') : $('#sex').text('男生');
+	            if(sexTxt){
+	                sexTxt == "0" ? $('#sex').text('女生') : $('#sex').text('男生');
+	            }else{
+	                $('#sex').text('');
+	            }
 	            var subjectTypeTxt = personListData.subjectType;
-	            subjectTypeTxt == "0" ? $('#subject').text('文史') : $('#subject').text('理工');
+	            if(subjectTypeTxt){
+	                subjectTypeTxt == "0" ? $('#subject').text('文史') : $('#subject').text('理工');
+	            }else{
+	                $('#subject').text('');
+	            }
+
 
 	        }
 	    });
