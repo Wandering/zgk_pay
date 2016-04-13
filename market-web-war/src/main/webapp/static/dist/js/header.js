@@ -129,7 +129,7 @@
 	        window.location.href = '/code?userId=' + userId;
 	    });
 	    // 退出
-	    $('#logout-btn').on('click', function () {
+	    $('#logout-btn').attr('href','login?toUrl=' + toUrl).on('click', function () {
 	        cookie.deleteCookie('city', '');
 	        cookie.deleteCookie('county', '');
 	        cookie.deleteCookie('icon', '');
@@ -151,7 +151,6 @@
 	        cookie.deleteCookie('vipActiveDate', '');
 	        cookie.deleteCookie('vipEndDate', '');
 	        cookie.deleteCookie("flag", '');
-	        window.location.href='login?toUrl=' + toUrl;
 	    });
 	});
 
