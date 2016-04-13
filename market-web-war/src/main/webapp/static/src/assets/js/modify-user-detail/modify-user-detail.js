@@ -22,6 +22,7 @@
             $('#school_name').val(personListData.schoolName);
             $('#email').val(personListData.mail);
             var sexTxt = personListData.sex;
+
             $('.sex').removeClass('active');
             $('.sex[data-value="' + sexTxt + '"]').addClass('active');
             var subjectTxt = personListData.subjectType;
@@ -109,8 +110,10 @@
                 if (res.rtnCode == '0000000') {
                     $('#userName').html(name);
                     cookie.setCookie("userName", name, 4, "");
+                    cookie.setCookie("sexType", sex, 4, "");
+                    cookie.setCookie("subjectType", subject, 4, "");
                     util.drawToast('信息更新成功');
-                    window.location.href = "/user-detail?token="+token;
+                    window.location.href = "user-detail?toUrl=user-detail&token="+token;
                 } else {
                     util.drawToast(res.msg || '信息更新失败');
                 }

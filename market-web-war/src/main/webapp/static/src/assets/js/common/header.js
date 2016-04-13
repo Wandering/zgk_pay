@@ -82,8 +82,11 @@ $(function () {
         }
         window.location.href = '/code?userId=' + userId;
     });
+
+    var loginUrl = 'login?toUrl=' + toUrl;
+
     // 退出
-    $('#logout-btn').attr('href','login?toUrl=' + toUrl).on('click', function () {
+    $('#logout-btn').attr('href',loginUrl).on('click', function () {
         cookie.deleteCookie('city', '');
         cookie.deleteCookie('county', '');
         cookie.deleteCookie('icon', '');
