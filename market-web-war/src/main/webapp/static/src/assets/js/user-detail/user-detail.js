@@ -43,12 +43,27 @@ $(function(){
         $('#school-name').text(schoolName || '');
 
         var sexType = cookie.getCookieValue('sexType');
-        var sex = ['女生', '男生'];
-        $('#sex').text(sex[sexType || 1]);
+        if(sexType){
+            if(sexType=="0"){
+                $('#sex').text("女");
+            }else{
+                $('#sex').text("男");
+            }
+        }else{
+            $('#sex').text("");
+        }
+
 
         var subjectType = cookie.getCookieValue('subjectType');
-        var subject = ['文科', '理科'];
-        $('#subject').text(subject[subjectType || 1]);
+        if(subjectType){
+            if(sexType=="0"){
+                $('#subject').text("文史");
+            }else{
+                $('#subject').text("理工");
+            }
+        }else{
+            $('#subject').text("");
+        }
 
         var province = cookie.getCookieValue('proName');
         $('#province').text(province || '');
