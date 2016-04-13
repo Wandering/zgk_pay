@@ -1,52 +1,37 @@
-
 (function() {
     $('#header-title').text('我的订单');
     $('#header-menu').show();
-    var util = require('commonjs');
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
-    var TEST_DATA = [{
-        payStatus: 1,
-        name: 'zhigao',
-        price: '780',
-        date: '2016/09/12',
-        time: '12:12',
-        address: 'sdfasdfasfd',
-        phone: '132842347'
-    },{
-        payStatus: 0,
-        name: 'zhigao',
-        price: '780',
-        date: '2016/09/12',
-        time: '12:12',
-        address: 'sdfasdfasfd',
-        phone: '132842347'
-    },{
-        payStatus: 0,
-        name: 'zhigao',
-        price: '480',
-        date: '2016/09/12',
-        time: '12:12',
-        address: 'sdfasdfasfd',
-        phone: '132842347'
-    },{
-        payStatus: 0,
-        name: 'zhigao',
-        price: '480',
-        date: '2016/09/12',
-        time: '12:12',
-        address: 'sdfasdfasfd',
-        phone: '132842347'
-    }]
+
 
     var util = require('commonjs');
-    var interfaceUrl = require('urlConfig');
+    var token = cookie.getCookieValue('token');
+    var toUrl = util.getLinkey('toUrl');
+    var isLogin = cookie.getCookieValue('isLogin');
+    if(toUrl=='order'){
+        if(!isLogin){
+            window.location.href='/login?toUrl=order';
+        }else{
+            var menuV = util.getLinkey('menu');
+            if(menuV=="1"){
+                cookie.setCookie("flag", "0", 4, "/");
+            }
+            var flag = cookie.getCookieValue('flag');
+            if(flag=="0"){
+                cookie.setCookie("flag", "1", 4, "/");
+                window.location.assign('/order?toUrl=order&token=' + token);
+            }
+        }
+    }
+
+
+
+
+
     var IScroll = require('iscroll');
     var myScroll = null;
-
-
     var Order = (function() {
-
         Date.prototype.Format = function(fmt) { //author: meizz
             var o = {
                 "M+" : this.getMonth()+1,                 //月份

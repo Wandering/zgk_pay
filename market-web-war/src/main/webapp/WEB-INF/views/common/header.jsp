@@ -81,24 +81,23 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a id="userLinks" href="javascript:void(0)">
+                    <a id="userLinks" href="user-detail?toUrl=user-detail&menu=1">
                         <img src="<%=ctx%>/static/dist/img/10-active.png" alt=""/>
                         <span>个人信息</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a id="consumerLinks" href="javascript:void(0)">
+                    <a id="consumerLinks" href="consumer-list?toUrl=consumer-list&menu=1">
                         <img src="<%=ctx%>/static/dist/img/8-active.png" alt=""/>
                         <span>我的钱包</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a id="orderLinks" href="javascript:void(0)">
+                    <a id="orderLinks" href="order?toUrl=order&menu=1">
                         <img src="<%=ctx%>/static/dist/img/9-active.png" alt=""/>
                         <span>我的订单</span>
                     </a>
                 </div>
-
                 <div class="item">
                     <a href="javascript:void(0)" class="invite-friend">
                         <img src="<%=ctx%>/static/dist/img/11-active.png" alt=""/>
@@ -107,8 +106,8 @@
                 </div>
             </div>
             <div class="btn login-btn">
-                <a href="/login/logout" id="logout-btn">退出</a>
-                <a id="vipStatus" href="javascript:void(0)">升级VIP</a>
+                <a href="javascript:void(0)" id="logout-btn">退出</a>
+                <a id="vipStatus" href="vip?toUrl=vip">购买VIP</a>
             </div>
         </div>
     </div>
@@ -197,10 +196,16 @@
                         <span>邀请好友</span>
                     </a>
                 </div>
+                <div class="item">
+                    <a href="/intro" class="">
+                        <img src="<%=ctx%>/static/dist/img/rule.png" alt=""/>
+                        <span>盈利规则</span>
+                    </a>
+                </div>
             </div>
             <div class="btn login-btn">
                 <a href="/login" id="login-btn">登录/注册</a>
-                <a class="vipStatus" href="/vip">升级VIP</a>
+                <a class="vipStatus" href="vip?toUrl=vip">购买VIP</a>
             </div>
         </div>
     </div>

@@ -2,10 +2,36 @@ require('pgwmodal');
 (function() {
 
     $('#header-menu').show();
-    var util = require('commonjs');
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
+
+    var util = require('commonjs');
     var token = cookie.getCookieValue('token');
+    var toUrl = util.getLinkey('toUrl');
+    var isLogin = cookie.getCookieValue('isLogin');
+    if(toUrl=='vip-buy'){
+        if(!isLogin){
+            window.location.href='/login?toUrl=vip-buy';
+        }else{
+            var menuV = util.getLinkey('menu');
+            if(menuV=="1"){
+                cookie.setCookie("flag", "0", 4, "/");
+            }
+            var flag = cookie.getCookieValue('flag');
+            if(flag=="0"){
+                cookie.setCookie("flag", "1", 4, "/");
+                window.location.assign('vip-buy?toUrl=vip-buy&token=' + token);
+            }
+        }
+    }
+
+
+
+
+
+
+
+
 
     /**
      * 在线购买初始化

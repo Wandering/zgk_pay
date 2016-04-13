@@ -45,24 +45,30 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	$(function () {
+	    var util = __webpack_require__(1);
 	    var cookie = __webpack_require__(2);
+	    var toUrl = util.getLinkey('toUrl');
 	    var isLogin = cookie.getCookieValue('isLogin');
 	    var token = cookie.getCookieValue('token');
+	    var userName = cookie.getCookieValue('userName');
+
 	    if (isLogin) {
-	        var userName = cookie.getCookieValue('userName');
 	        $('#userName').text(userName);
-	        $('#consumerLinks').attr('href', '/consumer-list?token=' + token);
-	        $('#orderLinks').attr('href', '/order?token=' + token);
-	        $('#userLinks').attr('href', '/user-detail?token=' + token);
-	        $('#vipStatus').attr('href', '/vip?token=' + token);
+	        //$('#consumerLinks').attr('href', '/consumer-list?toUrl=consumer-list&token=' + token);
+	        //$('#orderLinks').attr('href', '/order?toUrl=order&token=' + token);
+	        //$('#userLinks').attr('href', '/user-detail?toUrl=user-detail&token=' + token);
+	        //$('#vipStatus').attr('href', '/vip?toUrl=vip&token=' + token);
 	    }
-	    var vipStatus = cookie.getCookieValue('vipStatus');
-	    if (vipStatus == "1") {
-	        $('#vipStatus').attr('href', '/vip-check?token=' + token);
-	    } else {
-	        $('#vipStatus').attr('href', '/vip?token=' + token);
-	    }
-	// 打开主菜单
+
+
+
+	    //var vipStatus = cookie.getCookieValue('vipStatus');
+	    //if (vipStatus == "1") {
+	    //    $('#vipStatus').attr('href', '/vip-check?token=' + token);
+	    //} else {
+	    //    $('#vipStatus').attr('href', '/vip?token=' + token);
+	    //}
+	    // 打开主菜单
 	    $('#header-menu').on('click', function () {
 	        if (isLogin) {
 	            $('#menu-header').hide();
@@ -82,7 +88,7 @@
 	    });
 
 
-	// 切换省份
+	    // 切换省份
 	    $('#province-text').on('click', function () {
 	        $('#province-option').toggleClass('hide');
 	        if (isLogin) {
@@ -93,7 +99,6 @@
 	        cookie.setCookie("userKey", 'zj', 4, "/");
 	        $('#province-text').text('浙江');
 	    }
-
 	    var userKey = cookie.getCookieValue('userKey');
 	    var provinceTxt = $('#province-option-list a[domain="' + userKey + '"]').text();
 	    $('#province-text').text(provinceTxt);
@@ -114,13 +119,12 @@
 	    $('.invite-friend').click(function () {
 	        var loginFlag = cookie.getCookieValue('isLogin');
 	        if (loginFlag != 'true') {
-	            window.location.href = '/login';
+	            window.location.href = '/login?toUrl=code';
 	            return false;
 	        }
 	        window.location.href = '/code?userId=' + userId;
 	    });
-
-	// 退出
+	    // 退出
 	    $('#logout-btn').on('click', function () {
 	        cookie.deleteCookie('city', '');
 	        cookie.deleteCookie('county', '');
@@ -142,11 +146,166 @@
 	        cookie.deleteCookie('countyName', '');
 	        cookie.deleteCookie('vipActiveDate', '');
 	        cookie.deleteCookie('vipEndDate', '');
+	        cookie.deleteCookie("flag", '');
+	        window.location.href='/login?toUrl=' + toUrl;
 	    });
 	});
 
 /***/ },
-/* 1 */,
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	//var domainStr = 'zgkser.zhigaokao.cn'; //正式
+	//var domainStr = 'test.zhigaokao.cn'; //测试
+	//var domainStr = 'm.zhigaokao.com:8080';
+
+	//获取域名前缀=============================
+	//var urlDomain = window.location.hostname + '';
+	//var urlArr = urlDomain.split('.');
+	//var provinceKey = urlArr[0];
+
+	//console.log(window.location.hostname);
+
+
+	var cookie = __webpack_require__(2);
+
+	var isLogin = function () {
+	    return cookie.getCookieValue('isLogin')
+	};
+	function ajaxFun(url, method, data, callback) {
+	    if (cookie.getCookieValue('token')) {
+	        data.token = cookie.getCookieValue('token');
+	    }
+	    data.userKey = cookie.getCookieValue('userKey');
+	    var strParameter = '';
+	    for (var i in data) {
+	        strParameter += "&" + i + "=" + data[i];
+	    }
+	    $.ajax({
+	        url: url,
+	        type: method,
+	        data: data || {},
+	        success: callback,
+	        error: callback
+	    });
+	};
+
+	function ajaxFunJSON(url, method, data, callback) {
+	    if (cookie.getCookieValue('token')) {
+	        data.token = cookie.getCookieValue('token');
+	    }
+	    data.userKey = cookie.getCookieValue('userKey');
+	    console.log(JSON.stringify(data));
+	    $.ajax({
+	        url: url,
+	        type: method,
+	        contentType: 'application/json',
+	        dataType: 'json',
+	        data: JSON.stringify(data),
+	        success: callback,
+	        error: callback
+	    });
+	}
+
+
+	var getLinkey = function getLinkey(name) {
+	    var reg = new RegExp("(^|\\?|&)" + name + "=([^&]*)(\\s|&|$)", "i");
+	    if (reg.test(window.location.href)) return unescape(RegExp.$2.replace(/\+/g, " "));
+	    return "";
+	};
+
+
+	var tips = function tips(obj, txt) {
+	    $(obj).text(txt).fadeIn('1500');
+	    setTimeout(function () {
+	        $(obj).fadeOut('1500');
+	    }, 1000);
+	};
+
+
+
+	function drawToast(message) {
+	    var intervalCounter = null;
+	    var alert = document.getElementById("toast");
+	    if (!alert) {
+	        var toastHTML = '<div id="toast">' + message + '</div>';
+
+	        document.body.insertAdjacentHTML('beforeEnd', toastHTML);
+	    } else {
+	        alert.style.opacity = .9;
+	    }
+	    intervalCounter = setInterval(function () {
+	        var alert = $("#toast");
+	        alert.css('opacity', 0).remove();
+	        clearInterval(intervalCounter);
+	    }, 1000);
+	}
+
+
+	function layer(message, btns) {
+	    var alert = document.getElementById("toast");
+	    if (!alert) {
+	        var toastHTML = '<div id="toast">'
+	            + message;
+	        if (btns) {
+	            toastHTML += btns;
+	        }
+	        toastHTML += '</div>';
+	        document.body.insertAdjacentHTML('beforeEnd', toastHTML);
+	    } else {
+	        alert.style.opacity = .9;
+	    }
+	}
+
+
+	function confirmLayer(title,content) {
+	    var confirmLayer = [];
+	    confirmLayer.push('<div class="mask show">');
+	    confirmLayer.push('<div class="modal">');
+	    confirmLayer.push('<div class="modal-title">'+ title +'</div>');
+	    confirmLayer.push('<div class="modal-body">');
+	    confirmLayer.push(content);
+	    confirmLayer.push('</div>');
+	    confirmLayer.push('<div class="modal-footer">');
+	    confirmLayer.push('<button id="close-modal" type="button">取消</button>');
+	    confirmLayer.push('<button id="confirm-btn" type="button">确定</button>');
+	    confirmLayer.push('</div>');
+	    confirmLayer.push('</div>');
+	    confirmLayer.push('</div>');
+	    $('body').append(confirmLayer.join('')).on('click','#close-modal',function() {
+	        $('.mask').remove();
+	    });
+	}
+
+
+
+	exports.isLogin = isLogin;
+	exports.ajaxFun = ajaxFun;
+	exports.getLinkey = getLinkey;
+	//exports.domain = domainStr;
+	//exports.provinceKey = provinceKey;
+	exports.tips = tips;
+	exports.drawToast = drawToast;
+	exports.layer = layer;
+	exports.ajaxFunJSON = ajaxFunJSON;
+	exports.confirmLayer = confirmLayer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***/ },
 /* 2 */
 /***/ function(module, exports) {
 

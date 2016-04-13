@@ -1,22 +1,28 @@
 $(function () {
+    var util = require('commonjs');
     var cookie = require('cookie');
+    var toUrl = util.getLinkey('toUrl');
     var isLogin = cookie.getCookieValue('isLogin');
     var token = cookie.getCookieValue('token');
+    var userName = cookie.getCookieValue('userName');
+
     if (isLogin) {
-        var userName = cookie.getCookieValue('userName');
         $('#userName').text(userName);
-        $('#consumerLinks').attr('href', '/consumer-list?token=' + token);
-        $('#orderLinks').attr('href', '/order?token=' + token);
-        $('#userLinks').attr('href', '/user-detail?token=' + token);
-        $('#vipStatus').attr('href', '/vip?token=' + token);
+        //$('#consumerLinks').attr('href', '/consumer-list?toUrl=consumer-list&token=' + token);
+        //$('#orderLinks').attr('href', '/order?toUrl=order&token=' + token);
+        //$('#userLinks').attr('href', '/user-detail?toUrl=user-detail&token=' + token);
+        //$('#vipStatus').attr('href', '/vip?toUrl=vip&token=' + token);
     }
-    var vipStatus = cookie.getCookieValue('vipStatus');
-    if (vipStatus == "1") {
-        $('#vipStatus').attr('href', '/vip-check?token=' + token);
-    } else {
-        $('#vipStatus').attr('href', '/vip?token=' + token);
-    }
-// 打开主菜单
+
+
+
+    //var vipStatus = cookie.getCookieValue('vipStatus');
+    //if (vipStatus == "1") {
+    //    $('#vipStatus').attr('href', '/vip-check?token=' + token);
+    //} else {
+    //    $('#vipStatus').attr('href', '/vip?token=' + token);
+    //}
+    // 打开主菜单
     $('#header-menu').on('click', function () {
         if (isLogin) {
             $('#menu-header').hide();
@@ -36,7 +42,7 @@ $(function () {
     });
 
 
-// 切换省份
+    // 切换省份
     $('#province-text').on('click', function () {
         $('#province-option').toggleClass('hide');
         if (isLogin) {
@@ -47,7 +53,6 @@ $(function () {
         cookie.setCookie("userKey", 'zj', 4, "/");
         $('#province-text').text('浙江');
     }
-
     var userKey = cookie.getCookieValue('userKey');
     var provinceTxt = $('#province-option-list a[domain="' + userKey + '"]').text();
     $('#province-text').text(provinceTxt);
@@ -68,13 +73,12 @@ $(function () {
     $('.invite-friend').click(function () {
         var loginFlag = cookie.getCookieValue('isLogin');
         if (loginFlag != 'true') {
-            window.location.href = '/login';
+            window.location.href = '/login?toUrl=code';
             return false;
         }
         window.location.href = '/code?userId=' + userId;
     });
-
-// 退出
+    // 退出
     $('#logout-btn').on('click', function () {
         cookie.deleteCookie('city', '');
         cookie.deleteCookie('county', '');
@@ -96,5 +100,7 @@ $(function () {
         cookie.deleteCookie('countyName', '');
         cookie.deleteCookie('vipActiveDate', '');
         cookie.deleteCookie('vipEndDate', '');
+        cookie.deleteCookie("flag", '');
+        window.location.href='/login?toUrl=' + toUrl;
     });
 });

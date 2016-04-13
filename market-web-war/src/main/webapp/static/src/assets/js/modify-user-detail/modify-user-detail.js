@@ -10,10 +10,8 @@
 
     var token = cookie.getCookieValue('token');
 
-
-
     $('#header-back').show().on('click', function () {
-        window.location.assign('/user-detail?token='+token);
+        window.location.assign('user-detail?toUrl=user-detail&menu=1');
     });
 
     util.ajaxFun(interfaceUrl.getUserInfo, 'GET', {}, function (res) {

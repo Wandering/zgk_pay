@@ -1,14 +1,32 @@
-/**
- * Created by kepeng on 16/4/1.
- */
 $(function(){
     var md5=require('md5');
-    var util = require('commonjs');
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
+    var util = require('commonjs');
     var token = cookie.getCookieValue('token');
+    var toUrl = util.getLinkey('toUrl');
+    var isLogin = cookie.getCookieValue('isLogin');
+    if(toUrl=='user-detail'){
+        if(!isLogin){
+            window.location.href='/login?toUrl=user-detail';
+        }else{
+            var menuV = util.getLinkey('menu');
+            if(menuV=="1"){
+                cookie.setCookie("flag", "0", 4, "/");
+            }
+            var flag = cookie.getCookieValue('flag');
+            if(flag=="0"){
+                cookie.setCookie("flag", "1", 4, "/");
+                window.location.assign('/user-detail?toUrl=user-detail&token=' + token);
+            }
+        }
+    }
+
+
+
     $('#header-title').text('个人信息');
     $('#header-menu').show();
+
 
     function initUserInfo() {
         var avatar = cookie.getCookieValue('avatar');
