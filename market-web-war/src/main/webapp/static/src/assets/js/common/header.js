@@ -16,21 +16,13 @@ $(function () {
 
 
 
-
-
-
-
-
-
-
-
-    var vipStatus = cookie.getCookieValue('vipStatus');
-    if (vipStatus == "1") {
-        $('#vipStatus').attr('href', '/vip-check?token=' + token);
-    } else {
-        $('#vipStatus').attr('href', '/vip?token=' + token);
-    }
-// 打开主菜单
+    //var vipStatus = cookie.getCookieValue('vipStatus');
+    //if (vipStatus == "1") {
+    //    $('#vipStatus').attr('href', '/vip-check?token=' + token);
+    //} else {
+    //    $('#vipStatus').attr('href', '/vip?token=' + token);
+    //}
+    // 打开主菜单
     $('#header-menu').on('click', function () {
         if (isLogin) {
             $('#menu-header').hide();
@@ -50,7 +42,7 @@ $(function () {
     });
 
 
-// 切换省份
+    // 切换省份
     $('#province-text').on('click', function () {
         $('#province-option').toggleClass('hide');
         if (isLogin) {
@@ -61,7 +53,6 @@ $(function () {
         cookie.setCookie("userKey", 'zj', 4, "/");
         $('#province-text').text('浙江');
     }
-
     var userKey = cookie.getCookieValue('userKey');
     var provinceTxt = $('#province-option-list a[domain="' + userKey + '"]').text();
     $('#province-text').text(provinceTxt);
@@ -88,7 +79,7 @@ $(function () {
         window.location.href = '/code?userId=' + userId;
     });
 
-// 退出
+    // 退出
     $('#logout-btn').on('click', function () {
         cookie.deleteCookie('city', '');
         cookie.deleteCookie('county', '');
@@ -110,5 +101,6 @@ $(function () {
         cookie.deleteCookie('countyName', '');
         cookie.deleteCookie('vipActiveDate', '');
         cookie.deleteCookie('vipEndDate', '');
+        cookie.deleteCookie("flag", '');
     });
 });
