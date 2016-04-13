@@ -1,13 +1,16 @@
 $(function () {
     var cookie = require('cookie');
     var util = require('commonjs');
-    var urlConfig = require('urlConfig');
+    //var urlConfig = require('urlConfig');
     var account = cookie.getCookieValue('phone');
-    var getTime = require('timeFormat');
+    //var getTime = require('timeFormat');
 
     var isLogin = cookie.getCookieValue('isLogin');
     var token = cookie.getCookieValue('token');
     var userId = cookie.getCookieValue('userId');
+
+    console.log(util.getLinkey('toUrl'));
+
 
     if(isLogin){
         $('#vip-buy').attr('href','/vip-buy?token='+token);
@@ -15,11 +18,11 @@ $(function () {
     }
 
     $('#account-number').val(account);
-
     $('#header-menu').show();
     $('#header-title').text('VIP');
 
-
+    // vip卡升级 暂时不上
+    /*
     $('.vip-btn').click(function () {
         var cardNum = $.trim($('#card-number').val());
         var cardPsd = $.trim($('#card-psd').val());
@@ -62,6 +65,7 @@ $(function () {
             }
         });
     });
+    */
 });
 
 
