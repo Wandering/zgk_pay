@@ -320,7 +320,8 @@ header {
   position: relative;
   overflow: hidden;
   z-index: 3;
-
+  height: 46px;
+  line-height: 46px;
   .header-title {
     padding-left: 46px;
     margin-right: 46px;
@@ -328,7 +329,7 @@ header {
   .header-btn {
     position: absolute;
     height: 25px;
-    top: 6px;
+    top: 9px;
     left: 9px;
   }
 }
@@ -385,7 +386,7 @@ header {
       &:first-child{
         margin-right: 8px;
       }
-      &:last-child {
+      &:hover {
         color: #fff;
         background-color: #D80C18;
       }

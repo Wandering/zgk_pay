@@ -8,14 +8,19 @@ header .header-btn {
   padding: 10px;
   box-sizing: border-box;
   .title {
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 14px;
+    font-weight: bold;
     text-align: center;
     color: #575757;
+    margin-top: 11px;
   }
   .date {
+    text-align: center;
     font-size: 12px;
     color: #979797;
     margin-top: 17px;
+    line-height: 24px;
   }
   .banner {
     margin-top: 10px;
@@ -25,14 +30,15 @@ header .header-btn {
     }
   }
   .content {
-    font-size: 12px;
-    color: #707070;
+    color: #707070!important;
     margin-top: 2px;
     line-height: 20px;
-
     p {
       margin: 0;
+      font-size: 14px!important;
       text-indent: 27px;
+      line-height: 24px!important;
+      color: #707070!important;
     }
   }
   .recommend-article {

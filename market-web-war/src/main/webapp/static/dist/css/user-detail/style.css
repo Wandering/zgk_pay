@@ -90,11 +90,14 @@ header .location.location-icon:before {
   text-align: center;
   font-size: 14px;
   color: #fff;
-  background-color: #B61F28;
+  background-color: #D80C18;
   border: none;
   border-radius: 2px;
   width: 270px;
   margin: 50px auto;
+}
+.change-password-btn:hover {
+  background-color: #B61F28;
 }
 
 .mask {

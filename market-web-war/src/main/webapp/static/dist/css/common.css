@@ -653,6 +653,8 @@ header {
   position: relative;
   overflow: hidden;
   z-index: 3;
+  height: 46px;
+  line-height: 46px;
 }
 header .header-title {
   padding-left: 46px;
@@ -661,7 +663,7 @@ header .header-title {
 header .header-btn {
   position: absolute;
   height: 25px;
-  top: 6px;
+  top: 9px;
   left: 9px;
 }
 
@@ -719,7 +721,7 @@ header .header-btn {
 .menu .btn a:first-child {
   margin-right: 8px;
 }
-.menu .btn a:last-child {
+.menu .btn a:hover {
   color: #fff;
   background-color: #D80C18;
 }
