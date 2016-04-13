@@ -12,9 +12,9 @@ $(function () {
 
 
 
-    if(isLogin){
-        $('#invite-friends').attr('href','/code?userId=' + userId);
-    }
+    //if(isLogin){
+    //    $('#invite-friends').attr('href','/code?userId=' + userId);
+    //}
     $('#account-number').val(account);
     $('#header-menu').show();
     $('#header-title').text('购买VIP');
