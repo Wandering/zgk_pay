@@ -5,9 +5,27 @@ $(function () {
     var cookie = require('cookie');
     var isLogin = cookie.getCookieValue('isLogin');
     var token = cookie.getCookieValue('token');
+    var userId = cookie.getCookieValue('userId');
     $('#header-back').show().on('click', function () {
         window.location.href = 'user-detail?toUrl=user-detail&token='+token;
     });
+
+    var toUrl = util.getLinkey('toUrl');
+    if(toUrl=='code'){
+        if(!isLogin){
+            window.location.href='/login?toUrl=code';
+        }else{
+            var menuV = util.getLinkey('menu');
+            if(menuV=="1"){
+                cookie.setCookie("flag", "0", 4, "/");
+            }
+            var flag = cookie.getCookieValue('flag');
+            if(flag=="0"){
+                cookie.setCookie("flag", "1", 4, "/");
+                window.location.assign('code?toUrl=code&userId=' + userId);
+            }
+        }
+    }
 
     function isWeiXin() {
         var ua = window.navigator.userAgent.toLowerCase();
@@ -19,7 +37,6 @@ $(function () {
     }
 
 
-    var userId = util.getLinkey('userId');
     util.ajaxFun(interfaceUrl.getCaptchaImg, 'get', {
         'userId': userId
     }, function (res) {

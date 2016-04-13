@@ -33,12 +33,6 @@
             </div>
             <div class="menu-list clearfix">
                 <div class="item">
-                    <a href="/index">
-                        <img src="<%=ctx%>/static/dist/img/12-active.png" alt=""/>
-                        <span>首页</span>
-                    </a>
-                </div>
-                <div class="item">
                     <a href="http://dev.zhigaokao.cn/weixin/index.html#/queryCollege">
                         <img src="<%=ctx%>/static/dist/img/1-active.png" alt=""/>
                         <span>查院校</span>
@@ -71,7 +65,7 @@
                 <div class="item">
                     <a href="/policy">
                         <img src="<%=ctx%>/static/dist/img/6-active.png" alt=""/>
-                        <span>高考政策</span>
+                        <span>高考热点</span>
                     </a>
                 </div>
                 <div class="item">
@@ -124,12 +118,6 @@
         <div class="menu">
             <div class="menu-list clearfix">
                 <div class="item">
-                    <a href="/index">
-                        <img src="<%=ctx%>/static/dist/img/12.png" alt=""/>
-                        <span>首页</span>
-                    </a>
-                </div>
-                <div class="item">
                     <a href="http://dev.zhigaokao.cn/weixin/index.html#/queryCollege">
                         <img src="<%=ctx%>/static/dist/img/1.png" alt=""/>
                         <span>查院校</span>
@@ -163,7 +151,7 @@
                 <div class="item">
                     <a href="/policy">
                         <img src="<%=ctx%>/static/dist/img/6.png" alt=""/>
-                        <span>高考政策</span>
+                        <span>高考热点</span>
                     </a>
                 </div>
                 <div class="item">
