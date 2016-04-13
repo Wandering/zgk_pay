@@ -618,7 +618,7 @@ webpackJsonp([11],[
 	                cookie.setCookie("qrcodeUrl", qrcodeUrl, 4, "/");
 	                cookie.setCookie("isReported", isReported, 4, "/");
 	                cookie.setCookie("isSurvey", isSurvey, 4, "/");
-	                cookie.setCookie("flag", "0", 4, "/");
+	                cookie.setCookie("flag", "0", 4, "/" );
 	                var url = '/'+ toUrl +'?toUrl='+ toUrl +'&token=' + token;
 	                if (isWeiXin()) {
 	                    var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=http://zgkser.zhigaokao.cn/'+ toUrl +'?toUrl='+ toUrl +'&token=' + token + '&response_type=code&scope=snsapi_base&state=' + $.trim(userKey) + '#wechat_redirect';
@@ -629,9 +629,11 @@ webpackJsonp([11],[
 	            } else {
 	                util.drawToast(res.msg);
 	            }
+
 	        });
 	    });
 	});
+
 
 
 
@@ -653,12 +655,12 @@ webpackJsonp([11],[
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var util = __webpack_require__(1);
-	var cookie = __webpack_require__(2);
-	var md5 = __webpack_require__(5);
-	var urlConfig = __webpack_require__(3);
-
 	$(function () {
+	    var util = __webpack_require__(1);
+	    var cookie = __webpack_require__(2);
+	    var md5 = __webpack_require__(5);
+	    var urlConfig = __webpack_require__(3);
+	    var toUrl = util.getLinkey('toUrl');
 	    //省市地区
 	    var province = '';
 	    var city = '';
@@ -904,7 +906,8 @@ webpackJsonp([11],[
 	                    cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
 	                    cookie.setCookie("isReported",isReported, 4, "/");
 	                    cookie.setCookie("isSurvey",isSurvey, 4, "/");
-	                    window.location.assign('/user-detail?token='+token);
+	                    var url = '/'+ toUrl +'?toUrl='+ toUrl +'&token=' + token;
+	                    window.location.assign(url);
 	                } else {
 	                    util.drawToast(res.msg);
 	                }

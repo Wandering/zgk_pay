@@ -4,18 +4,14 @@ webpackJsonp([0],[
 
 	$(function () {
 	    $('#header-title').text('二维码');
-	    $('#header-back').show().on('click', function () {
-	        window.location.href = '/user-detail';
-	        if (isLogin) {
-	            window.location.href = '/user-detail?token=' + token;
-	        }
-	    });
-
 	    var util = __webpack_require__(1);
 	    var interfaceUrl = __webpack_require__(3);
 	    var cookie = __webpack_require__(2);
 	    var isLogin = cookie.getCookieValue('isLogin');
 	    var token = cookie.getCookieValue('token');
+	    $('#header-back').show().on('click', function () {
+	        window.location.href = 'user-detail?toUrl=user-detail&token='+token;
+	    });
 
 	    function isWeiXin() {
 	        var ua = window.navigator.userAgent.toLowerCase();

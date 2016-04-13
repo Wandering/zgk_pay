@@ -11,7 +11,7 @@ webpackJsonp([9],[
 	var IScroll = __webpack_require__(6);
 	$(function () {
 	    $('#header-menu').show();
-	    $('#header-title').text('高考政策');
+	    $('#header-title').text('高考热点');
 	    var Policy = {
 	        page: 0,
 	        pageRow: 5,

@@ -1,13 +1,41 @@
-var util = require('commonjs');
-var cookie = require('cookie');
-var interfaceUrl = require('urlConfig');
-var getTime = require('timeFormat');
 
-$('#header-menu').show();
-
-$('#header-title').text('我的钱包');
 
 $(function () {
+
+
+
+    $('#header-menu').show();
+    $('#header-title').text('我的钱包');
+    var cookie = require('cookie');
+    var interfaceUrl = require('urlConfig');
+    var getTime = require('timeFormat');
+
+    var util = require('commonjs');
+    var token = cookie.getCookieValue('token');
+    var toUrl = util.getLinkey('toUrl');
+    var isLogin = cookie.getCookieValue('isLogin');
+    if(toUrl=='consumer-list'){
+        if(!isLogin){
+            window.location.href='/login?toUrl=consumer-list';
+        }else{
+            var menuV = util.getLinkey('menu');
+            if(menuV=="1"){
+                cookie.setCookie("flag", "0", 4, "/");
+            }
+            var flag = cookie.getCookieValue('flag');
+            if(flag=="0"){
+                cookie.setCookie("flag", "1", 4, "/");
+                window.location.assign('/consumer-list?toUrl=consumer-list&token=' + token);
+            }
+        }
+    }
+
+
+
+
+
+
+
 
     var userId = cookie.getCookieValue('userId');
     util.ajaxFun(interfaceUrl.getSplitPriceInfo, 'get', {

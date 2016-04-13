@@ -76,7 +76,7 @@ $(function () {
                 cookie.setCookie("qrcodeUrl", qrcodeUrl, 4, "/");
                 cookie.setCookie("isReported", isReported, 4, "/");
                 cookie.setCookie("isSurvey", isSurvey, 4, "/");
-                cookie.setCookie("flag", "0", 4, "/");
+                cookie.setCookie("flag", "0", 4, "/" );
                 var url = '/'+ toUrl +'?toUrl='+ toUrl +'&token=' + token;
                 if (isWeiXin()) {
                     var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=http://zgkser.zhigaokao.cn/'+ toUrl +'?toUrl='+ toUrl +'&token=' + token + '&response_type=code&scope=snsapi_base&state=' + $.trim(userKey) + '#wechat_redirect';
@@ -87,9 +87,11 @@ $(function () {
             } else {
                 util.drawToast(res.msg);
             }
+
         });
     });
 });
+
 
 
 

@@ -1,9 +1,9 @@
-var util = require('commonjs');
-var cookie = require('cookie');
-var md5 = require('md5');
-var urlConfig = require('urlConfig');
-
 $(function () {
+    var util = require('commonjs');
+    var cookie = require('cookie');
+    var md5 = require('md5');
+    var urlConfig = require('urlConfig');
+    var toUrl = util.getLinkey('toUrl');
     //省市地区
     var province = '';
     var city = '';
@@ -249,7 +249,8 @@ $(function () {
                     cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
                     cookie.setCookie("isReported",isReported, 4, "/");
                     cookie.setCookie("isSurvey",isSurvey, 4, "/");
-                    window.location.assign('/user-detail?token='+token);
+                    var url = '/'+ toUrl +'?toUrl='+ toUrl +'&token=' + token;
+                    window.location.assign(url);
                 } else {
                     util.drawToast(res.msg);
                 }

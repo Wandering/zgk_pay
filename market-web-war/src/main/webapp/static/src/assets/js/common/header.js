@@ -1,18 +1,18 @@
 $(function () {
+    var util = require('commonjs');
     var cookie = require('cookie');
+    var toUrl = util.getLinkey('toUrl');
+    var isLogin = cookie.getCookieValue('isLogin');
+    var token = cookie.getCookieValue('token');
+    var userName = cookie.getCookieValue('userName');
+
     if (isLogin) {
-        var isLogin = cookie.getCookieValue('isLogin');
-        var token = cookie.getCookieValue('token');
-        var userName = cookie.getCookieValue('userName');
         $('#userName').text(userName);
-        $('#consumerLinks').attr('href', '/consumer-list?toUrl=consumer-list&token=' + token);
-        $('#orderLinks').attr('href', '/order?toUrl=order&token=' + token);
-        $('#userLinks').attr('href', '/user-detail?toUrl=user-detail&token=' + token);
-        $('#vipStatus').attr('href', '/vip?toUrl=vip&token=' + token);
+        //$('#consumerLinks').attr('href', '/consumer-list?toUrl=consumer-list&token=' + token);
+        //$('#orderLinks').attr('href', '/order?toUrl=order&token=' + token);
+        //$('#userLinks').attr('href', '/user-detail?toUrl=user-detail&token=' + token);
+        //$('#vipStatus').attr('href', '/vip?toUrl=vip&token=' + token);
     }
-
-
-
 
 
 
@@ -73,12 +73,11 @@ $(function () {
     $('.invite-friend').click(function () {
         var loginFlag = cookie.getCookieValue('isLogin');
         if (loginFlag != 'true') {
-            window.location.href = '/login';
+            window.location.href = '/login?toUrl=code';
             return false;
         }
         window.location.href = '/code?userId=' + userId;
     });
-
     // 退出
     $('#logout-btn').on('click', function () {
         cookie.deleteCookie('city', '');
@@ -102,5 +101,6 @@ $(function () {
         cookie.deleteCookie('vipActiveDate', '');
         cookie.deleteCookie('vipEndDate', '');
         cookie.deleteCookie("flag", '');
+        window.location.href='/login?toUrl=' + toUrl;
     });
 });

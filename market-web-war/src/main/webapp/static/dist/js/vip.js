@@ -19,14 +19,13 @@ webpackJsonp([15],[
 
 
 
-	    if(isLogin){
-	        $('#vip-buy').attr('href','/vip-buy?token='+token);
-	        $('#invite-friends,#login-vip').attr('href','/code?userId=' + userId);
-	    }
-
+	    //if(isLogin){
+	        //$('#vip-buy').attr('href','/vip-buy?token='+token);
+	        //$('#invite-friends,#login-vip').attr('href','/code?userId=' + userId);
+	    //}
 	    $('#account-number').val(account);
 	    $('#header-menu').show();
-	    $('#header-title').text('VIP');
+	    $('#header-title').text('购买VIP');
 
 	    // vip卡升级 暂时不上
 	    /*

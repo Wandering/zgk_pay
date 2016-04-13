@@ -7,7 +7,7 @@
 </head>
 <body>
 <script>
-
+    window.location.assign('user-detail?toUrl=user-detail&menu=1');
 </script>
 </body>
 </html>

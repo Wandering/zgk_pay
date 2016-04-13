@@ -7,7 +7,7 @@ var interfaceUrl = require('urlConfig');
 var IScroll = require('iscroll');
 $(function () {
     $('#header-menu').show();
-    $('#header-title').text('高考政策');
+    $('#header-title').text('高考热点');
     var Policy = {
         page: 0,
         pageRow: 5,
