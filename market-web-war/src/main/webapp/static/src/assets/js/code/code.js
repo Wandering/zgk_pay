@@ -9,7 +9,6 @@ $(function () {
     $('#header-back').show().on('click', function () {
         window.location.href = 'user-detail?toUrl=user-detail&token='+token;
     });
-
     var toUrl = util.getLinkey('toUrl');
     if(toUrl=='code'){
         if(!isLogin){

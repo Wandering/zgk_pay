@@ -98,6 +98,12 @@
                         <span>邀请好友</span>
                     </a>
                 </div>
+                <div class="item">
+                    <a href="/intro" class="">
+                        <img src="<%=ctx%>/static/dist/img/rule-active.png" alt=""/>
+                        <span>盈利规则</span>
+                    </a>
+                </div>
             </div>
             <div class="btn login-btn">
                 <a href="javascript:void(0)" id="logout-btn">退出</a>
@@ -161,19 +167,19 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/user-detail">
+                    <a href="user-detail?toUrl=user-detail&menu=1">
                         <img src="<%=ctx%>/static/dist/img/10.png" alt=""/>
                         <span>个人信息</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/consumer-list">
+                    <a href="/consumer-list?toUrl=consumer-list&menu=1">
                         <img src="<%=ctx%>/static/dist/img/8.png" alt=""/>
                         <span>我的钱包</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/order">
+                    <a href="order?toUrl=order&menu=1">
                         <img src="<%=ctx%>/static/dist/img/9.png" alt=""/>
                         <span>我的订单</span>
                     </a>
@@ -192,7 +198,7 @@
                 </div>
             </div>
             <div class="btn login-btn">
-                <a href="/login" id="login-btn">登录/注册</a>
+                <a href="javascript:void(0)" id="login-btn">登录/注册</a>
                 <a class="vipStatus" href="vip?toUrl=vip">购买VIP</a>
             </div>
         </div>

@@ -78,4 +78,16 @@ header .location.location-icon:before {
 #intro-img {
   margin: 40px auto;
   display: block;
+  width: 90%;
+  overflow: hidden;
+}
+
+.text-box {
+  padding: 0 20px;
+}
+
+.txt {
+  text-indent: 2em;
+  font-size: 14px;
+  line-height: 24px;
 }

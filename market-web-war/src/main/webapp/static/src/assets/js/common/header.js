@@ -16,6 +16,10 @@ $(function () {
 
 
 
+    $('#login-btn').attr('href','/login?toUrl='+toUrl);
+
+
+
     //var vipStatus = cookie.getCookieValue('vipStatus');
     //if (vipStatus == "1") {
     //    $('#vipStatus').attr('href', '/vip-check?token=' + token);

@@ -582,13 +582,11 @@ webpackJsonp([11],[
 	                var userName = res.bizData.userInfo.name; // 用户名称
 	                var userId = res.bizData.userInfo.id;  // userId
 	                var vipStatus = res.bizData.userInfo.vipStatus; // VIP状态
-
 	                var vipActiveDate = res.bizData.userInfo.activeDate;
 	                var vipEndDate = res.bizData.userInfo.endDate;
 
 	                var vipActiveDateV = getTime(vipActiveDate).substr(0, 10);
 	                var vipEndDateV = getTime(vipEndDate).substr(0, 10);
-
 	                var phone = res.bizData.userInfo.account; // 用户账号
 	                var userKey = res.bizData.userInfo.userKey; // 省份userKey
 	                var province = res.bizData.userInfo.province; // 选择省份
@@ -629,7 +627,6 @@ webpackJsonp([11],[
 	            } else {
 	                util.drawToast(res.msg);
 	            }
-
 	        });
 	    });
 	});
