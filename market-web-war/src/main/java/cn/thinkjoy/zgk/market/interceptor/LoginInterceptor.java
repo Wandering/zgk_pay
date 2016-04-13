@@ -1,4 +1,5 @@
 package cn.thinkjoy.zgk.market.interceptor;
+
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.zgk.market.constant.ServletPathConst;
 import cn.thinkjoy.zgk.market.constant.UserRedisConst;
@@ -16,50 +17,47 @@ import javax.servlet.http.HttpServletResponse;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
-	private static final Logger LOGGER= LoggerFactory.getLogger(LoginInterceptor.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginInterceptor.class);
 
-	public LoginInterceptor() { }
-
+    public LoginInterceptor() {
+    }
 
     @Override
-	public boolean preHandle(HttpServletRequest request,HttpServletResponse response, Object handler) throws Exception {
-		String url = request.getServletPath();
-		String value = request.getParameter("token");
-		if(StringUtils.isEmpty(value)&& !ServletPathConst.MAPPING_URLS.contains(url))
-		{
-			return true;
-		}else if(!StringUtils.isEmpty(value) && !ServletPathConst.MAPPING_URLS.contains(url))
-		{
-			return true;
-		}
-		else if(StringUtils.isEmpty(value) && ServletPathConst.MAPPING_URLS.contains(url))
-		{
-			response.sendRedirect("login");
-			throw new BizException("0000001","请登陆后再操作!");
-		}
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        String url = request.getServletPath();
+        String token = request.getParameter("token");
+        String toUrl = request.getParameter("toUrl");
+        String redirectUrl = "login";
+        if (StringUtils.isEmpty(token) && !ServletPathConst.MAPPING_URLS.contains(url)) {
+            return true;
+        } else if (!StringUtils.isEmpty(token) && !ServletPathConst.MAPPING_URLS.contains(url)) {
+            return true;
+        } else if (StringUtils.isEmpty(token) && ServletPathConst.MAPPING_URLS.contains(url)) {
+            response.sendRedirect(redirectUrl + "?toUrl=" + toUrl);
+            throw new BizException("0000001", "请登陆后再操作!");
+        }
 
-		String key = UserRedisConst.USER_KEY+value;
-		boolean redisFlag = RedisUtil.getInstance().exists(key);
-		if(redisFlag)
-		{
-			return true;
-		}else if (ServletPathConst.MAPPING_URLS.contains(url)) {
-			response.sendRedirect("login");
-			throw new BizException("0000001","请登陆后再操作!");
-		}
-		return true;
-	}
+        String key = UserRedisConst.USER_KEY + token;
+        boolean redisFlag = RedisUtil.getInstance().exists(key);
+        if (redisFlag) {
+            return true;
+        } else if (ServletPathConst.MAPPING_URLS.contains(url)) {
+            response.sendRedirect(redirectUrl + "?toUrl=" + toUrl);
+            throw new BizException("0000001", "请登陆后再操作!");
+        }
+        return true;
+    }
 
-	@Override
-	public void postHandle(HttpServletRequest request,HttpServletResponse response, Object handler,ModelAndView modelAndView) throws Exception {
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 //		System.out.println("===========HandlerInterceptor1 postHandle");
 
-	}
+    }
 
-	@Override
-	public void afterCompletion(HttpServletRequest request,HttpServletResponse response, Object handler, Exception ex)
-			throws Exception {
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+            throws Exception {
 //		System.out.println("===========HandlerInterceptor1 afterCompletion");
-	}
+    }
 
 }
