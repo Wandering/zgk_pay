@@ -134,6 +134,7 @@ webpackJsonp([7],[
 	    function orderPayStatus(msg) {
 	        util.drawToast(msg);
 	        setTimeout(function() {
+	            //window.location.href = '/order?toUrl=order&token=' + token;
 	            window.location.href = '/order';
 	        }, 1000);
 	    }
