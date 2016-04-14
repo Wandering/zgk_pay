@@ -1,5 +1,6 @@
-webpackJsonp([13],[
-/* 0 */
+webpackJsonp([13],{
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -8,7 +9,7 @@ webpackJsonp([13],[
 	var util = __webpack_require__(1);
 	var interfaceUrl = __webpack_require__(3);
 	var cookie = __webpack_require__(2);
-	var handlebars = __webpack_require__(7);
+	var handlebars = __webpack_require__(9);
 	$(function () {
 	    $('.search-btn').on('click', function () {
 	        if ($('.search-modal').hasClass('hidden')) {
@@ -60,9 +61,8 @@ webpackJsonp([13],[
 	});
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */
+
+/***/ 3:
 /***/ function(module, exports) {
 
 	/*
@@ -305,10 +305,8 @@ webpackJsonp([13],[
 
 
 /***/ },
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */
+
+/***/ 9:
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -4921,4 +4919,5 @@ webpackJsonp([13],[
 	;
 
 /***/ }
-]);
+
+});

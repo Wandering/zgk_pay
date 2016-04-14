@@ -1,12 +1,13 @@
-webpackJsonp([10],[
-/* 0 */
+webpackJsonp([10],{
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Created by pdeng on 16/3/31.
 	 */
 	var util = __webpack_require__(1);
-	var handlebars = __webpack_require__(7);
+	var handlebars = __webpack_require__(9);
 	var interfaceUrl = __webpack_require__(3);
 	$('#header-title').text('详情');
 	$(function () {
@@ -28,9 +29,8 @@ webpackJsonp([10],[
 	});
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */
+
+/***/ 3:
 /***/ function(module, exports) {
 
 	/*
@@ -273,10 +273,8 @@ webpackJsonp([10],[
 
 
 /***/ },
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */
+
+/***/ 9:
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -4889,4 +4887,5 @@ webpackJsonp([10],[
 	;
 
 /***/ }
-]);
+
+});
