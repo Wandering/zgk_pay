@@ -668,7 +668,7 @@ webpackJsonp([11],[
 	                //} else {
 	                //    window.location.assign(url);
 	                //}
-	                var url = 'http://zgkser.zhigaokao.cn/'+toUrl+'?state='+ toUrl;
+	                var url = 'http://zgkser.zhigaokao.cn/'+toUrl+'?state='+ toUrl+"&menu=1";
 	                //var url = 'http://zgkser.zhigaokao.cn/user-detail';
 	                if (isWeiXin()) {
 
