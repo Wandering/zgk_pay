@@ -109,6 +109,7 @@ $(function(){
 
     function getOpenId(code) {
 
+        alert(interfaceUrl.getOpenId)
         $.get(interfaceUrl.getOpenId,{code: code},function(res){
             alert(JSON.stringify(res))
             if (res.rtnCode == '0000000') {
