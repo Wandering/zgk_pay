@@ -38,6 +38,6 @@
 </div>
 <script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/pingpp.js"></script>
-<script src="<%=ctx%>/static/dist/js/vipBuy.js"></script>
+<script src="<%=ctx%>/static/dist/js/vipBuy.js?v=11"></script>
 </body>
 </html>
