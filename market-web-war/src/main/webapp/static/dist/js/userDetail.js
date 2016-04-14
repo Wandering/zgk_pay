@@ -16,13 +16,17 @@ webpackJsonp([14],[
 
 
 	    var isLogin = cookie.getCookieValue('isLogin');
+	    var menuV = util.getLinkey('menu');
+	    alert("menu="+menuV)
 	    alert("toUrl="+toUrl)
 	    if(toUrl=='user-detail'){
 	        alert(2)
 	        if(!isLogin){
 	            window.location.href='/login?state=user-detail';
 	        }else{
-	            var menuV = util.getLinkey('menu');
+
+
+
 	            if(menuV=="1"){
 	                cookie.setCookie("flag", "0", 4, "/");
 	            }
