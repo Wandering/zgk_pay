@@ -6,9 +6,9 @@ webpackJsonp([9],[
 	 * Created by pdeng on 16/3/31.
 	 */
 	var util = __webpack_require__(1);
-	var handlebars = __webpack_require__(9);
-	var interfaceUrl = __webpack_require__(5);
-	var IScroll = __webpack_require__(8);
+	var handlebars = __webpack_require__(7);
+	var interfaceUrl = __webpack_require__(3);
+	var IScroll = __webpack_require__(6);
 	$(function () {
 	    $('#header-menu').show();
 	    $('#header-title').text('高考热点');
@@ -88,9 +88,7 @@ webpackJsonp([9],[
 /***/ },
 /* 1 */,
 /* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */
+/* 3 */
 /***/ function(module, exports) {
 
 	/*
@@ -333,9 +331,9 @@ webpackJsonp([9],[
 
 
 /***/ },
-/* 6 */,
-/* 7 */,
-/* 8 */
+/* 4 */,
+/* 5 */,
+/* 6 */
 /***/ function(module, exports) {
 
 	/*! iScroll v5.1.3 ~ (c) 2008-2016 Matteo Spinelli ~ http://cubiq.org/license */
@@ -2431,7 +2429,7 @@ webpackJsonp([9],[
 	})(window, document, Math);
 
 /***/ },
-/* 9 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!

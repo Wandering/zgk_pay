@@ -1,8 +1,7 @@
 $(function () {
     $('#header-title').text('二维码');
     var util = require('commonjs');
-    var jweixin = require('jweixin');
-    var sha1 = require('sha1');
+
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
     var isLogin = cookie.getCookieValue('isLogin');
@@ -65,6 +64,8 @@ $(function () {
 
 
     /***************************自定义二维码*************************************/
+    //var jweixin = require('jweixin');
+    //var sha1 = require('sha1');
     //// app_id
     //var app_id = "wx552f3800df25e964";
     ////时间戳

@@ -4,8 +4,8 @@ webpackJsonp([2],[
 
 	var util=__webpack_require__(1);
 	var cookie=__webpack_require__(2);
-	var md5=__webpack_require__(7);
-	var urlConfig=__webpack_require__(5);
+	var md5=__webpack_require__(5);
+	var urlConfig=__webpack_require__(3);
 
 	//var domain = util.domain; // 正式
 
@@ -128,9 +128,7 @@ webpackJsonp([2],[
 /***/ },
 /* 1 */,
 /* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */
+/* 3 */
 /***/ function(module, exports) {
 
 	/*
@@ -373,8 +371,8 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 6 */,
-/* 7 */
+/* 4 */,
+/* 5 */
 /***/ function(module, exports) {
 
 		/**
