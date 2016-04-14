@@ -50,11 +50,13 @@ require('pgwmodal');
      * 订单确定
      */
     function commitOrder() {
+        alert(0);
         util.ajaxFun(interfaceUrl.commitOrder, 'POST', {
             userId: cookie.getCookieValue('userId') || '13',
             price: $('#price').attr('data-price') || '200'
         }, function (res) {
             if (res.rtnCode == '0000000') {
+                alert(1);
                 var department = res.bizData.department;
                 $('#orderNo').html('订单ID：' + res.bizData.orderNo);
                 $('#orderNo').attr('orderNo', res.bizData.orderNo);
@@ -68,6 +70,7 @@ require('pgwmodal');
                 });
                 //$('.confirm-btn').off('click');
                 $('.confirm-btn').click(function(){
+                    alert(2);
                     payOrder();
                 });
             }
@@ -77,7 +80,7 @@ require('pgwmodal');
     function orderPayStatus(msg) {
         util.drawToast(msg);
         setTimeout(function() {
-            window.location.href = '/order';
+            window.location.href = '/order?token='+token;
         }, 1000);
     }
 
@@ -95,6 +98,7 @@ require('pgwmodal');
      */
     //var orderFlag = false;
     function payOrder() {
+        alert(3);
         //if (orderFlag) {
         //    return;
         //}
@@ -121,13 +125,15 @@ require('pgwmodal');
             channel: channel,
             openId: openId
         }, function (res) {
-
+            alert(4);
             //orderFlag = false;
             $('#confirm-btn').html('确认支付');
             $.pgwModal('close');
+            alert(res.rtnCode);
             if (res.rtnCode == '0000000') {
                 var charge = res.bizData;
                 charge.credential = JSON.parse(charge.credential);
+                alert(22)
                 pingpp.createPayment(charge, function(result, error){
                     if (result == "success") {
                         // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。
