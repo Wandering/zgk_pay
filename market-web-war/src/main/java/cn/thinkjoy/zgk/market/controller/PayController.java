@@ -9,7 +9,10 @@ import cn.thinkjoy.zgk.market.enumerate.PAYCHANNEL;
 import cn.thinkjoy.zgk.market.service.IOrderService;
 import cn.thinkjoy.zgk.market.service.IOrderStatementsService;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
-import cn.thinkjoy.zgk.market.util.*;
+import cn.thinkjoy.zgk.market.util.IPUtil;
+import cn.thinkjoy.zgk.market.util.NumberGenUtil;
+import cn.thinkjoy.zgk.market.util.RedisUtil;
+import cn.thinkjoy.zgk.market.util.StaticSource;
 import cn.thinkjoy.zgk.zgksystem.AgentService;
 import cn.thinkjoy.zgk.zgksystem.pojo.SplitPricePojo;
 import com.alibaba.dubbo.common.logger.Logger;
@@ -22,7 +25,6 @@ import com.pingplusplus.util.WxpubOAuth;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -69,7 +71,7 @@ public class PayController {
     private static final String queryJsapiUrl = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=%s&type=jsapi";
 
     /**
-     * è·å–accessTokenå’Œjsapi_ticket
+     * »ñÈ¡accessTokenºÍjsapi_ticket
      * @return
      */
     @RequestMapping(value = "/getAccessToken",method = RequestMethod.GET)
@@ -117,20 +119,20 @@ public class PayController {
 
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-            logger.error("è·å–accessTokenå¼‚å¸¸:" + e);
+            logger.error("»ñÈ¡accessTokenÒì³£:" + e);
         }
         return map;
     }
 
     /**
-     * è·å–openId
+     * »ñÈ¡openId
      * @param code
      * @return
      */
     @RequestMapping(value = "/getOpenId",method = RequestMethod.GET)
     @ResponseBody
     public Map getOpenId(@RequestParam(value = "code")String code){
-        String appSecret=StaticSource.getSource("appSecret");
+         String appSecret=StaticSource.getSource("appSecret");
         String wxAppId=StaticSource.getSource("wxAppId");
         Map<String,Object> map=new HashMap<>();
         String openId= null;
@@ -139,13 +141,13 @@ public class PayController {
             map.put("openId",openId);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-            logger.error("è·å–openIdå¼‚å¸¸:" + e);
+            logger.error("»ñÈ¡openIdÒì³£:" + e);
         }
         return map;
     }
 
     /**
-     * æ”¯ä»˜è®¢å•
+     * Ö§¸¶¶©µ¥
      * @return
      */
     @RequestMapping(value = "/payOrder",method = RequestMethod.POST)
@@ -159,7 +161,7 @@ public class PayController {
         Map<String,Object> resultMap=new HashMap<>();
         BigDecimal decimal=new BigDecimal(amount);
         String token = request.getParameter("token");
-        //å‚æ•°é”™è¯¯
+        //²ÎÊı´íÎó
         if("".equals(orderNo)||orderNo==null||"".equals(amount)||amount==null||userId==0){
             throw  new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
         }
@@ -172,7 +174,7 @@ public class PayController {
             orderstatement.setAmount(Double.valueOf(amount)*100);
             orderstatement.setCreateDate(System.currentTimeMillis());
             orderstatement.setOrderNo(orderNo);
-            //0:äº¤æ˜“è¿›è¡Œä¸­  1ï¼šäº¤æ˜“æˆåŠŸ  2ï¼šäº¤æ˜“å¤±è´¥
+            //0:½»Ò×½øĞĞÖĞ  1£º½»Ò×³É¹¦  2£º½»Ò×Ê§°Ü
             orderstatement.setStatus(0);
             orderstatement.setStatementNo(statemenstNo);
             orderstatement.setState("N");
@@ -184,8 +186,8 @@ public class PayController {
             chargeParams.put("app",app);
             chargeParams.put("channel",channel);
             chargeParams.put("client_ip", IPUtil.getRemortIP(request));
-            chargeParams.put("subject","æ™ºé«˜è€ƒ");
-            chargeParams.put("body","æ™ºé«˜è€ƒVIPä¼šå‘˜");
+            chargeParams.put("subject","ÖÇ¸ß¿¼");
+            chargeParams.put("body","ÖÇ¸ß¿¼VIP»áÔ±");
             chargeParams.put("currency",CURRENCY);
             if(channel.equals(PAYCHANNEL.WXPUB.getCode())){
                 Map<String,Object> extraMap=new HashMap<>();
@@ -203,14 +205,14 @@ public class PayController {
             Charge charge=Charge.create(chargeParams);
             return charge;
         }catch (Exception e){
-            logger.error("ç”¨æˆ·"+userId+":"+"æ”¯ä»˜å¤±è´¥,é”™è¯¯:"+e);
+            logger.error("ÓÃ»§"+userId+":"+"Ö§¸¶Ê§°Ü,´íÎó:"+e);
             throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
         }
 
     }
 
     /**
-     * è®¢å•å›è°ƒå‡½æ•°
+     * ¶©µ¥»Øµ÷º¯Êı
      * @return
      */
     @RequestMapping(value = "/callBack",method = RequestMethod.POST)
@@ -221,7 +223,7 @@ public class PayController {
 
             int contentLength = request.getContentLength();
             if(contentLength<0){
-                logger.error("å›è°ƒå‚æ•°ä¸ºç©º");
+                logger.error("»Øµ÷²ÎÊıÎª¿Õ");
             }
             byte buffer[] = new byte[contentLength];
             for (int i = 0; i < contentLength;) {
@@ -251,7 +253,7 @@ public class PayController {
             List<Map<String,Object>> userRelLs= userAccountExService.getUserRelListByUserId(Long.valueOf(userId));
 
             if(userRelLs==null ||userRelLs.size()==0 ){
-                logger.error("è·å–ç”¨æˆ·å…³ç³»é“¾ä¸ºç©º,ç”¨æˆ·:"+userId);
+                logger.error("»ñÈ¡ÓÃ»§¹ØÏµÁ´Îª¿Õ,ÓÃ»§:"+userId);
                 return "fail";
             }
             List<SplitPricePojo> splitPricePojos=new ArrayList<>();
@@ -266,19 +268,19 @@ public class PayController {
             boolean result = agentService.SplitPriceExec(splitPricePojos, Integer.valueOf(callBackMap.get("amount").toString()), orderNo);
             if(!result)
             {
-                logger.error("è®¢å•"+orderNo+":åˆ†æˆå¤±è´¥.");
+                logger.error("¶©µ¥"+orderNo+":·Ö³ÉÊ§°Ü.");
                 throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
             }
             return "success";
         }catch (Exception e){
-            logger.error("è®¢å•"+orderNo+":å›è°ƒé”™è¯¯"+e);
+            logger.error("¶©µ¥"+orderNo+":»Øµ÷´íÎó"+e);
             throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
         }
 
     }
 
     /**
-     * è·å–ç”¨æˆ·äº¤æ˜“æµæ°´
+     * »ñÈ¡ÓÃ»§½»Ò×Á÷Ë®
      * @param pageNo
      * @param pageSize
      * @return
@@ -297,7 +299,7 @@ public class PayController {
 
 
     /**
-     * é€€æ¬¾å‡½æ•°
+     * ÍË¿îº¯Êı
      * @return
      */
     @RequestMapping(value = "/refunds",method = RequestMethod.POST)
