@@ -10,22 +10,25 @@ $(function(){
     console.log(toUrl)
 
 
+
     var isLogin = cookie.getCookieValue('isLogin');
-    //if(toUrl=='user-detail'){
-    //    if(!isLogin){
-    //        window.location.href='/login?state=user-detail';
-    //    }else{
-    //        var menuV = util.getLinkey('menu');
-    //        if(menuV=="1"){
-    //            cookie.setCookie("flag", "0", 4, "/");
-    //        }
-    //        var flag = cookie.getCookieValue('flag');
-    //        if(flag=="0"){
-    //            cookie.setCookie("flag", "1", 4, "/");
-    //            window.location.assign('/user-detail?state=user-detail&token=' + token);
-    //        }
-    //    }
-    //}
+    alert("toUrl="+toUrl)
+    if(toUrl=='user-detail'){
+        alert(2)
+        if(!isLogin){
+            window.location.href='/login?state=user-detail';
+        }else{
+            var menuV = util.getLinkey('menu');
+            if(menuV=="1"){
+                cookie.setCookie("flag", "0", 4, "/");
+            }
+            var flag = cookie.getCookieValue('flag');
+            if(flag=="0"){
+                cookie.setCookie("flag", "1", 4, "/");
+                window.location.assign('/user-detail?state=user-detail&token=' + token + "&code="+getQueryObject(window.location.href).code);
+            }
+        }
+    }
 
 
 
@@ -227,6 +230,8 @@ $(function(){
         });
     });
 
+
+    //alert(openId)
 
 });
 
