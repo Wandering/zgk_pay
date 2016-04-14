@@ -135,6 +135,10 @@
         wx.onMenuShareTimeline(shareObj);
     });
 
+    wx.error(function(res){
+        alert(res)
+    });
+
 
 
 
