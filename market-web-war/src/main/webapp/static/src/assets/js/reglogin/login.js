@@ -104,8 +104,6 @@ $(function () {
                 } else {
                     window.location.assign(url);
                 }
-
-
             } else {
                 util.drawToast(res.msg);
             }

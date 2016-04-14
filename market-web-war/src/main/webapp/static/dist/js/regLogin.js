@@ -647,8 +647,6 @@ webpackJsonp([11],[
 	                } else {
 	                    window.location.assign(url);
 	                }
-
-
 	            } else {
 	                util.drawToast(res.msg);
 	            }

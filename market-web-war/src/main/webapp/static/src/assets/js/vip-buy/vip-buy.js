@@ -50,6 +50,7 @@ require('pgwmodal');
      * 订单确定
      */
     function commitOrder() {
+        alert(7)
         util.ajaxFun(interfaceUrl.commitOrder, 'POST', {
             userId: cookie.getCookieValue('userId') || '13',
             price: $('#price').attr('data-price') || '200'
@@ -66,8 +67,8 @@ require('pgwmodal');
                    title: '订单确认',
                    content: $('.modal').html()
                 });
-                $('.confirm-btn').off('click');
-                $('.confirm-btn').on('click', function() {
+                //$('.confirm-btn').off('click');
+                $('.confirm-btn').click(function(){
                     payOrder();
                 });
             }
@@ -93,12 +94,12 @@ require('pgwmodal');
     /**
      * 支付
      */
-    var orderFlag = false;
+    //var orderFlag = false;
     function payOrder() {
-        if (orderFlag) {
-            return;
-        }
-        orderFlag = true;
+        //if (orderFlag) {
+        //    return;
+        //}
+        //orderFlag = true;
         $('#confirm-btn').html('正在支付...');
         var amount = parseFloat($('#pay_price').attr('data-price') || '200');
         var openId = cookie.getCookieValue('openId');
@@ -115,7 +116,7 @@ require('pgwmodal');
             channel: channel,
             openId: openId
         }, function (res) {
-            orderFlag = false;
+            //orderFlag = false;
             $('#confirm-btn').html('确认支付');
             $.pgwModal('close');
             if (res.rtnCode == '0000000') {
