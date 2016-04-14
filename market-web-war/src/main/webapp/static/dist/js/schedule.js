@@ -46,8 +46,8 @@
 
 	var util = __webpack_require__(1);
 	var urlConfig = __webpack_require__(3);
-	var handlebars = __webpack_require__(9);
-	var getTime = __webpack_require__(6);
+	var handlebars = __webpack_require__(7);
+	var getTime = __webpack_require__(4);
 
 	$(function(){
 	    $('#header-menu').show();
@@ -619,9 +619,7 @@
 
 
 /***/ },
-/* 4 */,
-/* 5 */,
-/* 6 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
@@ -654,9 +652,9 @@
 
 
 /***/ },
-/* 7 */,
-/* 8 */,
-/* 9 */
+/* 5 */,
+/* 6 */,
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!

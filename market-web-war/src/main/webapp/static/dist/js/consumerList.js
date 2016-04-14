@@ -54,7 +54,7 @@
 	    $('#header-title').text('我的钱包');
 	    var cookie = __webpack_require__(2);
 	    var interfaceUrl = __webpack_require__(3);
-	    var getTime = __webpack_require__(6);
+	    var getTime = __webpack_require__(4);
 
 	    var util = __webpack_require__(1);
 	    var token = cookie.getCookieValue('token');
@@ -580,9 +580,7 @@
 
 
 /***/ },
-/* 4 */,
-/* 5 */,
-/* 6 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {

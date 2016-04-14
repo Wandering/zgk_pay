@@ -4,13 +4,13 @@ webpackJsonp([11],[
 
 	
 	// 切换
-	__webpack_require__(10);
+	__webpack_require__(8);
 
 	// 登录
-	__webpack_require__(11);
+	__webpack_require__(9);
 
 	// 注册
-	__webpack_require__(12);
+	__webpack_require__(10);
 
 
 
@@ -261,9 +261,7 @@ webpackJsonp([11],[
 
 
 /***/ },
-/* 4 */,
-/* 5 */,
-/* 6 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
@@ -296,7 +294,7 @@ webpackJsonp([11],[
 
 
 /***/ },
-/* 7 */
+/* 5 */
 /***/ function(module, exports) {
 
 		/**
@@ -516,9 +514,9 @@ webpackJsonp([11],[
 
 
 /***/ },
-/* 8 */,
-/* 9 */,
-/* 10 */
+/* 6 */,
+/* 7 */,
+/* 8 */
 /***/ function(module, exports) {
 
 	var UI ={
@@ -540,14 +538,14 @@ webpackJsonp([11],[
 
 
 /***/ },
-/* 11 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	$(function () {
 	    var util = __webpack_require__(1);
 	    var cookie = __webpack_require__(2);
-	    var md5 = __webpack_require__(7);
-	    var getTime = __webpack_require__(6);
+	    var md5 = __webpack_require__(5);
+	    var getTime = __webpack_require__(4);
 	    var toUrl = util.getLinkey('state');
 	    function isWeiXin() {
 	        var ua = window.navigator.userAgent.toLowerCase();
@@ -668,13 +666,13 @@ webpackJsonp([11],[
 
 
 /***/ },
-/* 12 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	$(function () {
 	    var util = __webpack_require__(1);
 	    var cookie = __webpack_require__(2);
-	    var md5 = __webpack_require__(7);
+	    var md5 = __webpack_require__(5);
 	    var urlConfig = __webpack_require__(3);
 	    var toUrl = util.getLinkey('state');
 	    //省市地区
