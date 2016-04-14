@@ -131,7 +131,6 @@ $(function () {
             return false;
         }
     }
-
     if (isWeiXin()) {
         var obj = getQueryObject(window.location.href);
         cookie.setCookie("code", obj.code, 4, "/");
