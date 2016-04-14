@@ -67,7 +67,9 @@
         $.getJSON('<%=ctx%>/pay/getAccessToken', function (res) {
             if (res.rtnCode == "0000000") {
                 var ticket = res.bizData.ticket;
-                var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + getNonceStr() + "&timestamp=" + timestamp + "&url=" + 'http://www.baidu.com';
+                alert(ticket)
+                var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + getNonceStr() + "&timestamp=" + timestamp + "&url=" + 'http://172.16.150.97:8084/code?userId=1977';
+                alert(string1)
                 var sign = CryptoJS.SHA1(string1);
                 signStr = sign.toString();
             }
@@ -78,6 +80,11 @@
     }
 
 //    alert(getSign())
+
+//    alert(app_id) // wx552f3800df25e964
+//    alert(timestamp) //1460624931
+//    alert(getNonceStr()) //jnoQHEdV6LpjQao4d6LroCVOze5e10wq
+     //sM4AOVdWfPE4DxkXGEs8VFtsL_H9YZs4-wvUA8ijVSxoQpOSHV1alf_1oO26TUgdjx1mdLgVJaFjwENLllSr_A
 
     wx.config({
         debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
