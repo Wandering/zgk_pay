@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="vip-check-info">
-        <img src="<%=ctx%>/static/dist/img/icons/vip.png" alt=""/>
+        <%--<img src="<%=ctx%>/static/dist/img/icons/vip.png" alt=""/>--%>
         <div class="text">
             <div id="price"></div>
         </div>
