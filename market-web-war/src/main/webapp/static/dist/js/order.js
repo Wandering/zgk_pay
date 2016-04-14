@@ -174,6 +174,7 @@ webpackJsonp([7],[
 	                var charge = res.bizData;
 	                charge.credential = JSON.parse(charge.credential);
 	                pingpp.createPayment(charge, function(result, error){
+	                    alert(JSON.stringify(error))
 	                    if (result == "success") {
 	                        // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。
 	                        orderPayStatus('支付成功');
