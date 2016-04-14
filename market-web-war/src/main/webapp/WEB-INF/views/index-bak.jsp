@@ -106,8 +106,8 @@
                 <div class="item">
                     <a href="http://dev.zhigaokao.cn/weixin/index.html#/queryMajor">
                         <img src="<%=ctx%>/static/dist/img/2-active.png" alt=""/>
+                        <span>查专业</span>
                     </a>
-                    <span>查专业</span>
                 </div>
                 <%--<div class="item">--%>
                     <%--<a href="">--%>

@@ -2,17 +2,18 @@ webpackJsonp([2],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var util=__webpack_require__(1);
-	var cookie=__webpack_require__(2);
-	var md5=__webpack_require__(5);
-	var urlConfig=__webpack_require__(3);
+	var util = __webpack_require__(1);
+	var cookie = __webpack_require__(2);
+	var md5 = __webpack_require__(5);
+	var urlConfig = __webpack_require__(3);
 
 	//var domain = util.domain; // 正式
 
-	$('#header-back').show().on('click',function(){
+	$('#header-back').show().on('click', function () {
 	    window.location.assign('/login');
 	});
-
+	$('#header-title').html('找回密码');
+	$('#province-text').remove('');
 	$(function () {
 	    //var urlDomain = window.location.hostname + '';
 	    //var urlArr = urlDomain.split('.');
@@ -64,9 +65,9 @@ webpackJsonp([2],[
 	            console.log(res)
 	            if (res.rtnCode === "0000000") {
 	                util.drawToast("密码修改成功!");
-	                setTimeout(function(){
+	                setTimeout(function () {
 	                    window.location.assign('/login');
-	                },2000);
+	                }, 2000);
 	            } else {
 	                util.drawToast(res.msg);
 	            }

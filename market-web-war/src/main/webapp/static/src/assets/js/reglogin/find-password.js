@@ -1,14 +1,15 @@
-var util=require('commonjs');
-var cookie=require('cookie');
-var md5=require('md5');
-var urlConfig=require('urlConfig');
+var util = require('commonjs');
+var cookie = require('cookie');
+var md5 = require('md5');
+var urlConfig = require('urlConfig');
 
 //var domain = util.domain; // 正式
 
-$('#header-back').show().on('click',function(){
+$('#header-back').show().on('click', function () {
     window.location.assign('/login');
 });
-
+$('#header-title').html('找回密码');
+$('#province-text').remove('');
 $(function () {
     //var urlDomain = window.location.hostname + '';
     //var urlArr = urlDomain.split('.');
@@ -60,9 +61,9 @@ $(function () {
             console.log(res)
             if (res.rtnCode === "0000000") {
                 util.drawToast("密码修改成功!");
-                setTimeout(function(){
+                setTimeout(function () {
                     window.location.assign('/login');
-                },2000);
+                }, 2000);
             } else {
                 util.drawToast(res.msg);
             }

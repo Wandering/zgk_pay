@@ -26,19 +26,20 @@ header {
   color: #707070;
 }
 .user-info {
-  height: 137px;
+  height: 161px;
   background-color: #F6F6F6;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   .info-center {
-    width: 140px;
+    width: 220px;
     margin: 0 auto;
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
+    color: #8C8C8C;
     img {
-      width: 60px;
+      width: 66px;
     }
     .name {
       margin-top: 4px;
@@ -46,24 +47,25 @@ header {
     }
     .account {
       color: #4A4A4A;
+      font-size: 16px;
     }
   }
   .modify-btn {
     position: absolute;
-    right: 15px;
-    top: 15px;
-    font-size: 12px;
+    right: 20px;
+    top: 20px;
+    font-size: 14px;
     border: 1px solid #D80C18;
     color: #D80C18;
-    padding: 1px 4px;
+    padding: 2px 5px;
     border-radius: 2px;
   }
 }
 .detail-list li {
-  height: 43px;
-  line-height: 43px;
+  height: 50px;
+  line-height: 50px;
   padding: 0 15px;
-  font-size: 14px;
+  font-size: 16px;
   border-bottom: 1px solid #E9E4E4;
   a.code-links{
     color: #707070;
@@ -83,16 +85,16 @@ header {
 
 }
 .change-password-btn {
-  height: 39px;
-  line-height: 39px;
+  height: 44px;
+  line-height: 44px;
   text-align: center;
-  font-size: 14px;
   color: #fff;
   background-color: #D80C18;
   border: none;
   border-radius: 2px;
   width: 270px;
   margin: 50px auto;
+  font-size: 18px;
   &:hover{
     background-color: #B61F28;
   }
@@ -166,9 +168,9 @@ header {
     line-height: 40px;
     border: 1px solid #e9e4e4;
     -webkit-border-radius: 5px;
-    border-radius: 5px;
+    border-radius: 2px;
     color: #5e5e5e;
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: 14px;
     padding: 0 10px;
     box-sizing: border-box;

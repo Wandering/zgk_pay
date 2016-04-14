@@ -16,7 +16,7 @@
             <li id="{{id}}">
                 <a href="/policy-detail?id={{id}}">
                     <p class="img">
-                        <img src="{{image}}@base@tag=imgScale&w=144" alt="{{title}}" class="info-img"/>
+                        <img src="{{image}}" alt="{{title}}" class="info-img"/>
                     </p>
                     <div class="summary">
                         <div class="title">{{title}}</div>

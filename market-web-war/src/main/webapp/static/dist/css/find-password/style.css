@@ -24,7 +24,7 @@ header .header-btn:last-child {
   right: 13px;
 }
 header .location {
-  font-size: 12px;
+  font-size: 14px;
   vertical-align: 2px;
   margin-left: 1px;
 }
@@ -104,7 +104,7 @@ header .location.location-icon:before {
   margin-top: 61px;
 }
 .container .form-group .submit-btn {
-  height: 39px;
+  height: 44px;
   text-align: center;
   font-size: 14px;
   color: #fff;
@@ -124,11 +124,19 @@ header .location.location-icon:before {
   color: #d80c18;
   line-height: 20px;
   margin-left: 10px;
-  padding: 9px 9pt;
+  padding: 12px 8px;
   border-radius: 2px;
-  font-size: 13px;
+  font-size: 14px;
 }
 .btn-code:hover {
   background-color: #d80c18;
   color: #fff;
+}
+
+a, button, input {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+  -ms-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
 }

@@ -17,6 +17,7 @@
     <div class="container-header">
         <img id="intro-img" src="<%=ctx%>static/dist/img/intro.png" alt=""/>
     </div>
+    <br><br>
 </div>
 <script type="text/javascript" src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script type="text/javascript" src="<%=ctx%>static/dist/js/intro.js"></script>

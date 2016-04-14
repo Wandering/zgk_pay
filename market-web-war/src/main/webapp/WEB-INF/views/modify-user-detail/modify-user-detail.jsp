@@ -20,7 +20,7 @@
             <%--<div class="upload-btn">上传头像</div>--%>
         </div>
         <div class="form-group">
-            <div class="label">姓名</div>
+            <div class="label">姓名：</div>
             <input id="name" type="text"/>
         </div>
         <div class="form-group">
@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="label">Email</div>
+            <div class="label">Email：</div>
             <input id="email" type="text"/>
         </div>
         <div class="submit-btn">
