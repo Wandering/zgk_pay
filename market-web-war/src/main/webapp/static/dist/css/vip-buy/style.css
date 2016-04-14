@@ -115,13 +115,14 @@ header .location.location-icon:before {
 
 .description .title {
   text-align: center;
-  font-size: 12px;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .description .content {
   margin-top: 18px;
-  font-size: 12px;
-  line-height: 19px;
+  font-size: 14px;
+  line-height: 24px;
 }
 
 .vip-check-info {
@@ -137,8 +138,9 @@ header .location.location-icon:before {
   position: absolute;
   top: 2px;
   left: 19px;
-  font-size: 12px;
+  font-size: 16px;
   color: #D80C18;
+  font-weight: bold;
 }
 
 .vip-buy-btn {
