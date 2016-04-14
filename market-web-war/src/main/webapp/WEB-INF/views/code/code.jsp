@@ -66,9 +66,12 @@
 <%--//            }--%>
 <%--//        });--%>
         <%--$.getJSON('<%=ctx%>/pay/getAccessToken', function (res) {--%>
+
             <%--if (res.rtnCode == "0000000") {--%>
                 <%--var ticket = res.bizData.ticket;--%>
+                <%--alert(ticket)--%>
                 <%--var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + getNonceStr() + "&timestamp=" + timestamp + "&url=" + window.location.href;--%>
+                <%--alert(string1)--%>
                 <%--var sign = CryptoJS.SHA1(string1);--%>
                 <%--signStr = sign.toString();--%>
             <%--}--%>
@@ -80,10 +83,10 @@
 
 
 <%--//    alert(app_id) // wx552f3800df25e964--%>
-<%--//    alert(timestamp) //1460624931--%>
-<%--//    alert(getNonceStr()) //jnoQHEdV6LpjQao4d6LroCVOze5e10wq--%>
-     <%--//sM4AOVdWfPE4DxkXGEs8VFtsL_H9YZs4-wvUA8ijVSxoQpOSHV1alf_1oO26TUgdjx1mdLgVJaFjwENLllSr_A--%>
-<%--//    alert(getSign())--%>
+    <%--alert(timestamp) //1460624931--%>
+    <%--alert(getNonceStr()) //jnoQHEdV6LpjQao4d6LroCVOze5e10wq--%>
+<%--//     sM4AOVdWfPE4DxkXGEs8VFtsL_H9YZs4-wvUA8ijVSxoQpOSHV1alf_1oO26TUgdjx1mdLgVJaFjwENLllSr_A--%>
+    <%--alert(getSign())--%>
     <%--wx.config({--%>
         <%--debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。--%>
         <%--appId: app_id, // 必填，公众号的唯一标识--%>
