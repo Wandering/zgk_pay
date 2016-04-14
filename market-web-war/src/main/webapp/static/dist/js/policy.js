@@ -20,7 +20,6 @@ webpackJsonp([9],[
 	                'rows': this.pageRow,
 	                'page': num
 	            }, function (res) {
-	                console.log(res)
 	                var dataJson = res.bizData;
 	                if (res.rtnCode == '0000000') {
 	                    var template = handlebars.compile($('#policy-list-tpl').html());

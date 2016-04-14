@@ -78,7 +78,7 @@ $(function(){
                 $('#sex').text('');
             }
             var subjectTypeTxt = personListData.subjectType;
-            if(subjectTypeTxt){
+            if(subjectTypeTxt == 'number'){
                 subjectTypeTxt == "0" ? $('#subject').text('文史') : $('#subject').text('理工');
             }else{
                 $('#subject').text('');
