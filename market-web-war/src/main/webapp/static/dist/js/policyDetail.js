@@ -19,6 +19,7 @@ webpackJsonp([10],[
 	        if (res.rtnCode == '0000000') {
 	            var dataJson = res.bizData;
 	            var template = handlebars.compile($('#policy-detail-tpl').html());
+	            console.info(dataJson)
 	            $('#policy-detail').html(template(dataJson));
 	        }
 	    });

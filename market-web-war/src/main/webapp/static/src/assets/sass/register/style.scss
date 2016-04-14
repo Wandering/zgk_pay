@@ -10,6 +10,7 @@ header {
 
   .header-title {
     padding-left: 46px;
+    font-size: 20px;
   }
   .header-btn {
     position: absolute;
@@ -41,22 +42,25 @@ header {
   padding: 48px 25px 0;
 
   .tab-list {
-    height: 37px;
+    height: 46px;
     background-color: #fff;
-    line-height: 37px;
+    line-height: 46px;
     border: 1px solid #E8E8E8;
     border-radius: 2px;
-    //display: flex;
     margin-bottom: 12px;
 
     .tab {
-      width: 48%;
+      width: 49%;
       display: inline-block;
       text-align: center;
-      font-size: 15px;
+      font-size: 18px;
       color: #575757;
       position: relative;
-
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      -moz-tap-highlight-color: transparent;
+      -ms-tap-highlight-color: transparent;
+      tap-highlight-color: transparent;
       &:first-child:after {
         content: "";
         display: block;
@@ -64,8 +68,8 @@ header {
         width: 1px;
         height: 28px;
         position: absolute;
-        right: 2px;
-        top: 6px;
+        right: -2px;
+        top: 10px;
       }
 
       &.active {
@@ -80,18 +84,18 @@ header {
       i {
         position: absolute;
         left: 9px;
-        top: 6px;
+        top: 10px;
       }
     }
     .title {
-      color: #575757;
+      color: rgb(127, 123, 123);
       margin: 3px 0;
-      height: 25px;
-      line-height: 25px;
-      font-size: 13px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 14px;
     }
     .check-code {
-      width: calc(100% - 150px);
+      width: calc(100% - 160px);
     }
     .location-list {
       display: flex;
@@ -141,9 +145,11 @@ header {
       margin-top: 20px;
     }
     .submit-btn {
-      height: 39px;
+      padding: 0;
+      height: 44px;
+      line-height: 44px;
       text-align: center;
-      font-size: 14px;
+      font-size: 18px;
       color: #fff;
       background-color: #D80C18;
       width: 100%;
@@ -168,7 +174,7 @@ header {
   }
   .reset-password {
     text-align: right;
-    font-size: 12px;
+    font-size: 14px;
     color: #8c8c8c;
     text-decoration: underline;
     margin-top: 13px;
@@ -188,14 +194,12 @@ header {
   border: 1px solid #d80c18;
   background-color: #fff;
   border-radius: 2px;
-  line-height: 20px;
   margin-left: 10px;
-  padding: 9px;
-  width: 113px;
-  position: relative;
-  top: -1px;
+  width: 120px;
   color: #d80c18;
-  font-size: 13px;
+  font-size: 16px;
+  height: 46px;
+  line-height: 40px;
   &:hover {
     background-color: #d80c18;
     color: #fff;
@@ -203,8 +207,8 @@ header {
 }
 
 .areaSel span.select {
-  height: 40px;
-  line-height: 38px;
+  height: 46px;
+  line-height: 46px;
   display: inline-block;
   width: 115px;
   border: 1px solid #e5e5e5;
@@ -217,10 +221,11 @@ header {
 }
 
 .areaSel select.form-control {
-  width: 96px;
+  width: 90%;
   height: 38px;
   border: none;
   background: none;
+  font-size: 14px;
 }
 
 .reset-password {
@@ -237,6 +242,15 @@ header {
   text-align: center;
 }
 
+
+a, button, input {
+  -webkit-appearance: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+  -ms-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
+}
 
 
 
