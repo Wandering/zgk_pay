@@ -20,16 +20,15 @@ $(function(){
         if(!isLogin){
             window.location.href='/login?state=user-detail';
         }else{
-
-
-
             if(menuV=="1"){
                 cookie.setCookie("flag", "0", 4, "/");
             }
             var flag = cookie.getCookieValue('flag');
+            alert(flag=="0")
             if(flag=="0"){
                 cookie.setCookie("flag", "1", 4, "/");
-                window.location.assign('/user-detail?state=user-detail&token=' + token + "&code="+getQueryObject(window.location.href).code);
+                window.location.href='/user-detail?state=user-detail&token=' + token + "&code="+getQueryObject(window.location.href).code;
+                return ;
             }
         }
     }
