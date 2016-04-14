@@ -33,6 +33,8 @@ webpackJsonp([14],[
 	        }
 	    }
 
+	    alert("code=="+getQueryObject(window.location.href).code)
+
 
 
 	    $('#header-title').text('个人信息');
@@ -134,6 +136,9 @@ webpackJsonp([14],[
 	        }
 	    }
 	    var openId = cookie.getCookieValue('openId');
+
+
+	    alert(openId)
 	    if (isWeiXin()) {
 	        if(!openId){
 	            var obj = getQueryObject(window.location.href);
@@ -221,6 +226,9 @@ webpackJsonp([14],[
 	                cookie.deleteCookie('countyName', '');
 	                cookie.deleteCookie('vipActiveDate', '');
 	                cookie.deleteCookie('vipEndDate', '');
+	                cookie.deleteCookie("flag", '');
+	                cookie.deleteCookie("openId", '');
+	                cookie.deleteCookie("code", '');
 	                window.location.href = '/login';
 	            } else {
 	                util.drawToast(res.msg);
