@@ -129,12 +129,17 @@ $(function(){
     }
     var openId = cookie.getCookieValue('openId');
     if (isWeiXin()) {
-        if(!openId){
+        //if(!openId){
+        //    var obj = getQueryObject(window.location.href);
+        //    cookie.setCookie("code", obj.code, 4, "/");
+        //    alert("obj.code=="+obj.code)
+        //    getOpenId(obj.code);
+        //}
+
             var obj = getQueryObject(window.location.href);
             cookie.setCookie("code", obj.code, 4, "/");
             alert("obj.code=="+obj.code)
             getOpenId(obj.code);
-        }
     }
 
 
