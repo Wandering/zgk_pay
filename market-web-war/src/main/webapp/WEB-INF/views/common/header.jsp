@@ -75,19 +75,19 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a id="userLinks" href="user-detail?toUrl=user-detail&menu=1">
+                    <a id="userLinks" href="user-detail?state=user-detail&menu=1">
                         <img src="<%=ctx%>/static/dist/img/10-active.png" alt=""/>
                         <span>个人信息</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a id="consumerLinks" href="consumer-list?toUrl=consumer-list&menu=1">
+                    <a id="consumerLinks" href="consumer-list?state=consumer-list&menu=1">
                         <img src="<%=ctx%>/static/dist/img/8-active.png" alt=""/>
                         <span>我的钱包</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a id="orderLinks" href="order?toUrl=order&menu=1">
+                    <a id="orderLinks" href="order?state=order&menu=1">
                         <img src="<%=ctx%>/static/dist/img/9-active.png" alt=""/>
                         <span>我的订单</span>
                     </a>
@@ -107,7 +107,7 @@
             </div>
             <div class="btn login-btn">
                 <a href="javascript:void(0)" id="logout-btn">退出</a>
-                <a id="vipStatus" href="vip?toUrl=vip">购买VIP</a>
+                <a id="vipStatus" href="vip?state=vip">购买VIP</a>
             </div>
         </div>
     </div>
@@ -167,19 +167,19 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="user-detail?toUrl=user-detail&menu=1">
+                    <a href="user-detail?state=user-detail&menu=1">
                         <img src="<%=ctx%>/static/dist/img/10.png" alt=""/>
                         <span>个人信息</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/consumer-list?toUrl=consumer-list&menu=1">
+                    <a href="/consumer-list?state=consumer-list&menu=1">
                         <img src="<%=ctx%>/static/dist/img/8.png" alt=""/>
                         <span>我的钱包</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="order?toUrl=order&menu=1">
+                    <a href="order?state=order&menu=1">
                         <img src="<%=ctx%>/static/dist/img/9.png" alt=""/>
                         <span>我的订单</span>
                     </a>
@@ -199,7 +199,7 @@
             </div>
             <div class="btn login-btn">
                 <a href="javascript:void(0)" id="login-btn">登录/注册</a>
-                <a class="vipStatus" href="vip?toUrl=vip">购买VIP</a>
+                <a class="vipStatus" href="vip?state=vip">购买VIP</a>
             </div>
         </div>
     </div>

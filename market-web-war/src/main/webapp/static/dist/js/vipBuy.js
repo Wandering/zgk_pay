@@ -12,11 +12,11 @@ webpackJsonp([16],{
 
 	    var util = __webpack_require__(1);
 	    var token = cookie.getCookieValue('token');
-	    var toUrl = util.getLinkey('toUrl');
+	    var toUrl = util.getLinkey('state');
 	    var isLogin = cookie.getCookieValue('isLogin');
 	    if(toUrl=='vip-buy'){
 	        if(!isLogin){
-	            window.location.href='/login?toUrl=vip-buy';
+	            window.location.href='/login?state=vip-buy';
 	        }else{
 	            var menuV = util.getLinkey('menu');
 	            if(menuV=="1"){
@@ -25,7 +25,7 @@ webpackJsonp([16],{
 	            var flag = cookie.getCookieValue('flag');
 	            if(flag=="0"){
 	                cookie.setCookie("flag", "1", 4, "/");
-	                window.location.assign('vip-buy?toUrl=vip-buy&token=' + token);
+	                window.location.assign('vip-buy?state=vip-buy&token=' + token);
 	            }
 	        }
 	    }

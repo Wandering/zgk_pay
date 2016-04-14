@@ -7,12 +7,12 @@ $(function () {
     var token = cookie.getCookieValue('token');
     var userId = cookie.getCookieValue('userId');
     $('#header-back').show().on('click', function () {
-        window.location.href = 'user-detail?toUrl=user-detail&token='+token;
+        window.location.href = 'user-detail?state=user-detail&token='+token;
     });
-    var toUrl = util.getLinkey('toUrl');
+    var toUrl = util.getLinkey('state');
     if(toUrl=='code'){
         if(!isLogin){
-            window.location.href='/login?toUrl=code';
+            window.location.href='/login?state=code';
         }else{
             var menuV = util.getLinkey('menu');
             if(menuV=="1"){
@@ -21,7 +21,7 @@ $(function () {
             var flag = cookie.getCookieValue('flag');
             if(flag=="0"){
                 cookie.setCookie("flag", "1", 4, "/");
-                window.location.assign('code?toUrl=code&userId=' + userId);
+                window.location.assign('code?state=code&userId=' + userId);
             }
         }
     }

@@ -4,11 +4,16 @@ $(function(){
     var cookie = require('cookie');
     var util = require('commonjs');
     var token = cookie.getCookieValue('token');
-    var toUrl = util.getLinkey('toUrl');
+
+    var toUrl = util.getLinkey('state');
+
+    console.log(toUrl)
+
+
     var isLogin = cookie.getCookieValue('isLogin');
     if(toUrl=='user-detail'){
         if(!isLogin){
-            window.location.href='/login?toUrl=user-detail';
+            window.location.href='/login?state=user-detail';
         }else{
             var menuV = util.getLinkey('menu');
             if(menuV=="1"){
@@ -17,7 +22,7 @@ $(function(){
             var flag = cookie.getCookieValue('flag');
             if(flag=="0"){
                 cookie.setCookie("flag", "1", 4, "/");
-                window.location.assign('/user-detail?toUrl=user-detail&token=' + token);
+                window.location.assign('/user-detail?state=user-detail&token=' + token);
             }
         }
     }
