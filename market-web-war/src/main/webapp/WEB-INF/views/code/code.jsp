@@ -68,9 +68,7 @@
         $.getJSON('<%=ctx%>/pay/getAccessToken', function (res) {
             if (res.rtnCode == "0000000") {
                 var ticket = res.bizData.ticket;
-                alert(ticket)
                 var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + getNonceStr() + "&timestamp=" + timestamp + "&url=" + window.location.href;
-                alert(string1)
                 var sign = CryptoJS.SHA1(string1);
                 signStr = sign.toString();
             }

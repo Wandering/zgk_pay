@@ -66,7 +66,7 @@ require('pgwmodal');
                    title: '订单确认',
                    content: $('.modal').html()
                 });
-                $('.confirm-btn').off('click');
+                //$('.confirm-btn').off('click');
                 $('.confirm-btn').click(function(){
                     payOrder();
                 });

@@ -55,7 +55,6 @@ $(function () {
         return getCaptchaImg;
     }
 
-    alert(getCaptchaImg())
 
 
     //分享

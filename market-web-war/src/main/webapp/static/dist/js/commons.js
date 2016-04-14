@@ -123,8 +123,7 @@
 	    for (var i in data) {
 	        strParameter += "&" + i + "=" + data[i];
 	    }
-	    alert("url:"+url);
-	    alert("strParameter:"+strParameter);
+
 	    $.ajax({
 	        url: url,
 	        type: method,
