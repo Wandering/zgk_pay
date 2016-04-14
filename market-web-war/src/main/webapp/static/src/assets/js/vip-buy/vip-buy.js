@@ -50,12 +50,13 @@ require('pgwmodal');
      * 订单确定
      */
     function commitOrder() {
-        alert(7)
+        alert(0);
         util.ajaxFun(interfaceUrl.commitOrder, 'POST', {
             userId: cookie.getCookieValue('userId') || '13',
             price: $('#price').attr('data-price') || '200'
         }, function (res) {
             if (res.rtnCode == '0000000') {
+                alert(1);
                 var department = res.bizData.department;
                 $('#orderNo').html('订单ID：' + res.bizData.orderNo);
                 $('#orderNo').attr('orderNo', res.bizData.orderNo);
@@ -69,6 +70,7 @@ require('pgwmodal');
                 });
                 //$('.confirm-btn').off('click');
                 $('.confirm-btn').click(function(){
+                    alert(2);
                     payOrder();
                 });
             }
@@ -96,6 +98,7 @@ require('pgwmodal');
      */
     //var orderFlag = false;
     function payOrder() {
+        alert(3);
         //if (orderFlag) {
         //    return;
         //}
@@ -108,7 +111,8 @@ require('pgwmodal');
         if (!isWeiXin()) {
             channel = 'alipay_wap';
         }
-
+        alert(token);
+        //util.ajaxFun(interfaceUrl.payOrder+'?token='+token, 'POST', {
         util.ajaxFun(interfaceUrl.payOrder+'?token='+token, 'POST', {
             orderNo: $('#orderNo').attr('orderNo'),
             userId: cookie.getCookieValue('userId') || '13',
@@ -116,6 +120,7 @@ require('pgwmodal');
             channel: channel,
             openId: openId
         }, function (res) {
+            alert(4);
             //orderFlag = false;
             $('#confirm-btn').html('确认支付');
             $.pgwModal('close');

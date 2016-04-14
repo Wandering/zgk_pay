@@ -182,11 +182,14 @@
 	    if (cookie.getCookieValue('token')) {
 	        data.token = cookie.getCookieValue('token');
 	    }
+
 	    data.userKey = cookie.getCookieValue('userKey');
 	    var strParameter = '';
 	    for (var i in data) {
 	        strParameter += "&" + i + "=" + data[i];
 	    }
+	    alert("url:"+url);
+	    alert("strParameter:"+strParameter);
 	    $.ajax({
 	        url: url,
 	        type: method,
