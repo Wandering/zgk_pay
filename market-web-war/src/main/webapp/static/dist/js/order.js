@@ -181,9 +181,9 @@ webpackJsonp([7],[
 
 	    function orderPayStatus(msg) {
 	        util.drawToast(msg);
-	        setTimeout(function() {
-	            window.location.href = '/order?state=order';
-	        }, 1000);
+	        //setTimeout(function() {
+	        //    window.location.href = '/order?state=order';
+	        //}, 1000);
 	    }
 
 	    function isWeiXin(){
