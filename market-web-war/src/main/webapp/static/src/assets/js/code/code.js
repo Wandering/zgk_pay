@@ -10,6 +10,20 @@ $(function () {
     $('#header-back').show().on('click', function () {
         window.location.href = 'user-detail?state=user-detail&token='+token;
     });
+    function getQueryObject(url) {
+        url = url == null ? window.location.href : url;
+        var search = url.substring(url.lastIndexOf("?") + 1);
+        var obj = {};
+        var reg = /([^?&=]+)=([^?&=]*)/g;
+        search.replace(reg, function (rs, $1, $2) {
+            var name = decodeURIComponent($1);
+            var val = decodeURIComponent($2);
+            val = String(val);
+            obj[name] = val;
+            return rs;
+        });
+        return obj;
+    }
     var toUrl = util.getLinkey('state');
     if(toUrl=='code'){
         if(!isLogin){
@@ -25,20 +39,7 @@ $(function () {
                 window.location.assign('code?state=code&userId=' + userId+'&token=' + token + "&code="+getQueryObject(window.location.href).code);
             }
             if(flag=="1"){
-                function getQueryObject(url) {
-                    url = url == null ? window.location.href : url;
-                    var search = url.substring(url.lastIndexOf("?") + 1);
-                    var obj = {};
-                    var reg = /([^?&=]+)=([^?&=]*)/g;
-                    search.replace(reg, function (rs, $1, $2) {
-                        var name = decodeURIComponent($1);
-                        var val = decodeURIComponent($2);
-                        val = String(val);
-                        obj[name] = val;
-                        return rs;
-                    });
-                    return obj;
-                }
+
 
                 function getOpenId(code) {
 
@@ -99,6 +100,7 @@ $(function () {
         $.ajaxSettings.async = true;
         return getCaptchaImg;
     }
+    getCaptchaImg();
 
 
 
