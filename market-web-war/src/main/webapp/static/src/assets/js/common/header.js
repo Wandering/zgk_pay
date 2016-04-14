@@ -37,7 +37,7 @@ $(function () {
                 $('#end-login').hide();
             });
         } else {
-            $('#menu-header').hide();
+            $('#menu-header,#province-option').hide();
             $('#un-login').show();
             $('.header-close').on('click', function () {
                 $('#menu-header').show();
