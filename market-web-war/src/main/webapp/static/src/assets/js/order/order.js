@@ -169,6 +169,7 @@
             if (res.rtnCode == '0000000') {
                 var charge = res.bizData;
                 charge.credential = JSON.parse(charge.credential);
+                alert(11)
                 pingpp.createPayment(charge, function(result, error){
                     alert(JSON.stringify(error))
                     if (result == "success") {
