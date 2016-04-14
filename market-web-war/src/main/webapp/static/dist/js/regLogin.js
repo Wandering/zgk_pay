@@ -638,8 +638,8 @@ webpackJsonp([11],[
 	                //} else {
 	                //    window.location.assign(url);
 	                //}
-	                //var url = 'http://zgkser.zhigaokao.cn/'+toUrl+'?state='+ toUrl;
-	                var url = 'http://zgkser.zhigaokao.cn/user-detail';
+	                var url = 'http://zgkser.zhigaokao.cn/'+toUrl+'?state='+ toUrl;
+	                //var url = 'http://zgkser.zhigaokao.cn/user-detail';
 	                if (isWeiXin()) {
 	                    url = encodeURIComponent(url);
 	                    var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_base&#wechat_redirect';
