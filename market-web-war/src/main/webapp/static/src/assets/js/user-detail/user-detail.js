@@ -124,11 +124,11 @@ $(function(){
         }
     }
 
-    //if (isWeiXin()) {
-    //    var obj = getQueryObject(window.location.href);
-    //    cookie.setCookie("code", obj.code, 4, "/");
-    //    getOpenId(obj.code);
-    //}
+    if (isWeiXin()) {
+        var obj = getQueryObject(window.location.href);
+        cookie.setCookie("code", obj.code, 4, "/");
+        getOpenId(obj.code);
+    }
     initUserInfo();
     $('.modify-btn').on('click', function () {
         window.location.href = '/modify-user-detail?token='+token;
