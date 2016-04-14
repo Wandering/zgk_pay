@@ -14,7 +14,7 @@ webpackJsonp([9],[
 	    $('#header-title').text('高考热点');
 	    var Policy = {
 	        page: 0,
-	        pageRow: 5,
+	        pageRow: 6,
 	        getPolicyList: function (num) {
 	            util.ajaxFun(interfaceUrl.getGkHotList, 'get', {
 	                'rows': this.pageRow,
@@ -25,6 +25,7 @@ webpackJsonp([9],[
 	                if (res.rtnCode == '0000000') {
 	                    var template = handlebars.compile($('#policy-list-tpl').html());
 	                    $('#policy-list').append(template(dataJson));
+	                    if (myScroll) myScroll.refresh();
 	                }
 	                if (dataJson.page >= dataJson.total) {
 	                    $('.pull').attr('data-flag', 'off');
@@ -70,9 +71,10 @@ webpackJsonp([9],[
 	            myScroll.refresh();
 	            setTimeout(function () {
 	                Policy.getPolicyDataPage();
-	            }, 3000);
+	            }, 500);
 	        } else {
 	            $('.pull-text').html('没有更多数据~');
+	            $('.preloader').hide();
 	        }
 	    });
 

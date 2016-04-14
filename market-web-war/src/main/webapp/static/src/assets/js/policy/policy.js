@@ -21,6 +21,7 @@ $(function () {
                 if (res.rtnCode == '0000000') {
                     var template = handlebars.compile($('#policy-list-tpl').html());
                     $('#policy-list').append(template(dataJson));
+                    if (myScroll) myScroll.refresh();
                 }
                 if (dataJson.page >= dataJson.total) {
                     $('.pull').attr('data-flag', 'off');
@@ -66,9 +67,10 @@ $(function () {
             myScroll.refresh();
             setTimeout(function () {
                 Policy.getPolicyDataPage();
-            }, 3000);
+            }, 500);
         } else {
             $('.pull-text').html('没有更多数据~');
+            $('.preloader').hide();
         }
     });
 
