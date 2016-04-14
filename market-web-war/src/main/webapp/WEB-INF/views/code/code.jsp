@@ -80,7 +80,6 @@
     }
 
 
-
 //    alert(app_id) // wx552f3800df25e964
     alert(timestamp) //1460624931
     alert(getNonceStr()) //jnoQHEdV6LpjQao4d6LroCVOze5e10wq
