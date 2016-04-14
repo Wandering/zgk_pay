@@ -68,7 +68,7 @@
             if (res.rtnCode == "0000000") {
                 var ticket = res.bizData.ticket;
                 alert(ticket)
-                var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + getNonceStr() + "&timestamp=" + timestamp + "&url=" + 'http://172.16.150.97:8084/code?userId=1977';
+                var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + getNonceStr() + "&timestamp=" + timestamp + "&url=" + 'http://zgkser.zhigaokao.cn/code?userId=1194';
                 alert(string1)
                 var sign = CryptoJS.SHA1(string1);
                 signStr = sign.toString();
@@ -113,7 +113,7 @@
             title: '智高考购买邀请',
             desc: '智高考，一款精准的高考志愿填报产品。一键分享他人，成功购买既得返利.',
 //            link: 'http://zgkser.zhigaokao.cn/code?userId='+userId,//分享链接
-            link: 'http://zgkser.zhigaokao.cn/code?userId=1194',//分享链接
+            link: 'http://zgkser.zhigaokao.cn/code?userId=2159',//分享链接
 //            imgUrl: getCaptchaImg(), // 分享图标
             imgUrl: "11", // 分享图标
             type: '', // 分享类型,music、video或link，不填默认为link
