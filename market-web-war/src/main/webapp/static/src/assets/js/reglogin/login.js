@@ -75,19 +75,8 @@ $(function () {
                 cookie.setCookie("isReported", isReported, 4, "/");
                 cookie.setCookie("isSurvey", isSurvey, 4, "/");
                 cookie.setCookie("flag", "0", 4, "/" );
-                //var url = '/'+ toUrl +'?state='+ toUrl +'&token=' + token;
-                //var stateV = toUrl;
-                ////var url = '/'+ toUrl +'?state='+stateV;
-                //console.log(url)
-                //if (isWeiXin()) {
-                //    var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=http://zgkser.zhigaokao.cn/'+ toUrl +'&response_type=code&scope=snsapi_base&state=' + stateV + '#wechat_redirect';
-                //    //var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=http://zgkser.zhigaokao.cn/user-detail?token='+token+'&response_type=code&scope=snsapi_base&state=' + $.trim(userKey) + '#wechat_redirect';
-                //    window.location.href = rUrl;
-                //} else {
-                //    window.location.assign(url);
-                //}
-                //var pageUrl = '/'+ toUrl +'?state='+ toUrl +'&token=' + token;
-                var url = 'http://zgkser.zhigaokao.cn/'+toUrl +'?state='+toUrl+'&token=' + token;
+                //var url = 'http://zgkser.zhigaokao.cn/'+toUrl +'?state='+toUrl+'&token=' + token;
+                var url = 'http://zgkser.zhigaokao.cn/user-detail?token=' + token;
                 if (isWeiXin()) {
                     url = encodeURIComponent(url);
                     var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_base&state=' + $.trim(userKey) + '#wechat_redirect';
@@ -95,9 +84,6 @@ $(function () {
                 } else {
                     window.location.assign(url);
                 }
-
-
-
             } else {
                 util.drawToast(res.msg);
             }
