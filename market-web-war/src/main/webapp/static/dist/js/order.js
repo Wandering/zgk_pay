@@ -24,7 +24,7 @@ webpackJsonp([7],[
 	            var flag = cookie.getCookieValue('flag');
 	            if(flag=="0"){
 	                cookie.setCookie("flag", "1", 4, "/");
-	                window.location.assign('/order?state=order&token=' + token);
+	                window.location.assign('/order?state=order');
 	            }
 	        }
 	    }
@@ -134,7 +134,7 @@ webpackJsonp([7],[
 	    function orderPayStatus(msg) {
 	        util.drawToast(msg);
 	        setTimeout(function() {
-	            window.location.href = '/order?state=order&token=' + token;
+	            window.location.href = '/order?state=order';
 	        }, 1000);
 	    }
 

@@ -72,7 +72,7 @@ webpackJsonp([16],{
 	                   content: $('.modal').html()
 	                });
 	                $('.confirm-btn').off('click');
-	                $('.confirm-btn').on('click', function() {
+	                $('.confirm-btn').click(function(){
 	                    payOrder();
 	                });
 	            }
@@ -82,7 +82,7 @@ webpackJsonp([16],{
 	    function orderPayStatus(msg) {
 	        util.drawToast(msg);
 	        setTimeout(function() {
-	            window.location.href = '/order?token='+token;
+	            window.location.href = '/order';
 	        }, 1000);
 	    }
 
@@ -98,12 +98,12 @@ webpackJsonp([16],{
 	    /**
 	     * 支付
 	     */
-	    var orderFlag = false;
+	    //var orderFlag = false;
 	    function payOrder() {
-	        if (orderFlag) {
-	            return;
-	        }
-	        orderFlag = true;
+	        //if (orderFlag) {
+	        //    return;
+	        //}
+	        //orderFlag = true;
 	        $('#confirm-btn').html('正在支付...');
 	        var amount = parseFloat($('#pay_price').attr('data-price') || '200');
 	        var openId = cookie.getCookieValue('openId');
@@ -113,20 +113,26 @@ webpackJsonp([16],{
 	            channel = 'alipay_wap';
 	        }
 
-	        util.ajaxFun(interfaceUrl.payOrder+'?token='+token, 'POST', {
+
+	        if(!openId){
+	            window.location.assign('/login?state=vip-buy')
+	        }
+
+	        //util.ajaxFun(interfaceUrl.payOrder+'?token='+token, 'POST', {
+	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
 	            orderNo: $('#orderNo').attr('orderNo'),
 	            userId: cookie.getCookieValue('userId') || '13',
 	            amount: amount,
 	            channel: channel,
 	            openId: openId
 	        }, function (res) {
-	            orderFlag = false;
+
+	            //orderFlag = false;
 	            $('#confirm-btn').html('确认支付');
 	            $.pgwModal('close');
 	            if (res.rtnCode == '0000000') {
 	                var charge = res.bizData;
 	                charge.credential = JSON.parse(charge.credential);
-	                alert(22)
 	                pingpp.createPayment(charge, function(result, error){
 	                    if (result == "success") {
 	                        // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。
