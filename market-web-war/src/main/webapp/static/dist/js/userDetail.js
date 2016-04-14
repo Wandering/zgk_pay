@@ -82,7 +82,6 @@ webpackJsonp([14],[
 	                $('#sex').text('');
 	            }
 	            var subjectTypeTxt = personListData.subjectType;
-	            alert(subjectType);
 	            if(typeof subjectTypeTxt == 'number'){
 	                subjectTypeTxt == "0" ? $('#subject').text('文史') : $('#subject').text('理工');
 	            }else{
@@ -92,6 +91,10 @@ webpackJsonp([14],[
 
 	        }
 	    });
+
+
+
+
 
 	    function getQueryObject(url) {
 	        url = url == null ? window.location.href : url;
@@ -109,13 +112,14 @@ webpackJsonp([14],[
 	    }
 
 	    function getOpenId(code) {
-	        util.ajaxFun(interfaceUrl.getOpenId, 'get', {
-	            code: code
-	        }, function (res) {
-	            if (res.rtnCode == '0000000') {
-	                cookie.setCookie("openId", res.bizData.openId, 4, "/");
-	            }
-	        });
+	            util.ajaxFun(interfaceUrl.getOpenId, 'get', {
+	                code: code
+	            }, function (res) {
+	                alert(res)
+	                if (res.rtnCode == '0000000') {
+	                    cookie.setCookie("openId", res.bizData.openId, 4, "/");
+	                }
+	            });
 	    }
 
 
@@ -127,12 +131,20 @@ webpackJsonp([14],[
 	            return false;
 	        }
 	    }
-
+	    var openId = cookie.getCookieValue('openId');
 	    if (isWeiXin()) {
-	        var obj = getQueryObject(window.location.href);
-	        cookie.setCookie("code", obj.code, 4, "/");
-	        getOpenId(obj.code);
+	        if(!openId){
+	            var obj = getQueryObject(window.location.href);
+	            cookie.setCookie("code", obj.code, 4, "/");
+	            alert("obj.code=="+obj.code)
+	            getOpenId(obj.code);
+	        }
 	    }
+
+
+
+
+
 	    initUserInfo();
 	    $('.modify-btn').on('click', function () {
 	        window.location.href = '/modify-user-detail?token='+token;
