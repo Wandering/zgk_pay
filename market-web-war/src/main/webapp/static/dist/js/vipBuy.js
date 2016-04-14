@@ -71,7 +71,7 @@ webpackJsonp([16],{
 	                   title: '订单确认',
 	                   content: $('.modal').html()
 	                });
-	                //$('.confirm-btn').off('click');
+	                $('.confirm-btn').off('click');
 	                $('.confirm-btn').click(function(){
 	                    payOrder();
 	                });
@@ -82,7 +82,7 @@ webpackJsonp([16],{
 	    function orderPayStatus(msg) {
 	        util.drawToast(msg);
 	        setTimeout(function() {
-	            window.location.href = '/order';
+	            window.location.href = '/order?token='+token;
 	        }, 1000);
 	    }
 
@@ -114,22 +114,29 @@ webpackJsonp([16],{
 	        }
 
 
+
 	        if(!openId){
 	            window.location.assign('/login?state=vip-buy')
 	        }
 
+	        alert($('#orderNo').attr('orderNo'))
+	        alert(cookie.getCookieValue('userId'))
+	        alert(amount)
+	        alert(channel)
+	        alert(openId)
+
 	        //util.ajaxFun(interfaceUrl.payOrder+'?token='+token, 'POST', {
 	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
 	            orderNo: $('#orderNo').attr('orderNo'),
-	            userId: cookie.getCookieValue('userId') || '13',
+	            userId: cookie.getCookieValue('userId'),
 	            amount: amount,
 	            channel: channel,
 	            openId: openId
 	        }, function (res) {
-
 	            //orderFlag = false;
 	            $('#confirm-btn').html('确认支付');
 	            $.pgwModal('close');
+	            alert(res.rtnCode);
 	            if (res.rtnCode == '0000000') {
 	                var charge = res.bizData;
 	                charge.credential = JSON.parse(charge.credential);
