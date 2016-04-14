@@ -3,7 +3,7 @@
 <html>
 <head lang="en">
     <%@ include file="../common/meta.jsp" %>
-    <title>高考政策</title>
+    <title>高考热点</title>
     <link rel="stylesheet" href="<%=ctx%>/static/dist/css/policy/style.css"/>
 </head>
 <body>
