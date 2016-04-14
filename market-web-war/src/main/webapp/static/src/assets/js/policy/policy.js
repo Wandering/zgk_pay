@@ -10,7 +10,7 @@ $(function () {
     $('#header-title').text('高考热点');
     var Policy = {
         page: 0,
-        pageRow: 5,
+        pageRow: 6,
         getPolicyList: function (num) {
             util.ajaxFun(interfaceUrl.getGkHotList, 'get', {
                 'rows': this.pageRow,
