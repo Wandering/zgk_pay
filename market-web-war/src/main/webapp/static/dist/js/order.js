@@ -162,6 +162,9 @@ webpackJsonp([7],[
 	        if (!isWeiXin()) {
 	            channel = 'alipay_wap';
 	        }
+	        if(!openId){
+	            window.location.assign('/login?state=vip-buy')
+	        }
 	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
 	            orderNo: orderNo,
 	            userId: userId || '13',
