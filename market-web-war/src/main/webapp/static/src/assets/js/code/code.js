@@ -22,7 +22,52 @@ $(function () {
             var flag = cookie.getCookieValue('flag');
             if(flag=="0"){
                 cookie.setCookie("flag", "1", 4, "/");
-                window.location.assign('code?state=code&userId=' + userId);
+                window.location.assign('code?state=code&userId=' + userId+'&token=' + token + "&code="+getQueryObject(window.location.href).code);
+            }
+            if(flag=="1"){
+                function getQueryObject(url) {
+                    url = url == null ? window.location.href : url;
+                    var search = url.substring(url.lastIndexOf("?") + 1);
+                    var obj = {};
+                    var reg = /([^?&=]+)=([^?&=]*)/g;
+                    search.replace(reg, function (rs, $1, $2) {
+                        var name = decodeURIComponent($1);
+                        var val = decodeURIComponent($2);
+                        val = String(val);
+                        obj[name] = val;
+                        return rs;
+                    });
+                    return obj;
+                }
+
+                function getOpenId(code) {
+
+                    $.get(interfaceUrl.getOpenId,{code: code},function(res){
+                        if (res.rtnCode == '0000000') {
+                            cookie.setCookie("openId", res.bizData.openId, 4, "/");
+                        }
+                    });
+                }
+
+
+                function isWeiXin() {
+                    var ua = window.navigator.userAgent.toLowerCase();
+                    if (ua.indexOf('micromessenger') > -1) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+                var openId = cookie.getCookieValue('openId');
+
+
+                if (isWeiXin()) {
+                    if(!openId){
+                        var obj = getQueryObject(window.location.href);
+                        cookie.setCookie("code", obj.code, 4, "/");
+                        getOpenId(obj.code);
+                    }
+                }
             }
         }
     }
@@ -71,54 +116,6 @@ $(function () {
     });
 
 
-
-
-    function getQueryObject(url) {
-        url = url == null ? window.location.href : url;
-        var search = url.substring(url.lastIndexOf("?") + 1);
-        var obj = {};
-        var reg = /([^?&=]+)=([^?&=]*)/g;
-        search.replace(reg, function (rs, $1, $2) {
-            var name = decodeURIComponent($1);
-            var val = decodeURIComponent($2);
-            val = String(val);
-            obj[name] = val;
-            return rs;
-        });
-        return obj;
-    }
-
-    function getOpenId(code) {
-        util.ajaxFun(interfaceUrl.getOpenId, 'get', {
-            code: code
-        }, function (res) {
-            if (res.rtnCode == '0000000') {
-                cookie.setCookie("openId", res.bizData.openId, 4, "/");
-            }
-        });
-    }
-
-
-    function isWeiXin() {
-        var ua = window.navigator.userAgent.toLowerCase();
-        if (ua.indexOf('micromessenger') > -1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-    var openId = cookie.getCookieValue('openId');
-
-    if (isWeiXin()) {
-        if(!openId){
-            var obj = getQueryObject(window.location.href);
-            cookie.setCookie("code", obj.code, 4, "/");
-            alert("obj.code=="+obj.code)
-            getOpenId(obj.code);
-        }
-    }
 
 
     /***************************自定义二维码*************************************/

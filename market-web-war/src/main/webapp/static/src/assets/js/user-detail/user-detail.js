@@ -44,9 +44,7 @@ $(function(){
 
                 function getOpenId(code) {
 
-                    alert(interfaceUrl.getOpenId)
                     $.get(interfaceUrl.getOpenId,{code: code},function(res){
-                        alert(JSON.stringify(res))
                         if (res.rtnCode == '0000000') {
                             cookie.setCookie("openId", res.bizData.openId, 4, "/");
                         }
@@ -65,12 +63,10 @@ $(function(){
                 var openId = cookie.getCookieValue('openId');
 
 
-                alert(openId)
                 if (isWeiXin()) {
                     if(!openId){
                         var obj = getQueryObject(window.location.href);
                         cookie.setCookie("code", obj.code, 4, "/");
-                        alert("obj.code=="+obj.code)
                         getOpenId(obj.code);
                     }
                 }
@@ -78,7 +74,6 @@ $(function(){
         }
     }
 
-    alert("code=="+getQueryObject(window.location.href).code)
 
 
 
@@ -236,7 +231,6 @@ $(function(){
     });
 
 
-    //alert(openId)
 
 });
 
