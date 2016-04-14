@@ -76,7 +76,7 @@ webpackJsonp([14],[
 	            $('#school-name').text(personListData.schoolName);
 	            $('#email').text(personListData.mail);
 	            var sexTxt = personListData.sex;
-	            if(sexTxt == ''){
+	            if(typeof sexTxt == 'number'){
 	                sexTxt == "0" ? $('#sex').text('女生') : $('#sex').text('男生');
 	            }else{
 	                $('#sex').text('');
