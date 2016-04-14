@@ -114,7 +114,6 @@ require('pgwmodal');
             window.location.assign('/login?state=vip-buy')
         }
 
-        alert(openId)
 
         //util.ajaxFun(interfaceUrl.payOrder+'?token='+token, 'POST', {
         util.ajaxFun(interfaceUrl.payOrder, 'POST', {
@@ -127,7 +126,6 @@ require('pgwmodal');
             //orderFlag = false;
             $('#confirm-btn').html('确认支付');
             $.pgwModal('close');
-            alert(res.rtnCode);
             if (res.rtnCode == '0000000') {
                 var charge = res.bizData;
                 charge.credential = JSON.parse(charge.credential);
