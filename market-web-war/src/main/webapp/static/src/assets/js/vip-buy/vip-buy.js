@@ -114,6 +114,8 @@ require('pgwmodal');
             window.location.assign('/login?state=vip-buy')
         }
 
+        alert(openId)
+
         //util.ajaxFun(interfaceUrl.payOrder+'?token='+token, 'POST', {
         util.ajaxFun(interfaceUrl.payOrder, 'POST', {
             orderNo: $('#orderNo').attr('orderNo'),
