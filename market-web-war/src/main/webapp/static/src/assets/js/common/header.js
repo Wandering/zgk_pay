@@ -116,7 +116,7 @@ $(function () {
         util.ajaxFun(interfaceUrl.getOpenId, 'get', {
             code: code
         }, function (res) {
-            alert(JSON.stringify(res));
+            alert("getOpenId"+JSON.stringify(res));
             if (res.rtnCode == '0000000') {
                 cookie.setCookie("openId", res.bizData.openId, 4, "/");
             }
@@ -134,7 +134,7 @@ $(function () {
     if (isWeiXin()) {
         var obj = getQueryObject(window.location.href);
         cookie.setCookie("code", obj.code, 4, "/");
-        alert(obj.code)
+        alert("obj.code"+obj.code)
         getOpenId(obj.code);
     }
 

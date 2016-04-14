@@ -547,6 +547,36 @@ webpackJsonp([11],[
 	    var md5 = __webpack_require__(5);
 	    var getTime = __webpack_require__(4);
 	    var toUrl = util.getLinkey('state');
+
+
+	    cookie.deleteCookie('city', '');
+	    cookie.deleteCookie('county', '');
+	    cookie.deleteCookie('icon', '');
+	    cookie.deleteCookie('isLogin', '');
+	    cookie.deleteCookie('isReported', '');
+	    cookie.deleteCookie('isSurvey', '');
+	    cookie.deleteCookie('phone', '');
+	    cookie.deleteCookie('province', '');
+	    cookie.deleteCookie('qrcodeUrl', '');
+	    cookie.deleteCookie('subjectType', '');
+	    cookie.deleteCookie('token', '');
+	    cookie.deleteCookie('userKey', '');
+	    cookie.deleteCookie('userName', '');
+	    cookie.deleteCookie('vipStatus', '');
+	    cookie.deleteCookie('userId', '');
+	    cookie.deleteCookie('proName', '');
+	    cookie.deleteCookie('cityName', '');
+	    cookie.deleteCookie('countyName', '');
+	    cookie.deleteCookie('vipActiveDate', '');
+	    cookie.deleteCookie('vipEndDate', '');
+	    cookie.deleteCookie('flag', '');
+
+
+
+
+
+
+
 	    function isWeiXin() {
 	        var ua = window.navigator.userAgent.toLowerCase();
 	        if (ua.indexOf('micromessenger') > -1) {
