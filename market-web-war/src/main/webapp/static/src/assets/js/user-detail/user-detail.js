@@ -13,10 +13,8 @@ $(function(){
 
     var isLogin = cookie.getCookieValue('isLogin');
     var menuV = util.getLinkey('menu');
-    alert("menu="+menuV)
-    alert("toUrl="+toUrl)
+
     if(toUrl=='user-detail'){
-        alert(2)
         if(!isLogin){
             window.location.href='/login?state=user-detail';
         }else{
@@ -24,10 +22,9 @@ $(function(){
                 cookie.setCookie("flag", "0", 4, "/");
             }
             var flag = cookie.getCookieValue('flag');
-            alert(flag=="0")
             if(flag=="0"){
                 cookie.setCookie("flag", "1", 4, "/");
-                window.location.href='/user-detail?state=user-detail&token=' + token + "&code="+getQueryObject(window.location.href).code + "&menu=1";
+                window.location.href='/user-detail?state=user-detail&token=' + token + "&code="+getQueryObject(window.location.href).code;
             }
         }
     }
