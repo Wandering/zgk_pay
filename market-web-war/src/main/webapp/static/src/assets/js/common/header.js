@@ -37,7 +37,8 @@ $(function () {
                 $('#end-login').hide();
             });
         } else {
-            $('#menu-header,#province-option').hide();
+            $('#menu-header').hide();
+            $('#province-option').addClass('hide');
             $('#un-login').show();
             $('.header-close').on('click', function () {
                 $('#menu-header').show();
@@ -45,6 +46,7 @@ $(function () {
             });
         }
     });
+
 
 
     // 切换省份
