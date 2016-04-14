@@ -3,11 +3,11 @@ webpackJsonp([16],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(11);
+	__webpack_require__(13);
 	(function() {
 
 	    $('#header-menu').show();
-	    var interfaceUrl = __webpack_require__(3);
+	    var interfaceUrl = __webpack_require__(5);
 	    var cookie = __webpack_require__(2);
 
 	    var util = __webpack_require__(1);
@@ -159,7 +159,7 @@ webpackJsonp([16],{
 
 /***/ },
 
-/***/ 3:
+/***/ 5:
 /***/ function(module, exports) {
 
 	/*
@@ -394,6 +394,7 @@ webpackJsonp([16],{
 	     */
 	    getAccessToken : '/pay/getAccessToken'
 
+
 	};
 
 
@@ -402,7 +403,7 @@ webpackJsonp([16],{
 
 /***/ },
 
-/***/ 11:
+/***/ 13:
 /***/ function(module, exports) {
 
 	/**

@@ -45,11 +45,11 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	$(function () {
-	    var urlConfig = __webpack_require__(3);
+	    var urlConfig = __webpack_require__(5);
 	    var cookie = __webpack_require__(2);
 	    var token = cookie.getCookieValue('token');
 	    var isLogin = cookie.getCookieValue('isLogin');
-	    var getTime = __webpack_require__(4);
+	    var getTime = __webpack_require__(6);
 	    $('#header-title').text('VIP');
 	    $('#header-menu').show();
 	    var vipActiveDate = cookie.getCookieValue('vipActiveDate');
@@ -131,7 +131,9 @@
 
 
 /***/ },
-/* 3 */
+/* 3 */,
+/* 4 */,
+/* 5 */
 /***/ function(module, exports) {
 
 	/*
@@ -366,6 +368,7 @@
 	     */
 	    getAccessToken : '/pay/getAccessToken'
 
+
 	};
 
 
@@ -373,7 +376,7 @@
 
 
 /***/ },
-/* 4 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {

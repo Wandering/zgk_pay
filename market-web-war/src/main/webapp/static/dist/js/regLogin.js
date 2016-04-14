@@ -4,13 +4,13 @@ webpackJsonp([11],[
 
 	
 	// 切换
-	__webpack_require__(8);
+	__webpack_require__(10);
 
 	// 登录
-	__webpack_require__(9);
+	__webpack_require__(11);
 
 	// 注册
-	__webpack_require__(10);
+	__webpack_require__(12);
 
 
 
@@ -18,7 +18,9 @@ webpackJsonp([11],[
 /***/ },
 /* 1 */,
 /* 2 */,
-/* 3 */
+/* 3 */,
+/* 4 */,
+/* 5 */
 /***/ function(module, exports) {
 
 	/*
@@ -253,6 +255,7 @@ webpackJsonp([11],[
 	     */
 	    getAccessToken : '/pay/getAccessToken'
 
+
 	};
 
 
@@ -260,7 +263,7 @@ webpackJsonp([11],[
 
 
 /***/ },
-/* 4 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
@@ -293,7 +296,7 @@ webpackJsonp([11],[
 
 
 /***/ },
-/* 5 */
+/* 7 */
 /***/ function(module, exports) {
 
 		/**
@@ -513,9 +516,9 @@ webpackJsonp([11],[
 
 
 /***/ },
-/* 6 */,
-/* 7 */,
-/* 8 */
+/* 8 */,
+/* 9 */,
+/* 10 */
 /***/ function(module, exports) {
 
 	var UI ={
@@ -537,14 +540,14 @@ webpackJsonp([11],[
 
 
 /***/ },
-/* 9 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	$(function () {
 	    var util = __webpack_require__(1);
 	    var cookie = __webpack_require__(2);
-	    var md5 = __webpack_require__(5);
-	    var getTime = __webpack_require__(4);
+	    var md5 = __webpack_require__(7);
+	    var getTime = __webpack_require__(6);
 	    var toUrl = util.getLinkey('state');
 	    function isWeiXin() {
 	        var ua = window.navigator.userAgent.toLowerCase();
@@ -617,17 +620,29 @@ webpackJsonp([11],[
 	                cookie.setCookie("isReported", isReported, 4, "/");
 	                cookie.setCookie("isSurvey", isSurvey, 4, "/");
 	                cookie.setCookie("flag", "0", 4, "/" );
-	                var url = '/'+ toUrl +'?state='+ toUrl +'&token=' + token;
-	                var stateV = toUrl;
-	                //var url = '/'+ toUrl +'?state='+stateV;
-	                console.log(url)
+	                //var url = '/'+ toUrl +'?state='+ toUrl +'&token=' + token;
+	                //var stateV = toUrl;
+	                ////var url = '/'+ toUrl +'?state='+stateV;
+	                //console.log(url)
+	                //if (isWeiXin()) {
+	                //    var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=http://zgkser.zhigaokao.cn/'+ toUrl +'&response_type=code&scope=snsapi_base&state=' + stateV + '#wechat_redirect';
+	                //    //var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=http://zgkser.zhigaokao.cn/user-detail?token='+token+'&response_type=code&scope=snsapi_base&state=' + $.trim(userKey) + '#wechat_redirect';
+	                //    window.location.href = rUrl;
+	                //} else {
+	                //    window.location.assign(url);
+	                //}
+
+	                var url = 'http://zgkser.zhigaokao.cn/user-detail';
 	                if (isWeiXin()) {
-	                    var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=http://zgkser.zhigaokao.cn/'+ toUrl +'&response_type=code&scope=snsapi_base&state=' + stateV + '#wechat_redirect';
-	                    //var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=http://zgkser.zhigaokao.cn/user-detail?token='+token+'&response_type=code&scope=snsapi_base&state=' + $.trim(userKey) + '#wechat_redirect';
+	                    url = encodeURIComponent(url);
+	                    var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_base&state=' + $.trim(userKey) + '#wechat_redirect';
 	                    window.location.href = rUrl;
 	                } else {
 	                    window.location.assign(url);
 	                }
+
+
+
 	            } else {
 	                util.drawToast(res.msg);
 	            }
@@ -653,14 +668,14 @@ webpackJsonp([11],[
 
 
 /***/ },
-/* 10 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	$(function () {
 	    var util = __webpack_require__(1);
 	    var cookie = __webpack_require__(2);
-	    var md5 = __webpack_require__(5);
-	    var urlConfig = __webpack_require__(3);
+	    var md5 = __webpack_require__(7);
+	    var urlConfig = __webpack_require__(5);
 	    var toUrl = util.getLinkey('state');
 	    //省市地区
 	    var province = '';

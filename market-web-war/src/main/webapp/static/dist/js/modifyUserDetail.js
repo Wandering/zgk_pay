@@ -1,5 +1,6 @@
-webpackJsonp([6],[
-/* 0 */
+webpackJsonp([6],{
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -8,7 +9,7 @@ webpackJsonp([6],[
 	(function () {
 
 	    var util = __webpack_require__(1);
-	    var interfaceUrl = __webpack_require__(3);
+	    var interfaceUrl = __webpack_require__(5);
 	    var cookie = __webpack_require__(2);
 	    $('#header-title').text('修改个人信息');
 
@@ -131,9 +132,8 @@ webpackJsonp([6],[
 
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */
+
+/***/ 5:
 /***/ function(module, exports) {
 
 	/*
@@ -368,6 +368,7 @@ webpackJsonp([6],[
 	     */
 	    getAccessToken : '/pay/getAccessToken'
 
+
 	};
 
 
@@ -375,4 +376,5 @@ webpackJsonp([6],[
 
 
 /***/ }
-]);
+
+});
