@@ -366,6 +366,7 @@
 	     */
 	    getAccessToken : '/pay/getAccessToken'
 
+
 	};
 
 

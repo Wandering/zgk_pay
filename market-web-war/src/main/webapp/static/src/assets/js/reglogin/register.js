@@ -3,7 +3,7 @@ $(function () {
     var cookie = require('cookie');
     var md5 = require('md5');
     var urlConfig = require('urlConfig');
-    var toUrl = util.getLinkey('toUrl');
+    var toUrl = util.getLinkey('state');
     //省市地区
     var province = '';
     var city = '';
@@ -249,7 +249,7 @@ $(function () {
                     cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
                     cookie.setCookie("isReported",isReported, 4, "/");
                     cookie.setCookie("isSurvey",isSurvey, 4, "/");
-                    var url = '/'+ toUrl +'?toUrl='+ toUrl +'&token=' + token;
+                    var url = '/'+ toUrl +'?state='+ toUrl +'&token=' + token;
                     window.location.assign(url);
                 } else {
                     util.drawToast(res.msg);

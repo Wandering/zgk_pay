@@ -5,18 +5,19 @@ webpackJsonp([0],[
 	$(function () {
 	    $('#header-title').text('二维码');
 	    var util = __webpack_require__(1);
+
 	    var interfaceUrl = __webpack_require__(3);
 	    var cookie = __webpack_require__(2);
 	    var isLogin = cookie.getCookieValue('isLogin');
 	    var token = cookie.getCookieValue('token');
 	    var userId = cookie.getCookieValue('userId');
 	    $('#header-back').show().on('click', function () {
-	        window.location.href = 'user-detail?toUrl=user-detail&token='+token;
+	        window.location.href = 'user-detail?state=user-detail&token='+token;
 	    });
-	    var toUrl = util.getLinkey('toUrl');
+	    var toUrl = util.getLinkey('state');
 	    if(toUrl=='code'){
 	        if(!isLogin){
-	            window.location.href='/login?toUrl=code';
+	            window.location.href='/login?state=code';
 	        }else{
 	            var menuV = util.getLinkey('menu');
 	            if(menuV=="1"){
@@ -25,7 +26,7 @@ webpackJsonp([0],[
 	            var flag = cookie.getCookieValue('flag');
 	            if(flag=="0"){
 	                cookie.setCookie("flag", "1", 4, "/");
-	                window.location.assign('code?toUrl=code&userId=' + userId);
+	                window.location.assign('code?state=code&userId=' + userId);
 	            }
 	        }
 	    }
@@ -40,16 +41,26 @@ webpackJsonp([0],[
 	    }
 
 
-	    util.ajaxFun(interfaceUrl.getCaptchaImg, 'get', {
-	        'userId': userId
-	    }, function (res) {
-	        if (res.rtnCode = '0000000') {
-	            var dataJson = res.bizData;
-	            $('.name').text(dataJson.name);
-	            $('.tel').text(dataJson.account);
-	            $('#captchImg').attr('src', dataJson.qrcodeUrl);
-	        }
-	    });
+	    function getCaptchaImg(){
+	        $.ajaxSettings.async = false;
+	        var getCaptchaImg = '';
+	        util.ajaxFun(interfaceUrl.getCaptchaImg, 'get', {
+	            'userId': userId
+	        }, function (res) {
+	            if (res.rtnCode = '0000000') {
+	                var dataJson = res.bizData;
+	                $('.name').text(dataJson.name);
+	                $('.tel').text(dataJson.account);
+	                $('#captchImg').attr('src', dataJson.qrcodeUrl);
+	                getCaptchaImg = dataJson.qrcodeUrl;
+	            }
+	        });
+	        $.ajaxSettings.async = true;
+	        return getCaptchaImg;
+	    }
+
+	    alert(getCaptchaImg())
+
 
 	    //分享
 	    if (isWeiXin()) {
@@ -63,6 +74,10 @@ webpackJsonp([0],[
 	    $('body').on('click', '.mask', function () {
 	        $(this).removeClass('show');
 	    });
+
+
+
+	    /***************************自定义二维码*************************************/
 
 
 
@@ -309,6 +324,7 @@ webpackJsonp([0],[
 	     * 微信分享获取jsapi_ticket
 	     */
 	    getAccessToken : '/pay/getAccessToken'
+
 
 	};
 

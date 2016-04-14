@@ -1,7 +1,7 @@
 $(function () {
     var util = require('commonjs');
     var cookie = require('cookie');
-    var toUrl = util.getLinkey('toUrl');
+    var toUrl = util.getLinkey('state');
     var isLogin = cookie.getCookieValue('isLogin');
     var token = cookie.getCookieValue('token');
     var userName = cookie.getCookieValue('userName');
@@ -16,7 +16,7 @@ $(function () {
 
 
 
-    $('#login-btn').attr('href','/login?toUrl='+toUrl);
+    $('#login-btn').attr('href','/login?state='+toUrl);
 
 
 
@@ -77,13 +77,13 @@ $(function () {
     $('.invite-friend').click(function () {
         var loginFlag = cookie.getCookieValue('isLogin');
         if (loginFlag != 'true') {
-            window.location.href = '/login?toUrl=code';
+            window.location.href = '/login?state=code';
             return false;
         }
         window.location.href = '/code?userId=' + userId;
     });
 
-    var loginUrl = 'login?toUrl=' + toUrl;
+    var loginUrl = 'login?state=' + toUrl;
 
     // 退出
     $('#logout-btn').attr('href',loginUrl).on('click', function () {

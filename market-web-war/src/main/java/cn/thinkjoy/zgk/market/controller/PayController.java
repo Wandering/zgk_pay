@@ -2,16 +2,14 @@ package cn.thinkjoy.zgk.market.controller;
 
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
+import cn.thinkjoy.zgk.market.constant.UserRedisConst;
 import cn.thinkjoy.zgk.market.domain.Order;
 import cn.thinkjoy.zgk.market.domain.OrderStatements;
 import cn.thinkjoy.zgk.market.enumerate.PAYCHANNEL;
 import cn.thinkjoy.zgk.market.service.IOrderService;
 import cn.thinkjoy.zgk.market.service.IOrderStatementsService;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
-import cn.thinkjoy.zgk.market.util.HttpRequestUtil;
-import cn.thinkjoy.zgk.market.util.IPUtil;
-import cn.thinkjoy.zgk.market.util.NumberGenUtil;
-import cn.thinkjoy.zgk.market.util.StaticSource;
+import cn.thinkjoy.zgk.market.util.*;
 import cn.thinkjoy.zgk.zgksystem.AgentService;
 import cn.thinkjoy.zgk.zgksystem.pojo.SplitPricePojo;
 import com.alibaba.dubbo.common.logger.Logger;
@@ -40,6 +38,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -70,7 +69,7 @@ public class PayController {
     private static final String queryJsapiUrl = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=%s&type=jsapi";
 
     /**
-     * 获取openId
+     * 获取accessToken和jsapi_ticket
      * @return
      */
     @RequestMapping(value = "/getAccessToken",method = RequestMethod.GET)
@@ -79,8 +78,18 @@ public class PayController {
         String appSecret=StaticSource.getSource("appSecret");
         String wxAppId=StaticSource.getSource("wxAppId");
         Map<String,Object> map=new HashMap<>();
-        String accessToken = "";
-        String jsApi = "";
+        String accessToken ;
+        String ticket;
+        boolean isAccessTokenExist = RedisUtil.getInstance().exists("accessToken");
+        boolean isTicketTokenExist = RedisUtil.getInstance().exists("ticket");
+        if(isAccessTokenExist && isTicketTokenExist)
+        {
+            accessToken = RedisUtil.getInstance().get("accessToken").toString();
+            ticket = RedisUtil.getInstance().get("accessToken").toString();
+            map.put("accessToken",accessToken);
+            map.put("ticket", ticket);
+            return map;
+        }
         try {
             String queryUrl = String.format(queryAccessTokenUrl,wxAppId, appSecret);
             DefaultHttpClient client = new DefaultHttpClient();
@@ -88,18 +97,21 @@ public class PayController {
             httpGetToken.addHeader("Content-type" , "text/html;charset=utf-8");
             HttpResponse httpResponse = client.execute(httpGetToken);
             if (httpResponse.getStatusLine().getStatusCode() == 200) {
-                accessToken = EntityUtils.toString(httpResponse.getEntity(), HTTP.UTF_8);
+                accessToken = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
                 Map<String, String> tokenMap = JSON.parseObject(accessToken, Map.class);
                 map.put("accessToken",tokenMap.get("access_token"));
-
+                RedisUtil.getInstance().set("accessToken",tokenMap.get("access_token"),
+                        UserRedisConst.ACCESS_TOKEN_EXPIRE_TIME, TimeUnit.SECONDS);
                 String queryJsapiUrl2 = String.format(queryJsapiUrl,tokenMap.get("access_token"));
                 HttpGet httpGetJsapi = new HttpGet(queryJsapiUrl2);
                 httpGetJsapi.addHeader("Content-type" , "text/html;charset=utf-8");
                 HttpResponse httpResponseJsapi = client.execute(httpGetJsapi);
                 if (httpResponseJsapi.getStatusLine().getStatusCode() == 200) {
-                    jsApi = EntityUtils.toString(httpResponseJsapi.getEntity(), HTTP.UTF_8);
-                    Map<String, String> ticketMap = JSON.parseObject(jsApi, Map.class);
+                    ticket = EntityUtils.toString(httpResponseJsapi.getEntity(), "UTF-8");
+                    Map<String, String> ticketMap = JSON.parseObject(ticket, Map.class);
                     map.put("ticket", ticketMap.get("ticket"));
+                    RedisUtil.getInstance().set("ticket", ticketMap.get("ticket"),
+                            UserRedisConst.TICKET_EXPIRE_TIME, TimeUnit.SECONDS);
                 }
             }
 

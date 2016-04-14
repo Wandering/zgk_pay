@@ -15,7 +15,7 @@ webpackJsonp([6],[
 	    var token = cookie.getCookieValue('token');
 
 	    $('#header-back').show().on('click', function () {
-	        window.location.assign('user-detail?toUrl=user-detail&menu=1');
+	        window.location.assign('user-detail?state=user-detail&menu=1');
 	    });
 
 	    util.ajaxFun(interfaceUrl.getUserInfo, 'GET', {}, function (res) {
@@ -117,7 +117,7 @@ webpackJsonp([6],[
 	                    cookie.setCookie("sexType", sex, 4, "");
 	                    cookie.setCookie("subjectType", subject, 4, "");
 	                    util.drawToast('信息更新成功');
-	                    window.location.href = "user-detail?toUrl=user-detail&token="+token;
+	                    window.location.href = "user-detail?state=user-detail&token="+token;
 	                } else {
 	                    util.drawToast(res.msg || '信息更新失败');
 	                }
@@ -367,6 +367,7 @@ webpackJsonp([6],[
 	     * 微信分享获取jsapi_ticket
 	     */
 	    getAccessToken : '/pay/getAccessToken'
+
 
 	};
 

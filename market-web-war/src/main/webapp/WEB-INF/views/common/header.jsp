@@ -34,80 +34,80 @@
             <div class="menu-list clearfix">
                 <div class="item">
                     <a href="http://dev.zhigaokao.cn/weixin/index.html#/queryCollege">
-                        <img src="<%=ctx%>/static/dist/img/1.png" alt=""/>
+                        <img src="<%=ctx%>/static/dist/img/1-active.png" alt=""/>
                         <span>查院校</span>
                     </a>
                 </div>
                 <div class="item">
                     <a href="http://dev.zhigaokao.cn/weixin/index.html#/queryMajor">
-                        <img src="<%=ctx%>/static/dist/img/2.png" alt=""/>
-                        <span>查专业</span>
+                        <img src="<%=ctx%>/static/dist/img/2-active.png" alt=""/>
                     </a>
+                    <span>查专业</span>
                 </div>
                 <%--<div class="item">--%>
                 <%--<a href="">--%>
-                <%--<img src="<%=ctx%>/static/dist/img/3.png" alt=""/>--%>
+                <%--<img src="<%=ctx%>/static/dist/img/3-active.png" alt=""/>--%>
                 <%--<span>省控线</span>--%>
                 <%--</a>--%>
                 <%--</div>--%>
                 <div class="item">
                     <a href="http://dev.zhigaokao.cn/weixin/index.html#/simulationSchool">
-                        <img src="<%=ctx%>/static/dist/img/4.png" alt=""/>
+                        <img src="<%=ctx%>/static/dist/img/4-active.png" alt=""/>
                         <span>院校预测</span>
                     </a>
                 </div>
                 <%--<div class="item">--%>
                 <%--<a href="">--%>
-                <%--<img src="<%=ctx%>/static/dist/img/5.png" alt=""/>--%>
+                <%--<img src="<%=ctx%>/static/dist/img/5-active.png" alt=""/>--%>
                 <%--<span>录取预测</span>--%>
                 <%--</a>--%>
                 <%--</div>--%>
                 <div class="item">
                     <a href="/policy">
-                        <img src="<%=ctx%>/static/dist/img/6.png" alt=""/>
+                        <img src="<%=ctx%>/static/dist/img/6-active.png" alt=""/>
                         <span>高考热点</span>
                     </a>
                 </div>
                 <div class="item">
                     <a href="/schedule">
-                        <img src="<%=ctx%>/static/dist/img/7.png" alt=""/>
+                        <img src="<%=ctx%>/static/dist/img/7-active.png" alt=""/>
                         <span>高考日程</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a id="userLinks" href="user-detail?toUrl=user-detail&menu=1">
-                        <img src="<%=ctx%>/static/dist/img/10.png" alt=""/>
+                    <a id="userLinks" href="user-detail?state=user-detail&menu=1">
+                        <img src="<%=ctx%>/static/dist/img/10-active.png" alt=""/>
                         <span>个人信息</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a id="consumerLinks" href="consumer-list?toUrl=consumer-list&menu=1">
-                        <img src="<%=ctx%>/static/dist/img/8.png" alt=""/>
+                    <a id="consumerLinks" href="consumer-list?state=consumer-list&menu=1">
+                        <img src="<%=ctx%>/static/dist/img/8-active.png" alt=""/>
                         <span>我的钱包</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a id="orderLinks" href="order?toUrl=order&menu=1">
-                        <img src="<%=ctx%>/static/dist/img/9.png" alt=""/>
+                    <a id="orderLinks" href="order?state=order&menu=1">
+                        <img src="<%=ctx%>/static/dist/img/9-active.png" alt=""/>
                         <span>我的订单</span>
                     </a>
                 </div>
                 <div class="item">
                     <a href="javascript:void(0)" class="invite-friend">
-                        <img src="<%=ctx%>/static/dist/img/11.png" alt=""/>
+                        <img src="<%=ctx%>/static/dist/img/11-active.png" alt=""/>
                         <span>邀请好友</span>
                     </a>
                 </div>
                 <div class="item">
                     <a href="/intro" class="">
-                        <img src="<%=ctx%>/static/dist/img/rule.png" alt=""/>
+                        <img src="<%=ctx%>/static/dist/img/rule-active.png" alt=""/>
                         <span>盈利规则</span>
                     </a>
                 </div>
             </div>
             <div class="btn login-btn">
                 <a href="javascript:void(0)" id="logout-btn">退出</a>
-                <a id="vipStatus" href="vip?toUrl=vip">购买VIP</a>
+                <a id="vipStatus" href="vip?state=vip">购买VIP</a>
             </div>
         </div>
     </div>
@@ -167,19 +167,19 @@
                     </a>
                 </div>
                 <div class="item">
-                    <a href="user-detail?toUrl=user-detail&menu=1">
+                    <a href="user-detail?state=user-detail&menu=1">
                         <img src="<%=ctx%>/static/dist/img/10.png" alt=""/>
                         <span>个人信息</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="/consumer-list?toUrl=consumer-list&menu=1">
+                    <a href="/consumer-list?state=consumer-list&menu=1">
                         <img src="<%=ctx%>/static/dist/img/8.png" alt=""/>
                         <span>我的钱包</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="order?toUrl=order&menu=1">
+                    <a href="order?state=order&menu=1">
                         <img src="<%=ctx%>/static/dist/img/9.png" alt=""/>
                         <span>我的订单</span>
                     </a>
@@ -199,7 +199,7 @@
             </div>
             <div class="btn login-btn">
                 <a href="javascript:void(0)" id="login-btn">登录/注册</a>
-                <a class="vipStatus" href="vip?toUrl=vip">购买VIP</a>
+                <a class="vipStatus" href="vip?state=vip">购买VIP</a>
             </div>
         </div>
     </div>

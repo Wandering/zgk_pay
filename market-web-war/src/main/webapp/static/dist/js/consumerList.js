@@ -58,11 +58,11 @@
 
 	    var util = __webpack_require__(1);
 	    var token = cookie.getCookieValue('token');
-	    var toUrl = util.getLinkey('toUrl');
+	    var toUrl = util.getLinkey('state');
 	    var isLogin = cookie.getCookieValue('isLogin');
 	    if(toUrl=='consumer-list'){
 	        if(!isLogin){
-	            window.location.href='/login?toUrl=consumer-list';
+	            window.location.href='/login?state=consumer-list';
 	        }else{
 	            var menuV = util.getLinkey('menu');
 	            if(menuV=="1"){
@@ -71,7 +71,7 @@
 	            var flag = cookie.getCookieValue('flag');
 	            if(flag=="0"){
 	                cookie.setCookie("flag", "1", 4, "/");
-	                window.location.assign('/consumer-list?toUrl=consumer-list&token=' + token);
+	                window.location.assign('/consumer-list?state=consumer-list&token=' + token);
 	            }
 	        }
 	    }
@@ -571,6 +571,7 @@
 	     * 微信分享获取jsapi_ticket
 	     */
 	    getAccessToken : '/pay/getAccessToken'
+
 
 	};
 

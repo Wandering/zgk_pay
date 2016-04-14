@@ -7,11 +7,11 @@
 
     var util = require('commonjs');
     var token = cookie.getCookieValue('token');
-    var toUrl = util.getLinkey('toUrl');
+    var toUrl = util.getLinkey('state');
     var isLogin = cookie.getCookieValue('isLogin');
     if(toUrl=='order'){
         if(!isLogin){
-            window.location.href='/login?toUrl=order';
+            window.location.href='/login?state=order';
         }else{
             var menuV = util.getLinkey('menu');
             if(menuV=="1"){
@@ -20,7 +20,7 @@
             var flag = cookie.getCookieValue('flag');
             if(flag=="0"){
                 cookie.setCookie("flag", "1", 4, "/");
-                window.location.assign('/order?toUrl=order&token=' + token);
+                window.location.assign('/order?state=order&token=' + token);
             }
         }
     }
@@ -130,7 +130,7 @@
     function orderPayStatus(msg) {
         util.drawToast(msg);
         setTimeout(function() {
-            window.location.href = '/order?toUrl=order&token=' + token;
+            window.location.href = '/order?state=order&token=' + token;
         }, 1000);
     }
 
@@ -169,7 +169,9 @@
             if (res.rtnCode == '0000000') {
                 var charge = res.bizData;
                 charge.credential = JSON.parse(charge.credential);
+                alert(11)
                 pingpp.createPayment(charge, function(result, error){
+                    alert(JSON.stringify(error))
                     if (result == "success") {
                         // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。
                         orderPayStatus('支付成功');

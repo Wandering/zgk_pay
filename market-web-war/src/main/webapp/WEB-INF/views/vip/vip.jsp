@@ -44,8 +44,8 @@
 </div>
 
 <div class="fix-link-box">
-    <a class="col-1" id="vip-buy" href="vip-buy?toUrl=vip-buy&menu=1">购买</a>
-    <a class="col-1" id="invite-friends" href="code?toUrl=code&menu=1">邀请好友</a>
+    <a class="col-1" id="vip-buy" href="vip-buy?state=vip-buy&menu=1">购买</a>
+    <a class="col-1" id="invite-friends" href="code?state=code&menu=1">邀请好友</a>
 </div>
 
 

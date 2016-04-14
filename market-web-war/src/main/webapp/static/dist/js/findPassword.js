@@ -364,6 +364,7 @@ webpackJsonp([2],[
 	     */
 	    getAccessToken : '/pay/getAccessToken'
 
+
 	};
 
 
