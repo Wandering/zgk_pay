@@ -31,8 +31,7 @@ webpackJsonp([14],[
 	            alert(flag=="0")
 	            if(flag=="0"){
 	                cookie.setCookie("flag", "1", 4, "/");
-	                window.location.href='/user-detail?state=user-detail&token=' + token + "&code="+getQueryObject(window.location.href).code;
-	                return ;
+	                window.location.href='/user-detail?state=user-detail&token=' + token + "&code="+getQueryObject(window.location.href).code + "&menu=1";
 	            }
 	        }
 	    }
