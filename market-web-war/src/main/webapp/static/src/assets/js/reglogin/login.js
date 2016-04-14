@@ -6,27 +6,27 @@ $(function () {
     var toUrl = util.getLinkey('state');
 
 
-    cookie.deleteCookie('city', '');
-    cookie.deleteCookie('county', '');
-    cookie.deleteCookie('icon', '');
-    cookie.deleteCookie('isLogin', '');
-    cookie.deleteCookie('isReported', '');
-    cookie.deleteCookie('isSurvey', '');
-    cookie.deleteCookie('phone', '');
-    cookie.deleteCookie('province', '');
-    cookie.deleteCookie('qrcodeUrl', '');
-    cookie.deleteCookie('subjectType', '');
-    cookie.deleteCookie('token', '');
-    cookie.deleteCookie('userKey', '');
-    cookie.deleteCookie('userName', '');
-    cookie.deleteCookie('vipStatus', '');
-    cookie.deleteCookie('userId', '');
-    cookie.deleteCookie('proName', '');
-    cookie.deleteCookie('cityName', '');
-    cookie.deleteCookie('countyName', '');
-    cookie.deleteCookie('vipActiveDate', '');
-    cookie.deleteCookie('vipEndDate', '');
-    cookie.deleteCookie('flag', '');
+    //cookie.deleteCookie('city', '');
+    //cookie.deleteCookie('county', '');
+    //cookie.deleteCookie('icon', '');
+    //cookie.deleteCookie('isLogin', '');
+    //cookie.deleteCookie('isReported', '');
+    //cookie.deleteCookie('isSurvey', '');
+    //cookie.deleteCookie('phone', '');
+    //cookie.deleteCookie('province', '');
+    //cookie.deleteCookie('qrcodeUrl', '');
+    //cookie.deleteCookie('subjectType', '');
+    //cookie.deleteCookie('token', '');
+    //cookie.deleteCookie('userKey', '');
+    //cookie.deleteCookie('userName', '');
+    //cookie.deleteCookie('vipStatus', '');
+    //cookie.deleteCookie('userId', '');
+    //cookie.deleteCookie('proName', '');
+    //cookie.deleteCookie('cityName', '');
+    //cookie.deleteCookie('countyName', '');
+    //cookie.deleteCookie('vipActiveDate', '');
+    //cookie.deleteCookie('vipEndDate', '');
+    //cookie.deleteCookie('flag', '');
 
 
 

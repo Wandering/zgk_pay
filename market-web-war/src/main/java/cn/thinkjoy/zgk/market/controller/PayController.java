@@ -85,7 +85,7 @@ public class PayController {
         if(isAccessTokenExist && isTicketTokenExist)
         {
             accessToken = RedisUtil.getInstance().get("accessToken").toString();
-            ticket = RedisUtil.getInstance().get("accessToken").toString();
+            ticket = RedisUtil.getInstance().get("ticket").toString();
             map.put("accessToken",accessToken);
             map.put("ticket", ticket);
             return map;
