@@ -173,9 +173,7 @@ webpackJsonp([7],[
 	            if (res.rtnCode == '0000000') {
 	                var charge = res.bizData;
 	                charge.credential = JSON.parse(charge.credential);
-	                alert(11)
 	                pingpp.createPayment(charge, function(result, error){
-	                    alert(JSON.stringify(error))
 	                    if (result == "success") {
 	                        // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。
 	                        orderPayStatus('支付成功');
@@ -230,6 +228,51 @@ webpackJsonp([7],[
 	            }
 	        });
 	    });
+
+
+	    function getQueryObject(url) {
+	        url = url == null ? window.location.href : url;
+	        var search = url.substring(url.lastIndexOf("?") + 1);
+	        var obj = {};
+	        var reg = /([^?&=]+)=([^?&=]*)/g;
+	        search.replace(reg, function (rs, $1, $2) {
+	            var name = decodeURIComponent($1);
+	            var val = decodeURIComponent($2);
+	            val = String(val);
+	            obj[name] = val;
+	            return rs;
+	        });
+	        return obj;
+	    }
+
+	    function getOpenId(code) {
+	        util.ajaxFun(interfaceUrl.getOpenId, 'get', {
+	            code: code
+	        }, function (res) {
+	            if (res.rtnCode == '0000000') {
+	                cookie.setCookie("openId", res.bizData.openId, 4, "/");
+	            }
+	        });
+	    }
+
+
+	    function isWeiXin() {
+	        var ua = window.navigator.userAgent.toLowerCase();
+	        if (ua.indexOf('micromessenger') > -1) {
+	            return true;
+	        } else {
+	            return false;
+	        }
+	    }
+
+	    if (isWeiXin()) {
+	        var obj = getQueryObject(window.location.href);
+	        cookie.setCookie("code", obj.code, 4, "/");
+	        getOpenId(obj.code);
+	    }
+
+
+
 
 	})();
 
