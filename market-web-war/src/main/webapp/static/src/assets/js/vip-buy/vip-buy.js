@@ -50,13 +50,11 @@ require('pgwmodal');
      * 订单确定
      */
     function commitOrder() {
-        alert(0);
         util.ajaxFun(interfaceUrl.commitOrder, 'POST', {
             userId: cookie.getCookieValue('userId') || '13',
             price: $('#price').attr('data-price') || '200'
         }, function (res) {
             if (res.rtnCode == '0000000') {
-                alert(1);
                 var department = res.bizData.department;
                 $('#orderNo').html('订单ID：' + res.bizData.orderNo);
                 $('#orderNo').attr('orderNo', res.bizData.orderNo);
@@ -68,9 +66,8 @@ require('pgwmodal');
                    title: '订单确认',
                    content: $('.modal').html()
                 });
-                //$('.confirm-btn').off('click');
+                $('.confirm-btn').off('click');
                 $('.confirm-btn').click(function(){
-                    alert(2);
                     payOrder();
                 });
             }
@@ -98,7 +95,6 @@ require('pgwmodal');
      */
     //var orderFlag = false;
     function payOrder() {
-        alert(3);
         //if (orderFlag) {
         //    return;
         //}
@@ -113,19 +109,25 @@ require('pgwmodal');
         }
 
 
+
         if(!openId){
             window.location.assign('/login?state=vip-buy')
         }
 
+        alert($('#orderNo').attr('orderNo'))
+        alert(cookie.getCookieValue('userId'))
+        alert(amount)
+        alert(channel)
+        alert(openId)
+
         //util.ajaxFun(interfaceUrl.payOrder+'?token='+token, 'POST', {
         util.ajaxFun(interfaceUrl.payOrder, 'POST', {
             orderNo: $('#orderNo').attr('orderNo'),
-            userId: cookie.getCookieValue('userId') || '13',
+            userId: cookie.getCookieValue('userId'),
             amount: amount,
             channel: channel,
             openId: openId
         }, function (res) {
-            alert(4);
             //orderFlag = false;
             $('#confirm-btn').html('确认支付');
             $.pgwModal('close');
@@ -133,7 +135,6 @@ require('pgwmodal');
             if (res.rtnCode == '0000000') {
                 var charge = res.bizData;
                 charge.credential = JSON.parse(charge.credential);
-                alert(22)
                 pingpp.createPayment(charge, function(result, error){
                     if (result == "success") {
                         // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。

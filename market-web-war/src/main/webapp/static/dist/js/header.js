@@ -177,10 +177,10 @@
 	            return false;
 	        }
 	    }
-
 	    if (isWeiXin()) {
 	        var obj = getQueryObject(window.location.href);
 	        cookie.setCookie("code", obj.code, 4, "/");
+	        alert(obj.code)
 	        getOpenId(obj.code);
 	    }
 
