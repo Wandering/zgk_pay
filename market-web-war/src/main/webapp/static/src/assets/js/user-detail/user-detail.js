@@ -11,21 +11,21 @@ $(function(){
 
 
     var isLogin = cookie.getCookieValue('isLogin');
-    if(toUrl=='user-detail'){
-        if(!isLogin){
-            window.location.href='/login?state=user-detail';
-        }else{
-            var menuV = util.getLinkey('menu');
-            if(menuV=="1"){
-                cookie.setCookie("flag", "0", 4, "/");
-            }
-            var flag = cookie.getCookieValue('flag');
-            if(flag=="0"){
-                cookie.setCookie("flag", "1", 4, "/");
-                window.location.assign('/user-detail?state=user-detail&token=' + token);
-            }
-        }
-    }
+    //if(toUrl=='user-detail'){
+    //    if(!isLogin){
+    //        window.location.href='/login?state=user-detail';
+    //    }else{
+    //        var menuV = util.getLinkey('menu');
+    //        if(menuV=="1"){
+    //            cookie.setCookie("flag", "0", 4, "/");
+    //        }
+    //        var flag = cookie.getCookieValue('flag');
+    //        if(flag=="0"){
+    //            cookie.setCookie("flag", "1", 4, "/");
+    //            window.location.assign('/user-detail?state=user-detail&token=' + token);
+    //        }
+    //    }
+    //}
 
 
 
