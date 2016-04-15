@@ -180,7 +180,7 @@ $(function () {
                 'previewImage'
             ],
             success: function (res) {
-                alert(JSON.stringify(res));
+                //alert(JSON.stringify(res));
             }
         });
         wx.onMenuShareAppMessage({
