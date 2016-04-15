@@ -53,11 +53,11 @@ require('pgwmodal');
             }
             if(flag=="1"){
                 if (isWeiXin()) {
-                    alert('存在openId')
+                    //alert('存在openId')
                     if(!openId){
                         var obj = getQueryObject(window.location.href);
                         cookie.setCookie("code", obj.code, 4, "/");
-                        alert(obj.code)
+                        //alert(obj.code)
                         getOpenId(obj.code);
                     }
                 }
