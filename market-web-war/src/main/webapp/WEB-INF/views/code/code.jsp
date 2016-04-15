@@ -40,35 +40,37 @@
 
 <script src="<%=ctx%>/static/src/lib/sha1/sha1.js"></script>
 <script>
-    <%--var timestamp = parseInt(new Date().getTime() / 1000);--%>
-    <%--function getNonceStr() {--%>
-        <%--var $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';--%>
-        <%--var maxPos = $chars.length;--%>
-        <%--var noceStr = "";--%>
-        <%--for (var i = 0; i < 32; i++) {--%>
-            <%--noceStr += $chars.charAt(Math.floor(Math.random() * maxPos));--%>
-        <%--}--%>
-        <%--return noceStr;--%>
-    <%--}--%>
-    <%--function getSign() {--%>
-        <%--$.ajaxSettings.async = false;--%>
-        <%--var signStr = '';--%>
-        <%--$.getJSON('<%=ctx%>/pay/getAccessToken', function (res) {--%>
+    var timestamp = parseInt(new Date().getTime() / 1000);
+    function getNonceStr() {
+        var $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var maxPos = $chars.length;
+        var noceStr = "";
+        for (var i = 0; i < 32; i++) {
+            noceStr += $chars.charAt(Math.floor(Math.random() * maxPos));
+        }
+        return noceStr;
+    }
+    function getSign() {
+        $.ajaxSettings.async = false;
+        var signStr = '';
+        $.getJSON('<%=ctx%>/pay/getAccessToken', function (res) {
 
-            <%--if (res.rtnCode == "0000000") {--%>
-                <%--var ticket = res.bizData.ticket;--%>
-                <%--var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + getNonceStr() + "&timestamp=" + timestamp + "&url=http://zgkser.zhigaokao.cn/code?userId=2159";--%>
-                <%--var sign = CryptoJS.SHA1(string1);--%>
-                <%--signStr = sign.toString();--%>
-            <%--}--%>
-        <%--})--%>
-    <%--}--%>
+            if (res.rtnCode == "0000000") {
+                var ticket = res.bizData.ticket;
+                var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + getNonceStr() + "&timestamp=" + timestamp + "&url=http://zgkser.zhigaokao.cn/code?userId=2159&uc=1";
+                var sign = CryptoJS.SHA1(string1);
+                signStr = sign.toString();
+            }
+        })
+        $.ajaxSettings.async = true;
+        return signStr;
+    }
     wx.config({
         debug: true,
         appId: 'wx552f3800df25e964',
-        timestamp: 1420774989,
-        nonceStr: '2nDgiWM7gCxhL8v0',
-        signature: '1f8a6552c1c99991fc8bb4e2a818fe54b2ce7687',
+        timestamp: timestamp,
+        nonceStr: getNonceStr(),
+        signature: getSign(),
         jsApiList: [
             'checkJsApi',
             'onMenuShareTimeline',
