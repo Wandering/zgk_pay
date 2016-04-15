@@ -63,11 +63,11 @@
                 signStr = sign.toString();
             }
     wx.config({
-        debug: false,
+        debug: true,
         appId: 'wx552f3800df25e964',
         timestamp: timestamp,
         nonceStr: getNonceStr(),
-        signature: getSign,
+        signature: getSign(),
         jsApiList: [
             'checkJsApi',
             'onMenuShareTimeline',
