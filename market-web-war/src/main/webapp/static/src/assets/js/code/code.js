@@ -147,18 +147,18 @@ $(function () {
             if (res.rtnCode == "0000000") {
                 var ticket = res.bizData.ticket;
                 var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url="+window.location.href;
-                alert(string1)
+                //alert(string1)
 
                 var sign = CryptoJS.SHA1(string1);
                 signStr = sign.toString();
-                alert(signStr)
+                //alert(signStr)
             }
         })
         $.ajaxSettings.async = true;
         return signStr;
     }
     wx.config({
-        debug: true,
+        debug: false,
         appId: 'wx552f3800df25e964',
         timestamp: timestamp,
         nonceStr: noncestr,
