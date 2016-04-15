@@ -36,9 +36,8 @@
 </div>
 <script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/code.js"></script>
-<%--<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>--%>
-
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
 <script src="<%=ctx%>/static/src/lib/sha1/sha1.js"></script>
 <script>
     var timestamp = parseInt(new Date().getTime() / 1000);
@@ -65,9 +64,9 @@
     wx.config({
         debug: true,
         appId: 'wx552f3800df25e964',
-        timestamp: timestamp,
-        nonceStr: getNonceStr(),
-        signature: getSign(),
+        timestamp: 1420774989,
+        nonceStr: '2nDgiWM7gCxhL8v0',
+        signature: '1f8a6552c1c99991fc8bb4e2a818fe54b2ce7687',
         jsApiList: [
             'checkJsApi',
             'onMenuShareTimeline',
