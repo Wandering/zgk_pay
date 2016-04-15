@@ -58,6 +58,7 @@
             if (res.rtnCode == "0000000") {
                 var ticket = res.bizData.ticket;
                 var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + getNonceStr() + "&timestamp=" + timestamp + "&url=http://zgkser.zhigaokao.cn/code?userId=2159&uc=1";
+                alert(string1)
                 var sign = CryptoJS.SHA1(string1);
                 signStr = sign.toString();
             }
