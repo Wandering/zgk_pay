@@ -212,6 +212,7 @@ header .location.location-icon:before {
   width: 90%;
   height: 38px;
   border: none;
+  border: 0;
   background: none;
   font-size: 14px;
 }

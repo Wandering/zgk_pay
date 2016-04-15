@@ -219,14 +219,15 @@ header {
     margin-right: 0;
   }
 }
-
 .areaSel select.form-control {
   width: 90%;
   height: 38px;
   border: none;
+  border: 0;
   background: none;
   font-size: 14px;
 }
+
 
 .reset-password {
   text-align: right;
@@ -237,11 +238,9 @@ header {
     color: #8c8c8c !important;
   }
 }
-
 .reg-center {
   text-align: center;
 }
-
 
 a, button, input {
   -webkit-appearance: none;

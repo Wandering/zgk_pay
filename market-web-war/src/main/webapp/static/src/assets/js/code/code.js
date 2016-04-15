@@ -51,9 +51,7 @@ $(function () {
         }
     }
 
-
     var openId = cookie.getCookieValue('openId');
-
 
     if(toUrl=='code'){
         if(!isLogin){
@@ -62,6 +60,7 @@ $(function () {
             var menuV = util.getLinkey('menu');
             if(menuV=="1"){
                 cookie.setCookie("flag", "0", 4, "/");
+                window.location.assign('code?state=code&userId=' + userId+'&token=' + token + "&code="+getQueryObject(window.location.href).code);
             }
             var flag = cookie.getCookieValue('flag');
             if(flag=="0"){

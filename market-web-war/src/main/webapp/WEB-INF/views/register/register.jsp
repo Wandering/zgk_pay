@@ -4,7 +4,7 @@
 <head lang="en">
     <%@ include file="../common/meta.jsp" %>
     <title>登录页</title>
-    <link rel="stylesheet" href="<%=ctx%>/static/dist/css/register/style.css"/>
+    <link rel="stylesheet" href="<%=ctx%>/static/dist/css/register/style.css?v=2"/>
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>
