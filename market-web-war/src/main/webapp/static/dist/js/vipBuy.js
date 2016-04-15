@@ -5,7 +5,6 @@ webpackJsonp([16],{
 
 	__webpack_require__(11);
 	(function() {
-
 	    $('#header-menu').show();
 	    var interfaceUrl = __webpack_require__(3);
 	    var cookie = __webpack_require__(2);
@@ -42,6 +41,7 @@ webpackJsonp([16],{
 	            return false;
 	        }
 	    }
+
 	    var openId = cookie.getCookieValue('openId');
 	    if(toUrl=='vip-buy'){
 	        if(!isLogin){
@@ -57,7 +57,6 @@ webpackJsonp([16],{
 	                window.location.assign('vip-buy?state=vip-buy&token=' + token + "&code="+getQueryObject(window.location.href).code);
 	            }
 	            if(flag=="1"){
-
 	                if (isWeiXin()) {
 	                    if(!openId){
 	                        var obj = getQueryObject(window.location.href);
@@ -145,10 +144,6 @@ webpackJsonp([16],{
 	            channel = 'alipay_wap';
 	        }
 
-
-	        if(!openId && isWeiXin()){
-	            window.location.assign('/login?state=vip-buy')
-	        }
 
 
 	        //util.ajaxFun(interfaceUrl.payOrder+'?token='+token, 'POST', {

@@ -36,6 +36,7 @@ require('pgwmodal');
             return false;
         }
     }
+
     var openId = cookie.getCookieValue('openId');
     if(toUrl=='vip-buy'){
         if(!isLogin){
@@ -51,7 +52,6 @@ require('pgwmodal');
                 window.location.assign('vip-buy?state=vip-buy&token=' + token + "&code="+getQueryObject(window.location.href).code);
             }
             if(flag=="1"){
-
                 if (isWeiXin()) {
                     if(!openId){
                         var obj = getQueryObject(window.location.href);
@@ -139,10 +139,6 @@ require('pgwmodal');
             channel = 'alipay_wap';
         }
 
-
-        if(!openId && isWeiXin()){
-            window.location.assign('/login?state=vip-buy')
-        }
 
 
         //util.ajaxFun(interfaceUrl.payOrder+'?token='+token, 'POST', {
