@@ -4,15 +4,27 @@ $(function(){
     var cookie = require('cookie');
     var util = require('commonjs');
     var token = cookie.getCookieValue('token');
-
     var toUrl = util.getLinkey('state');
-
-    console.log(toUrl)
-
-
-
     var isLogin = cookie.getCookieValue('isLogin');
     var menuV = util.getLinkey('menu');
+    $('#header-title').text('个人信息');
+    $('#header-menu').show();
+
+    function getQueryObject(url) {
+        url = url == null ? window.location.href : url;
+        var search = url.substring(url.lastIndexOf("?") + 1);
+        var obj = {};
+        var reg = /([^?&=]+)=([^?&=]*)/g;
+        search.replace(reg, function (rs, $1, $2) {
+            var name = decodeURIComponent($1);
+            var val = decodeURIComponent($2);
+            val = String(val);
+            obj[name] = val;
+            return rs;
+        });
+        return obj;
+    }
+
 
     if(toUrl=='user-detail'){
         if(!isLogin){
@@ -27,21 +39,6 @@ $(function(){
                 window.location.href='/user-detail?state=user-detail&token=' + token + "&code="+getQueryObject(window.location.href).code;
             }
             if(flag=="1"){
-                function getQueryObject(url) {
-                    url = url == null ? window.location.href : url;
-                    var search = url.substring(url.lastIndexOf("?") + 1);
-                    var obj = {};
-                    var reg = /([^?&=]+)=([^?&=]*)/g;
-                    search.replace(reg, function (rs, $1, $2) {
-                        var name = decodeURIComponent($1);
-                        var val = decodeURIComponent($2);
-                        val = String(val);
-                        obj[name] = val;
-                        return rs;
-                    });
-                    return obj;
-                }
-
                 function getOpenId(code) {
 
                     $.get(interfaceUrl.getOpenId,{code: code},function(res){
@@ -50,8 +47,6 @@ $(function(){
                         }
                     });
                 }
-
-
                 function isWeiXin() {
                     var ua = window.navigator.userAgent.toLowerCase();
                     if (ua.indexOf('micromessenger') > -1) {
@@ -61,7 +56,6 @@ $(function(){
                     }
                 }
                 var openId = cookie.getCookieValue('openId');
-
 
                 if (isWeiXin()) {
                     if(!openId){
@@ -77,8 +71,7 @@ $(function(){
 
 
 
-    $('#header-title').text('个人信息');
-    $('#header-menu').show();
+
 
 
     function initUserInfo() {
@@ -127,12 +120,10 @@ $(function(){
             }
             var subjectTypeTxt = personListData.subjectType;
             if(typeof subjectTypeTxt == 'number'){
-                subjectTypeTxt == "0" ? $('#subject').text('文史') : $('#subject').text('理工');
+                subjectTypeTxt == "0" ? $('#subject').text('文科') : $('#subject').text('理科');
             }else{
                 $('#subject').text('');
             }
-
-
         }
     });
 
@@ -164,7 +155,7 @@ $(function(){
     });
 
     var userId = cookie.getCookieValue('userId');
-    $('#share-links').attr('href', '/code?userId=' + userId)
+    $('#share-links').attr('href', '/code?userId=' + userId+'&uc=1')
 
     $('body').on('click', '#confirm-btn', function () {
         var currentPsd = $.trim($('#current-psd').val());

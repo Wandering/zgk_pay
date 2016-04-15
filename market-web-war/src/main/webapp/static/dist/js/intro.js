@@ -78,7 +78,7 @@
 	    var value = escape(value);
 	    var expires = new Date();
 	    //expires.setTime(expires.getTime() + days*24*60*60*1000);
-	    expires.setTime(expires.getTime() + hours*60*60*1000);
+	    expires.setTime(expires.getTime() + hours* 365 * 24 *60*60*1000);
 	    path = path == "" ? "": ";path=" + path;
 	    //var domain = ";domain="+domainStr;
 	    expires = (typeof hours) == "string" ? "" : ";expires=" + expires.toUTCString();

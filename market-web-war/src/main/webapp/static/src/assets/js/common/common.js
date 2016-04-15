@@ -1,14 +1,3 @@
-//var domainStr = 'zgkser.zhigaokao.cn'; //正式
-//var domainStr = 'test.zhigaokao.cn'; //测试
-//var domainStr = 'm.zhigaokao.com:8080';
-
-//获取域名前缀=============================
-//var urlDomain = window.location.hostname + '';
-//var urlArr = urlDomain.split('.');
-//var provinceKey = urlArr[0];
-
-//console.log(window.location.hostname);
-
 
 var cookie = require('cookie');
 

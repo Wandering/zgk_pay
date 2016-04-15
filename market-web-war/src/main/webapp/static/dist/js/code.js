@@ -3,17 +3,26 @@ webpackJsonp([0],[
 /***/ function(module, exports, __webpack_require__) {
 
 	$(function () {
-	    $('#header-title').text('二维码');
-	    var util = __webpack_require__(1);
 
+	    var util = __webpack_require__(1);
 	    var interfaceUrl = __webpack_require__(3);
 	    var cookie = __webpack_require__(2);
 	    var isLogin = cookie.getCookieValue('isLogin');
 	    var token = cookie.getCookieValue('token');
 	    var userId = cookie.getCookieValue('userId');
-	    $('#header-back').show().on('click', function () {
-	        window.location.href = 'user-detail?state=user-detail&token='+token;
-	    });
+	    var toUrl = util.getLinkey('state');
+	    var uc = util.getLinkey('uc');
+	    if(uc=="1"){
+	        document.title = '二维码';
+	        $('#header-title').text('二维码');
+	        $('#header-back').show().on('click', function () {
+	            window.location.href = 'user-detail?state=user-detail&token='+token;
+	        });
+	    }else{
+	        document.title = '邀请好友';
+	        $('#header-title').text('邀请好友');
+	        $('#header-menu').show();
+	    }
 	    function getQueryObject(url) {
 	        url = url == null ? window.location.href : url;
 	        var search = url.substring(url.lastIndexOf("?") + 1);
@@ -28,7 +37,7 @@ webpackJsonp([0],[
 	        });
 	        return obj;
 	    }
-	    var toUrl = util.getLinkey('state');
+
 	    if(toUrl=='code'){
 	        if(!isLogin){
 	            window.location.href='/login?state=code';
@@ -43,10 +52,7 @@ webpackJsonp([0],[
 	                window.location.assign('code?state=code&userId=' + userId+'&token=' + token + "&code="+getQueryObject(window.location.href).code);
 	            }
 	            if(flag=="1"){
-
-
 	                function getOpenId(code) {
-
 	                    $.get(interfaceUrl.getOpenId,{code: code},function(res){
 	                        if (res.rtnCode == '0000000') {
 	                            cookie.setCookie("openId", res.bizData.openId, 4, "/");
@@ -55,14 +61,7 @@ webpackJsonp([0],[
 	                }
 
 
-	                function isWeiXin() {
-	                    var ua = window.navigator.userAgent.toLowerCase();
-	                    if (ua.indexOf('micromessenger') > -1) {
-	                        return true;
-	                    } else {
-	                        return false;
-	                    }
-	                }
+
 	                var openId = cookie.getCookieValue('openId');
 
 

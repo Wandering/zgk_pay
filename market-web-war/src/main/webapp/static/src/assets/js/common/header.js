@@ -9,13 +9,7 @@ $(function () {
 
     if (isLogin) {
         $('#userName').text(userName);
-        //$('#consumerLinks').attr('href', '/consumer-list?toUrl=consumer-list&token=' + token);
-        //$('#orderLinks').attr('href', '/order?toUrl=order&token=' + token);
-        //$('#userLinks').attr('href', '/user-detail?toUrl=user-detail&token=' + token);
-        //$('#vipStatus').attr('href', '/vip?toUrl=vip&token=' + token);
     }
-
-
 
     $('#login-btn').attr('href','/login?state='+toUrl);
 

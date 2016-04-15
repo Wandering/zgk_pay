@@ -215,7 +215,6 @@ $(function () {
                 sharerId: sharerId || "0",
                 sharerType: sharerType || "0"
             }, function (res) {
-                console.log(res)
                 $('#confirm-btn').attr('disabled', 'disabled');
                 if (res.rtnCode === "0000000") {
                     var token = res.bizData.token;  // token
@@ -249,6 +248,7 @@ $(function () {
                     cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
                     cookie.setCookie("isReported",isReported, 4, "/");
                     cookie.setCookie("isSurvey",isSurvey, 4, "/");
+                    cookie.setCookie("flag", "0", 4, "/" );
                     var url = '/'+ toUrl +'?state='+ toUrl +'&token=' + token;
                     window.location.assign(url);
                 } else {

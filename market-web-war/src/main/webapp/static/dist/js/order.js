@@ -43,8 +43,6 @@ webpackJsonp([7],[
 	                window.location.assign('/order?state=order&token=' + token+"&code="+getQueryObject(window.location.href).code);
 	            }
 	            if(flag=="1"){
-
-
 	                function getOpenId(code) {
 
 	                    $.get(interfaceUrl.getOpenId,{code: code},function(res){
@@ -53,8 +51,6 @@ webpackJsonp([7],[
 	                        }
 	                    });
 	                }
-
-
 	                function isWeiXin() {
 	                    var ua = window.navigator.userAgent.toLowerCase();
 	                    if (ua.indexOf('micromessenger') > -1) {
@@ -63,9 +59,8 @@ webpackJsonp([7],[
 	                        return false;
 	                    }
 	                }
+
 	                var openId = cookie.getCookieValue('openId');
-
-
 	                if (isWeiXin()) {
 	                    if(!openId){
 	                        var obj = getQueryObject(window.location.href);
@@ -117,9 +112,8 @@ webpackJsonp([7],[
 	            if (obj.status == 1) {
 	                html +=  '<span class="pay-status" data-payStatus="' + obj.status + '">已支付</span>';
 	            } else {
-	                html +=  '<span class="pay-status" data-userId="' + obj.user_id + '" data-orderNo="' + obj.order_no + '" data-price="' + obj.product_price + '" data-payStatus="' + obj.status + '">未支付</span>';
+	                html +=  '<span class="pay-status" data-userId="' + obj.user_id + '" data-orderNo="' + obj.order_no + '" data-price="' + obj.product_price + '" data-payStatus="' + obj.status + '">去支付</span>';
 	            }
-
 	            html +=  '</li>';
 	            html +=  '<li>';
 	            html +=  '<span>成交时间：' + createDate.split(' ')[0] + '</span>';

@@ -3,7 +3,7 @@
 <html>
 <head lang="en">
     <%@ include file="../common/meta.jsp" %>
-    <title>智高考购买邀请</title>
+    <title></title>
     <meta name="description" content="智高考，一款精准的高考志愿填报产品。一键分享他人，成功购买既得返利.">
     <link rel="stylesheet" href="<%=ctx%>/static/dist/css/code/style.css"/>
 </head>

@@ -4,11 +4,24 @@ require('pgwmodal');
     $('#header-menu').show();
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
-
     var util = require('commonjs');
     var token = cookie.getCookieValue('token');
     var toUrl = util.getLinkey('state');
     var isLogin = cookie.getCookieValue('isLogin');
+    function getQueryObject(url) {
+        url = url == null ? window.location.href : url;
+        var search = url.substring(url.lastIndexOf("?") + 1);
+        var obj = {};
+        var reg = /([^?&=]+)=([^?&=]*)/g;
+        search.replace(reg, function (rs, $1, $2) {
+            var name = decodeURIComponent($1);
+            var val = decodeURIComponent($2);
+            val = String(val);
+            obj[name] = val;
+            return rs;
+        });
+        return obj;
+    }
     if(toUrl=='vip-buy'){
         if(!isLogin){
             window.location.href='/login?state=vip-buy';
@@ -20,7 +33,32 @@ require('pgwmodal');
             var flag = cookie.getCookieValue('flag');
             if(flag=="0"){
                 cookie.setCookie("flag", "1", 4, "/");
-                window.location.assign('vip-buy?state=vip-buy&token=' + token);
+                window.location.assign('vip-buy?state=vip-buy&token=' + token + "&code="+getQueryObject(window.location.href).code);
+            }
+            if(flag=="1"){
+                function getOpenId(code) {
+                    $.get(interfaceUrl.getOpenId,{code: code},function(res){
+                        if (res.rtnCode == '0000000') {
+                            cookie.setCookie("openId", res.bizData.openId, 4, "/");
+                        }
+                    });
+                }
+                function isWeiXin() {
+                    var ua = window.navigator.userAgent.toLowerCase();
+                    if (ua.indexOf('micromessenger') > -1) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+                var openId = cookie.getCookieValue('openId');
+                if (isWeiXin()) {
+                    if(!openId){
+                        var obj = getQueryObject(window.location.href);
+                        cookie.setCookie("code", obj.code, 4, "/");
+                        getOpenId(obj.code);
+                    }
+                }
             }
         }
     }
@@ -77,7 +115,7 @@ require('pgwmodal');
     function orderPayStatus(msg) {
         util.drawToast(msg);
         setTimeout(function() {
-            window.location.href = '/order?token='+token;
+            window.location.href = '/order?state=order';
         }, 1000);
     }
 
