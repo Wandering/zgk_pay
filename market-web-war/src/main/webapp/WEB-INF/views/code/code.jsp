@@ -50,6 +50,10 @@
         }
         return noceStr;
     }
+
+
+    var noncestr = 'U5iQqjfV123NT5du';
+
     function getSign() {
         $.ajaxSettings.async = false;
         var signStr = '';
@@ -57,7 +61,7 @@
 
             if (res.rtnCode == "0000000") {
                 var ticket = res.bizData.ticket;
-                var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + getNonceStr() + "&timestamp=" + timestamp + "&url=http://zgkser.zhigaokao.cn/code?userId=2159&uc=1";
+                var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url=http://zgkser.zhigaokao.cn/code?userId=2159&uc=1";
                 alert(string1)
                 var sign = CryptoJS.SHA1(string1);
                 signStr = sign.toString();
@@ -70,7 +74,7 @@
         debug: true,
         appId: 'wx552f3800df25e964',
         timestamp: timestamp,
-        nonceStr: getNonceStr(),
+        nonceStr: noncestr,
         signature: getSign(),
         jsApiList: [
             'checkJsApi',
