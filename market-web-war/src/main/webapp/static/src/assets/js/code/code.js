@@ -63,16 +63,18 @@ $(function () {
         var menuV = util.getLinkey('menu');
         if(menuV=="1"){
             if(!isLogin){
-                window.location.href='/login?state=code';
+                window.location.href='/login?state=code?userId='+userId;
             }else{
                 cookie.setCookie("flag", "0", 4, "/");
+                console.log("cookieUserId=="+cookieUserId)
                 window.location.assign('code?state=code&userId=' + cookieUserId+'&token=' + token + "&code="+getQueryObject(window.location.href).code);
             }
         }
         var flag = cookie.getCookieValue('flag');
         if(flag=="0"){
             cookie.setCookie("flag", "1", 4, "/");
-            window.location.assign('code?state=code&userId=' + userId+'&token=' + token + "&code="+getQueryObject(window.location.href).code);
+            console.log("userId=="+userId)
+            window.location.assign('code?state=code&userId=' + cookieUserId+'&token=' + token + "&code="+getQueryObject(window.location.href).code);
         }
         if(flag=="1"){
 

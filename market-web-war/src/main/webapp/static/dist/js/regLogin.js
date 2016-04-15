@@ -647,7 +647,7 @@ webpackJsonp([11],[
 	                cookie.setCookie("isSurvey", isSurvey, 4, "/");
 	                cookie.setCookie("flag", "0", 4, "/" );
 	                var webUrl = '/'+toUrl+'?state='+ toUrl+"&menu=1";
-	                var url = 'http://zgkser.zhigaokao.cn/'+toUrl+'?state='+ toUrl+"&menu=1";
+	                var url = 'http://zgkser.zhigaokao.cn/'+toUrl+'?state='+ toUrl+"&menu=1&userId="+userId;
 	                if (isWeiXin()) {
 	                    url = encodeURIComponent(url);
 	                    var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_base&#wechat_redirect';
