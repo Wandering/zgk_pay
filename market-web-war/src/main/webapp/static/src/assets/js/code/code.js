@@ -5,7 +5,7 @@ $(function () {
     var cookie = require('cookie');
     var isLogin = cookie.getCookieValue('isLogin');
     var token = cookie.getCookieValue('token');
-    var userId = cookie.getCookieValue('userId');
+    var userId = util.getLinkey('userId');
     var toUrl = util.getLinkey('state');
     var uc = util.getLinkey('uc');
     if(uc=="1"){
