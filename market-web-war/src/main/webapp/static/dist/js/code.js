@@ -130,6 +130,117 @@ webpackJsonp([0],[
 
 	    /***************************自定义二维码*************************************/
 
+	    var timestamp = parseInt(new Date().getTime() / 1000);
+	    //function getNonceStr() {
+	    //    var $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	    //    var maxPos = $chars.length;
+	    //    var noceStr = "";
+	    //    for (var i = 0; i < 32; i++) {
+	    //        noceStr += $chars.charAt(Math.floor(Math.random() * maxPos));
+	    //    }
+	    //    return noceStr;
+	    //}
+
+
+	    var noncestr = 'U5iQqjfV123NT5du';
+
+	    function getSign() {
+	        $.ajaxSettings.async = false;
+	        var signStr = '';
+	        $.getJSON('/pay/getAccessToken', function (res) {
+	            if (res.rtnCode == "0000000") {
+	                var ticket = res.bizData.ticket;
+	                var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url="+window.location.href;
+	                alert(string1)
+
+	                var sign = CryptoJS.SHA1(string1);
+	                signStr = sign.toString();
+	                alert(signStr)
+	            }
+	        })
+	        $.ajaxSettings.async = true;
+	        return signStr;
+	    }
+	    wx.config({
+	        debug: true,
+	        appId: 'wx552f3800df25e964',
+	        timestamp: timestamp,
+	        nonceStr: noncestr,
+	        signature: getSign(),
+	        jsApiList: [
+	            'checkJsApi',
+	            'onMenuShareTimeline',
+	            'onMenuShareAppMessage'
+	        ]
+	    });
+	    wx.ready(function () {
+	        //document.querySelector('#checkJsApi').onclick = function () {
+	        //
+	        //};
+
+	        wx.checkJsApi({
+	            jsApiList: [
+	                'getNetworkType',
+	                'previewImage'
+	            ],
+	            success: function (res) {
+	                alert(JSON.stringify(res));
+	            }
+	        });
+	        wx.onMenuShareAppMessage({
+	            title: '智高考购买邀请',
+	            desc: '智高考，一款精准的高考志愿填报产品。一键分享他人，成功购买既得返利.',
+	            link: window.location.href,//分享链接
+	            imgUrl: getCaptchaImg(), // 分享图标
+	            trigger: function (res) {
+	                alert('用户点击发送给朋友');
+	            },
+	            success: function (res) {
+	                alert('已分享');
+	            },
+	            cancel: function (res) {
+	                alert('已取消');
+	            },
+	            fail: function (res) {
+	                alert(JSON.stringify(res));
+	            }
+	        });
+
+	        wx.onMenuShareTimeline({
+	            title: '智高考购买邀请',
+	            desc: '智高考，一款精准的高考志愿填报产品。一键分享他人，成功购买既得返利.',
+	            link: window.location.href,//分享链接
+	            imgUrl: getCaptchaImg(), // 分享图标
+	            trigger: function (res) {
+	                alert('用户点击分享到朋友圈');
+	            },
+	            success: function (res) {
+	                alert('已分享');
+	            },
+	            cancel: function (res) {
+	                alert('已取消');
+	            },
+	            fail: function (res) {
+	                alert(JSON.stringify(res));
+	            }
+	        });
+
+	        //document.querySelector('#onMenuShareAppMessage').onclick = function () {
+	        //
+	        //    alert('已注册获取“发送给朋友”状态事件');
+	        //};
+	        //
+	        //
+	        //// 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
+	        //document.querySelector('#onMenuShareTimeline').onclick = function () {
+	        //
+	        //    alert('已注册获取“分享到朋友圈”状态事件');
+	        //};
+	    });
+
+	    wx.error(function (res) {
+	        alert(res.errMsg);
+	    });
 
 
 
