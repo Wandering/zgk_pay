@@ -57,7 +57,7 @@ $(function () {
 
     if(toUrl=='code'){
         if(!isLogin){
-            window.location.href='/login?state=code';
+            //window.location.href='/login?state=code';
         }else{
             var menuV = util.getLinkey('menu');
             if(menuV=="1"){
