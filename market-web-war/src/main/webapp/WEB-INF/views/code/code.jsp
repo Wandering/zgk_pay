@@ -40,27 +40,29 @@
 
 <script src="<%=ctx%>/static/src/lib/sha1/sha1.js"></script>
 <script>
-    var timestamp = parseInt(new Date().getTime() / 1000);
-    function getNonceStr() {
-        var $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        var maxPos = $chars.length;
-        var noceStr = "";
-        for (var i = 0; i < 32; i++) {
-            noceStr += $chars.charAt(Math.floor(Math.random() * maxPos));
-        }
-        return noceStr;
-    }
-    function getSign() {
-        $.ajaxSettings.async = false;
-        var signStr = '';
-        $.getJSON('<%=ctx%>/pay/getAccessToken', function (res) {
+    <%--var timestamp = parseInt(new Date().getTime() / 1000);--%>
+    <%--function getNonceStr() {--%>
+        <%--var $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';--%>
+        <%--var maxPos = $chars.length;--%>
+        <%--var noceStr = "";--%>
+        <%--for (var i = 0; i < 32; i++) {--%>
+            <%--noceStr += $chars.charAt(Math.floor(Math.random() * maxPos));--%>
+        <%--}--%>
+        <%--return noceStr;--%>
+    <%--}--%>
+    <%--function getSign() {--%>
+        <%--$.ajaxSettings.async = false;--%>
+        <%--var signStr = '';--%>
+        <%--$.getJSON('<%=ctx%>/pay/getAccessToken', function (res) {--%>
 
-            if (res.rtnCode == "0000000") {
-                var ticket = res.bizData.ticket;
-                var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + getNonceStr() + "&timestamp=" + timestamp + "&url=http://zgkser.zhigaokao.cn/code?userId=2159";
-                var sign = CryptoJS.SHA1(string1);
-                signStr = sign.toString();
-            }
+            <%--if (res.rtnCode == "0000000") {--%>
+                <%--var ticket = res.bizData.ticket;--%>
+                <%--var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + getNonceStr() + "&timestamp=" + timestamp + "&url=http://zgkser.zhigaokao.cn/code?userId=2159";--%>
+                <%--var sign = CryptoJS.SHA1(string1);--%>
+                <%--signStr = sign.toString();--%>
+            <%--}--%>
+        <%--})--%>
+    <%--}--%>
     wx.config({
         debug: true,
         appId: 'wx552f3800df25e964',
@@ -81,43 +83,44 @@
     <%--var timestamp = parseInt(new Date().getTime() / 1000);--%>
     <%--//随机串--%>
     <%--function getNonceStr() {--%>
-    <%--var $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';--%>
-    <%--var maxPos = $chars.length;--%>
-    <%--var noceStr = "";--%>
-    <%--for (var i = 0; i < 32; i++) {--%>
-    <%--noceStr += $chars.charAt(Math.floor(Math.random() * maxPos));--%>
-    <%--}--%>
-    <%--return noceStr;--%>
+        <%--var $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';--%>
+        <%--var maxPos = $chars.length;--%>
+        <%--var noceStr = "";--%>
+        <%--for (var i = 0; i < 32; i++) {--%>
+            <%--noceStr += $chars.charAt(Math.floor(Math.random() * maxPos));--%>
+        <%--}--%>
+        <%--return noceStr;--%>
     <%--}--%>
 
     <%--// 签名--%>
     <%--function getSign() {--%>
-    <%--$.ajaxSettings.async = false;--%>
-    <%--var signStr = '';--%>
-    <%--$.getJSON('<%=ctx%>/pay/getAccessToken', function (res) {--%>
+        <%--$.ajaxSettings.async = false;--%>
+        <%--var signStr = '';--%>
+        <%--$.getJSON('<%=ctx%>/pay/getAccessToken', function (res) {--%>
 
-    <%--if (res.rtnCode == "0000000") {--%>
-    <%--var ticket = res.bizData.ticket;--%>
-    <%--var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + getNonceStr() + "&timestamp=" + timestamp + "&url=http://zgkser.zhigaokao.cn/code?userId=2159";--%>
-    <%--var sign = CryptoJS.SHA1(string1);--%>
-    <%--signStr = sign.toString();--%>
+            <%--if (res.rtnCode == "0000000") {--%>
+                <%--var ticket = res.bizData.ticket;--%>
+                <%--var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + getNonceStr() + "&timestamp=" + timestamp + "&url=http://zgkser.zhigaokao.cn/code?userId=2159";--%>
+                <%--var sign = CryptoJS.SHA1(string1);--%>
+                <%--signStr = sign.toString();--%>
+            <%--}--%>
+
+        <%--});--%>
+        <%--$.ajaxSettings.async = true;--%>
+        <%--return signStr;--%>
     <%--}--%>
 
-    <%--});--%>
-    <%--$.ajaxSettings.async = true;--%>
-    <%--return signStr;--%>
-    <%--}--%>
     <%--wx.config({--%>
-    <%--debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。--%>
-    <%--appId: app_id, // 必填，公众号的唯一标识--%>
-    <%--timestamp: timestamp, // 必填，生成签名的时间戳--%>
-    <%--nonceStr: getNonceStr(), // 必填，生成签名的随机串--%>
-    <%--signature: getSign(),// 必填，签名，见附录1--%>
-    <%--jsApiList: [--%>
-    <%--'checkJsApi',--%>
-    <%--'onMenuShareTimeline',--%>
-    <%--'onMenuShareAppMessage'--%>
-    <%--] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2--%>
+        <%--debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。--%>
+        <%--appId: app_id, // 必填，公众号的唯一标识--%>
+        <%--timestamp: timestamp, // 必填，生成签名的时间戳--%>
+        <%--nonceStr: getNonceStr(), // 必填，生成签名的随机串--%>
+        <%--signature: getSign(),// 必填，签名，见附录1--%>
+        <%--jsApiList: [--%>
+            <%--'checkJsApi',--%>
+            <%--'onMenuShareTimeline',--%>
+            <%--'onMenuShareAppMessage'--%>
+        <%--] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2--%>
     <%--});--%>
     wx.ready(function () {
         document.querySelector('#checkJsApi').onclick = function () {
