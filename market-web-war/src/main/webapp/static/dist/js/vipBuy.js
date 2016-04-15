@@ -170,7 +170,7 @@ webpackJsonp([16],{
 	                        orderPayStatus('支付失败');
 	                    } else if (result == "cancel") {
 	                        // 微信公众账号支付取消支付
-	                        orderPayStatus('取消支付');
+	                        orderPayStatus('已取消支付');
 	                    }
 	                });
 	            } else {
