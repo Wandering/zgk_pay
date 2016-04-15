@@ -28,7 +28,7 @@ $(function(){
     function getOpenId(code) {
 
         $.get(interfaceUrl.getOpenId,{code: code},function(res){
-            alert(JSON.stringify(res))
+            //alert(JSON.stringify(res))
             if (res.rtnCode == '0000000') {
                 cookie.setCookie("openId", res.bizData.openId, 4, "/");
             }
@@ -62,7 +62,7 @@ $(function(){
                     if(!openId){
                         var obj = getQueryObject(window.location.href);
                         cookie.setCookie("code", obj.code, 4, "/");
-                        alert(getQueryObject(window.location.href).code)
+                        //alert(getQueryObject(window.location.href).code)
                         getOpenId(obj.code);
                     }
                 }

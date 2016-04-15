@@ -58,7 +58,7 @@ webpackJsonp([16],{
 	            }
 	            if(flag=="1"){
 	                if (isWeiXin()) {
-	                    alert('存在openId')
+	                    //alert('存在openId')
 	                    if(!openId){
 	                        var obj = getQueryObject(window.location.href);
 	                        cookie.setCookie("code", obj.code, 4, "/");
@@ -170,7 +170,7 @@ webpackJsonp([16],{
 	                        orderPayStatus('支付失败');
 	                    } else if (result == "cancel") {
 	                        // 微信公众账号支付取消支付
-	                        orderPayStatus('支付失败');
+	                        orderPayStatus('取消支付');
 	                    }
 	                });
 	            } else {
