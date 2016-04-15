@@ -193,16 +193,16 @@ webpackJsonp([0],[
 	            link: window.location.href,//分享链接
 	            imgUrl: getCaptchaImg(), // 分享图标
 	            trigger: function (res) {
-	                alert('用户点击发送给朋友');
+	                //alert('用户点击发送给朋友');
 	            },
 	            success: function (res) {
-	                alert('已分享');
+	                //alert('已分享');
 	            },
 	            cancel: function (res) {
-	                alert('已取消');
+	                //alert('已取消');
 	            },
 	            fail: function (res) {
-	                alert(JSON.stringify(res));
+	                //alert(JSON.stringify(res));
 	            }
 	        });
 
@@ -212,16 +212,16 @@ webpackJsonp([0],[
 	            link: window.location.href,//分享链接
 	            imgUrl: getCaptchaImg(), // 分享图标
 	            trigger: function (res) {
-	                alert('用户点击分享到朋友圈');
+	                //alert('用户点击分享到朋友圈');
 	            },
 	            success: function (res) {
-	                alert('已分享');
+	                //alert('已分享');
 	            },
 	            cancel: function (res) {
-	                alert('已取消');
+	                //alert('已取消');
 	            },
 	            fail: function (res) {
-	                alert(JSON.stringify(res));
+	                //alert(JSON.stringify(res));
 	            }
 	        });
 
@@ -239,7 +239,7 @@ webpackJsonp([0],[
 	    });
 
 	    wx.error(function (res) {
-	        alert(res.errMsg);
+	        //alert(res.errMsg);
 	    });
 
 
