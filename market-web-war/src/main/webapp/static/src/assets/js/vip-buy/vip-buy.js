@@ -22,6 +22,22 @@ require('pgwmodal');
         });
         return obj;
     }
+    function getOpenId(code) {
+        $.get(interfaceUrl.getOpenId,{code: code},function(res){
+            if (res.rtnCode == '0000000') {
+                cookie.setCookie("openId", res.bizData.openId, 4, "/");
+            }
+        });
+    }
+    function isWeiXin() {
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.indexOf('micromessenger') > -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    var openId = cookie.getCookieValue('openId');
     if(toUrl=='vip-buy'){
         if(!isLogin){
             window.location.href='/login?state=vip-buy';
@@ -36,22 +52,7 @@ require('pgwmodal');
                 window.location.assign('vip-buy?state=vip-buy&token=' + token + "&code="+getQueryObject(window.location.href).code);
             }
             if(flag=="1"){
-                function getOpenId(code) {
-                    $.get(interfaceUrl.getOpenId,{code: code},function(res){
-                        if (res.rtnCode == '0000000') {
-                            cookie.setCookie("openId", res.bizData.openId, 4, "/");
-                        }
-                    });
-                }
-                function isWeiXin() {
-                    var ua = window.navigator.userAgent.toLowerCase();
-                    if (ua.indexOf('micromessenger') > -1) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-                var openId = cookie.getCookieValue('openId');
+
                 if (isWeiXin()) {
                     if(!openId){
                         var obj = getQueryObject(window.location.href);
@@ -119,14 +120,7 @@ require('pgwmodal');
         }, 1000);
     }
 
-    function isWeiXin(){
-        var ua = window.navigator.userAgent.toLowerCase();
-        if(ua.indexOf('micromessenger') > -1){
-            return true;
-        }else{
-            return false;
-        }
-    }
+
 
     /**
      * 支付
@@ -147,8 +141,7 @@ require('pgwmodal');
         }
 
 
-
-        if(!openId){
+        if(!openId && isWeiXin()){
             window.location.assign('/login?state=vip-buy')
         }
 

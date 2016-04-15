@@ -24,6 +24,24 @@
         });
         return obj;
     }
+    function getOpenId(code) {
+
+        $.get(interfaceUrl.getOpenId,{code: code},function(res){
+            if (res.rtnCode == '0000000') {
+                cookie.setCookie("openId", res.bizData.openId, 4, "/");
+            }
+        });
+    }
+    function isWeiXin() {
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.indexOf('micromessenger') > -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    var openId = cookie.getCookieValue('openId');
 
     if(toUrl=='order'){
         if(!isLogin){
@@ -39,24 +57,7 @@
                 window.location.assign('/order?state=order&token=' + token+"&code="+getQueryObject(window.location.href).code);
             }
             if(flag=="1"){
-                function getOpenId(code) {
 
-                    $.get(interfaceUrl.getOpenId,{code: code},function(res){
-                        if (res.rtnCode == '0000000') {
-                            cookie.setCookie("openId", res.bizData.openId, 4, "/");
-                        }
-                    });
-                }
-                function isWeiXin() {
-                    var ua = window.navigator.userAgent.toLowerCase();
-                    if (ua.indexOf('micromessenger') > -1) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-
-                var openId = cookie.getCookieValue('openId');
                 if (isWeiXin()) {
                     if(!openId){
                         var obj = getQueryObject(window.location.href);
@@ -176,14 +177,6 @@
         //}, 1000);
     }
 
-    function isWeiXin(){
-        var ua = window.navigator.userAgent.toLowerCase();
-        if(ua.indexOf('micromessenger') > -1){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
     /**
      * 支付
@@ -266,11 +259,5 @@
             }
         });
     });
-
-
-
-
-
-
 
 })();

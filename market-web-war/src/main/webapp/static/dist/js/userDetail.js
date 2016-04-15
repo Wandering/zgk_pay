@@ -218,7 +218,7 @@ webpackJsonp([14],[
 	                cookie.deleteCookie("flag", '');
 	                cookie.deleteCookie("openId", '');
 	                cookie.deleteCookie("code", '');
-	                window.location.href = '/login';
+	                window.location.href = '/login?state=user-detail';
 	            } else {
 	                util.drawToast(res.msg);
 	            }

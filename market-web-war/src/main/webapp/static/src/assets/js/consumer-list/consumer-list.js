@@ -28,6 +28,26 @@ $(function () {
         });
         return obj;
     }
+    function getOpenId(code) {
+
+        $.get(interfaceUrl.getOpenId,{code: code},function(res){
+            if (res.rtnCode == '0000000') {
+                cookie.setCookie("openId", res.bizData.openId, 4, "/");
+            }
+        });
+    }
+
+
+    function isWeiXin() {
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.indexOf('micromessenger') > -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    var openId = cookie.getCookieValue('openId');
+
     if(toUrl=='consumer-list'){
         if(!isLogin){
             window.location.href='/login?state=consumer-list';
@@ -44,25 +64,6 @@ $(function () {
             if(flag=="1"){
 
 
-                function getOpenId(code) {
-
-                    $.get(interfaceUrl.getOpenId,{code: code},function(res){
-                        if (res.rtnCode == '0000000') {
-                            cookie.setCookie("openId", res.bizData.openId, 4, "/");
-                        }
-                    });
-                }
-
-
-                function isWeiXin() {
-                    var ua = window.navigator.userAgent.toLowerCase();
-                    if (ua.indexOf('micromessenger') > -1) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-                var openId = cookie.getCookieValue('openId');
 
 
                 if (isWeiXin()) {

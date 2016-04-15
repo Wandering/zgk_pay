@@ -549,27 +549,27 @@ webpackJsonp([11],[
 	    var toUrl = util.getLinkey('state');
 
 
-	    //cookie.deleteCookie('city', '');
-	    //cookie.deleteCookie('county', '');
-	    //cookie.deleteCookie('icon', '');
-	    //cookie.deleteCookie('isLogin', '');
-	    //cookie.deleteCookie('isReported', '');
-	    //cookie.deleteCookie('isSurvey', '');
-	    //cookie.deleteCookie('phone', '');
-	    //cookie.deleteCookie('province', '');
-	    //cookie.deleteCookie('qrcodeUrl', '');
-	    //cookie.deleteCookie('subjectType', '');
-	    //cookie.deleteCookie('token', '');
-	    //cookie.deleteCookie('userKey', '');
-	    //cookie.deleteCookie('userName', '');
-	    //cookie.deleteCookie('vipStatus', '');
-	    //cookie.deleteCookie('userId', '');
-	    //cookie.deleteCookie('proName', '');
-	    //cookie.deleteCookie('cityName', '');
-	    //cookie.deleteCookie('countyName', '');
-	    //cookie.deleteCookie('vipActiveDate', '');
-	    //cookie.deleteCookie('vipEndDate', '');
-	    //cookie.deleteCookie('flag', '');
+	    cookie.deleteCookie('city', '');
+	    cookie.deleteCookie('county', '');
+	    cookie.deleteCookie('icon', '');
+	    cookie.deleteCookie('isLogin', '');
+	    cookie.deleteCookie('isReported', '');
+	    cookie.deleteCookie('isSurvey', '');
+	    cookie.deleteCookie('phone', '');
+	    cookie.deleteCookie('province', '');
+	    cookie.deleteCookie('qrcodeUrl', '');
+	    cookie.deleteCookie('subjectType', '');
+	    cookie.deleteCookie('token', '');
+	    cookie.deleteCookie('userKey', '');
+	    cookie.deleteCookie('userName', '');
+	    cookie.deleteCookie('vipStatus', '');
+	    cookie.deleteCookie('userId', '');
+	    cookie.deleteCookie('proName', '');
+	    cookie.deleteCookie('cityName', '');
+	    cookie.deleteCookie('countyName', '');
+	    cookie.deleteCookie('vipActiveDate', '');
+	    cookie.deleteCookie('vipEndDate', '');
+	    cookie.deleteCookie('flag', '');
 
 
 
@@ -648,13 +648,14 @@ webpackJsonp([11],[
 	                cookie.setCookie("isReported", isReported, 4, "/");
 	                cookie.setCookie("isSurvey", isSurvey, 4, "/");
 	                cookie.setCookie("flag", "0", 4, "/" );
+	                var webUrl = '/'+toUrl+'?state='+ toUrl+"&menu=1";
 	                var url = 'http://zgkser.zhigaokao.cn/'+toUrl+'?state='+ toUrl+"&menu=1";
 	                if (isWeiXin()) {
 	                    url = encodeURIComponent(url);
 	                    var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_base&#wechat_redirect';
 	                    window.location.href = rUrl;
 	                } else {
-	                    window.location.assign(url);
+	                    window.location.assign(webUrl);
 	                }
 	            } else {
 	                util.drawToast(res.msg);
