@@ -1,6 +1,5 @@
 require('pgwmodal');
 (function() {
-
     $('#header-menu').show();
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');

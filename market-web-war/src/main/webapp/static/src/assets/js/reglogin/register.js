@@ -4,6 +4,15 @@ $(function () {
     var md5 = require('md5');
     var urlConfig = require('urlConfig');
     var toUrl = util.getLinkey('state');
+    function isWeiXin() {
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.indexOf('micromessenger') > -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //省市地区
     var province = '';
     var city = '';
@@ -249,8 +258,16 @@ $(function () {
                     cookie.setCookie("isReported",isReported, 4, "/");
                     cookie.setCookie("isSurvey",isSurvey, 4, "/");
                     cookie.setCookie("flag", "0", 4, "/" );
-                    var url = '/'+ toUrl +'?state='+ toUrl +'&token=' + token;
-                    window.location.assign(url);
+                    var webUrl = '/'+toUrl+'?state='+ toUrl+"&menu=1";
+                    var url = 'http://zgkser.zhigaokao.cn/'+toUrl+'?state='+ toUrl+"&menu=1";
+                    if (isWeiXin()) {
+                        url = encodeURIComponent(url);
+                        var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_base&#wechat_redirect';
+                        window.location.href = rUrl;
+                    } else {
+                        window.location.assign(webUrl);
+                    }
+
                 } else {
                     util.drawToast(res.msg);
                 }
