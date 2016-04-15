@@ -9,6 +9,7 @@ webpackJsonp([0],[
 	    var cookie = __webpack_require__(2);
 	    var isLogin = cookie.getCookieValue('isLogin');
 	    var token = cookie.getCookieValue('token');
+	    var cookieUserId = cookie.getCookieValue('userId');
 	    var userId = util.getLinkey('userId');
 	    var toUrl = util.getLinkey('state');
 	    var uc = util.getLinkey('uc');
@@ -58,27 +59,32 @@ webpackJsonp([0],[
 	    var openId = cookie.getCookieValue('openId');
 
 	    if(toUrl=='code'){
-	        if(!isLogin){
-	            //window.location.href='/login?state=code';
-	        }else{
-	            var menuV = util.getLinkey('menu');
-	            if(menuV=="1"){
+	        //if(!isLogin){
+	        //    //window.location.href='/login?state=code';
+	        //}else{
+	        //
+	        //}
+	        var menuV = util.getLinkey('menu');
+	        if(menuV=="1"){
+	            if(!isLogin){
+	                window.location.href='/login?state=code';
+	            }else{
 	                cookie.setCookie("flag", "0", 4, "/");
-	                window.location.assign('code?state=code&userId=' + userId+'&token=' + token + "&code="+getQueryObject(window.location.href).code);
+	                window.location.assign('code?state=code&userId=' + cookieUserId+'&token=' + token + "&code="+getQueryObject(window.location.href).code);
 	            }
-	            var flag = cookie.getCookieValue('flag');
-	            if(flag=="0"){
-	                cookie.setCookie("flag", "1", 4, "/");
-	                window.location.assign('code?state=code&userId=' + userId+'&token=' + token + "&code="+getQueryObject(window.location.href).code);
-	            }
-	            if(flag=="1"){
+	        }
+	        var flag = cookie.getCookieValue('flag');
+	        if(flag=="0"){
+	            cookie.setCookie("flag", "1", 4, "/");
+	            window.location.assign('code?state=code&userId=' + userId+'&token=' + token + "&code="+getQueryObject(window.location.href).code);
+	        }
+	        if(flag=="1"){
 
-	                if (isWeiXin()) {
-	                    if(!openId){
-	                        var obj = getQueryObject(window.location.href);
-	                        cookie.setCookie("code", obj.code, 4, "/");
-	                        getOpenId(obj.code);
-	                    }
+	            if (isWeiXin()) {
+	                if(!openId){
+	                    var obj = getQueryObject(window.location.href);
+	                    cookie.setCookie("code", obj.code, 4, "/");
+	                    getOpenId(obj.code);
 	                }
 	            }
 	        }
