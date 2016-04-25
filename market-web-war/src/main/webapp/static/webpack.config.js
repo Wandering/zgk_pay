@@ -40,6 +40,7 @@ module.exports = {
             sha1: path.join(__dirname, "./src/lib/sha1/sha1.js")
         }
     },
+
     plugins: [
         new CommonsChunkPlugin("commons.js",
             [

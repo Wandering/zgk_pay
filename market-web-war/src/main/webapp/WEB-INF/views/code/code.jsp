@@ -26,9 +26,6 @@
     <div class="share-btn">
         分享二维码
     </div>
-    <%--<button id="checkJsApi">checkJsApi</button>--%>
-    <%--<button id="onMenuShareTimeline">onMenuShareTimeline</button>--%>
-    <%--<button id="onMenuShareAppMessage">onMenuShareAppMessage</button>--%>
 </div>
 <div class="mask">
     <img class="sharer-png" src="/static/dist/img/sharer.png"/>
