@@ -63,7 +63,7 @@ public class OrderController extends BaseCommonController {
      */
     @RequestMapping(value = "/commitOrder",method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> commitOrder(@RequestParam("userId") String userId,@RequestParam("price")String price){
+    public Map<String,Object> commitOrder(@RequestParam("userId") String userId,@RequestParam("price")String price,@RequestParam("goodsCount")Integer goodsCount ){
 
         Map<String,Object> map=new HashMap<>();
 
@@ -89,6 +89,7 @@ public class OrderController extends BaseCommonController {
             order.setProductPrice(department.getSalePrice());
             order.setUserId(Long.valueOf(userId));
             order.setStatus(0);
+            order.setGoodsCount(goodsCount);
             orderService.insert(order);
             map.put("orderNo",orderNo);
             map.put("department",department);

@@ -22,6 +22,7 @@ public class Order extends BaseDomain{
     private Long createDate;
     private Long updateDate;
     private String state="N";
+    private Integer goodsCount;
     //    private Double amount;
 //    private Integer productNumber;
     private String  productPrice;
@@ -29,6 +30,14 @@ public class Order extends BaseDomain{
     private String  departmentName;
     private String departmentPhone;
 
+
+    public Integer getGoodsCount() {
+        return goodsCount;
+    }
+
+    public void setGoodsCount(Integer goodsCount) {
+        this.goodsCount = goodsCount;
+    }
 
     public Order(){
     }
