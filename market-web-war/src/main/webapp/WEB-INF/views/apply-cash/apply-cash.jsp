@@ -10,7 +10,6 @@
 <html>
 <head lang="en">
   <%@ include file="../common/meta.jsp"%>
-  <title>智高考</title>
   <link rel="stylesheet" href="<%=ctx%>/static/dist/css/apply-cash/apply-cash.css"/>
 </head>
 <body>

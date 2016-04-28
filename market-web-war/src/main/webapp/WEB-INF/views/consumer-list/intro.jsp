@@ -3,7 +3,6 @@
 <html>
 <head lang="en">
     <%@ include file="../common/meta.jsp"%>
-    <title>盈利规则</title>
     <link rel="stylesheet" href="<%=ctx%>/static/dist/css/consumer-list/consumer-list.css"/>
 </head>
 <body>

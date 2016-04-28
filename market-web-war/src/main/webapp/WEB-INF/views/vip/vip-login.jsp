@@ -3,7 +3,6 @@
 <html>
 <head lang="en">
     <%@ include file="../common/meta.jsp" %>
-    <title>升级VIP</title>
     <link rel="stylesheet" href="<%=ctx%>/static/dist/css/vip/style.css"/>
 </head>
 <body>
