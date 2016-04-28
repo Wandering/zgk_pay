@@ -1,8 +1,8 @@
 package cn.thinkjoy.zgk.market.controller;
 
+import cn.thinkjoy.zgk.market.service.ex.IPayExService;
 import cn.thinkjoy.zgk.zgksystem.AgentService;
 import cn.thinkjoy.zgk.zgksystem.domain.Department;
-import cn.thinkjoy.zgk.zgksystem.domain.SplitPrice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +18,9 @@ import java.util.*;
 public class WebCotroller {
 
     @Autowired
+    private IPayExService payExService;
+
+    @Autowired
     private AgentService agentService;
 
     @RequestMapping("/getAgentInfo")
@@ -29,22 +32,24 @@ public class WebCotroller {
 
     @RequestMapping("/getSplitPriceInfo")
     @ResponseBody
-    public Map<String,List<SplitPrice>> getSplitPriceInfo(@RequestParam(value = "accountId")String accountId)
+    public Map<String,List<Map<String, Object>>> getSplitPriceInfo(@RequestParam(value = "accountId")String accountId)
     {
-        List<SplitPrice> list = agentService.getSplitPriceInfo(accountId);
-        Map<String,List<SplitPrice>> priceMap = new LinkedHashMap<>();
+        Map<String, String> paramMap = new HashMap<>();
+        paramMap.put("userId", accountId);
+        List<Map<String, Object>> list =  payExService.getSplitPriceList(paramMap);
+        Map<String,List<Map<String, Object>>> priceMap = new LinkedHashMap<>();
         if(null != list && list.size()>0)
         {
-            for (SplitPrice price: list) {
-                BigDecimal realPrice = new BigDecimal(price.getPrice()).
+            for (Map<String, Object> price: list) {
+                BigDecimal realPrice = new BigDecimal(Integer.parseInt(price.get("price")+"")).
                         divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_DOWN);
-                price.setPrice(realPrice.doubleValue());
+                price.put("price", realPrice.doubleValue());
                 Calendar cal = Calendar.getInstance();
-                cal.setTimeInMillis(price.getCreateTime());
+                cal.setTimeInMillis(Long.parseLong(price.get("createTime")+""));
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH) + 1;
                 String key = year + "-" + month;
-                List<SplitPrice> pList = priceMap.get(key);
+                List<Map<String, Object>> pList = priceMap.get(key);
                 if(null == pList)
                 {
                     pList = new ArrayList<>();

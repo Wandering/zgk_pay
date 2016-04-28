@@ -1,6 +1,8 @@
 package cn.thinkjoy.zgk.market.dao.ex;
 
+import cn.thinkjoy.zgk.zgksystem.domain.SplitPrice;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.expression.spel.ast.Projection;
 
 import java.util.List;
 import java.util.Map;
@@ -37,4 +39,7 @@ public interface IPayExDAO {
     List<Map<String,Object>> queryUserIncomeDetailByUserId(@Param("userId") long userId,
                                             @Param("index") int index,
                                             @Param("pageSize") int pageSize);
+
+
+    List<Map<String, Object>> selectSplitPriceList(Map<String, String> map);
 }

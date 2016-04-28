@@ -42,4 +42,19 @@
         ORDER BY t0.create_time desc
         limit #{index},#{pageSize}
     </select>
+
+    <select id="selectSplitPriceList" parameterType="java.util.Map" resultType="java.util.Map">
+        select
+        split.user_id as userId,user_phone as userPhone,info.name as fromUserName,
+        split.price,split.order_no as orderNo,split.type,split.status,split.create_time as createTime
+        from zgk_split_price split
+        left join zgk_order ord on split.order_no=ord.order_no
+        left join zgk_user_info info on ord.user_id=info.id
+        <where>
+            <if test="userId!=null">
+                and  split.user_id=#{userId,jdbcType=INTEGER}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
 </mapper>
