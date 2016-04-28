@@ -16,7 +16,7 @@
         <div class="form-group">
             <div class="input-group">
                 <i class="mobile-icon"></i>
-                <input type="text" placeholder="充值账号：" id="account-number" disable>
+                <input type="text" placeholder="充值账号：" id="account-number" disable readonly>
             </div>
         </div>
         <div class="form-group">
