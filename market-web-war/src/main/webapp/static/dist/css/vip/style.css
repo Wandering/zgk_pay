@@ -187,3 +187,8 @@ p {
   height: 35px;
   line-height: 35px;
 }
+
+.no-vip {
+  padding: 0 25px;
+  margin: 25px 0 0;
+}
