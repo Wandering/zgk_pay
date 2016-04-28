@@ -169,7 +169,7 @@
                         $('#detail-list').html(finallyHTML.join(''));
                     }
                     var html = that.render(res.bizData);
-                    $('.present-record').append(html);
+                    $('.present-record').html(html);
                     $('#total_price').text(that.totalPrice);
                     //if (res.bizData.length <= 0) {
                     //    $('.pull-text').html('没有更多数据~~');
