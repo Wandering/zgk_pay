@@ -12,7 +12,7 @@ $(function () {
 
     $('#account-number').val(account);
     $('#header-menu').show();
-    $('#header-title').text('升级VIP');
+    $('#header-title').text('关于智高考');
 
     // vip卡升级 暂时不上
 
