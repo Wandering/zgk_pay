@@ -62,7 +62,7 @@ function drawToast(message) {
     var intervalCounter = null;
     var alert = document.getElementById("toast");
     if (!alert) {
-        var toastHTML = '<div id="toast">' + message + '</div>';
+        var toastHTML = '<div style="padding: 5px 4px" id="toast">' + message + '</div>';
 
         document.body.insertAdjacentHTML('beforeEnd', toastHTML);
     } else {

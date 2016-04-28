@@ -183,9 +183,11 @@ $(function () {
                 //alert(JSON.stringify(res));
             }
         });
+        var title = '高考【VIP购买】邀请';
+        var desc = '“拼拼”成绩靠努力，“选选”院校靠智慧智高考，智慧填报专家';
         wx.onMenuShareAppMessage({
-            title: '智高考购买邀请',
-            desc: '智高考，一款精准的高考志愿填报产品。一键分享他人，成功购买既得返利.',
+            title: title,
+            desc: desc,
             link: window.location.href,//分享链接
             imgUrl: getCaptchaImg(), // 分享图标
             trigger: function (res) {
@@ -203,8 +205,8 @@ $(function () {
         });
 
         wx.onMenuShareTimeline({
-            title: '智高考购买邀请',
-            desc: '智高考，一款精准的高考志愿填报产品。一键分享他人，成功购买既得返利.',
+            title: title,
+            desc: desc,
             link: window.location.href,//分享链接
             imgUrl: getCaptchaImg(), // 分享图标
             trigger: function (res) {

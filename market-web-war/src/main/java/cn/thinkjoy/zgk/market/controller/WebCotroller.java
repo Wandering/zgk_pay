@@ -85,6 +85,15 @@ public class WebCotroller {
     }
 
     /**
+     * vipBck
+     *
+     * @return
+     */
+    @RequestMapping("/vipBck")
+    public ModelAndView vipBck() {
+        return new ModelAndView("/vip/vip-bck");
+    }
+    /**
      * vip
      *
      * @return
@@ -203,6 +212,15 @@ public class WebCotroller {
         return new ModelAndView("/consumer-list/consumer-list");
     }
     /**
+     * level-calculate
+     *
+     * @return
+     */
+    @RequestMapping("/level-calculate")
+    public ModelAndView levelCalculate() {
+        return new ModelAndView("/level-calculate/level-calculate");
+    }
+    /**
      * inventory
      *
      * @return
@@ -221,5 +239,24 @@ public class WebCotroller {
         return new ModelAndView("/schedule/schedule");
     }
 
+    /**
+     * user-bullet
+     *
+     * @return
+     */
+    @RequestMapping("/user-bullet")
+    public ModelAndView userBullet() {
+        return new ModelAndView("/user-bullet/user-bullet");
+    }
+
+    /**
+     * apply-cash
+     *
+     * @return
+     */
+    @RequestMapping("/apply-cash")
+    public ModelAndView applyCash() {
+        return new ModelAndView("/apply-cash/apply-cash");
+    }
 
 }

@@ -1,29 +1,31 @@
 $(function () {
     var cookie = require('cookie');
     var util = require('commonjs');
-    //var urlConfig = require('urlConfig');
+    var urlConfig = require('urlConfig');
     var account = cookie.getCookieValue('phone');
-    //var getTime = require('timeFormat');
+    var getTime = require('timeFormat');
 
     var isLogin = cookie.getCookieValue('isLogin');
     var token = cookie.getCookieValue('token');
     var userId = cookie.getCookieValue('userId');
 
 
-
-
-    //if(isLogin){
-    //    $('#invite-friends').attr('href','/code?userId=' + userId);
-    //}
     $('#account-number').val(account);
     $('#header-menu').show();
-    $('#header-title').text('购买VIP');
+    $('#header-title').text('升级VIP');
 
     // vip卡升级 暂时不上
-    /*
+
     $('.vip-btn').click(function () {
         var cardNum = $.trim($('#card-number').val());
         var cardPsd = $.trim($('#card-psd').val());
+        if (!cookie.getCookieValue('isLogin')) {
+            util.drawToast('请先登录后再操作!');
+            setTimeout(function() {
+                window.location.href = "/login?state=vipBck";
+            }, 500)
+            return false;
+        }
         if (cardNum == "") {
             util.drawToast('卡号不能为空');
             return;
@@ -53,8 +55,9 @@ $(function () {
                 cookie.setCookie("vipStatus", vipStatus, 4, "/");
                 cookie.setCookie("vipActiveDate", vipActiveDateV, 4, "/");
                 cookie.setCookie("vipEndDate", vipEndDateV, 4, "/");
-                util.drawToast('申请成功');
-                window.location.assign('/vip-check?token='+token)
+                $('.vip-time').html('VIP时效:从' + vipActiveDateV + '到' + vipEndDateV);
+                $('.viped').show();
+                $('.no-vip').hide();
             } else {
                 util.drawToast(res.msg);
             }
@@ -63,7 +66,7 @@ $(function () {
             }
         });
     });
-    */
+
 });
 
 
