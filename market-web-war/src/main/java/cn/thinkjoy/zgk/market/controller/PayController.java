@@ -1,14 +1,22 @@
 package cn.thinkjoy.zgk.market.controller;
 
+import cn.thinkjoy.common.domain.SearchField;
 import cn.thinkjoy.common.exception.BizException;
+import cn.thinkjoy.common.restful.apigen.annotation.ApiDesc;
+import cn.thinkjoy.common.utils.ObjectFactory;
+import cn.thinkjoy.common.utils.SqlOrderEnum;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
 import cn.thinkjoy.zgk.market.constant.UserRedisConst;
 import cn.thinkjoy.zgk.market.domain.Order;
 import cn.thinkjoy.zgk.market.domain.OrderStatements;
+import cn.thinkjoy.zgk.market.domain.UserWithdrawRecord;
+import cn.thinkjoy.zgk.market.edomain.ErrorCode;
 import cn.thinkjoy.zgk.market.enumerate.PAYCHANNEL;
 import cn.thinkjoy.zgk.market.service.IOrderService;
 import cn.thinkjoy.zgk.market.service.IOrderStatementsService;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
+import cn.thinkjoy.zgk.market.service.IUserWithdrawRecordService;
+import cn.thinkjoy.zgk.market.service.ex.IPayExService;
 import cn.thinkjoy.zgk.market.util.*;
 import cn.thinkjoy.zgk.zgksystem.AgentService;
 import cn.thinkjoy.zgk.zgksystem.pojo.SplitPricePojo;
@@ -16,6 +24,7 @@ import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Maps;
 import com.pingplusplus.Pingpp;
 import com.pingplusplus.model.Charge;
 import com.pingplusplus.util.WxpubOAuth;
@@ -60,6 +69,12 @@ public class PayController {
 
     @Autowired
     private IUserAccountExService userAccountExService;
+
+    @Autowired
+    private IPayExService payExService;
+
+    @Autowired
+    private IUserWithdrawRecordService userWithdrawRecordService;
 
 
     public static final String  CURRENCY ="cny";
@@ -312,6 +327,63 @@ public class PayController {
     }
 
 
+    @ResponseBody
+    @ApiDesc(value = "用户申请提现",owner = "杨国荣")
+    @RequestMapping(value = "/applyWithdraw",method = RequestMethod.POST)
+    public Object applyWithdraw(@RequestParam("userName") String userName,
+                                            @RequestParam("cardNo") String cardNo,
+                                            @RequestParam("userId") long userId,
+                                            @RequestParam("bankName") String bankName,
+                                            @RequestParam("money") double money){
 
+        double balance = payExService.getWalletBalance(userId);
+
+        if(money > balance){
+            ModelUtil.throwException(ErrorCode.ERROR_PARAM);
+        }
+
+        UserWithdrawRecord record = new UserWithdrawRecord();
+        ModelUtil.initBuild(record);
+        record.setMoney(money);
+        record.setBankName(bankName);
+        record.setCardNo(cardNo);
+        record.setUserName(userName);
+        record.setUserId(userId);
+        userWithdrawRecordService.insert(record);
+
+        return ObjectFactory.getSingle();
+    }
+
+
+    @ResponseBody
+    @ApiDesc(value = "提现记录",owner = "杨国荣")
+    @RequestMapping(value = "/queryWithdrawRecords",method = RequestMethod.POST)
+    public List<UserWithdrawRecord> queryWithdrawRecords(@RequestParam("userId") long userId,
+                                                   @RequestParam("pageNo")int pageNo,
+                                                   @RequestParam("pageSize")int pageSize){
+
+        Map<String, Object> condition = new HashMap<>();
+        condition.put("groupOp", "and");
+        condition.put("userId", new SearchField("userId", "=", userId));
+
+        List<UserWithdrawRecord> records = userWithdrawRecordService.queryPage(
+                condition,
+                (pageNo-1)*pageSize,
+                pageSize,
+                "createDate",
+                SqlOrderEnum.DESC);
+
+        return records;
+    }
+
+
+    @ResponseBody
+    @ApiDesc(value = "获取钱包剩余金额",owner = "杨国荣")
+    @RequestMapping(value = "/getWalletBalance",method = RequestMethod.POST)
+    public Map<String,Object> getWalletBalance(@RequestParam("userId") long userId){
+        Map<String,Object> returnMap = Maps.newHashMap();
+        returnMap.put("money",payExService.getWalletBalance(userId));
+        return returnMap;
+    }
 
 }
