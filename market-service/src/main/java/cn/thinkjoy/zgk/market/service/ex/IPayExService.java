@@ -25,4 +25,15 @@ public interface IPayExService {
      * @return
      */
     List<Map<String,Object>> queryUserIncomeDetailByUserId(long userId,int pageNo,int pageSize);
+
+
+    /**
+     * 根据用户ID获取用户收益详情
+     *
+     * @param userId
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    List<Map<String,Object>> getSplitPriceList(Map<String, String> map);
 }

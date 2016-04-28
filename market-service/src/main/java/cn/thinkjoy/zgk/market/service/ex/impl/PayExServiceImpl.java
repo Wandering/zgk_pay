@@ -39,4 +39,9 @@ public class PayExServiceImpl implements IPayExService{
                 (pageNo-1)*pageSize,
                 pageSize);
     }
+
+    @Override
+    public List<Map<String, Object>> getSplitPriceList(Map<String, String> map) {
+        return payExDAO.selectSplitPriceList(map);
+    }
 }
