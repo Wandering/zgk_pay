@@ -357,7 +357,7 @@ public class PayController {
 
     @ResponseBody
     @ApiDesc(value = "提现记录",owner = "杨国荣")
-    @RequestMapping(value = "/queryWithdrawRecords",method = RequestMethod.POST)
+    @RequestMapping(value = "/queryWithdrawRecords",method = RequestMethod.GET)
     public List<UserWithdrawRecord> queryWithdrawRecords(@RequestParam("userId") long userId,
                                                    @RequestParam("pageNo")int pageNo,
                                                    @RequestParam("pageSize")int pageSize){
@@ -379,7 +379,7 @@ public class PayController {
 
     @ResponseBody
     @ApiDesc(value = "获取钱包剩余金额",owner = "杨国荣")
-    @RequestMapping(value = "/getWalletBalance",method = RequestMethod.POST)
+    @RequestMapping(value = "/getWalletBalance",method = RequestMethod.GET)
     public Map<String,Object> getWalletBalance(@RequestParam("userId") long userId){
         Map<String,Object> returnMap = Maps.newHashMap();
         returnMap.put("money",payExService.getWalletBalance(userId));
