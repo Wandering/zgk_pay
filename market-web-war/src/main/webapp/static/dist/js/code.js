@@ -188,7 +188,7 @@ webpackJsonp([1],[
 	            }
 	        });
 	        var title = '高考【VIP购买】邀请';
-	        var desc = '“拼拼”成绩靠努力，“选选”院校靠智慧智高考，智慧填报专家';
+	        var desc = '“拼拼”成绩靠努力，“选选”院校靠智慧；智高考，智慧填报专家';
 	        var logo = 'http://zgkser.zhigaokao.cn/dist/img/logo.jpg';
 	        wx.onMenuShareAppMessage({
 	            title: title,

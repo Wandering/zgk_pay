@@ -197,6 +197,12 @@
                         <span>盈利规则</span>
                     </a>
                 </div>
+                <div class="item">
+                    <a href="/vip" class="">
+                        <img src="<%=ctx%>/static/dist/img/vip.png" alt=""/>
+                        <span>关于智高考</span>
+                    </a>
+                </div>
             </div>
             <div class="btn login-btn">
                 <a href="javascript:void(0)" id="login-btn">登录/注册</a>
