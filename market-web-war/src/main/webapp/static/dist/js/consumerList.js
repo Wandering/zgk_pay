@@ -309,7 +309,9 @@
 	        $('.tab span').on('click', function() {
 	            $(this).addClass('on').siblings().removeClass('on');
 	            IncomeDetail.pageNo = 1;
+	            IncomeDetail.totalPrice = {};
 	            PresentRecord.pageNo = 1;
+	            PresentRecord.totalPrice = 0;
 	            initList();
 	        });
 
