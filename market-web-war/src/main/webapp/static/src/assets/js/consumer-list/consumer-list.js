@@ -115,11 +115,15 @@
                 if (res.rtnCode === '0000000') {
                     var html = that.render(res.bizData);
                     //that.pageNo++;
-                    $('#detail-list').html(html);
-                    console.log(that.totalPrice);
-                    for (var key in that.totalPrice) {
-                        $('#' + key).text(that.totalPrice[key]);
+                    if (html) {
+                        $('#detail-list').html(html);
+                        for (var key in that.totalPrice) {
+                            $('#' + key).text(that.totalPrice[key]);
+                        }
+                    } else {
+                        $('#detail-list').html('<p class="no-data">暂无收入！</p>');
                     }
+
                     //if(myScroll)myScroll.refresh();
                 }
             });
@@ -154,6 +158,10 @@
                 pageSize: that.pageSize
             }, function (res) {
                 if (res.rtnCode === '0000000') {
+                    if (res.bizData.length <= 0) {
+                        $('#detail-list').html('<p class="no-data">暂无提现！</p>');
+                        return;
+                    }
                     if (!$('.present-record')[0]) {
                         var finallyHTML = [];
                         finallyHTML.push('<div class="tip-info">共计提现：￥<span id="total_price"></span>元，明细如下：</div>');
