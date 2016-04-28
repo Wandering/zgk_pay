@@ -3,7 +3,6 @@
 <html>
 <head lang="en">
     <%@ include file="../common/meta.jsp" %>
-    <title>高考日程</title>
     <link rel="stylesheet" href="<%=ctx%>/static/dist/css/schedule/schedule.css"/>
 </head>
 <body>

@@ -16,7 +16,15 @@ webpackJsonp([18],[
 
 	    $('#account-number').val(account);
 	    $('#header-menu').show();
-	    $('#header-title').text('升级VIP');
+	    $('#header-title').text('关于智高考');
+
+
+
+	    cookie.setCookie("rcode", "sharerId=4303&sharerType=1", 4, "/" );
+
+
+
+
 
 	    function initInfo() {
 	        var vipStatus = cookie.getCookieValue('vipStatus');

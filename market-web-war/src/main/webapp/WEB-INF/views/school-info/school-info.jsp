@@ -3,7 +3,6 @@
 <html>
 <head lang="en">
     <%@ include file="../common/meta.jsp" %>
-    <title>院校列表</title>
     <link rel="stylesheet" href="<%=ctx%>/static/dist/css/school-info/style.css"/>
 </head>
 <body>
