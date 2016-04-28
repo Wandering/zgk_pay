@@ -14,9 +14,11 @@ $(function () {
     $('#header-menu').show();
     $('#header-title').text('关于智高考');
 
+    var sharerId = util.getLinkey('sharerId');
+    var sharerType = util.getLinkey('sharerType');
 
-
-    cookie.setCookie("rcode", "sharerId=4303&sharerType=1", 4, "/" );
+    cookie.setCookie("sharerId", sharerId, 4, "/" );
+    cookie.setCookie("sharerType", sharerType, 4, "/" );
 
 
 

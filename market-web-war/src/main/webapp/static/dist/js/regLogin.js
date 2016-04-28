@@ -651,8 +651,9 @@ webpackJsonp([13],[
 	            return false;
 	        }
 
-	        var sharerId = util.getLinkey('sharerId');
-	        var sharerType = util.getLinkey('sharerType');
+	        var sharerId = cookie.getCookieValue('sharerId');
+	        var sharerType = cookie.getCookieValue('sharerType');
+
 	        var subHtml = '<p class="reg-center">进入智高考"'+ provinceTxt +'"网站，</br>注册之后地域不可修改</p>';
 	        util.confirmLayer('注册',subHtml);
 	        $('body').on('click', '#confirm-btn', function () {
