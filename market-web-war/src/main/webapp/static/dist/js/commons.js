@@ -302,8 +302,8 @@
 	/*
 	 * url配置文件
 	 * */
-	var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
-	//var BASE_URL = 'http://10.136.21.171:8080';  //正式环境
+	//var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
+	var BASE_URL = 'http://dev.service.zhigaokao.cn/';  //正式环境
 	//var BASE_URL = 'http://10.136.13.233:8080';  //测试环境
 	//var BASE_URL = 'http://172.16.160.31:8080';  //小文本地
 	//var BASE_URL = 'http://172.16.160.72:8089';  //左浩本地
