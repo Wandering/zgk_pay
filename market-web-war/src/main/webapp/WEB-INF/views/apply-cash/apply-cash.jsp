@@ -10,7 +10,7 @@
 <html>
 <head lang="en">
   <%@ include file="../common/meta.jsp"%>
-  <title>登录页</title>
+  <title>智高考</title>
   <link rel="stylesheet" href="<%=ctx%>/static/dist/css/apply-cash/apply-cash.css"/>
 </head>
 <body>
@@ -20,7 +20,7 @@
     <div class="cash-rule">
       <p>提现规则：</p>
       <p>1. 本月申请提现，次月25日到帐</p>
-      <p>2. 客服电话400-888-8888</p>
+      <p>2. 客服电话400-6699-580</p>
     </div>
     <div class="line"></div>
     <form class="form-horizontal">
