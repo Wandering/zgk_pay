@@ -20,7 +20,10 @@ module.exports = {
         consumerList: './src/assets/js/consumer-list/consumer-list',
         intro: './src/assets/js/consumer-list/intro',
         vipCheck: './src/assets/js/vip-check/vipCheck',
-        schedule: './src/assets/js/schedule/schedule'
+        schedule: './src/assets/js/schedule/schedule',
+        levelCalculate: './src/assets/js/level-calculate/level-calculate',
+        userBullet: './src/assets/js/user-bullet/user-bullet',
+        applyCash: './src/assets/js/apply-cash/apply-cash'
     },
     output: {
         path: path.join(__dirname, "./dist/js"),

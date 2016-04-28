@@ -10,9 +10,9 @@
 <%@ include file="../common/header.jsp"%>
 <div class="container">
     <div class="banner">
-        <img src="<%=ctx%>static/dist/img/icons/banner.png" alt=""/>
+        <img src="<%=ctx%>static/dist/img/bannner.png" alt=""/>
     </div>
-    <form action="">
+    <div class="no-vip">
         <div class="form-group">
             <div class="input-group">
                 <i class="mobile-icon"></i>
@@ -34,10 +34,14 @@
         <div class="vip-btn">
             升级vip
         </div>
-        <div class="link">
-            <a id="vip-buy" href="javascript:void(0)">在线购买VIP特权</a>
-        </div>
-    </form>
+    </div>
+    <div class="viped">
+        <p class="title">您已是VIP会员！</p>
+        <p class="vip-time"></p>
+    </div>
+    <div class="link">
+        <a id="vip-buy" href="/vip-buy">立即购买</a>
+    </div>
 </div>
 <script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/vip.js"></script>

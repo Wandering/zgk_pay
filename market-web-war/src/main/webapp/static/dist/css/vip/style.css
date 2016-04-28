@@ -5,6 +5,7 @@ html {
 
 body {
   background: #fff;
+  height: 100%;
 }
 
 header {
@@ -31,12 +32,12 @@ header .location.location-icon:before {
 }
 
 .banner {
-  height: 155px;
+  width: 100%;
   background-color: #fff;
   text-align: center;
 }
 .banner img {
-  height: 100%;
+  width: 100%;
 }
 
 .container .form-group .input-group i {
@@ -154,4 +155,40 @@ form {
 .fix-link-box .col-1:hover {
   background-color: #D80C18;
   color: #fff;
+}
+
+.link {
+  text-align: center;
+}
+.link a {
+  color: #D80C18;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.viped {
+  padding: 50px 0;
+  display: none;
+}
+.viped .title {
+  color: #4A90E2;
+  font-size: 18px;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+}
+.viped .vip-time {
+  color: #4A90E2;
+  font-size: 16px;
+  text-align: center;
+  height: 35px;
+  line-height: 35px;
+}
+
+.no-vip {
+  padding: 0 25px;
+  margin: 25px 0 0;
 }

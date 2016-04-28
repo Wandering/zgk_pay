@@ -86,7 +86,7 @@ public class OrderController extends BaseCommonController {
             order.setDepartmentName(department.getDepartmentName());
             order.setDepartmentPhone(department.getDepartmentPhone());
             order.setGoodsAddress(department.getGoodsAddress());
-            order.setProductPrice(department.getSalePrice());
+            order.setProductPrice(department.getSalePrice().toString());
             order.setUserId(Long.valueOf(userId));
             order.setStatus(0);
             order.setGoodsCount(goodsCount);

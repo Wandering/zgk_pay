@@ -6,6 +6,7 @@ import cn.thinkjoy.common.restful.apigen.annotation.ApiDesc;
 import cn.thinkjoy.common.utils.ObjectFactory;
 import cn.thinkjoy.common.utils.SqlOrderEnum;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
+import cn.thinkjoy.zgk.market.common.ModelUtil;
 import cn.thinkjoy.zgk.market.constant.UserRedisConst;
 import cn.thinkjoy.zgk.market.domain.Order;
 import cn.thinkjoy.zgk.market.domain.OrderStatements;
@@ -31,7 +32,6 @@ import com.pingplusplus.util.WxpubOAuth;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -357,7 +357,7 @@ public class PayController {
 
     @ResponseBody
     @ApiDesc(value = "提现记录",owner = "杨国荣")
-    @RequestMapping(value = "/queryWithdrawRecords",method = RequestMethod.POST)
+    @RequestMapping(value = "/queryWithdrawRecords",method = RequestMethod.GET)
     public List<UserWithdrawRecord> queryWithdrawRecords(@RequestParam("userId") long userId,
                                                    @RequestParam("pageNo")int pageNo,
                                                    @RequestParam("pageSize")int pageSize){
@@ -379,11 +379,26 @@ public class PayController {
 
     @ResponseBody
     @ApiDesc(value = "获取钱包剩余金额",owner = "杨国荣")
-    @RequestMapping(value = "/getWalletBalance",method = RequestMethod.POST)
+    @RequestMapping(value = "/getWalletBalance",method = RequestMethod.GET)
     public Map<String,Object> getWalletBalance(@RequestParam("userId") long userId){
         Map<String,Object> returnMap = Maps.newHashMap();
         returnMap.put("money",payExService.getWalletBalance(userId));
         return returnMap;
+    }
+
+    @ResponseBody
+    @ApiDesc(value = "根据用户ID查询用户收益详情",owner = "杨国荣")
+    @RequestMapping(value = "queryUserIncomeDetailByUserId",method = RequestMethod.GET)
+    public List<Map<String,Object>> queryUserIncomeDetailByUserId(@RequestParam("userId") long userId,
+                                                @RequestParam("pageNo")int pageNo,
+                                                @RequestParam("pageSize")int pageSize) {
+
+        List<Map<String, Object>> maps = payExService.queryUserIncomeDetailByUserId(
+                userId,
+                pageNo,
+                pageSize);
+
+        return maps;
     }
 
 }

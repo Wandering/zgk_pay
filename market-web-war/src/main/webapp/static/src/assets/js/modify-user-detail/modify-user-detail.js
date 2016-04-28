@@ -120,6 +120,91 @@
             });
 
         });
+
+
+        /***************************上传头像*************************************/
+
+        var timestamp = parseInt(new Date().getTime() / 1000);
+
+        var noncestr = 'U5iQqjfV123NT5du';
+
+        function getSign() {
+            $.ajaxSettings.async = false;
+            var signStr = '';
+            $.getJSON('/pay/getAccessToken', function (res) {
+                if (res.rtnCode == "0000000") {
+                    var ticket = res.bizData.ticket;
+                    var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url="+window.location.href;
+
+                    var sign = CryptoJS.SHA1(string1);
+                    signStr = sign.toString();
+                }
+            })
+            $.ajaxSettings.async = true;
+            return signStr;
+        }
+        wx.config({
+            debug: false,
+            appId: 'wx552f3800df25e964',
+            timestamp: timestamp,
+            nonceStr: noncestr,
+            signature: getSign(),
+            jsApiList: [
+                'checkJsApi',
+                'chooseImage',
+                'uploadImage'
+            ]
+        });
+        wx.ready(function () {
+
+            wx.checkJsApi({
+                jsApiList: [
+                    'chooseImage'
+                ],
+                success: function (res) {
+                }
+            });
+            $('.upload-btn').click(function() {
+                var images = {
+                    localId: [],
+                    serverId: []
+                };
+                wx.chooseImage({
+                    count: 1,
+                    success: function (res) {
+                        images.localId = res.localIds;
+                        alert('已选择 ' + res.localIds.length + ' 张图片');
+                        if (images.localId.length == 0) {
+                            alert('请先使用 chooseImage 接口选择图片');
+                            return;
+                        }
+                        var i = 0, length = images.localId.length;
+                        images.serverId = [];
+                        function upload() {
+                            wx.uploadImage({
+                                localId: images.localId[i],
+                                success: function (res) {
+                                    i++;
+                                    images.serverId.push(res.serverId);
+                                    $('#avatar-img').attr('src', res.serverId);
+                                    cookie.setCookie("avatar", res.serverId, 4, "");
+                                    if (i < length) {
+                                        upload();
+                                    }
+                                },
+                                fail: function (res) {
+                                    alert(JSON.stringify(res));
+                                }
+                            });
+                        }
+                        upload();
+                    }
+                });
+            });
+        });
+
+        wx.error(function (res) {
+        });
     });
 })();
 

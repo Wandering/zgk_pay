@@ -15,7 +15,7 @@ var webpackConfig = require('./webpack.config.js');
 
 var paths = {
     srcCss: './src/assets/css/**/*.css',
-    srcImg: './src/assets/img/**/*.png',
+    srcImg: './src/assets/img/**/*.{png,jpg}',
     srcJs: './src/assets/js/**/*.js',
     distCss: './dist/css',
     distImg: './dist/img',

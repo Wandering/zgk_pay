@@ -34,4 +34,6 @@ allprojects {
 
     jxCommonVersion = "0.0.9-SNAPSHOT"
 
+    k12systemVersion = "0.0.19-SNAPSHOT"
+
 }

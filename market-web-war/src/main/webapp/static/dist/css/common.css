@@ -5,7 +5,7 @@
   vertical-align: middle;
 }
 
-.icons-sprite, .icon-avatar, .icon-back, .icon-banner, .icon-calendar, .icon-card, .icon-clear, .icon-close, .icon-code, .icon-code2, .icon-drop-down, .icon-flag, .icon-info, .icon-location-normal, .icon-location, .icon-menu, .icon-mobile, .icon-paid, .icon-password, .icon-search-normal, .icon-search, .icon-star, .icon-vip {
+.icons-sprite, .icon-avatar, .icon-back, .icon-banner_bak, .icon-bannner, .icon-bannner_bak_1, .icon-calendar, .icon-card, .icon-clear, .icon-close, .icon-code, .icon-code2, .icon-drop-down, .icon-flag, .icon-info, .icon-location-normal, .icon-location, .icon-menu, .icon-mobile, .icon-paid, .icon-password, .icon-plus, .icon-plus_abled, .icon-search-normal, .icon-search, .icon-star, .icon-sub_able, .icon-sub_disabled, .icon-vip {
   background-image: url('../../src/assets/img/sprites-icons.png');
   background-repeat: no-repeat;
 }
@@ -22,311 +22,395 @@
   width: 60px;
 }
 
-.icon-banner {
+.icon-banner_bak {
   background-position: 0 -198px;
   height: 210px;
   width: 390px;
 }
 
+.icon-bannner {
+  background-position: 0 -410px;
+  height: 360px;
+  width: 750px;
+}
+
+.icon-bannner_bak_1 {
+  background-position: 0 -772px;
+  height: 360px;
+  width: 750px;
+}
+
 .icon-calendar {
-  background-position: 0 -472px;
+  background-position: 0 -1196px;
   height: 60px;
   width: 60px;
 }
 .icon-calendar:active, .icon-calendar.calendar-active {
-  background-position: 0 -410px;
+  background-position: 0 -1134px;
 }
 
 .icon-card {
-  background-position: 0 -534px;
+  background-position: 0 -1258px;
   height: 60px;
   width: 64px;
 }
 
 .icon-clear {
-  background-position: 0 -596px;
+  background-position: 0 -1320px;
   height: 56px;
   width: 56px;
 }
 
 .icon-close {
-  background-position: 0 -654px;
+  background-position: 0 -1378px;
   height: 60px;
   width: 60px;
 }
 
 .icon-code {
-  background-position: 0 -716px;
+  background-position: 0 -1440px;
   height: 187px;
   width: 187px;
 }
 
 .icon-code2 {
-  background-position: 0 -905px;
+  background-position: 0 -1629px;
   height: 152px;
   width: 152px;
 }
 
 .icon-drop-down {
-  background-position: 0 -1059px;
+  background-position: 0 -1783px;
   height: 56px;
   width: 56px;
 }
 
 .icon-flag {
-  background-position: 0 -1117px;
+  background-position: 0 -1841px;
   height: 52px;
   width: 52px;
 }
 
 .icon-info {
-  background-position: 0 -1171px;
+  background-position: 0 -1895px;
   height: 40px;
   width: 40px;
 }
 
 .icon-location-normal {
-  background-position: 0 -1213px;
+  background-position: 0 -1937px;
   height: 52px;
   width: 36px;
 }
 
 .icon-location {
-  background-position: 0 -1267px;
+  background-position: 0 -1991px;
   height: 44px;
   width: 32px;
 }
 
 .icon-menu {
-  background-position: 0 -1313px;
+  background-position: 0 -2037px;
   height: 60px;
   width: 60px;
 }
 
 .icon-mobile {
-  background-position: 0 -1375px;
+  background-position: 0 -2099px;
   height: 64px;
   width: 64px;
 }
 
 .icon-paid {
-  background-position: 0 -1441px;
+  background-position: 0 -2165px;
   height: 181px;
   width: 181px;
 }
 
 .icon-password {
-  background-position: 0 -1624px;
+  background-position: 0 -2348px;
   height: 64px;
   width: 64px;
 }
 
+.icon-plus {
+  background-position: 0 -2414px;
+  height: 54px;
+  width: 54px;
+}
+
+.icon-plus_abled {
+  background-position: 0 -2470px;
+  height: 54px;
+  width: 54px;
+}
+
 .icon-search-normal {
-  background-position: 0 -1690px;
+  background-position: 0 -2526px;
   height: 34px;
   width: 34px;
 }
 
 .icon-search {
-  background-position: 0 -1726px;
+  background-position: 0 -2562px;
   height: 52px;
   width: 52px;
 }
 
 .icon-star {
-  background-position: 0 -1780px;
+  background-position: 0 -2616px;
   height: 56px;
   width: 56px;
 }
 
+.icon-sub_able {
+  background-position: 0 -2674px;
+  height: 54px;
+  width: 54px;
+}
+
+.icon-sub_disabled {
+  background-position: 0 -2730px;
+  height: 54px;
+  width: 54px;
+}
+
 .icon-vip {
-  background-position: 0 -1838px;
+  background-position: 0 -2786px;
   height: 242px;
   width: 392px;
 }
 
 .icon-avatar {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 132px;
   height: 132px;
   background-position: 0 0;
 }
 
 .icon-back {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 60px;
   height: 62px;
   background-position: 0 -134px;
 }
 
-.icon-banner {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+.icon-banner_bak {
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 390px;
   height: 210px;
   background-position: 0 -198px;
 }
 
-.icon-calendar-active {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
-  width: 60px;
-  height: 60px;
+.icon-bannner {
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
+  width: 750px;
+  height: 360px;
   background-position: 0 -410px;
 }
 
-.icon-calendar {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+.icon-bannner_bak_1 {
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
+  width: 750px;
+  height: 360px;
+  background-position: 0 -772px;
+}
+
+.icon-calendar-active {
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 60px;
   height: 60px;
-  background-position: 0 -472px;
+  background-position: 0 -1134px;
+}
+
+.icon-calendar {
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
+  width: 60px;
+  height: 60px;
+  background-position: 0 -1196px;
 }
 
 .icon-card {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 64px;
   height: 60px;
-  background-position: 0 -534px;
+  background-position: 0 -1258px;
 }
 
 .icon-clear {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 56px;
   height: 56px;
-  background-position: 0 -596px;
+  background-position: 0 -1320px;
 }
 
 .icon-close {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 60px;
   height: 60px;
-  background-position: 0 -654px;
+  background-position: 0 -1378px;
 }
 
 .icon-code {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 187px;
   height: 187px;
-  background-position: 0 -716px;
+  background-position: 0 -1440px;
 }
 
 .icon-code2 {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 152px;
   height: 152px;
-  background-position: 0 -905px;
+  background-position: 0 -1629px;
 }
 
 .icon-drop-down {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 56px;
   height: 56px;
-  background-position: 0 -1059px;
+  background-position: 0 -1783px;
 }
 
 .icon-flag {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 52px;
   height: 52px;
-  background-position: 0 -1117px;
+  background-position: 0 -1841px;
 }
 
 .icon-info {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 40px;
   height: 40px;
-  background-position: 0 -1171px;
+  background-position: 0 -1895px;
 }
 
 .icon-location-normal {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 36px;
   height: 52px;
-  background-position: 0 -1213px;
+  background-position: 0 -1937px;
 }
 
 .icon-location {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 32px;
   height: 44px;
-  background-position: 0 -1267px;
+  background-position: 0 -1991px;
 }
 
 .icon-menu {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 60px;
   height: 60px;
-  background-position: 0 -1313px;
+  background-position: 0 -2037px;
 }
 
 .icon-mobile {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 64px;
   height: 64px;
-  background-position: 0 -1375px;
+  background-position: 0 -2099px;
 }
 
 .icon-paid {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 181px;
   height: 181px;
-  background-position: 0 -1441px;
+  background-position: 0 -2165px;
 }
 
 .icon-password {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 64px;
   height: 64px;
-  background-position: 0 -1624px;
+  background-position: 0 -2348px;
+}
+
+.icon-plus {
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
+  width: 54px;
+  height: 54px;
+  background-position: 0 -2414px;
+}
+
+.icon-plus_abled {
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
+  width: 54px;
+  height: 54px;
+  background-position: 0 -2470px;
 }
 
 .icon-search-normal {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 34px;
   height: 34px;
-  background-position: 0 -1690px;
+  background-position: 0 -2526px;
 }
 
 .icon-search {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 52px;
   height: 52px;
-  background-position: 0 -1726px;
+  background-position: 0 -2562px;
 }
 
 .icon-star {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 56px;
   height: 56px;
-  background-position: 0 -1780px;
+  background-position: 0 -2616px;
+}
+
+.icon-sub_able {
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
+  width: 54px;
+  height: 54px;
+  background-position: 0 -2674px;
+}
+
+.icon-sub_disabled {
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
+  width: 54px;
+  height: 54px;
+  background-position: 0 -2730px;
 }
 
 .icon-vip {
-  -webkit-background-size: 392px 2080px;
-  background-size: 392px 2080px;
+  -webkit-background-size: 750px 3028px;
+  background-size: 750px 3028px;
   width: 392px;
   height: 242px;
-  background-position: 0 -1838px;
+  background-position: 0 -2786px;
 }
 
 /*reset css*/

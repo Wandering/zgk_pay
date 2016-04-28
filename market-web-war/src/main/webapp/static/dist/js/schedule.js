@@ -46,7 +46,7 @@
 
 	var util = __webpack_require__(1);
 	var urlConfig = __webpack_require__(3);
-	var handlebars = __webpack_require__(7);
+	var handlebars = __webpack_require__(5);
 	var getTime = __webpack_require__(4);
 
 	$(function(){
@@ -231,7 +231,7 @@
 	    var intervalCounter = null;
 	    var alert = document.getElementById("toast");
 	    if (!alert) {
-	        var toastHTML = '<div id="toast">' + message + '</div>';
+	        var toastHTML = '<div style="padding: 5px 4px" id="toast">' + message + '</div>';
 
 	        document.body.insertAdjacentHTML('beforeEnd', toastHTML);
 	    } else {
@@ -373,7 +373,7 @@
 	/*
 	 * url配置文件
 	 * */
-	var BASE_URL = 'http://s1.service.zhigaokao.cn'; //正式
+	var BASE_URL = 'http://dev.service.zhigaokao.cn'; //正式
 	//var BASE_URL = 'http://10.136.21.171:8080';  //正式环境
 	//var BASE_URL = 'http://10.136.13.233:8080';  //测试环境
 	//var BASE_URL = 'http://172.16.160.31:8080';  //小文本地
@@ -382,6 +382,7 @@
 	//var BASE_URL = 'http://10.136.56.195:8080';  //开发环境
 	//var BASE_URL = 'http://172.16.180.150:8086';  //yyp
 	//var BASE_URL = 'http://127.0.0.1:8080';
+	//var BASE_URL = '';
 
 
 	var interfaceUrl = {
@@ -413,6 +414,22 @@
 	     * 获取openId
 	     */
 	    getOpenId: '/pay/getOpenId',
+	    /**
+	     * 根据用户ID查询用户收益详情
+	     */
+	    queryUserIncomeDetailByUserId: '/pay/queryUserIncomeDetailByUserId',
+	    /**
+	     * 提现记录
+	     */
+	    queryWithdrawRecords: '/pay/queryWithdrawRecords',
+	    /**
+	     * 用户申请提现
+	     */
+	    applyWithdraw: '/pay/applyWithdraw',
+	    /**
+	     * 获取钱包剩余金额
+	     */
+	    getWalletBalance: '/pay/getWalletBalance',
 	    /*
 	     * 高考咨询
 	     * */
@@ -448,7 +465,6 @@
 	    getQueryUniversityPlanChart: BASE_URL + '/university/queryUniversityPlanChart.do',//院校招生计划图标展示(暂时只有2015年数据)
 	    queryUniversityEnrollingChartList: BASE_URL + '/university/queryUniversityEnrollingChart.do',//录取情况 (院校录取详情)
 	    getUniversityMajorEnrollingSituationList: BASE_URL + '/university/getUniversityMajorEnrollingSituationList.do',//录取情况 (院校专业录取详情)
-
 
 	    /*
 	     * 收藏
@@ -643,9 +659,7 @@
 
 
 /***/ },
-/* 5 */,
-/* 6 */,
-/* 7 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
