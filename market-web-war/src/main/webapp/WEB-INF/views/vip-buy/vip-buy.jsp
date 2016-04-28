@@ -10,7 +10,7 @@
 <%@ include file="../common/header.jsp"%>
 <div class="container">
     <div class="description">
-        <img src="<%=ctx%>static/dist/img/icons/bannner.png" alt=""/>
+        <img src="<%=ctx%>static/dist/img/bannner.png" alt=""/>
         <%--<div class="title" id="title">智能高考VIP服务卡</div>--%>
         <%--<div class="content" id="content">--%>
             <%--升级成为VIP后，可免费观看高考学堂全部视频；进行权威职业测评服务；在线浏览数据库资料，全国各大高等院校专业资料；提前熟悉志愿填报流程，享受智能推荐填报志愿服务。--%>

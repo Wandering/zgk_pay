@@ -10,7 +10,7 @@
 <%@ include file="../common/header.jsp"%>
 <div class="container">
     <div class="banner">
-        <img src="<%=ctx%>static/dist/img/icons/bannner.png" alt=""/>
+        <img src="<%=ctx%>static/dist/img/bannner.png" alt=""/>
     </div>
     <div class="no-vip">
         <div class="form-group">

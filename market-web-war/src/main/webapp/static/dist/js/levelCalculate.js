@@ -71,7 +71,7 @@
 	            util.drawToast('请先登录后再操作!');
 	            setTimeout(function() {
 	                window.location.href = "/login?state=level-calculate";
-	            }, 500)
+	            }, 2000)
 	            return false;
 	        }
 
@@ -81,7 +81,7 @@
 	            util.drawToast('您还不是vip,请升级vip后使用!');
 	            setTimeout(function() {
 	                window.location.href = "/vipBck";
-	            }, 500)
+	            }, 2000)
 	            return false;
 	        }
 

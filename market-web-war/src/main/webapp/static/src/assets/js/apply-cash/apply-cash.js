@@ -17,7 +17,7 @@
             });
         },
         confirmCash: function() {
-            var zhxm = $.trim($('#zhxm').val());
+            var zhxm = $('#zhxm').val();
             var cardNum = $.trim($('#cardNum').val());
             var cardAddress = $.trim($('#cardAddress').val());
             var cash = $.trim($('#cash').val());
@@ -59,7 +59,7 @@
                     } else {
                         util.ajaxFun(interfaceUrl.applyWithdraw, 'post', {
                             userId: userId,
-                            userName: userName,
+                            userName: zhxm,
                             cardNo: cardNum,
                             bankName: cardAddress,
                             money: cash
@@ -67,7 +67,7 @@
                             if (res.rtnCode === '0000000') {
                                 util.drawToast('<p class="tip-p">申请提现成功!</p><p class="tip-p">预计会在下月15号到账，请留意查收！</p>');
                                 setTimeout(function() {
-                                  //window.location.href = '/consumer-list?flag=2';
+                                  window.location.href = '/consumer-list?flag=2';
                                 },2000);
                             } else {
                                 util.drawToast('申请提现失败!');
