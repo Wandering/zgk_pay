@@ -51,5 +51,10 @@
 
 <script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/vip.js"></script>
+<script type="text/javascript">
+    window.onload = function() {
+        $('#header-title').text('关于智高考');
+    }
+</script>
 </body>
 </html>
