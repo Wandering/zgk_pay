@@ -63,8 +63,7 @@
 	            });
 	        },
 	        confirmCash: function() {
-	            var userName = $.trim($('#zhxm').val());
-	            alert(userName);
+	            var zhxm = $('#zhxm').val();
 	            var cardNum = $.trim($('#cardNum').val());
 	            var cardAddress = $.trim($('#cardAddress').val());
 	            var cash = $.trim($('#cash').val());
@@ -77,7 +76,7 @@
 	                return false;
 	            }
 	            var regName = /^[\u4e00-\u9fa5 ]{1,20}$/;
-	            if (regName.test(userName)) {
+	            if (!regName.test(zhxm)) {
 	                util.drawToast('持卡人姓名仅允许1～20位中文字符!');
 	                return false;
 	            }
@@ -106,7 +105,7 @@
 	                    } else {
 	                        util.ajaxFun(interfaceUrl.applyWithdraw, 'post', {
 	                            userId: userId,
-	                            userName: userName,
+	                            userName: zhxm,
 	                            cardNo: cardNum,
 	                            bankName: cardAddress,
 	                            money: cash
@@ -114,7 +113,7 @@
 	                            if (res.rtnCode === '0000000') {
 	                                util.drawToast('<p class="tip-p">申请提现成功!</p><p class="tip-p">预计会在下月15号到账，请留意查收！</p>');
 	                                setTimeout(function() {
-	                                  //window.location.href = '/consumer-list?flag=2';
+	                                  window.location.href = '/consumer-list?flag=2';
 	                                },2000);
 	                            } else {
 	                                util.drawToast('申请提现失败!');

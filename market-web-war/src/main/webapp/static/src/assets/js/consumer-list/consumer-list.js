@@ -97,7 +97,7 @@
                     html.push('<span class="left">收入&nbsp;+&nbsp;' + list[i].price + '元</span>');
                     html.push('<span class="right">' + getTime(list[i].createTime, 'MM/dd hh:mm:ss') + '</span>');
                     html.push('</p>');
-                    html.push('<p class="from-user">来自用户“' + list[i].userName + '”</p>');
+                    html.push('<p class="from-user">来自用户“' + list[i].fromUserName + '”</p>');
                     html.push('</li>');
                 }
                 html.push('</ul></section>');
