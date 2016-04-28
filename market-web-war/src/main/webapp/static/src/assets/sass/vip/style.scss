@@ -152,36 +152,39 @@ form {
     color: #8B8B8B;
     border-right: 1px solid #ccc;
     text-align: center;
-    &:last-of-type{
+    &:last-of-type {
       border-right: none;
     }
-    &:hover{
+    &:hover {
       background-color: #D80C18;
       color: #fff;
     }
   }
 }
-.link{
+
+.link {
   text-align: center;
   a {
-    color:#D80C18;
+    color: #D80C18;
   }
 }
-p{
+
+p {
   margin: 0;
   padding: 0;
 }
-.viped{
+
+.viped {
   padding: 50px 0;
   display: none;
-  .title{
+  .title {
     color: #4A90E2;
     font-size: 18px;
     text-align: center;
     height: 40px;
     line-height: 40px;
   }
-  .vip-time{
+  .vip-time {
     color: #4A90E2;
     font-size: 16px;
     text-align: center;
@@ -189,7 +192,10 @@ p{
     line-height: 35px;
   }
 }
-
+.no-vip {
+  padding: 0 25px;
+  margin: 25px 0 0;
+}
 
 
 
