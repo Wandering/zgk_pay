@@ -333,6 +333,7 @@ webpackJsonp([13],[
 
 
 
+
 	    function isWeiXin() {
 	        var ua = window.navigator.userAgent.toLowerCase();
 	        if (ua.indexOf('micromessenger') > -1) {
