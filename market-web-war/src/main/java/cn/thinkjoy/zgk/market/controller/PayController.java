@@ -386,4 +386,19 @@ public class PayController {
         return returnMap;
     }
 
+    @ResponseBody
+    @ApiDesc(value = "根据用户ID查询用户收益详情",owner = "杨国荣")
+    @RequestMapping(value = "queryUserIncomeDetailByUserId",method = RequestMethod.GET)
+    public List<Map<String,Object>> queryUserIncomeDetailByUserId(@RequestParam("userId") long userId,
+                                                @RequestParam("pageNo")int pageNo,
+                                                @RequestParam("pageSize")int pageSize) {
+
+        List<Map<String, Object>> maps = payExService.queryUserIncomeDetailByUserId(
+                userId,
+                pageNo,
+                pageSize);
+
+        return maps;
+    }
+
 }

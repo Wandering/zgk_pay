@@ -5,6 +5,9 @@ import cn.thinkjoy.zgk.market.service.ex.IPayExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by yangguorong on 16/4/28.
  */
@@ -27,5 +30,13 @@ public class PayExServiceImpl implements IPayExService{
             return totalIncome;
         }
         return totalIncome - totalWithdrawals;
+    }
+
+    @Override
+    public List<Map<String, Object>> queryUserIncomeDetailByUserId(long userId, int pageNo, int pageSize) {
+        return payExDAO.queryUserIncomeDetailByUserId(
+                userId,
+                (pageNo-1)*pageSize,
+                pageSize);
     }
 }
