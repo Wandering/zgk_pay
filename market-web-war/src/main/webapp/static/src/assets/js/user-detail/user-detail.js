@@ -1,14 +1,80 @@
-/**
- * Created by kepeng on 16/4/1.
- */
 $(function(){
     var md5=require('md5');
-    var util = require('commonjs');
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
+    var util = require('commonjs');
     var token = cookie.getCookieValue('token');
+    var toUrl = util.getLinkey('state');
+    var isLogin = cookie.getCookieValue('isLogin');
+    var menuV = util.getLinkey('menu');
     $('#header-title').text('个人信息');
     $('#header-menu').show();
+
+    function getQueryObject(url) {
+        url = url == null ? window.location.href : url;
+        var search = url.substring(url.lastIndexOf("?") + 1);
+        var obj = {};
+        var reg = /([^?&=]+)=([^?&=]*)/g;
+        search.replace(reg, function (rs, $1, $2) {
+            var name = decodeURIComponent($1);
+            var val = decodeURIComponent($2);
+            val = String(val);
+            obj[name] = val;
+            return rs;
+        });
+        return obj;
+    }
+
+    function getOpenId(code) {
+
+        $.get(interfaceUrl.getOpenId,{code: code},function(res){
+            //alert(JSON.stringify(res))
+            if (res.rtnCode == '0000000') {
+                cookie.setCookie("openId", res.bizData.openId, 4, "/");
+            }
+        });
+    }
+    function isWeiXin() {
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.indexOf('micromessenger') > -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    var openId = cookie.getCookieValue('openId');
+
+
+    if(toUrl=='user-detail'){
+        if(!isLogin){
+            window.location.href='/login?state=user-detail';
+        }else{
+            if(menuV=="1"){
+                cookie.setCookie("flag", "0", 4, "/");
+            }
+            var flag = cookie.getCookieValue('flag');
+            if(flag=="0"){
+                cookie.setCookie("flag", "1", 4, "/");
+                window.location.href='/user-detail?state=user-detail&token=' + token + "&code="+getQueryObject(window.location.href).code;
+            }
+            if(flag=="1"){
+                if (isWeiXin()) {
+                    if(!openId){
+                        var obj = getQueryObject(window.location.href);
+                        cookie.setCookie("code", obj.code, 4, "/");
+                        //alert(getQueryObject(window.location.href).code)
+                        getOpenId(obj.code);
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+
+
 
     function initUserInfo() {
         var avatar = cookie.getCookieValue('avatar');
@@ -24,13 +90,6 @@ $(function(){
         var schoolName = cookie.getCookieValue('schoolName');
         $('#school-name').text(schoolName || '');
 
-        var sexType = cookie.getCookieValue('sexType');
-        var sex = ['女生', '男生'];
-        $('#sex').text(sex[sexType || 1]);
-
-        var subjectType = cookie.getCookieValue('subjectType');
-        var subject = ['文科', '理科'];
-        $('#subject').text(subject[subjectType || 1]);
 
         var province = cookie.getCookieValue('proName');
         $('#province').text(province || '');
@@ -56,54 +115,30 @@ $(function(){
             $('#school-name').text(personListData.schoolName);
             $('#email').text(personListData.mail);
             var sexTxt = personListData.sex;
-            sexTxt == "0" ? $('#sex').text('女生') : $('#sex').text('男生');
+            if(typeof sexTxt == 'number'){
+                sexTxt == "0" ? $('#sex').text('女生') : $('#sex').text('男生');
+            }else{
+                $('#sex').text('');
+            }
             var subjectTypeTxt = personListData.subjectType;
-            subjectTypeTxt == "0" ? $('#subject').text('文史') : $('#subject').text('理工');
-
+            if(typeof subjectTypeTxt == 'number'){
+                subjectTypeTxt == "0" ? $('#subject').text('文科') : $('#subject').text('理科');
+            }else{
+                $('#subject').text('');
+            }
         }
     });
 
 
-    function getQueryObject(url) {
-        url = url == null ? window.location.href : url;
-        var search = url.substring(url.lastIndexOf("?") + 1);
-        var obj = {};
-        var reg = /([^?&=]+)=([^?&=]*)/g;
-        search.replace(reg, function (rs, $1, $2) {
-            var name = decodeURIComponent($1);
-            var val = decodeURIComponent($2);
-            val = String(val);
-            obj[name] = val;
-            return rs;
-        });
-        return obj;
-    }
-
-    function getOpenId(code) {
-        util.ajaxFun(interfaceUrl.getOpenId, 'get', {
-            code: code
-        }, function (res) {
-            if (res.rtnCode == '0000000') {
-                cookie.setCookie("openId", res.bizData.openId, 4, "/");
-            }
-        });
-    }
 
 
-    function isWeiXin() {
-        var ua = window.navigator.userAgent.toLowerCase();
-        if (ua.indexOf('micromessenger') > -1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    if (isWeiXin()) {
-        var obj = getQueryObject(window.location.href);
-        cookie.setCookie("code", obj.code, 4, "/");
-        getOpenId(obj.code);
-    }
+
+
+
+
+
+
     initUserInfo();
     $('.modify-btn').on('click', function () {
         window.location.href = '/modify-user-detail?token='+token;
@@ -122,7 +157,7 @@ $(function(){
     });
 
     var userId = cookie.getCookieValue('userId');
-    $('#share-links').attr('href', '/code?userId=' + userId)
+    $('#share-links').attr('href', '/code?userId=' + userId+'&uc=1')
 
     $('body').on('click', '#confirm-btn', function () {
         var currentPsd = $.trim($('#current-psd').val());
@@ -178,12 +213,16 @@ $(function(){
                 cookie.deleteCookie('countyName', '');
                 cookie.deleteCookie('vipActiveDate', '');
                 cookie.deleteCookie('vipEndDate', '');
-                window.location.href = '/login';
+                cookie.deleteCookie("flag", '');
+                cookie.deleteCookie("openId", '');
+                cookie.deleteCookie("code", '');
+                window.location.href = '/login?state=user-detail';
             } else {
                 util.drawToast(res.msg);
             }
         });
     });
+
 
 
 });

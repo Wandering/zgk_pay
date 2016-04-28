@@ -3,7 +3,7 @@
 <html>
 <head lang="en">
     <%@ include file="../common/meta.jsp" %>
-    <title>高考政策</title>
+    <title>高考热点</title>
     <link rel="stylesheet" href="<%=ctx%>/static/dist/css/policy/style.css"/>
 </head>
 <body>
@@ -16,15 +16,15 @@
             <li id="{{id}}">
                 <a href="/policy-detail?id={{id}}">
                     <p class="img">
-                        <img src="{{image}}@base@tag=imgScale&w=123" alt="{{title}}"/>
+                        <img src="{{image}}" alt="{{title}}" class="info-img"/>
                     </p>
-                    <p class="summary">
-                        <span class="title">{{title}}</span>
-                        <span class="content">{{subContent}}</span>
-                        <span class="date">
-                            <span>{{hotDate}}</span>
-                        </span>
-                    </p>
+                    <div class="summary">
+                        <div class="title">{{title}}</div>
+                        <div class="content">{{subContent}}</div>
+                        <div class="date">
+                            {{hotDate}}
+                        </div>
+                    </div>
                 </a>
             </li>
             {{/each}}

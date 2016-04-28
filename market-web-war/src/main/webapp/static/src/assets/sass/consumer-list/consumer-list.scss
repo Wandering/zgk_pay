@@ -1,6 +1,6 @@
 html {
   height: 100%;
-  background-color: #F6F6F6;
+  background-color: #fff;
 }
 //header bar
 header {
@@ -26,9 +26,8 @@ header {
     }
   }
 }
-
 .container-header {
-  height: 105px;
+  margin-bottom: 30px;
   .right {
     margin-right: 10px;
     margin-top: 8px;
@@ -76,7 +75,17 @@ header {
     }
   }
 }
-#intro-img{
-  margin:40px auto;
+#intro-img {
+  margin: 40px auto;
   display: block;
+  width:90%;
+  overflow: hidden;
+}
+.text-box{
+  padding:0 20px;
+}
+.txt{
+  text-indent:2em;
+  font-size:14px;
+  line-height:24px;
 }

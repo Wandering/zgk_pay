@@ -1,6 +1,6 @@
 html {
   height: 100%;
-  background-color: #F6F6F6;
+  background-color: #fff;
 }
 
 header {
@@ -27,7 +27,7 @@ header .location.location-icon:before {
 }
 
 .container-header {
-  height: 105px;
+  margin-bottom: 30px;
 }
 .container-header .right {
   margin-right: 10px;
@@ -73,17 +73,20 @@ header .location.location-icon:before {
   height: 42px;
   line-height: 42px;
 }
+
 #intro-img {
   margin: 40px auto;
   display: block;
-  width:90%;
+  width: 90%;
+  overflow: hidden;
 }
 
-.text-box{
-  padding:0 20px;
+.text-box {
+  padding: 0 20px;
 }
-.txt{
-  text-indent:2em;
-  font-size:14px;
-  line-height:24px;
+
+.txt {
+  text-indent: 2em;
+  font-size: 14px;
+  line-height: 24px;
 }

@@ -35,9 +35,12 @@ module.exports = {
             md5: path.join(__dirname, "./src/lib/md5/jQuery.md5"),
             timeFormat: path.join(__dirname, "./src/assets/js/common/timeFormat"),
             iscroll: path.join(__dirname, "./src/lib/iscroll/iscroll-probe"),
-            handlebars: path.join(__dirname, "./src/lib/handlebars/handlebars-v4.0.5")
+            handlebars: path.join(__dirname, "./src/lib/handlebars/handlebars-v4.0.5"),
+            jweixin: path.join(__dirname, "./src/lib/jweixin/jweixin-1.0.0.js"),
+            sha1: path.join(__dirname, "./src/lib/sha1/sha1.js")
         }
     },
+
     plugins: [
         new CommonsChunkPlugin("commons.js",
             [

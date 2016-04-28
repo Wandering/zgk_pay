@@ -3,19 +3,52 @@ webpackJsonp([0],[
 /***/ function(module, exports, __webpack_require__) {
 
 	$(function () {
-	    $('#header-title').text('二维码');
-	    $('#header-back').show().on('click', function () {
-	        window.location.href = '/user-detail';
-	        if (isLogin) {
-	            window.location.href = '/user-detail?token=' + token;
-	        }
-	    });
 
 	    var util = __webpack_require__(1);
 	    var interfaceUrl = __webpack_require__(3);
 	    var cookie = __webpack_require__(2);
 	    var isLogin = cookie.getCookieValue('isLogin');
 	    var token = cookie.getCookieValue('token');
+	    var cookieUserId = cookie.getCookieValue('userId');
+	    var userId = util.getLinkey('userId');
+	    var toUrl = util.getLinkey('state');
+	    var uc = util.getLinkey('uc');
+
+	    console.log("cookieUserId=="+cookieUserId)
+	    console.log("userId=="+userId)
+	    if(uc=="1"){
+	        document.title = '二维码';
+	        $('#header-title').text('二维码');
+	        $('#header-back').show().on('click', function () {
+	            window.location.href = 'user-detail?state=user-detail&token='+token;
+	        });
+	    }else{
+	        document.title = '邀请好友';
+	        $('#header-title').text('邀请好友');
+	        $('#header-menu').show();
+	    }
+	    function getQueryObject(url) {
+	        url = url == null ? window.location.href : url;
+	        var search = url.substring(url.lastIndexOf("?") + 1);
+	        var obj = {};
+	        var reg = /([^?&=]+)=([^?&=]*)/g;
+	        search.replace(reg, function (rs, $1, $2) {
+	            var name = decodeURIComponent($1);
+	            var val = decodeURIComponent($2);
+	            val = String(val);
+	            obj[name] = val;
+	            return rs;
+	        });
+	        return obj;
+	    }
+
+	    function getOpenId(code) {
+	        $.get(interfaceUrl.getOpenId,{code: code},function(res){
+	            if (res.rtnCode == '0000000') {
+	                cookie.setCookie("openId", res.bizData.openId, 4, "/");
+	            }
+	        });
+	    }
 
 	    function isWeiXin() {
 	        var ua = window.navigator.userAgent.toLowerCase();
@@ -27,17 +60,57 @@ webpackJsonp([0],[
 	    }
 
 
-	    var userId = util.getLinkey('userId');
-	    util.ajaxFun(interfaceUrl.getCaptchaImg, 'get', {
-	        'userId': userId
-	    }, function (res) {
-	        if (res.rtnCode = '0000000') {
-	            var dataJson = res.bizData;
-	            $('.name').text(dataJson.name);
-	            $('.tel').text(dataJson.account);
-	            $('#captchImg').attr('src', dataJson.qrcodeUrl);
+	    var openId = cookie.getCookieValue('openId');
+	    var menuV = util.getLinkey('menu');
+
+	    if(toUrl=='code'){
+	        if(!isLogin && menuV=="1"){
+	            window.location.href='/login?state=code';
+	        }else{
+	            if(menuV=="1"){
+	                cookie.setCookie("flag", "0", 4, "/");
+	            }
+	            var flag = cookie.getCookieValue('flag');
+	            if(flag=="0"){
+	                cookie.setCookie("flag", "1", 4, "/");
+	                window.location.assign('code?state=code&userId=' + cookieUserId+'&token=' + token + "&code="+getQueryObject(window.location.href).code);
+	            }
+	            if(flag=="1"){
+
+	                if (isWeiXin()) {
+	                    if(!openId){
+	                        var obj = getQueryObject(window.location.href);
+	                        cookie.setCookie("code", obj.code, 4, "/");
+	                        getOpenId(obj.code);
+	                    }
+	                }
+	            }
 	        }
-	    });
+	    }
+
+
+
+
+	    function getCaptchaImg(){
+	        $.ajaxSettings.async = false;
+	        var getCaptchaImg = '';
+	        util.ajaxFun(interfaceUrl.getCaptchaImg, 'get', {
+	            'userId': userId
+	        }, function (res) {
+	            if (res.rtnCode = '0000000') {
+	                var dataJson = res.bizData;
+	                $('.name').text(dataJson.name);
+	                $('.tel').text(dataJson.account);
+	                $('#captchImg').attr('src', dataJson.qrcodeUrl);
+	                getCaptchaImg = dataJson.qrcodeUrl;
+	            }
+	        });
+	        $.ajaxSettings.async = true;
+	        return getCaptchaImg;
+	    }
+	    getCaptchaImg();
+
+
 
 	    //分享
 	    if (isWeiXin()) {
@@ -55,10 +128,371 @@ webpackJsonp([0],[
 
 
 
+	    /***************************自定义二维码*************************************/
+
+	    var timestamp = parseInt(new Date().getTime() / 1000);
+	    //function getNonceStr() {
+	    //    var $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	    //    var maxPos = $chars.length;
+	    //    var noceStr = "";
+	    //    for (var i = 0; i < 32; i++) {
+	    //        noceStr += $chars.charAt(Math.floor(Math.random() * maxPos));
+	    //    }
+	    //    return noceStr;
+	    //}
+
+
+	    var noncestr = 'U5iQqjfV123NT5du';
+
+	    function getSign() {
+	        $.ajaxSettings.async = false;
+	        var signStr = '';
+	        $.getJSON('/pay/getAccessToken', function (res) {
+	            if (res.rtnCode == "0000000") {
+	                var ticket = res.bizData.ticket;
+	                var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url="+window.location.href;
+	                //alert(string1)
+
+	                var sign = CryptoJS.SHA1(string1);
+	                signStr = sign.toString();
+	                //alert(signStr)
+	            }
+	        })
+	        $.ajaxSettings.async = true;
+	        return signStr;
+	    }
+	    wx.config({
+	        debug: false,
+	        appId: 'wx552f3800df25e964',
+	        timestamp: timestamp,
+	        nonceStr: noncestr,
+	        signature: getSign(),
+	        jsApiList: [
+	            'checkJsApi',
+	            'onMenuShareTimeline',
+	            'onMenuShareAppMessage'
+	        ]
+	    });
+	    wx.ready(function () {
+	        //document.querySelector('#checkJsApi').onclick = function () {
+	        //
+	        //};
+
+	        wx.checkJsApi({
+	            jsApiList: [
+	                'getNetworkType',
+	                'previewImage'
+	            ],
+	            success: function (res) {
+	                //alert(JSON.stringify(res));
+	            }
+	        });
+	        wx.onMenuShareAppMessage({
+	            title: '智高考购买邀请',
+	            desc: '智高考，一款精准的高考志愿填报产品。一键分享他人，成功购买既得返利.',
+	            link: window.location.href,//分享链接
+	            imgUrl: getCaptchaImg(), // 分享图标
+	            trigger: function (res) {
+	                //alert('用户点击发送给朋友');
+	            },
+	            success: function (res) {
+	                //alert('已分享');
+	            },
+	            cancel: function (res) {
+	                //alert('已取消');
+	            },
+	            fail: function (res) {
+	                //alert(JSON.stringify(res));
+	            }
+	        });
+
+	        wx.onMenuShareTimeline({
+	            title: '智高考购买邀请',
+	            desc: '智高考，一款精准的高考志愿填报产品。一键分享他人，成功购买既得返利.',
+	            link: window.location.href,//分享链接
+	            imgUrl: getCaptchaImg(), // 分享图标
+	            trigger: function (res) {
+	                //alert('用户点击分享到朋友圈');
+	            },
+	            success: function (res) {
+	                //alert('已分享');
+	            },
+	            cancel: function (res) {
+	                //alert('已取消');
+	            },
+	            fail: function (res) {
+	                //alert(JSON.stringify(res));
+	            }
+	        });
+
+	        //document.querySelector('#onMenuShareAppMessage').onclick = function () {
+	        //
+	        //    alert('已注册获取“发送给朋友”状态事件');
+	        //};
+	        //
+	        //
+	        //// 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
+	        //document.querySelector('#onMenuShareTimeline').onclick = function () {
+	        //
+	        //    alert('已注册获取“分享到朋友圈”状态事件');
+	        //};
+	    });
+
+	    wx.error(function (res) {
+	        //alert(res.errMsg);
+	    });
+
+
+
 
 
 
 	});
+
+/***/ },
+/* 1 */,
+/* 2 */,
+/* 3 */
+/***/ function(module, exports) {
+
+	/*
+	 * url配置文件
+	 * */
+	var BASE_URL = 'http://s1.service.zhigaokao.cn'; //正式
+	//var BASE_URL = 'http://10.136.21.171:8080';  //正式环境
+	//var BASE_URL = 'http://10.136.13.233:8080';  //测试环境
+	//var BASE_URL = 'http://172.16.160.31:8080';  //小文本地
+	//var BASE_URL = 'http://172.16.160.72:8089';  //左浩本地
+	//var BASE_URL2 = 'http://10.254.130.33:8080';  //测试环境(智能填报)
+	//var BASE_URL = 'http://10.136.56.195:8080';  //开发环境
+	//var BASE_URL = 'http://172.16.180.150:8086';  //yyp
+	//var BASE_URL = 'http://127.0.0.1:8080';
+
+
+	var interfaceUrl = {
+	    /*
+	     * ==================================================
+	     * new  interface
+	     * ==================================================
+	     * */
+	    getCaptchaImg: 'user/getUserProfile',//分享二维码
+
+
+	    /**
+	     * 在线购买初始化
+	     */
+	    getBuyInfo: '/order/getBuyInfo',
+	    /**
+	     * 确认订单
+	     */
+	    commitOrder: '/order/commitOrder',
+	    /**
+	     * 订单支付
+	     */
+	    payOrder: '/pay/payOrder',
+	    /**
+	     * 获取订单列表
+	     */
+	    getUserOrderList: '/order/getUserOrderList',
+	    /**
+	     * 获取openId
+	     */
+	    getOpenId: '/pay/getOpenId',
+	    /*
+	     * 高考咨询
+	     * */
+	    getGkTopList: BASE_URL + '/gkhot/getGkHotList.do', //头条1
+	    getGkHotList: BASE_URL + '/gkhot/getGkHotList.do?type=0',//热点0
+	    getGkHotInfo: BASE_URL + '/gkhot/getGkHotInfo.do',      //咨询详情
+
+
+	    /*
+	     * 高考日程
+	     * */
+	    getScheduleList: BASE_URL + '/schedule/getScheduleList.do', //  高考日程列表
+	    getScheduleInfo: BASE_URL + '/schedule/getScheduleInfo.do', //  高考日程详情
+
+
+	    /*
+	     * 政策解读|招办电话
+	     * */
+	    getPolicyList: BASE_URL + '/policy/getPolicyList.do',//获取政策解读摘要列表
+	    getPolicyInfo: BASE_URL + '/policy/getPolicyInfo.do',//根据主键获取政策解读详情
+	    getGkTelList: BASE_URL + '/phone/getGkPhoneList.do',//获取招办电话列表
+
+	    /*
+	     * 院校信息
+	     * */
+	    getProvinceList: BASE_URL + '/university/getRemoteProvinceList.do',   // 省份
+	    getCollegeList: BASE_URL + '/university/getRemoteDataDictList.do',   // 院校分类type=PROPERTY（院校分类）|type=EDULEVEL（学历层次）|type=FEATURE（院校特征）| type=BATCHTYPE(院校批次)
+	    getSearchList: BASE_URL + '/university/getRemoteUniversityList.do',  // 院校信息(筛选)查询
+	    getSchoolDetail: BASE_URL + '/university/getRemoteUniversityById.do', //院校信息详情?universityId=51
+	    getOpenProfessional: BASE_URL + '/university/getRemoteUniversityMajorListByUniversityId.do',//开设专业
+	    getRemoteDataDictList: BASE_URL + '/university/getRemoteDataDictList.do?type=UNIVERSITY_MAJOR_TYPE',
+	    getUniversityMajorEnrollingPlanList: BASE_URL + '/university/getUniversityMajorEnrollingPlanList.do',//院校招生计划列表
+	    getQueryUniversityPlanChart: BASE_URL + '/university/queryUniversityPlanChart.do',//院校招生计划图标展示(暂时只有2015年数据)
+	    queryUniversityEnrollingChartList: BASE_URL + '/university/queryUniversityEnrollingChart.do',//录取情况 (院校录取详情)
+	    getUniversityMajorEnrollingSituationList: BASE_URL + '/university/getUniversityMajorEnrollingSituationList.do',//录取情况 (院校专业录取详情)
+
+
+	    /*
+	     * 收藏
+	     * */
+	    getUserCollectList: BASE_URL + '/userCollection/getUserCollectList.do',   // 收藏列表
+	    saveUserCollect: BASE_URL + '/userCollection/saveUserCollect.do',//添加收藏
+	    deleteUserCollect: BASE_URL + '/userCollection/deleteUserCollect.do',//取消收藏
+	    getIsUniversityCollect: BASE_URL + '/userCollection/isUniversityCollect.do',//判断是否已收藏 1已收藏,0未收藏
+
+
+	    /*
+	     * 院校招生信息
+	     * */
+	    getAdmissionline: BASE_URL + '/admissionline/getYears.do', //院校招生年份
+	    getLineList: BASE_URL + '/admissionline/getGkAdmissionLineList.do',//招生分数线
+
+	    /*
+	     * 登录|注册
+	     * */
+	    postLogin: '/login/login',   // 登录
+	    postRegisterLogin: BASE_URL + '/register/account.do',   // 注册
+	    postConfirmAccountCode: '/register/confirmAccount',  // 确认是否注册
+	    postVerificationCode: '/captcha/captcha',   // 获取手机验证码
+	    postRetrievePassword: '/register/retrievePassword',   // 获取手机验证码
+
+
+	    /**
+	     * 提交个人设置中心
+	     */
+	    postUpdateUserInfo: BASE_URL + '/info/updateUserInfo.do',   // 获取手机验证码
+
+	    /*
+	     * 在线互动
+	     * */
+	    getOnlineInteractive: BASE_URL + '/question/newQuestion.do',//在线互动?startSize=0&endSize=10
+	    getOnlineHot: BASE_URL + '/question/hotQuestion.do',//热门解答?startSize=0&endSize=10
+	    getQuestionDetail: BASE_URL + '/question/questionDetail.do',//问题详情?id=3356
+
+	    /*
+	     * 评测
+	     * */
+	    postQueryApeskUrl: BASE_URL + '/apesk/queryApeskUrl.do', //专家测评
+
+
+	    /*
+	     * 高考学堂
+	     * */
+	    getTeacherLectureList: BASE_URL + '/video/getGkVideoList.do',//获取高考学堂列表?isIgnore=&page=&rows=&type=
+	    getMentalityList: BASE_URL + '/video/getGkVideoList.do',//获取心理讲堂列表?isIgnore=&page=&rows=&type=
+	    getVolunteerForumList: BASE_URL + '/video/getGkVideoList.do',//获取志愿讲堂列表?isIgnore=&page=&rows=&type=
+	    getRecommendList: BASE_URL + '/video/getGkVideoList.do',//获取推荐学习列表?isIgnore=&page=&rows=&type=
+
+
+	    /*
+	     * 用户信息
+	     *
+	     * */
+	    getAllRegion: BASE_URL + '/region/getAllRegion.do', //省市区
+	    getUserInfo: BASE_URL + '/info/getUserInfo.do', //获取用户信息
+
+
+	    /*
+	     * 高考学堂
+	     * */
+	    getVideoDetail: BASE_URL + '/video/getGkVideoInfo.do',//根据id获取视屏详情
+	    postHitInCount: BASE_URL + '/video/hitInc.do', //视屏访问量?id=
+	    postUserVideoCollect: BASE_URL + '/userCollection/saveUserCollect.do?type=2', //视屏收藏添加 id
+
+	    /*
+	     * 高考词条
+	     * */
+	    getGkEntryList: BASE_URL + '/entry/getGkEntryList.do',//获取高考词条列表page：页rows:条
+	    getGkEntryInfo: BASE_URL + '/entry/getGkEntryInfo.do',//根据主键获取高考词条详情  id
+
+	    //getMapData:'../../mock/zgk-data.json'//智高考首页map地图数据
+
+
+	    /**
+	     * 职业信息
+	     */
+	    getProfessionalList: BASE_URL + '/professional/getProfessionalList.do',//获取职业列表
+	    getProfessionalInfo: BASE_URL + '/professional/getProfessionalInfo.do',//获取职业详情
+	    getProfessionCategory: BASE_URL + '/professional/getProfessionCategory.do',//获取职业分类
+
+
+	    /**
+	     * 志愿填报
+	     */
+	    getPredictProbability: BASE_URL + '/predict/predictProbability.do',// 录取难易预测
+	    getPredictSchoolList: BASE_URL + '/predict/predictSchoolList.do',// 录取难易预测
+	    getTallyPredictProbability: BASE_URL + '/predict/tallyPredictProbability.do',// 目标定位
+	    getPredictResults: BASE_URL + '/predict/predictResults.do',// 获取定位结果页
+
+
+	    /**
+	     * VIP
+	     */
+	    getFindProduct: BASE_URL + '/product/findProduct.do',// 获取商品信息
+	    getCreateOrders: BASE_URL + '/orders/createOrders.do',// 创建订单
+	    getAccount: BASE_URL + '/vip/getAccount.do',// 获取VIP账户
+	    upgradeVipByCard: BASE_URL + '/vip/upgradeVipByCard.do', // 升级VIP
+
+
+	    /**
+	     * 专业信息
+	     */
+	    getMajoredCategory: BASE_URL + '/majored/getMajoredCategory.do',// 专业门类查询
+	    getMajoredCategoryById: BASE_URL + '/majored/getCategoryMajoredList.do',// 单个门类查询
+	    getMajoredInfoById: BASE_URL + '/majored/getMajoredInfoById.do',// 专业详情
+	    getMajorOpenUniversityList: BASE_URL + '/majored/getMajorOpenUniversityList.do',// 开设院校
+	    getMajoredByName: BASE_URL + '/majored/getMajoredByName.do',// 搜索
+
+
+	    /**
+	     * 用户定位
+	     */
+	    postAddFrecast: BASE_URL + '/forecast/addFrecast.do',// 保存定位
+	    getPerformanceDetail: BASE_URL + '/forecast/getPerformanceDetail.do',// 获取当前用户的成绩明细
+	    getLastoFrecast: BASE_URL + '/forecast/getLastoFrecast.do',// /forecast/getLastoFrecast.do//获取最后一次目标定位结果
+	    getFormerYearsAdmission: BASE_URL + '/forecast/getFormerYearsAdmission.do',// /forecast/getLastoFrecast.do
+
+	    /**
+	     * 地区批次线
+	     */
+	    getGkAreaBatchInfo: BASE_URL + '/areabatch/getGkAreaBatchInfo.do',// 地区批次线
+
+
+	    postModifyPassword: BASE_URL + '/info/modifyPassword.do',// 修改密码
+
+
+	    /**
+	     * 智能填报
+	     */
+	    getVolunteerReport: BASE_URL + '/report/get/batch.do', // 智能填报
+	    getVolunteerSchool: BASE_URL + '/report/main.do', // 院校清单
+	    getSpecialty: BASE_URL + '/report/get/specialty.do', // 获取专业信息
+	    volunteerSave: BASE_URL + '/report/save.do', // 保存志愿填报
+	    getVolunteerFinalInfo: BASE_URL + '/report/get/info.do', // 志愿报告结果页
+
+
+	    /**
+	     *
+	     */
+
+	    getSplitPriceInfo: '/getSplitPriceInfo',
+
+
+
+	    /**
+	     * 微信分享获取jsapi_ticket
+	     */
+	    getAccessToken : '/pay/getAccessToken'
+
+
+	};
+
+
+	module.exports = interfaceUrl;
+
 
 /***/ }
 ]);

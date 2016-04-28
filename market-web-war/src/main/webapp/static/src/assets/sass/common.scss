@@ -8,6 +8,7 @@
 [class^="icon-"] {
   @include inline-block(middle);
 }
+
 @import "sprites";
 // common
 
@@ -26,7 +27,7 @@ header {
     font-size: 12px;
     vertical-align: 2px;
     margin-left: 1px;
-    height:39px;
+    height: 39px;
     display: inline-block;
     &.location-icon:before {
       vertical-align: -6px;
@@ -34,10 +35,10 @@ header {
     }
   }
 }
-.hide{
+
+.hide {
   display: none;
 }
-
 
 /*icons*/
 .back-icon:before {
@@ -48,6 +49,7 @@ header {
   background-size: cover;
   display: inline-block;
 }
+
 .calendar-icon.active:before {
   content: "";
   background: url(../img/icons/calendar-active.png);
@@ -56,6 +58,7 @@ header {
   background-size: cover;
   display: inline-block;
 }
+
 .calendar-icon:before {
   content: "";
   background: url(../img/icons/calendar.png);
@@ -64,6 +67,7 @@ header {
   background-size: cover;
   display: inline-block;
 }
+
 .card-icon:before {
   content: "";
   background: url(../img/icons/card.png);
@@ -72,6 +76,7 @@ header {
   background-size: cover;
   display: inline-block;
 }
+
 .close-icon:before {
   content: "";
   background: url(../img/icons/close.png);
@@ -80,6 +85,7 @@ header {
   background-size: cover;
   display: inline-block;
 }
+
 .drop-down-icon:before {
   content: "";
   background: url(../img/icons/drop-down.png);
@@ -88,6 +94,7 @@ header {
   background-size: cover;
   display: inline-block;
 }
+
 .flag-icon:before {
   content: "";
   background: url(../img/icons/flag.png);
@@ -98,6 +105,7 @@ header {
   position: relative;
   top: 4px;
 }
+
 .location-normal-icon:before {
   content: "";
   background: url(../img/icons/location-normal.png);
@@ -108,6 +116,7 @@ header {
   position: relative;
   top: 4px;
 }
+
 .location-icon:before {
   content: "";
   background: url(../img/icons/location.png);
@@ -116,6 +125,7 @@ header {
   background-size: cover;
   display: inline-block;
 }
+
 .menu-icon:before {
   content: "";
   background: url(../img/icons/menu.png);
@@ -124,6 +134,7 @@ header {
   background-size: cover;
   display: inline-block;
 }
+
 .mobile-icon:before {
   content: "";
   background: url(../img/icons/mobile.png);
@@ -132,6 +143,7 @@ header {
   background-size: cover;
   display: inline-block;
 }
+
 .password-icon:before {
   content: "";
   background: url(../img/icons/password.png);
@@ -140,6 +152,7 @@ header {
   background-size: cover;
   display: inline-block;
 }
+
 .search-normal-icon:before {
   content: "";
   background: url(../img/icons/search-normal.png);
@@ -148,6 +161,7 @@ header {
   background-size: cover;
   display: inline-block;
 }
+
 .search-icon:before {
   content: "";
   background: url(../img/icons/search.png);
@@ -156,6 +170,7 @@ header {
   background-size: cover;
   display: inline-block;
 }
+
 .star-icon:before {
   content: "";
   background: url(../img/icons/star.png);
@@ -165,34 +180,10 @@ header {
   display: inline-block;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*from*/
 .input-group {
-  height: 39px;
-  line-height: 39px;
+  height: 46px;
+  line-height: 46px;
   background-color: #fff;
   position: relative;
   border: 1px solid #E8E8E8;
@@ -208,21 +199,21 @@ header {
     width: calc(100% - 40px);
     height: 100%;
     margin-left: 40px;
-    font-size: 14px;
+    font-size: 16px;
     padding: 0;
     border: none;
   }
 }
 
 input {
-  height: 39px;
+  height: 46px;
+  line-height: 46px;
   padding: 0 10px;
-  font-size: 14px;
+  font-size: 16px;
   outline: none;
   border: 1px solid #E8E8E8;
   border-radius: 2px;
 }
-
 
 /*layer*/
 .disn {
@@ -237,7 +228,7 @@ input {
   position: fixed;
   top: 200px;
   left: 50%;
-  border-radius: 10px;
+  border-radius: 2px;
   min-width: 200px;
   margin-left: -100px;
   border: 1px solid #f1f1f1;
@@ -251,15 +242,14 @@ input {
   font-size: 14px;
 }
 
-
 /*
 上拉加载更多
 */
 
-.pull{
+.pull {
   width: 100%;
   text-align: center;
-  .pull-text{
+  .pull-text {
     width: 100%;
     height: 34px;
     line-height: 34px;
@@ -280,6 +270,7 @@ input {
   -webkit-animation: preloader-spin 1s steps(12, end) infinite;
   animation: preloader-spin 1s steps(12, end) infinite;
 }
+
 .preloader:after {
   display: block;
   content: "";
@@ -290,11 +281,13 @@ input {
   background-size: 100%;
   background-repeat: no-repeat;
 }
+
 @-webkit-keyframes preloader-spin {
   100% {
     -webkit-transform: rotate(360deg);
   }
 }
+
 @keyframes preloader-spin {
   100% {
     -webkit-transform: rotate(360deg);
@@ -311,16 +304,16 @@ input {
 //  overflow: hidden;
 //}
 
-
-
-
 /*功能菜单*/
 //header bar
 header {
+  padding: 0;
+  margin: 0;
   position: relative;
   overflow: hidden;
   z-index: 3;
-
+  height: 46px;
+  line-height: 46px;
   .header-title {
     padding-left: 46px;
     margin-right: 46px;
@@ -328,7 +321,7 @@ header {
   .header-btn {
     position: absolute;
     height: 25px;
-    top: 6px;
+    top: 9px;
     left: 9px;
   }
 }
@@ -336,10 +329,10 @@ header {
 .menu {
   background-color: #fff;
   color: #8C8C8C;
-  font-size: 12px;
+  font-size: 13px;
   position: relative;
   z-index: 3;
-  width:100%;
+  width: 100%;
   .title {
     border-bottom: 1px solid #CFCFCF;
     padding-bottom: 12px;
@@ -352,21 +345,21 @@ header {
     }
   }
   .menu-list {
-    padding:20px 0;
+    padding: 20px 0;
     .item {
       width: 25%;
       float: left;
       text-align: center;
       margin-bottom: 10px;
-      a{
+      a {
         display: inline-block;
         color: #8C8C8C;
         text-decoration: none;
         img {
           width: 70%;
         }
-        span{
-          display:block;
+        span {
+          display: block;
         }
       }
     }
@@ -378,34 +371,38 @@ header {
       display: inline-block;
       text-align: center;
       border: 1px solid #D80C18;
-      padding: 10px 0;
-      border-radius: 4px;
+      border-radius: 2px;
       color: #D80C18;
       text-decoration: none;
-      &:first-child{
-        margin-right: 8px;
+      height: 40px;
+      line-height: 40px;
+      width: 50%;
+      &:first-child {
+        margin-right: 28px;
       }
-      &:last-child {
+      &:hover {
         color: #fff;
         background-color: #D80C18;
       }
     }
   }
-  .btn.login-btn{
-    a{
-      width:48%;
+
+  .btn.login-btn {
+    a {
       display: inline-block;
     }
   }
 }
+
 #un-login .btn {
   a {
     &:last-child {
       color: #D80C18;
-      background:none ;
+      background: none;
     }
   }
 }
+
 .backdrop {
   width: 100%;
   height: 100%;
@@ -417,32 +414,31 @@ header {
   opacity: .6;
 }
 
-
 // layer
-.mask{
+.mask {
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, .5);
   opacity: 1;
   display: none;
-  &.show{
+  &.show {
     display: block;
   }
 
-  .modal{
+  .modal {
     width: 80%;
     margin: 150px auto 0;
     box-sizing: border-box;
     padding: 20px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
     background: #fff;
     position: relative;
   }
-  .close-modal{
+  .close-modal {
     position: absolute;
     right: -15px;
     top: -15px;
@@ -456,25 +452,26 @@ header {
     -webkit-border-radius: 50%;
     border-radius: 50%;
   }
-  .modal-title{
-    text-align: center;
+  .modal-title {
     width: 100%;
     height: 30px;
     line-height: 20px;
     border-bottom: 1px solid #e9e4e4;
     color: #5e5e5e;
-    font-size: 20px;
+    font-size: 16px;
+    text-align: left;
+    text-indent: 20px;
   }
-  .modal-body{
+  .modal-body {
     width: 100%;
 
   }
-  .modal-footer{
+  .modal-footer {
     text-align: center;
     button {
       width: 40%;
       height: 39px;
-      margin:10px 4%;
+      margin: 20px 4% 10px 4%;
       line-height: 39px;
       border: 1px solid #e9e4e4;
       -webkit-border-radius: 2px;
@@ -491,8 +488,9 @@ header {
     }
   }
 }
+
 .province-option-list {
-  padding:10px 0 10px 39px;
+  padding: 10px 0 22px 39px;
   font-size: 13px;
   position: absolute;
   z-index: 3;
@@ -507,7 +505,7 @@ header {
     border: 1px solid #979797;
     color: #979797;
     margin: 8px 6px;
-
+    text-decoration: none;
     &.active {
       background-color: #D80C18;
       border-color: #D80C18;
@@ -515,7 +513,17 @@ header {
     }
   }
 }
-#end-login{
+
+#end-login {
   position: absolute;
-  top:0;
+  top: 0;
+}
+
+a, button, input {
+  outline: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+  -ms-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
 }

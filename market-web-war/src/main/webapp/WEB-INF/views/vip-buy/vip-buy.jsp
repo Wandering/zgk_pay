@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="vip-check-info">
-        <img src="<%=ctx%>/static/dist/img/icons/vip.png" alt=""/>
+        <%--<img src="<%=ctx%>/static/dist/img/icons/vip.png" alt=""/>--%>
         <div class="text">
             <div id="price"></div>
         </div>
@@ -38,6 +38,6 @@
 </div>
 <script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/pingpp.js"></script>
-<script src="<%=ctx%>/static/dist/js/vipBuy.js"></script>
+<script src="<%=ctx%>/static/dist/js/vipBuy.js?v=11"></script>
 </body>
 </html>

@@ -230,6 +230,7 @@ var interfaceUrl = {
      */
     getAccessToken : '/pay/getAccessToken'
 
+
 };
 
 

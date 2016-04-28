@@ -7,20 +7,20 @@ var interfaceUrl = require('urlConfig');
 var IScroll = require('iscroll');
 $(function () {
     $('#header-menu').show();
-    $('#header-title').text('高考政策');
+    $('#header-title').text('高考热点');
     var Policy = {
         page: 0,
-        pageRow: 5,
+        pageRow: 6,
         getPolicyList: function (num) {
             util.ajaxFun(interfaceUrl.getGkHotList, 'get', {
                 'rows': this.pageRow,
                 'page': num
             }, function (res) {
-                console.log(res)
                 var dataJson = res.bizData;
                 if (res.rtnCode == '0000000') {
                     var template = handlebars.compile($('#policy-list-tpl').html());
                     $('#policy-list').append(template(dataJson));
+                    if (myScroll) myScroll.refresh();
                 }
                 if (dataJson.page >= dataJson.total) {
                     $('.pull').attr('data-flag', 'off');
@@ -66,9 +66,10 @@ $(function () {
             myScroll.refresh();
             setTimeout(function () {
                 Policy.getPolicyDataPage();
-            }, 3000);
+            }, 500);
         } else {
             $('.pull-text').html('没有更多数据~');
+            $('.preloader').hide();
         }
     });
 

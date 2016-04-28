@@ -32,6 +32,6 @@
 </div>
 <script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/pingpp.js"></script>
-<script type="text/javascript" src="<%=ctx%>static/dist/js/order.js"></script>
+<script type="text/javascript" src="<%=ctx%>static/dist/js/order.js?V=11"></script>
 </body>
 </html>

@@ -1,25 +1,26 @@
 $(function () {
     var cookie = require('cookie');
     var util = require('commonjs');
-    var urlConfig = require('urlConfig');
+    //var urlConfig = require('urlConfig');
     var account = cookie.getCookieValue('phone');
-    var getTime = require('timeFormat');
+    //var getTime = require('timeFormat');
 
     var isLogin = cookie.getCookieValue('isLogin');
     var token = cookie.getCookieValue('token');
     var userId = cookie.getCookieValue('userId');
 
-    if(isLogin){
-        $('#vip-buy').attr('href','/vip-buy?token='+token);
-        $('#invite-friends,#login-vip').attr('href','/code?userId=' + userId);
-    }
 
+
+
+    //if(isLogin){
+    //    $('#invite-friends').attr('href','/code?userId=' + userId);
+    //}
     $('#account-number').val(account);
-
     $('#header-menu').show();
-    $('#header-title').text('VIP');
+    $('#header-title').text('购买VIP');
 
-
+    // vip卡升级 暂时不上
+    /*
     $('.vip-btn').click(function () {
         var cardNum = $.trim($('#card-number').val());
         var cardPsd = $.trim($('#card-psd').val());
@@ -62,6 +63,7 @@ $(function () {
             }
         });
     });
+    */
 });
 
 

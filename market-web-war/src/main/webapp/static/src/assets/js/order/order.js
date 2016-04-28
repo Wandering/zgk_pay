@@ -1,52 +1,81 @@
-
 (function() {
     $('#header-title').text('我的订单');
     $('#header-menu').show();
-    var util = require('commonjs');
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
-    var TEST_DATA = [{
-        payStatus: 1,
-        name: 'zhigao',
-        price: '780',
-        date: '2016/09/12',
-        time: '12:12',
-        address: 'sdfasdfasfd',
-        phone: '132842347'
-    },{
-        payStatus: 0,
-        name: 'zhigao',
-        price: '780',
-        date: '2016/09/12',
-        time: '12:12',
-        address: 'sdfasdfasfd',
-        phone: '132842347'
-    },{
-        payStatus: 0,
-        name: 'zhigao',
-        price: '480',
-        date: '2016/09/12',
-        time: '12:12',
-        address: 'sdfasdfasfd',
-        phone: '132842347'
-    },{
-        payStatus: 0,
-        name: 'zhigao',
-        price: '480',
-        date: '2016/09/12',
-        time: '12:12',
-        address: 'sdfasdfasfd',
-        phone: '132842347'
-    }]
+
 
     var util = require('commonjs');
-    var interfaceUrl = require('urlConfig');
+    var token = cookie.getCookieValue('token');
+    var toUrl = util.getLinkey('state');
+    var isLogin = cookie.getCookieValue('isLogin');
+
+    function getQueryObject(url) {
+        url = url == null ? window.location.href : url;
+        var search = url.substring(url.lastIndexOf("?") + 1);
+        var obj = {};
+        var reg = /([^?&=]+)=([^?&=]*)/g;
+        search.replace(reg, function (rs, $1, $2) {
+            var name = decodeURIComponent($1);
+            var val = decodeURIComponent($2);
+            val = String(val);
+            obj[name] = val;
+            return rs;
+        });
+        return obj;
+    }
+    function getOpenId(code) {
+
+        $.get(interfaceUrl.getOpenId,{code: code},function(res){
+            if (res.rtnCode == '0000000') {
+                cookie.setCookie("openId", res.bizData.openId, 4, "/");
+            }
+        });
+    }
+    function isWeiXin() {
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.indexOf('micromessenger') > -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    var openId = cookie.getCookieValue('openId');
+
+    if(toUrl=='order'){
+        if(!isLogin){
+            window.location.href='/login?state=order';
+        }else{
+            var menuV = util.getLinkey('menu');
+            if(menuV=="1"){
+                cookie.setCookie("flag", "0", 4, "/");
+            }
+            var flag = cookie.getCookieValue('flag');
+            if(flag=="0"){
+                cookie.setCookie("flag", "1", 4, "/");
+                window.location.assign('/order?state=order&token=' + token+"&code="+getQueryObject(window.location.href).code);
+            }
+            if(flag=="1"){
+
+                if (isWeiXin()) {
+                    if(!openId){
+                        var obj = getQueryObject(window.location.href);
+                        cookie.setCookie("code", obj.code, 4, "/");
+                        getOpenId(obj.code);
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+
     var IScroll = require('iscroll');
     var myScroll = null;
-
-
     var Order = (function() {
-
         Date.prototype.Format = function(fmt) { //author: meizz
             var o = {
                 "M+" : this.getMonth()+1,                 //月份
@@ -80,9 +109,8 @@
             if (obj.status == 1) {
                 html +=  '<span class="pay-status" data-payStatus="' + obj.status + '">已支付</span>';
             } else {
-                html +=  '<span class="pay-status" data-userId="' + obj.user_id + '" data-orderNo="' + obj.order_no + '" data-price="' + obj.product_price + '" data-payStatus="' + obj.status + '">未支付</span>';
+                html +=  '<span class="pay-status" data-userId="' + obj.user_id + '" data-orderNo="' + obj.order_no + '" data-price="' + obj.product_price + '" data-payStatus="' + obj.status + '">去支付</span>';
             }
-
             html +=  '</li>';
             html +=  '<li>';
             html +=  '<span>成交时间：' + createDate.split(' ')[0] + '</span>';
@@ -144,19 +172,11 @@
 
     function orderPayStatus(msg) {
         util.drawToast(msg);
-        setTimeout(function() {
-            window.location.href = '/order';
-        }, 1000);
+        //setTimeout(function() {
+        //    window.location.href = '/order?state=order';
+        //}, 1000);
     }
 
-    function isWeiXin(){
-        var ua = window.navigator.userAgent.toLowerCase();
-        if(ua.indexOf('micromessenger') > -1){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
     /**
      * 支付
@@ -193,7 +213,7 @@
                         orderPayStatus('支付失败');
                     } else if (result == "cancel") {
                         // 微信公众账号支付取消支付
-                        orderPayStatus('支付失败');
+                        orderPayStatus('已取消支付');
                     }
                 });
             } else {

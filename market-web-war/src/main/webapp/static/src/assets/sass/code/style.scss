@@ -52,26 +52,30 @@ header .header-btn {
 }
 
 .share-btn {
-  height: 39px;
-  line-height: 39px;
+  height: 44px;
+  line-height: 44px;
   text-align: center;
   font-size: 14px;
   color: #fff;
-  background-color: #B61F28;
   border: none;
   border-radius: 2px;
   width: 270px;
   margin: 50px auto;
+  background-color: #D80C18;
+  &:hover{
+    background-color: #B61F28;
+  }
 }
 .sharer-png {
   position: absolute;
-  top: 40px;
-  right: 50px;
+  top: 50px;
+  right: 30px;
+  width: 40px;
 }
 .sharer-txt {
   position: absolute;
   top: 88px;
-  right: 60px;
+  right: 15px;
   color: #fff;
 }
 .code-txt{

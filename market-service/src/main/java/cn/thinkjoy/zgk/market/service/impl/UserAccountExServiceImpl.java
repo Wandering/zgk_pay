@@ -132,7 +132,7 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
         userMarket.setFromType(1);//微信
         userMarket.setSharerId(sharerId);
         String uploadUrl = StaticSource.getSource("uploadUrl");
-        String loginUrl = StaticSource.getSource("loginUrl")+"?sharerId="+id+"&sharerType="+1;
+        String loginUrl = StaticSource.getSource("loginUrl")+"?sharerId="+id+"&sharerType="+1+"&state=user-detail";
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         Map hints = new HashMap();
         hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");

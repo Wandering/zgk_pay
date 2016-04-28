@@ -140,14 +140,18 @@ form {
 }
 .fix-link-box .col-1 {
   text-decoration: none;
-  width: 50%;
+  width: 49.8%;
   font-size: 14px;
   display: block;
   float: left;
   color: #8B8B8B;
+  border-right: 1px solid #ccc;
   text-align: center;
 }
-.fix-link-box .red-link {
+.fix-link-box .col-1:last-of-type {
+  border-right: none;
+}
+.fix-link-box .col-1:hover {
   background-color: #D80C18;
   color: #fff;
 }

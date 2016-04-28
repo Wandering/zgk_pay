@@ -167,18 +167,7 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	//var domainStr = 'zgkser.zhigaokao.cn'; //正式
-	//var domainStr = 'test.zhigaokao.cn'; //测试
-	//var domainStr = 'm.zhigaokao.com:8080';
-
-	//获取域名前缀=============================
-	//var urlDomain = window.location.hostname + '';
-	//var urlArr = urlDomain.split('.');
-	//var provinceKey = urlArr[0];
-
-	//console.log(window.location.hostname);
-
-
+	
 	var cookie = __webpack_require__(2);
 
 	var isLogin = function () {
@@ -188,11 +177,13 @@
 	    if (cookie.getCookieValue('token')) {
 	        data.token = cookie.getCookieValue('token');
 	    }
+
 	    data.userKey = cookie.getCookieValue('userKey');
 	    var strParameter = '';
 	    for (var i in data) {
 	        strParameter += "&" + i + "=" + data[i];
 	    }
+
 	    $.ajax({
 	        url: url,
 	        type: method,
@@ -340,7 +331,7 @@
 	    var value = escape(value);
 	    var expires = new Date();
 	    //expires.setTime(expires.getTime() + days*24*60*60*1000);
-	    expires.setTime(expires.getTime() + hours*60*60*1000);
+	    expires.setTime(expires.getTime() + hours* 365 * 24 *60*60*1000);
 	    path = path == "" ? "": ";path=" + path;
 	    //var domain = ";domain="+domainStr;
 	    expires = (typeof hours) == "string" ? "" : ";expires=" + expires.toUTCString();
@@ -610,6 +601,7 @@
 	     * 微信分享获取jsapi_ticket
 	     */
 	    getAccessToken : '/pay/getAccessToken'
+
 
 	};
 

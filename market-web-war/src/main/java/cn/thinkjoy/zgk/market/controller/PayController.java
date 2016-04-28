@@ -1,23 +1,30 @@
 package cn.thinkjoy.zgk.market.controller;
 
+import cn.thinkjoy.common.domain.SearchField;
 import cn.thinkjoy.common.exception.BizException;
+import cn.thinkjoy.common.restful.apigen.annotation.ApiDesc;
+import cn.thinkjoy.common.utils.ObjectFactory;
+import cn.thinkjoy.common.utils.SqlOrderEnum;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
+import cn.thinkjoy.zgk.market.constant.UserRedisConst;
 import cn.thinkjoy.zgk.market.domain.Order;
 import cn.thinkjoy.zgk.market.domain.OrderStatements;
+import cn.thinkjoy.zgk.market.domain.UserWithdrawRecord;
+import cn.thinkjoy.zgk.market.edomain.ErrorCode;
 import cn.thinkjoy.zgk.market.enumerate.PAYCHANNEL;
 import cn.thinkjoy.zgk.market.service.IOrderService;
 import cn.thinkjoy.zgk.market.service.IOrderStatementsService;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
-import cn.thinkjoy.zgk.market.util.HttpRequestUtil;
-import cn.thinkjoy.zgk.market.util.IPUtil;
-import cn.thinkjoy.zgk.market.util.NumberGenUtil;
-import cn.thinkjoy.zgk.market.util.StaticSource;
+import cn.thinkjoy.zgk.market.service.IUserWithdrawRecordService;
+import cn.thinkjoy.zgk.market.service.ex.IPayExService;
+import cn.thinkjoy.zgk.market.util.*;
 import cn.thinkjoy.zgk.zgksystem.AgentService;
 import cn.thinkjoy.zgk.zgksystem.pojo.SplitPricePojo;
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Maps;
 import com.pingplusplus.Pingpp;
 import com.pingplusplus.model.Charge;
 import com.pingplusplus.util.WxpubOAuth;
@@ -40,6 +47,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -62,6 +70,12 @@ public class PayController {
     @Autowired
     private IUserAccountExService userAccountExService;
 
+    @Autowired
+    private IPayExService payExService;
+
+    @Autowired
+    private IUserWithdrawRecordService userWithdrawRecordService;
+
 
     public static final String  CURRENCY ="cny";
 
@@ -70,7 +84,7 @@ public class PayController {
     private static final String queryJsapiUrl = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=%s&type=jsapi";
 
     /**
-     * 获取openId
+     * 获取accessToken和jsapi_ticket
      * @return
      */
     @RequestMapping(value = "/getAccessToken",method = RequestMethod.GET)
@@ -79,8 +93,18 @@ public class PayController {
         String appSecret=StaticSource.getSource("appSecret");
         String wxAppId=StaticSource.getSource("wxAppId");
         Map<String,Object> map=new HashMap<>();
-        String accessToken = "";
-        String jsApi = "";
+        String accessToken ;
+        String ticket;
+        boolean isAccessTokenExist = RedisUtil.getInstance().exists("accessToken");
+        boolean isTicketTokenExist = RedisUtil.getInstance().exists("ticket");
+        if(isAccessTokenExist && isTicketTokenExist)
+        {
+            accessToken = RedisUtil.getInstance().get("accessToken").toString();
+            ticket = RedisUtil.getInstance().get("ticket").toString();
+            map.put("accessToken",accessToken);
+            map.put("ticket", ticket);
+            return map;
+        }
         try {
             String queryUrl = String.format(queryAccessTokenUrl,wxAppId, appSecret);
             DefaultHttpClient client = new DefaultHttpClient();
@@ -88,18 +112,21 @@ public class PayController {
             httpGetToken.addHeader("Content-type" , "text/html;charset=utf-8");
             HttpResponse httpResponse = client.execute(httpGetToken);
             if (httpResponse.getStatusLine().getStatusCode() == 200) {
-                accessToken = EntityUtils.toString(httpResponse.getEntity(), HTTP.UTF_8);
+                accessToken = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
                 Map<String, String> tokenMap = JSON.parseObject(accessToken, Map.class);
                 map.put("accessToken",tokenMap.get("access_token"));
-
+                RedisUtil.getInstance().set("accessToken",tokenMap.get("access_token"),
+                        UserRedisConst.ACCESS_TOKEN_EXPIRE_TIME, TimeUnit.SECONDS);
                 String queryJsapiUrl2 = String.format(queryJsapiUrl,tokenMap.get("access_token"));
                 HttpGet httpGetJsapi = new HttpGet(queryJsapiUrl2);
                 httpGetJsapi.addHeader("Content-type" , "text/html;charset=utf-8");
                 HttpResponse httpResponseJsapi = client.execute(httpGetJsapi);
                 if (httpResponseJsapi.getStatusLine().getStatusCode() == 200) {
-                    jsApi = EntityUtils.toString(httpResponseJsapi.getEntity(), HTTP.UTF_8);
-                    Map<String, String> ticketMap = JSON.parseObject(jsApi, Map.class);
+                    ticket = EntityUtils.toString(httpResponseJsapi.getEntity(), "UTF-8");
+                    Map<String, String> ticketMap = JSON.parseObject(ticket, Map.class);
                     map.put("ticket", ticketMap.get("ticket"));
+                    RedisUtil.getInstance().set("ticket", ticketMap.get("ticket"),
+                            UserRedisConst.TICKET_EXPIRE_TIME, TimeUnit.SECONDS);
                 }
             }
 
@@ -300,6 +327,63 @@ public class PayController {
     }
 
 
+    @ResponseBody
+    @ApiDesc(value = "用户申请提现",owner = "杨国荣")
+    @RequestMapping(value = "/applyWithdraw",method = RequestMethod.POST)
+    public Object applyWithdraw(@RequestParam("userName") String userName,
+                                            @RequestParam("cardNo") String cardNo,
+                                            @RequestParam("userId") long userId,
+                                            @RequestParam("bankName") String bankName,
+                                            @RequestParam("money") double money){
 
+        double balance = payExService.getWalletBalance(userId);
+
+        if(money > balance){
+            ModelUtil.throwException(ErrorCode.ERROR_PARAM);
+        }
+
+        UserWithdrawRecord record = new UserWithdrawRecord();
+        ModelUtil.initBuild(record);
+        record.setMoney(money);
+        record.setBankName(bankName);
+        record.setCardNo(cardNo);
+        record.setUserName(userName);
+        record.setUserId(userId);
+        userWithdrawRecordService.insert(record);
+
+        return ObjectFactory.getSingle();
+    }
+
+
+    @ResponseBody
+    @ApiDesc(value = "提现记录",owner = "杨国荣")
+    @RequestMapping(value = "/queryWithdrawRecords",method = RequestMethod.POST)
+    public List<UserWithdrawRecord> queryWithdrawRecords(@RequestParam("userId") long userId,
+                                                   @RequestParam("pageNo")int pageNo,
+                                                   @RequestParam("pageSize")int pageSize){
+
+        Map<String, Object> condition = new HashMap<>();
+        condition.put("groupOp", "and");
+        condition.put("userId", new SearchField("userId", "=", userId));
+
+        List<UserWithdrawRecord> records = userWithdrawRecordService.queryPage(
+                condition,
+                (pageNo-1)*pageSize,
+                pageSize,
+                "createDate",
+                SqlOrderEnum.DESC);
+
+        return records;
+    }
+
+
+    @ResponseBody
+    @ApiDesc(value = "获取钱包剩余金额",owner = "杨国荣")
+    @RequestMapping(value = "/getWalletBalance",method = RequestMethod.POST)
+    public Map<String,Object> getWalletBalance(@RequestParam("userId") long userId){
+        Map<String,Object> returnMap = Maps.newHashMap();
+        returnMap.put("money",payExService.getWalletBalance(userId));
+        return returnMap;
+    }
 
 }

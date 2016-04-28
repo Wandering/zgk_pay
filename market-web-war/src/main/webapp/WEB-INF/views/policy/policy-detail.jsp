@@ -3,7 +3,7 @@
 <html>
 <head lang="en">
     <%@ include file="../common/meta.jsp" %>
-    <title>高考政策</title>
+    <title>高考热点</title>
     <link rel="stylesheet" href="<%=ctx%>/static/dist/css/policy/policy-detail.css"/>
 </head>
 <body>
@@ -13,7 +13,7 @@
         <div class="title">{{title}}</div>
         <div class="date">{{hotDate}}</div>
         <div class="banner">
-            <img src="{{image}}@base@tag=imgScale&w=100" alt="{{title}}"/>
+            <img src="{{image}}" alt="{{title}}"/>
         </div>
         <div class="content">{{{content}}}</div>
     </script>

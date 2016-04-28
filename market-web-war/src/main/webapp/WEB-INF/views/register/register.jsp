@@ -4,7 +4,7 @@
 <head lang="en">
     <%@ include file="../common/meta.jsp" %>
     <title>登录页</title>
-    <link rel="stylesheet" href="<%=ctx%>/static/dist/css/register/style.css"/>
+    <link rel="stylesheet" href="<%=ctx%>/static/dist/css/register/style.css?v=2"/>
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>
@@ -53,7 +53,7 @@
                 <span class="select"><select name="" id="city" class="form-control"></select></span>
                 <span class="select"><select name="" id="county" class="form-control"></select></span>
             </div>
-            <label class="areaSel-result" id="areaSel-result"></label>
+            <label class="areaSel-result" id="areaSel-result" style="font-size: 13px;color: #7F7B7B"></label>
         </div>
         <div class="form-group">
             <div class="input-group">

@@ -9,6 +9,7 @@ header {
 }
 header .header-title {
   padding-left: 46px;
+  font-size: 20px;
 }
 header .header-btn {
   position: absolute;
@@ -38,20 +39,25 @@ header .location.location-icon:before {
   padding: 48px 25px 0;
 }
 .container .tab-list {
-  height: 37px;
+  height: 46px;
   background-color: #fff;
-  line-height: 37px;
+  line-height: 46px;
   border: 1px solid #E8E8E8;
   border-radius: 2px;
   margin-bottom: 12px;
 }
 .container .tab-list .tab {
-  width: 48%;
+  width: 49%;
   display: inline-block;
   text-align: center;
-  font-size: 15px;
+  font-size: 18px;
   color: #575757;
   position: relative;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+  -ms-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
 }
 .container .tab-list .tab:first-child:after {
   content: "";
@@ -60,8 +66,8 @@ header .location.location-icon:before {
   width: 1px;
   height: 28px;
   position: absolute;
-  right: 2px;
-  top: 6px;
+  right: -2px;
+  top: 10px;
 }
 .container .tab-list .tab.active {
   color: #D80C18;
@@ -72,15 +78,17 @@ header .location.location-icon:before {
 .container .form-group .input-group i {
   position: absolute;
   left: 9px;
-  top: 6px;
+  top: 10px;
 }
 .container .form-group .title {
-  color: #575757;
-  font-size: 12px;
+  color: #7f7b7b;
   margin: 3px 0;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
 }
 .container .form-group .check-code {
-  width: calc(100% - 150px);
+  width: calc(100% - 160px);
 }
 .container .form-group .location-list {
   display: flex;
@@ -129,14 +137,19 @@ header .location.location-icon:before {
   margin-top: 20px;
 }
 .container .form-group .submit-btn {
-  height: 39px;
+  padding: 0;
+  height: 44px;
+  line-height: 44px;
   text-align: center;
-  font-size: 14px;
+  font-size: 18px;
   color: #fff;
-  background-color: #B61F28;
+  background-color: #D80C18;
   width: 100%;
   border: none;
   border-radius: 2px;
+}
+.container .form-group .submit-btn:hover {
+  background-color: #B61F28;
 }
 
 #login .form-group {
@@ -150,7 +163,7 @@ header .location.location-icon:before {
 }
 #login .reset-password {
   text-align: right;
-  font-size: 12px;
+  font-size: 14px;
   color: #8c8c8c;
   text-decoration: underline;
   margin-top: 13px;
@@ -166,41 +179,63 @@ header .location.location-icon:before {
 
 .btn-code {
   outline: none;
-  border: none;
-  background-color: #d80c18;
-  border-radius: 40px;
-  line-height: 20px;
-  color: #fff;
+  border: 1px solid #d80c18;
+  background-color: #fff;
+  border-radius: 2px;
   margin-left: 10px;
-  padding: 9px 9pt;
+  width: 120px;
+  color: #d80c18;
+  font-size: 16px;
+  height: 46px;
+  line-height: 40px;
+}
+.btn-code:hover {
+  background-color: #d80c18;
+  color: #fff;
 }
 
 .areaSel span.select {
-  height: 40px;
-  line-height: 38px;
+  height: 46px;
+  line-height: 46px;
   display: inline-block;
-  width: 96px;
+  width: 115px;
   border: 1px solid #e5e5e5;
-  border-radius: 40px;
   outline: none;
   background: #fff;
+  margin-right: 10px;
+}
+.areaSel span.select:last-of-type {
+  margin-right: 0;
 }
 
 .areaSel select.form-control {
-  width: 96px;
+  width: 90%;
   height: 38px;
   border: none;
+  border: 0;
   background: none;
+  font-size: 14px;
 }
 
 .reset-password {
   text-align: right;
   font-size: 12px;
-  color: #8c8c8c;
   text-decoration: underline;
   margin-top: 13px;
+}
+.reset-password a {
+  color: #8c8c8c !important;
 }
 
 .reg-center {
   text-align: center;
+}
+
+a, button, input {
+  -webkit-appearance: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+  -ms-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
 }
