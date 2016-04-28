@@ -111,7 +111,7 @@
 	                            money: cash
 	                        }, function (res) {
 	                            if (res.rtnCode === '0000000') {
-	                                util.drawToast('<p class="tip-p">申请提现成功!</p><p class="tip-p">预计会在下月15号到账，请留意查收！</p>');
+	                                util.drawToast('<p class="tip-p">预计会在下月25号到账，请注意查收。</p>');
 	                                setTimeout(function() {
 	                                  window.location.href = '/consumer-list?flag=2';
 	                                },2000);
