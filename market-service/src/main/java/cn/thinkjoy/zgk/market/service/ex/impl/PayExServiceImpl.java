@@ -20,6 +20,7 @@ public class PayExServiceImpl implements IPayExService{
     @Override
     public double getWalletBalance(long userId) {
 
+        // TODO 分成的金额单位是分
         Double totalIncome = payExDAO.getAllIncomeByUserId(userId);
         Double totalWithdrawals = payExDAO.getTotalWithdrawalsByUserId(userId);
 
@@ -27,9 +28,9 @@ public class PayExServiceImpl implements IPayExService{
             return 0;
         }
         if(totalWithdrawals == null){
-            return totalIncome;
+            return totalIncome/100;
         }
-        return totalIncome - totalWithdrawals;
+        return (totalIncome - totalWithdrawals)/100;
     }
 
     @Override

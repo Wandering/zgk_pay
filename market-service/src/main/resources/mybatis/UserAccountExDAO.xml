@@ -140,9 +140,9 @@
 
        select * from(
 
-    select a.accountId,b.account,a.agentLevel from zgk_user_market a left join zgk_user_account b
+       select a.accountId,b.account,a.agentLevel from zgk_user_market a left join zgk_user_account b
 
-     on a.accountId=b.id  where a.accountId=#{userId}
+       on a.accountId=b.id  where a.accountId=#{userId}
 
        UNION
 
