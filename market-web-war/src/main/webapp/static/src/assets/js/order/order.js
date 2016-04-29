@@ -116,8 +116,8 @@
             html +=  '<span>订单数量：' + obj.goodsCount + '套</span>';
             html +=  '</li>';
             html +=  '<li>';
-            html +=  '<span>成交时间：' + createDate.split(' ')[0] + '</span>';
-            html +=  '<span>' + createDate.split(' ')[1] + '</span>';
+            html +=  '<span>成交时间：' + createDate.split(' ')[0] + ' </span> ';
+            html +=  ' <span> ' + createDate.split(' ')[1] + '</span>';
             html +=  '</li>';
             html +=  '<li>';
             html +=  '<span>取货地址：' + obj.goods_address + '</span>';

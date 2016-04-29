@@ -16,7 +16,7 @@
             </div>
             <div class="clearfix"></div>
             <div class="count">
-                总金额：￥<span id="total-sum"></span>元
+                未提现金额：￥<span id="total-sum"></span>元
             </div>
             <div class="sqtx">
                 <a href="javascript:void(0)">申请提现</a>
