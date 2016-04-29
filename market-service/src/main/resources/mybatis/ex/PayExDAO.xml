@@ -52,7 +52,7 @@
         left join zgk_user_info info on ord.user_id=info.id
         <where>
             <if test="userId!=null">
-                and  split.user_id=#{userId,jdbcType=INTEGER}
+                split.user_id=#{userId,jdbcType=INTEGER}
             </if>
         </where>
         order by create_time desc
