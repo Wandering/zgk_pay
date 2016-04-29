@@ -113,10 +113,10 @@ webpackJsonp([19],{
 	                $('#orderNo').html('订单ID：' + res.bizData.orderNo);
 	                $('#orderNo').attr('orderNo', res.bizData.orderNo);
 	                $('#order_time').html('订单创建日期：' + department.createDateAsDate);
-	                $('#service_price').html('服务价格：' + department.salePrice + '元/套');
+	                $('#service_price').html('服务价格：' + department.wechatPrice + '元/套');
 	                var number = parseInt($('.number').text());
 	                $('#pay_number').html('购买数量：' + number + '套');
-	                var totalPrice = department.salePrice * number;
+	                var totalPrice = department.wechatPrice * number;
 	                $('#pay_price').html('应付费用：' + totalPrice  + '元');
 	                $('#pay_price').attr('data-price', totalPrice);
 	                $.pgwModal({
