@@ -150,7 +150,7 @@ webpackJsonp([1],[
 	            if (res.rtnCode == "0000000") {
 	                var ticket = res.bizData.ticket;
 	                //var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url="+window.location.href;
-	                var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url=http://zgkser.zhigaokao.cn/vip?state=vip";
+	                var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url=http://zgkser.zhigaokao.cn/vip";
 	                //alert(string1)
 
 	                var sign = CryptoJS.SHA1(string1);
