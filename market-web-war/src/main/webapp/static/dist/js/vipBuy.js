@@ -4,7 +4,7 @@ webpackJsonp([19],{
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(11);
-	(function() {
+	(function () {
 	    $('#header-menu').show();
 	    var interfaceUrl = __webpack_require__(3);
 	    var cookie = __webpack_require__(2);
@@ -12,6 +12,7 @@ webpackJsonp([19],{
 	    var token = cookie.getCookieValue('token');
 	    var toUrl = util.getLinkey('state');
 	    var isLogin = cookie.getCookieValue('isLogin');
+
 	    function getQueryObject(url) {
 	        url = url == null ? window.location.href : url;
 	        var search = url.substring(url.lastIndexOf("?") + 1);
@@ -26,14 +27,15 @@ webpackJsonp([19],{
 	        });
 	        return obj;
 	    }
+
 	    function getOpenId(code) {
-	        $.get(interfaceUrl.getOpenId,{code: code},function(res){
+	        $.get(interfaceUrl.getOpenId, {code: code}, function (res) {
 	            if (res.rtnCode == '0000000') {
 	                cookie.setCookie("openId", res.bizData.openId, 4, "/");
 	            }
 	        });
 	    }
-	    
+
 	    function isWeiXin() {
 	        var ua = window.navigator.userAgent.toLowerCase();
 	        if (ua.indexOf('micromessenger') > -1) {
@@ -44,23 +46,23 @@ webpackJsonp([19],{
 	    }
 
 	    var openId = cookie.getCookieValue('openId');
-	    if(toUrl=='vip-buy'){
-	        if(!isLogin){
-	            window.location.href='/login?state=vip-buy';
-	        }else{
+	    if (toUrl == 'vip-buy') {
+	        if (!isLogin) {
+	            window.location.href = '/login?state=vip-buy';
+	        } else {
 	            var menuV = util.getLinkey('menu');
-	            if(menuV=="1"){
+	            if (menuV == "1") {
 	                cookie.setCookie("flag", "0", 4, "/");
 	            }
 	            var flag = cookie.getCookieValue('flag');
-	            if(flag=="0"){
+	            if (flag == "0") {
 	                cookie.setCookie("flag", "1", 4, "/");
-	                window.location.assign('vip-buy?state=vip-buy&token=' + token + "&code="+getQueryObject(window.location.href).code);
+	                window.location.assign('vip-buy?state=vip-buy&token=' + token + "&code=" + getQueryObject(window.location.href).code);
 	            }
-	            if(flag=="1"){
+	            if (flag == "1") {
 	                if (isWeiXin()) {
 	                    //alert('存在openId')
-	                    if(!openId){
+	                    if (!openId) {
 	                        var obj = getQueryObject(window.location.href);
 	                        cookie.setCookie("code", obj.code, 4, "/");
 	                        //alert(obj.code)
@@ -72,34 +74,62 @@ webpackJsonp([19],{
 	    }
 
 
-
-
-
-
-
-
-
 	    /**
 	     * 在线购买初始化
 	     */
 	    function getOrderInfo() {
-	        if (!cookie.getCookieValue('isLogin')) {
-	            util.drawToast('请登录后再购买!');
-	            setTimeout(function() {
-	                window.location.href = "/login?state=vip-buy";
-	            }, 2000)
-	            return false;
-	        }
-	        var userId = cookie.getCookieValue('userId');
-	        util.ajaxFun(interfaceUrl.getBuyInfo, 'POST', {
-	            userId: userId
-	        }, function (res) {
-	            if (res.rtnCode == '0000000') {
-	                $('#price').html(res.bizData.wechatPrice);
-	                $('#price').attr('data-price', res.bizData.wechatPrice);
-	            }
-	        })
+	        //if (!cookie.getCookieValue('isLogin')) {
+	        //    util.drawToast('请登录后再购买!');
+	        //    setTimeout(function() {
+	        //        window.location.href = "/login?state=vip-buy";
+	        //    }, 2000)
+	        //    return false;
+	        //}
+	        //var userId = cookie.getCookieValue('userId');
+	        //util.ajaxFun(interfaceUrl.getBuyInfo, 'POST', {
+	        //    userId: userId
+	        //}, function (res) {
+	        //    if (res.rtnCode == '0000000') {
+	        //        $('#price').html(res.bizData.wechatPrice);
+	        //        $('#price').attr('data-price', res.bizData.wechatPrice);
+	        //
+	        //
+	        //
+	        //            util.ajaxFun(interfaceUrl.commitOrder, 'POST', {
+	        //                userId: cookie.getCookieValue('userId'),
+	        //                price: $('#price').attr('data-price'),
+	        //                goodsCount:$('#number').text()
+	        //            }, function (res) {
+	        //                console.log(res)
+	        //                if (res.rtnCode == '0000000') {
+	        //                    var department = res.bizData.department;
+	        //                    $('#orderNo').html('订单ID：' + res.bizData.orderNo);
+	        //                    $('#orderNo').attr('orderNo', res.bizData.orderNo);
+	        //                    $('#order_time').html('订单创建日期：' + department.createDateAsDate);
+	        //                    $('#service_price').html('服务价格：' + department.wechatPrice + '元/套');
+	        //                    var number = parseInt($('.number').text());
+	        //                    $('#pay_number').html('购买数量：' + number + '套');
+	        //                    var totalPrice = department.wechatPrice * number;
+	        //                    $('#pay_price').html('应付费用：' + totalPrice  + '元');
+	        //                    $('#pay_price').attr('data-price', totalPrice);
+	        //                    $.pgwModal({
+	        //                        title: '订单确认',
+	        //                        content: $('.modal').html()
+	        //                    });
+	        //                    $('.confirm-btn').off('click');
+	        //                    $('.confirm-btn').click(function(){
+	        //                        payOrder();
+	        //                    });
+	        //                }
+	        //            })
+	        //
+	        //
+	        //
+	        //
+	        //    }
+	        //})
 	    }
+
 	    /**
 	     * 订单确定
 	     */
@@ -107,7 +137,7 @@ webpackJsonp([19],{
 	        util.ajaxFun(interfaceUrl.commitOrder, 'POST', {
 	            userId: cookie.getCookieValue('userId'),
 	            price: $('#price').attr('data-price'),
-	            goodsCount:$('#number').text()
+	            goodsCount: $('#number').text()
 	        }, function (res) {
 	            console.log(res)
 	            if (res.rtnCode == '0000000') {
@@ -119,14 +149,14 @@ webpackJsonp([19],{
 	                var number = parseInt($('.number').text());
 	                $('#pay_number').html('购买数量：' + number + '套');
 	                var totalPrice = department.wechatPrice * number;
-	                $('#pay_price').html('应付费用：' + totalPrice  + '元');
+	                $('#pay_price').html('应付费用：' + totalPrice + '元');
 	                $('#pay_price').attr('data-price', totalPrice);
 	                $.pgwModal({
 	                    title: '订单确认',
 	                    content: $('.modal').html()
 	                });
 	                $('.confirm-btn').off('click');
-	                $('.confirm-btn').click(function(){
+	                $('.confirm-btn').click(function () {
 	                    payOrder();
 	                });
 	            }
@@ -135,11 +165,10 @@ webpackJsonp([19],{
 
 	    function orderPayStatus(msg) {
 	        util.drawToast(msg);
-	        setTimeout(function() {
+	        setTimeout(function () {
 	            window.location.href = '/order?state=order';
 	        }, 1000);
 	    }
-
 
 
 	    /**
@@ -162,7 +191,6 @@ webpackJsonp([19],{
 	        }
 
 
-
 	        //util.ajaxFun(interfaceUrl.payOrder+'?token='+token, 'POST', {
 	        util.ajaxFun(interfaceUrl.payOrder, 'POST', {
 	            orderNo: $('#orderNo').attr('orderNo'),
@@ -178,7 +206,7 @@ webpackJsonp([19],{
 	            if (res.rtnCode == '0000000') {
 	                var charge = res.bizData;
 	                charge.credential = JSON.parse(charge.credential);
-	                pingpp.createPayment(charge, function(result, error){
+	                pingpp.createPayment(charge, function (result, error) {
 	                    if (result == "success") {
 	                        // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。
 	                        orderPayStatus('支付成功');
@@ -196,16 +224,67 @@ webpackJsonp([19],{
 	        })
 	    }
 
-	    $(document).ready(function() {
+	    $(document).ready(function () {
 	        $('#header-title').text('在线购买');
 
-	        getOrderInfo();
+	        //getOrderInfo();
 
-	        $('.vip-buy-btn').on('click', function() {
-	            commitOrder();
+	        //$('.vip-buy-btn').on('click', function() {
+	        //    commitOrder();
+	        //});
+
+
+	        var userId = cookie.getCookieValue('userId');
+	        if (!cookie.getCookieValue('isLogin')) {
+	            util.drawToast('请登录后再购买!');
+	            setTimeout(function () {
+	                window.location.href = "/login?state=vip-buy";
+	            }, 2000);
+	            return false;
+	        }
+
+
+	        util.ajaxFun(interfaceUrl.getBuyInfo, 'POST', {
+	            userId: userId
+	        }, function (res) {
+	            if (res.rtnCode == '0000000') {
+	                $('#price').html(res.bizData.wechatPrice);
+	                $('#price').attr('data-price', res.bizData.wechatPrice);
+	                $('.vip-buy-btn').on('click', function () {
+
+	                    util.ajaxFun(interfaceUrl.commitOrder, 'POST', {
+	                        userId: cookie.getCookieValue('userId'),
+	                        price: $('#price').attr('data-price'),
+	                        goodsCount: $('#number').text()
+	                    }, function (res) {
+	                        console.log(res)
+	                        if (res.rtnCode == '0000000') {
+	                            var department = res.bizData.department;
+	                            $('#orderNo').html('订单ID：' + res.bizData.orderNo);
+	                            $('#orderNo').attr('orderNo', res.bizData.orderNo);
+	                            $('#order_time').html('订单创建日期：' + department.createDateAsDate);
+	                            $('#service_price').html('服务价格：' + department.wechatPrice + '元/套');
+	                            var number = parseInt($('.number').text());
+	                            $('#pay_number').html('购买数量：' + number + '套');
+	                            var totalPrice = department.wechatPrice * number;
+	                            $('#pay_price').html('应付费用：' + totalPrice + '元');
+	                            $('#pay_price').attr('data-price', totalPrice);
+	                            $.pgwModal({
+	                                title: '订单确认',
+	                                content: $('.modal').html()
+	                            });
+	                            $('.confirm-btn').off('click');
+	                            $('.confirm-btn').click(function () {
+	                                payOrder();
+	                            });
+	                        }
+	                    })
+	                });
+	            }
 	        });
 
-	        $('.sub').on('click', function() {
+
+	        $('.sub').on('click', function () {
 	            if ($(this).hasClass('subtraction')) {
 	                return;
 	            }
@@ -220,7 +299,7 @@ webpackJsonp([19],{
 	            $('.number').text(num);
 	        });
 
-	        $('.plus').on('click', function() {
+	        $('.plus').on('click', function () {
 	            if ($(this).hasClass('plus-abled')) {
 	                return;
 	            }
