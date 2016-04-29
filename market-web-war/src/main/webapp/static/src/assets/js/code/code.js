@@ -145,7 +145,8 @@ $(function () {
         $.getJSON('/pay/getAccessToken', function (res) {
             if (res.rtnCode == "0000000") {
                 var ticket = res.bizData.ticket;
-                var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url="+window.location.href;
+                var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url=http://zgkser.zhigaokao.cn/vip?state=vip";
+                //var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url="+window.location.href;
                 //alert(string1)
 
                 var sign = CryptoJS.SHA1(string1);
@@ -188,7 +189,8 @@ $(function () {
         wx.onMenuShareAppMessage({
             title: title,
             desc: desc,
-            link: window.location.href,//分享链接
+            //link: window.location.href,//分享链接
+            link: 'http://zgkser.zhigaokao.cn/vip?state=vip',//分享链接
             imgUrl: logo, // 分享图标
             trigger: function (res) {
                 //alert('用户点击发送给朋友');
@@ -207,7 +209,8 @@ $(function () {
         wx.onMenuShareTimeline({
             title: title,
             desc: desc,
-            link: window.location.href,//分享链接
+            //link: window.location.href,//分享链接
+            link: 'http://zgkser.zhigaokao.cn/vip?state=vip',//分享链接
             imgUrl: logo, // 分享图标
             trigger: function (res) {
                 //alert('用户点击分享到朋友圈');

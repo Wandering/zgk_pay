@@ -389,11 +389,12 @@
 	    /**
 	     * 在线购买初始化
 	     */
-	    getBuyInfo: 'http://172.16.160.82:8085/order/getBuyInfo',
+	    getBuyInfo: '/order/getBuyInfo',
 
 	    /**
 	     * 确认订单
 	     */
+
 	    commitOrder: '/order/commitOrder',
 	    /**
 	     * 订单支付
