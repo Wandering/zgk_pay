@@ -24,6 +24,7 @@
             <span>购买数量：</span><span class="sub subtraction"></span><span class="number" id="number">1</span><span class="plus plus-able"></span>
         </div>
     </div>
+    <p class="tips-txt">您购买的商品需上门取货，购买之后，请在我的订单中查看取货地址和电话</p>
     <div class="vip-buy-btn">
         立即购买
     </div>

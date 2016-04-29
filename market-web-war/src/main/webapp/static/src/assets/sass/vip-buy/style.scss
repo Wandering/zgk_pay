@@ -162,8 +162,8 @@ header .location.location-icon:before {
     }
   }
 }
-
 .vip-buy-btn {
+  display: none;
   height: 44px;
   line-height: 44px;
   text-align: center;
@@ -173,7 +173,7 @@ header .location.location-icon:before {
   border: none;
   border-radius: 2px;
   width: 270px;
-  margin: 78px auto 0; }
+  margin: 28px auto 0; }
 
 .order-info {
   color: #707070;
@@ -201,3 +201,9 @@ header .location.location-icon:before {
 .pgwModal .pm-close span.pm-icon,
 .pgwModal .pm-close {
   display: none; }
+
+.tips-txt{
+  padding: 20px;
+  font-size: 14px;
+  line-height: 20px;
+}
