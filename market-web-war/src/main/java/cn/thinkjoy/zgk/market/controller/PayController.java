@@ -6,6 +6,7 @@ import cn.thinkjoy.common.restful.apigen.annotation.ApiDesc;
 import cn.thinkjoy.common.utils.ObjectFactory;
 import cn.thinkjoy.common.utils.SqlOrderEnum;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
+import cn.thinkjoy.zgk.market.common.ModelUtil;
 import cn.thinkjoy.zgk.market.constant.UserRedisConst;
 import cn.thinkjoy.zgk.market.domain.Order;
 import cn.thinkjoy.zgk.market.domain.OrderStatements;
@@ -31,7 +32,6 @@ import com.pingplusplus.util.WxpubOAuth;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -338,7 +338,7 @@ public class PayController {
 
         double balance = payExService.getWalletBalance(userId);
 
-        if(money > balance){
+        if(money > balance || money < 0){
             ModelUtil.throwException(ErrorCode.ERROR_PARAM);
         }
 

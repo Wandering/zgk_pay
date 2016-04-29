@@ -107,6 +107,8 @@ $(function () {
         cookie.deleteCookie("flag", '');
         cookie.deleteCookie("openId", '');
         cookie.deleteCookie("code", '');
+        cookie.deleteCookie("sharerId", '');
+        cookie.deleteCookie("sharerType", '');
     });
 
 

@@ -3,7 +3,6 @@
 <html>
 <head lang="en">
     <%@ include file="../common/meta.jsp" %>
-    <title>登录页</title>
     <link rel="stylesheet" href="<%=ctx%>/static/dist/css/vip/style.css"/>
 </head>
 <body>
@@ -51,5 +50,10 @@
 
 <script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/vip.js"></script>
+<script type="text/javascript">
+    window.onload = function() {
+        $('#header-title').text('关于智高考');
+    }
+</script>
 </body>
 </html>

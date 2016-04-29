@@ -28,7 +28,7 @@
     <!-- 根据用户ID查询用户收益详情 -->
     <select id="queryUserIncomeDetailByUserId" parameterType="map" resultType="map">
         SELECT
-            t0.price as rewardMoney,
+            t0.price/100 as rewardMoney,
             t0.create_time as createDate,
             t2.name as userName
         FROM

@@ -56,12 +56,12 @@
                         <span>院校预测</span>
                     </a>
                 </div>
-                <%--<div class="item">--%>
-                <%--<a href="">--%>
-                <%--<img src="<%=ctx%>/static/dist/img/5.png" alt=""/>--%>
-                <%--<span>录取预测</span>--%>
-                <%--</a>--%>
-                <%--</div>--%>
+                <div class="item">
+                    <a href="/level-calculate">
+                        <img src="<%=ctx%>/static/dist/img/5.png" alt=""/>
+                        <span>录取预测</span>
+                    </a>
+                </div>
                 <div class="item">
                     <a href="/policy">
                         <img src="<%=ctx%>/static/dist/img/6.png" alt=""/>
@@ -104,10 +104,17 @@
                         <span>盈利规则</span>
                     </a>
                 </div>
+                <div class="item">
+                    <a href="/vip" class="">
+                        <img src="<%=ctx%>/static/dist/img/vip.png" alt=""/>
+                        <span>关于智高考</span>
+                    </a>
+                </div>
+
             </div>
             <div class="btn login-btn">
                 <a href="javascript:void(0)" id="logout-btn">退出</a>
-                <a id="vipStatus" href="vip?state=vip">购买VIP</a>
+                <a id="vipStatus" href="vipBck?state=vipBck">升级VIP</a>
             </div>
         </div>
     </div>
@@ -148,12 +155,12 @@
                         <span>院校预测</span>
                     </a>
                 </div>
-                <%--<div class="item">--%>
-                <%--<a href="">--%>
-                <%--<img src="<%=ctx%>/static/dist/img/5.png" alt=""/>--%>
-                <%--<span>录取预测</span>--%>
-                <%--</a>--%>
-                <%--</div>--%>
+                <div class="item">
+                    <a href="/level-calculate">
+                        <img src="<%=ctx%>/static/dist/img/5.png" alt=""/>
+                        <span>录取预测</span>
+                    </a>
+                </div>
                 <div class="item">
                     <a href="/policy">
                         <img src="<%=ctx%>/static/dist/img/6.png" alt=""/>
@@ -196,10 +203,17 @@
                         <span>盈利规则</span>
                     </a>
                 </div>
+                <div class="item">
+                    <a href="/vip" class="">
+                        <img src="<%=ctx%>/static/dist/img/vip.png" alt=""/>
+                        <span>关于智高考</span>
+                    </a>
+                </div>
             </div>
             <div class="btn login-btn">
                 <a href="javascript:void(0)" id="login-btn">登录/注册</a>
-                <a class="vipStatus" href="vip?state=vip">购买VIP</a>
+                <%--<a class="vipStatus" href="vip?state=vip">购买VIP</a>--%>
+                <a class="vipStatus" href="vipBck?state=vipBck">升级VIP</a>
             </div>
         </div>
     </div>

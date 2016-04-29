@@ -108,9 +108,12 @@ header .location.location-icon:before {
 }
 
 .description {
-  padding: 22px 15px;
   font-size: 14px;
   color: #575757;
+}
+
+.description img {
+  width: 100%;
 }
 
 .description .title {
@@ -125,22 +128,60 @@ header .location.location-icon:before {
   line-height: 24px;
 }
 
-.vip-check-info {
-  text-align: center;
-  position: relative;
-}
-
 .vip-check-info img {
   width: 168px;
 }
 
 .vip-check-info .text {
-  position: absolute;
-  top: 2px;
-  left: 19px;
   font-size: 16px;
   color: #D80C18;
   font-weight: bold;
+  margin-top: 45px;
+  margin-left: 28px;
+}
+
+.num {
+  font-size: 16px;
+  color: #D80C18;
+  font-weight: bold;
+  margin-left: 28px;
+}
+.num span {
+  display: inline-block;
+  height: 35px;
+  line-height: 35px;
+}
+.num span.number {
+  width: 70px;
+  text-align: center;
+}
+.num span.subtraction {
+  width: 35px;
+  background: url("../../img/icons/sub_disabled.png") center center no-repeat;
+  background-size: 35px;
+  position: relative;
+  top: 10px;
+}
+.num span.subtractionabled {
+  width: 35px;
+  background: url("../../img/icons/sub_able.png") center center no-repeat;
+  background-size: 35px;
+  position: relative;
+  top: 10px;
+}
+.num span.plus-able {
+  width: 35px;
+  background: url("../../img/icons/plus.png") center center no-repeat;
+  background-size: 35px;
+  position: relative;
+  top: 10px;
+}
+.num span.plus-abled {
+  width: 35px;
+  background: url("../../img/icons/plus_abled.png") center center no-repeat;
+  background-size: 35px;
+  position: relative;
+  top: 10px;
 }
 
 .vip-buy-btn {

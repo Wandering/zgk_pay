@@ -77,12 +77,20 @@ require('pgwmodal');
      * 在线购买初始化
      */
     function getOrderInfo() {
+        if (!cookie.getCookieValue('isLogin')) {
+            util.drawToast('请登录后再购买!');
+            setTimeout(function() {
+                window.location.href = "/login?state=vip-buy";
+            }, 2000)
+            return false;
+        }
+        var userId = cookie.getCookieValue('userId');
         util.ajaxFun(interfaceUrl.getBuyInfo, 'POST', {
-            userId: cookie.getCookieValue('userId') || 13
+            userId: userId
         }, function (res) {
             if (res.rtnCode == '0000000') {
-                $('#price').html('价格：' + res.bizData.salePrice + '元');
-                $('#price').attr('data-price', res.bizData.salePrice);
+                $('#price').html(res.bizData.wechatPrice);
+                $('#price').attr('data-price', res.bizData.wechatPrice);
             }
         })
     }
@@ -91,17 +99,21 @@ require('pgwmodal');
      */
     function commitOrder() {
         util.ajaxFun(interfaceUrl.commitOrder, 'POST', {
-            userId: cookie.getCookieValue('userId') || '13',
-            price: $('#price').attr('data-price') || '200'
+            userId: cookie.getCookieValue('userId'),
+            price: $('#price').attr('data-price'),
+            goodsCount:$('#number').text()
         }, function (res) {
             if (res.rtnCode == '0000000') {
                 var department = res.bizData.department;
                 $('#orderNo').html('订单ID：' + res.bizData.orderNo);
                 $('#orderNo').attr('orderNo', res.bizData.orderNo);
                 $('#order_time').html('订单创建日期：' + department.createDateAsDate);
-                $('#service_price').html('服务价格：' + department.salePrice + '元');
-                $('#pay_price').html('应付费用：' + department.salePrice  + '元');
-                $('#pay_price').attr('data-price', department.salePrice);
+                $('#service_price').html('服务价格：' + department.salePrice + '元/套');
+                var number = parseInt($('.number').text());
+                $('#pay_number').html('购买数量：' + number + '套');
+                var totalPrice = department.salePrice * number;
+                $('#pay_price').html('应付费用：' + totalPrice  + '元');
+                $('#pay_price').attr('data-price', totalPrice);
                 $.pgwModal({
                    title: '订单确认',
                    content: $('.modal').html()
@@ -133,8 +145,9 @@ require('pgwmodal');
         //}
         //orderFlag = true;
         $('#confirm-btn').html('正在支付...');
-        var amount = parseFloat($('#pay_price').attr('data-price') || '200');
+        var amount = parseFloat($('#pay_price').attr('data-price'));
         var openId = cookie.getCookieValue('openId');
+        var goodsCount = parseInt($('.number').text());
 
         var channel = 'wx_pub';
         if (!isWeiXin()) {
@@ -149,6 +162,7 @@ require('pgwmodal');
             userId: cookie.getCookieValue('userId'),
             amount: amount,
             channel: channel,
+            goodsCount: goodsCount,
             openId: openId
         }, function (res) {
             //orderFlag = false;
@@ -166,7 +180,7 @@ require('pgwmodal');
                         orderPayStatus('支付失败');
                     } else if (result == "cancel") {
                         // 微信公众账号支付取消支付
-                        orderPayStatus('已取消支付');
+                        orderPayStatus('订单取消支付，可在我的订单页面继续支付');
                     }
                 });
             } else {
@@ -183,6 +197,36 @@ require('pgwmodal');
         $('.vip-buy-btn').on('click', function() {
             commitOrder();
         });
+
+        $('.sub').on('click', function() {
+            if ($(this).hasClass('subtraction')) {
+                return;
+            }
+            var num = parseInt($('.number').text());
+            num--;
+            if (num < 2) {
+                $('.sub').addClass('subtraction').removeClass('subtractionabled');
+            }
+            if (num < 10) {
+                $('.plus').addClass('plus-able').removeClass('plus-abled');
+            }
+            $('.number').text(num);
+        });
+
+        $('.plus').on('click', function() {
+            if ($(this).hasClass('plus-abled')) {
+                return;
+            }
+            var num = parseInt($('.number').text());
+            num++;
+            if (num > 1) {
+                $('.sub').addClass('subtractionabled').removeClass('subtraction');
+            }
+            if (num >= 10) {
+                $('.plus').addClass('plus-abled').removeClass('plus-able');
+            }
+            $('.number').text(num);
+        })
 
     });
 

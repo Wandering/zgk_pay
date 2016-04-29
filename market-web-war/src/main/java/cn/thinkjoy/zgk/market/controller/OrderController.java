@@ -40,10 +40,8 @@ public class OrderController extends BaseCommonController {
     @ResponseBody
     public Department getBuyInfo(@RequestParam("userId") String userId){
 
-        Map<String,Object> map=new HashMap<>();
-
         //参数错误
-        if(userId==null){
+        if(userId == null){
             throw new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
         }
         try{
@@ -63,12 +61,10 @@ public class OrderController extends BaseCommonController {
      */
     @RequestMapping(value = "/commitOrder",method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> commitOrder(@RequestParam("userId") String userId,@RequestParam("price")String price,@RequestParam("goodsCount")Integer goodsCount ){
-
-        Map<String,Object> map=new HashMap<>();
+    public Map<String,Object> commitOrder(@RequestParam("userId") String userId,@RequestParam("price") double price,@RequestParam("goodsCount") int goodsCount ){
 
         //参数错误
-        if(userId==null||price==null){
+        if(userId==null||price==0){
             throw new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
         }
         try{
@@ -76,21 +72,22 @@ public class OrderController extends BaseCommonController {
             Order order=new Order();
 
             Department  department= agentService.getAgentInfo(userId);
-            if(! department.getSalePrice().equals(price)){
-
-                logger.error("用户" + order.getUserId() + ",提交的价格不匹配" );
-                throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
-            }
+//            if(! department.getSalePrice().equals(price)){
+//                logger.error("用户" + order.getUserId() + ",提交的价格不匹配" );
+//                throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
+//            }
             order.setCreateDate(System.currentTimeMillis());
             order.setOrderNo(orderNo);
             order.setDepartmentName(department.getDepartmentName());
             order.setDepartmentPhone(department.getDepartmentPhone());
             order.setGoodsAddress(department.getGoodsAddress());
-            order.setProductPrice(department.getSalePrice().toString());
+            order.setProductPrice(String.valueOf(price*goodsCount));
             order.setUserId(Long.valueOf(userId));
             order.setStatus(0);
             order.setGoodsCount(goodsCount);
             orderService.insert(order);
+
+            Map<String,Object> map=new HashMap<>();
             map.put("orderNo",orderNo);
             map.put("department",department);
             return  map;

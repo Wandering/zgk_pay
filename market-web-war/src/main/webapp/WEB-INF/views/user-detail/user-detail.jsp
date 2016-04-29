@@ -3,7 +3,6 @@
 <html>
 <head lang="en">
     <%@ include file="../common/meta.jsp" %>
-    <title>登录页</title>
     <link rel="stylesheet" href="<%=ctx%>/static/dist/css/user-detail/style.css"/>
 </head>
 <body>

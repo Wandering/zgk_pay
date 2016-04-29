@@ -3,10 +3,9 @@
 <html>
 <head lang="en">
     <%@ include file="../common/meta.jsp"%>
-    <title>盈利规则</title>
     <link rel="stylesheet" href="<%=ctx%>/static/dist/css/consumer-list/consumer-list.css"/>
 </head>
-<body>
+<body style="background: #fff">
 <%@ include file="../common/header.jsp"%>
 <div class="container">
     <div class="text-box">

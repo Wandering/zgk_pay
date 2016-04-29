@@ -1,4 +1,4 @@
-package cn.thinkjoy.zgk.market.util;
+package cn.thinkjoy.zgk.market.common;
 
 import cn.thinkjoy.common.domain.CreateBaseDomain;
 import cn.thinkjoy.common.exception.BizException;

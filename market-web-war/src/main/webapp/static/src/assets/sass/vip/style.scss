@@ -1,12 +1,6 @@
-html {
-  height: 100%;
-  background-color: #F6F6F6;
-}
-
 body {
   background: #fff;
 }
-
 //header bar
 header {
   position: relative;
@@ -33,11 +27,11 @@ header {
 }
 
 .banner {
-  height: 155px;
+  width: 100%;
   background-color: #fff;
   text-align: center;
   img {
-    height: 100%;
+    width: 100%;
   }
 }
 
@@ -151,16 +145,50 @@ form {
     color: #8B8B8B;
     border-right: 1px solid #ccc;
     text-align: center;
-    &:last-of-type{
+    &:last-of-type {
       border-right: none;
     }
-    &:hover{
+    &:hover {
       background-color: #D80C18;
       color: #fff;
     }
   }
 }
 
+.link {
+  text-align: center;
+  a {
+    color: #D80C18;
+  }
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.viped {
+  padding: 50px 0;
+  display: none;
+  .title {
+    color: #4A90E2;
+    font-size: 18px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+  }
+  .vip-time {
+    color: #4A90E2;
+    font-size: 16px;
+    text-align: center;
+    height: 35px;
+    line-height: 35px;
+  }
+}
+.no-vip {
+  padding: 0 25px;
+  margin: 25px 0 0;
+}
 
 
 

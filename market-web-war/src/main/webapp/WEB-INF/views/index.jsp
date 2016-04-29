@@ -3,7 +3,6 @@
 <html>
 <head lang="en">
     <%@ include file="common/meta.jsp"%>
-    <title>首页</title>
 </head>
 <body>
 <script>
