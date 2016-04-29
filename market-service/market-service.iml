@@ -99,9 +99,9 @@
     <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.ucm:ucm-domain:1.0.0-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.notify:notify-domain:jx0.0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework.security:spring-security-core:3.2.4.RELEASE" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-api:0.0.12-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-common:0.0.12-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:menuAuthority-domain:0.0.12-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-domain:0.0.12-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-api:0.0.19-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-common:0.0.19-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:menuAuthority-domain:0.0.19-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-domain:0.0.19-SNAPSHOT" level="project" />
   </component>
 </module>
