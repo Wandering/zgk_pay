@@ -103,6 +103,7 @@ require('pgwmodal');
             price: $('#price').attr('data-price'),
             goodsCount:$('#number').text()
         }, function (res) {
+            console.log(res)
             if (res.rtnCode == '0000000') {
                 var department = res.bizData.department;
                 $('#orderNo').html('订单ID：' + res.bizData.orderNo);
