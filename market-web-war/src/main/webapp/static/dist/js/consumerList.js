@@ -132,7 +132,7 @@
 	            var html = [];
 	            for(var key in data) {
 	                html.push('<section>');
-	                html.push('<div class="tip-info">' + key + '月共计收入￥<span id="' + key + '"></span>元，明细如下</div>');
+	                //html.push('<div class="tip-info">' + key + '月共计收入￥<span id="' + key + '"></span>元，明细如下</div>');
 	                html.push('<ul class="income-detail">');
 	                this.totalPrice[key] = 0;
 	                var list = data[key];
@@ -162,7 +162,7 @@
 	                    var html = that.render(res.bizData);
 	                    //that.pageNo++;
 	                    if (html) {
-	                        $('#detail-list').html(html);
+	                        $('#detail-list').htotal-sumtml(html);
 	                        for (var key in that.totalPrice) {
 	                            $('#' + key).text(that.totalPrice[key]);
 	                        }

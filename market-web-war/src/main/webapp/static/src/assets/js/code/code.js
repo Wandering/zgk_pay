@@ -147,6 +147,7 @@ $(function () {
                 var ticket = res.bizData.ticket;
                 var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url=http://zgkser.zhigaokao.cn/vip?state=vip";
                 //var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url="+window.location.href;
+
                 //alert(string1)
 
                 var sign = CryptoJS.SHA1(string1);

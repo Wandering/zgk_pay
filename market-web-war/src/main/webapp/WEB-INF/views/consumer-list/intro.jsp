@@ -5,7 +5,7 @@
     <%@ include file="../common/meta.jsp"%>
     <link rel="stylesheet" href="<%=ctx%>/static/dist/css/consumer-list/consumer-list.css"/>
 </head>
-<body>
+<body style="background: #fff">
 <%@ include file="../common/header.jsp"%>
 <div class="container">
     <div class="text-box">
