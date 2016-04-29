@@ -18,10 +18,10 @@
     <div class="vip-check-info">
         <%--<img src="<%=ctx%>/static/dist/img/icons/vip.png" alt=""/>--%>
         <div class="text">
-            <div id="price"></div>
+            <div>价格：<span id="price"></span>元/套</div>
         </div>
         <div class="num">
-            <span>购买数量：</span><span class="sub subtraction"></span><span class="number">1</span><span class="plus plus-able"></span>
+            <span>购买数量：</span><span class="sub subtraction"></span><span class="number" id="number">1</span><span class="plus plus-able"></span>
         </div>
     </div>
     <div class="vip-buy-btn">

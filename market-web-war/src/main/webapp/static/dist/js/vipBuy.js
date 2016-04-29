@@ -94,8 +94,8 @@ webpackJsonp([19],{
 	            userId: userId
 	        }, function (res) {
 	            if (res.rtnCode == '0000000') {
-	                $('#price').html('价格：' + res.bizData.salePrice + '元/套');
-	                $('#price').attr('data-price', res.bizData.salePrice);
+	                $('#price').html(res.bizData.wechatPrice);
+	                $('#price').attr('data-price', res.bizData.wechatPrice);
 	            }
 	        })
 	    }
@@ -105,7 +105,8 @@ webpackJsonp([19],{
 	    function commitOrder() {
 	        util.ajaxFun(interfaceUrl.commitOrder, 'POST', {
 	            userId: cookie.getCookieValue('userId'),
-	            price: $('#price').attr('data-price')
+	            price: $('#price').attr('data-price'),
+	            goodsCount:$('#number').text()
 	        }, function (res) {
 	            if (res.rtnCode == '0000000') {
 	                var department = res.bizData.department;
