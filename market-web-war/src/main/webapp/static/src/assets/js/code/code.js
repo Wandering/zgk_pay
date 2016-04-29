@@ -57,21 +57,21 @@ $(function () {
 
     var openId = cookie.getCookieValue('openId');
     var menuV = util.getLinkey('menu');
+    if(menuV=="1"){
+        cookie.setCookie("flag", "0", 4, "/");
+    }
+
 
     if(toUrl=='code'){
-        if(!isLogin && menuV=="1"){
+        if(!isLogin){
             window.location.href='/login?state=code';
         }else{
-            if(menuV=="1"){
-                cookie.setCookie("flag", "0", 4, "/");
-            }
             var flag = cookie.getCookieValue('flag');
             if(flag=="0"){
                 cookie.setCookie("flag", "1", 4, "/");
                 window.location.assign('code?state=code&userId=' + cookieUserId+'&token=' + token + "&code="+getQueryObject(window.location.href).code);
             }
             if(flag=="1"){
-
                 if (isWeiXin()) {
                     if(!openId){
                         var obj = getQueryObject(window.location.href);
