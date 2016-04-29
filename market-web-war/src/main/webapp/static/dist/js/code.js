@@ -130,18 +130,10 @@ webpackJsonp([1],[
 	    /***************************自定义二维码*************************************/
 
 	    var timestamp = parseInt(new Date().getTime() / 1000);
-	    //function getNonceStr() {
-	    //    var $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-	    //    var maxPos = $chars.length;
-	    //    var noceStr = "";
-	    //    for (var i = 0; i < 32; i++) {
-	    //        noceStr += $chars.charAt(Math.floor(Math.random() * maxPos));
-	    //    }
-	    //    return noceStr;
-	    //}
-
 
 	    var noncestr = 'U5iQqjfV123NT5du';
+
+	    var  urls = 'http://zgkser.zhigaokao.cn/vip?state=vip';
 
 	    function getSign() {
 	        $.ajaxSettings.async = false;
@@ -149,7 +141,7 @@ webpackJsonp([1],[
 	        $.getJSON('/pay/getAccessToken', function (res) {
 	            if (res.rtnCode == "0000000") {
 	                var ticket = res.bizData.ticket;
-	                //var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url=http://zgkser.zhigaokao.cn/vip?state=vip";
+	                //var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url="+urls;
 	                var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url="+window.location.href;
 
 	                //alert(string1)
@@ -194,8 +186,8 @@ webpackJsonp([1],[
 	        wx.onMenuShareAppMessage({
 	            title: title,
 	            desc: desc,
-	            link: window.location.href,//分享链接
-	            //link: 'http://zgkser.zhigaokao.cn/vip?state=vip',//分享链接
+	            //link: window.location.href,//分享链接
+	            link: urls,//分享链接
 	            imgUrl: logo, // 分享图标
 	            trigger: function (res) {
 	                //alert('用户点击发送给朋友');
@@ -214,8 +206,8 @@ webpackJsonp([1],[
 	        wx.onMenuShareTimeline({
 	            title: title,
 	            desc: desc,
-	            link: window.location.href,//分享链接
-	            //link: 'http://zgkser.zhigaokao.cn/vip?state=vip',//分享链接
+	            //link: window.location.href,//分享链接
+	            link: urls,//分享链接
 	            imgUrl: logo, // 分享图标
 	            trigger: function (res) {
 	                //alert('用户点击分享到朋友圈');
