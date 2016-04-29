@@ -30,7 +30,7 @@ public class PayExServiceImpl implements IPayExService{
         if(totalWithdrawals == null){
             return totalIncome/100;
         }
-        return (totalIncome - totalWithdrawals)/100;
+        return totalIncome/100 - totalWithdrawals;
     }
 
     @Override
