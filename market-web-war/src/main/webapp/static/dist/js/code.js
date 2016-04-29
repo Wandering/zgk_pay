@@ -73,7 +73,7 @@ webpackJsonp([1],[
 	            setTimeout(function(){
 	                if(flag=="0"){
 	                    cookie.setCookie("flag", "1", 4, "/");
-	                    window.location.assign('code?state=code&userId=' + cookieUserId+'&token=' + token + "&code="+getQueryObject(window.location.href).code);
+	                    window.location.href='code?state=code&userId=' + cookieUserId+'&token=' + token + "&code="+getQueryObject(window.location.href).code;
 	                }
 	                if(flag=="1"){
 	                    if (isWeiXin()) {
