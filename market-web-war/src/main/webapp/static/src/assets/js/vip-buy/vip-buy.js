@@ -238,14 +238,15 @@ require('pgwmodal');
             return false;
         }
 
-
         util.ajaxFun(interfaceUrl.getBuyInfo, 'POST', {
             userId: userId
         }, function (res) {
             if (res.rtnCode == '0000000') {
                 $('#price').html(res.bizData.wechatPrice);
                 $('#price').attr('data-price', res.bizData.wechatPrice);
+
                 $('.vip-buy-btn').on('click', function () {
+
 
                     util.ajaxFun(interfaceUrl.commitOrder, 'POST', {
                         userId: cookie.getCookieValue('userId'),
