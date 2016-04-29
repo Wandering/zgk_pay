@@ -338,7 +338,7 @@ public class PayController {
 
         double balance = payExService.getWalletBalance(userId);
 
-        if(money > balance){
+        if(money > balance || money < 0){
             ModelUtil.throwException(ErrorCode.ERROR_PARAM);
         }
 

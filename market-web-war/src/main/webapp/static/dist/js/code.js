@@ -23,7 +23,6 @@ webpackJsonp([1],[
 	            window.location.href = 'user-detail?state=user-detail&token='+token;
 	        });
 	    }else{
-	        document.title = '邀请好友';
 	        $('#header-title').text('邀请好友');
 	        $('#header-menu').show();
 	    }
