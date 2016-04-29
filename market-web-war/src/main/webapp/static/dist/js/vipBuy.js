@@ -200,13 +200,9 @@ webpackJsonp([19],{
 
 	        getOrderInfo();
 
-	        if($('#pay_price').attr('data-price')!=""){
-	            $('.vip-buy-btn').on('click', function() {
-	                commitOrder();
-	            });
-	        }
-
-
+	        $('.vip-buy-btn').on('click', function() {
+	            commitOrder();
+	        });
 
 	        $('.sub').on('click', function() {
 	            if ($(this).hasClass('subtraction')) {
