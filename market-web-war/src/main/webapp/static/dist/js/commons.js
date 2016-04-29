@@ -306,15 +306,12 @@
 	//var BASE_URL = 'http://dev.service.zhigaokao.cn/';  //正式环境
 	//var BASE_URL = 'http://10.136.13.233:8080';  //测试环境
 	//var BASE_URL = 'http://172.16.160.31:8080';  //小文本地
-	//var BASE_URL = 'http://172.16.160.82:8085';  //小文本地
 	//var BASE_URL = 'http://172.16.160.72:8089';  //左浩本地
 	//var BASE_URL2 = 'http://10.254.130.33:8080';  //测试环境(智能填报)
 	//var BASE_URL = 'http://10.136.56.195:8080';  //开发环境
 	//var BASE_URL = 'http://172.16.180.150:8086';  //yyp
 	//var BASE_URL = 'http://127.0.0.1:8080';
 	//var BASE_URL = '';
-
-
 
 
 	var interfaceUrl = {
@@ -330,11 +327,9 @@
 	     * 在线购买初始化
 	     */
 	    getBuyInfo: '/order/getBuyInfo',
-
 	    /**
 	     * 确认订单
 	     */
-
 	    commitOrder: '/order/commitOrder',
 	    /**
 	     * 订单支付
