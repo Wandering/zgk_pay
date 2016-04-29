@@ -116,7 +116,7 @@
                     var html = that.render(res.bizData);
                     //that.pageNo++;
                     if (html) {
-                        $('#detail-list').htotal-sumtml(html);
+                        $('#detail-list').html(html);
                         for (var key in that.totalPrice) {
                             $('#' + key).text(that.totalPrice[key]);
                         }
