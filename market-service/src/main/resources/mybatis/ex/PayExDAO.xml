@@ -28,7 +28,7 @@
     <!-- 根据用户ID查询用户收益详情 -->
     <select id="queryUserIncomeDetailByUserId" parameterType="map" resultType="map">
         SELECT
-            t0.price as rewardMoney,
+            t0.price/100 as rewardMoney,
             t0.create_time as createDate,
             t2.name as userName
         FROM
@@ -52,7 +52,7 @@
         left join zgk_user_info info on ord.user_id=info.id
         <where>
             <if test="userId!=null">
-                and  split.user_id=#{userId,jdbcType=INTEGER}
+                split.user_id=#{userId,jdbcType=INTEGER}
             </if>
         </where>
         order by create_time desc
