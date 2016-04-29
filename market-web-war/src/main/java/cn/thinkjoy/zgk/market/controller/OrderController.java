@@ -72,10 +72,10 @@ public class OrderController extends BaseCommonController {
             Order order=new Order();
 
             Department  department= agentService.getAgentInfo(userId);
-            if(! department.getSalePrice().equals(price)){
-                logger.error("用户" + order.getUserId() + ",提交的价格不匹配" );
-                throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
-            }
+//            if(! department.getSalePrice().equals(price)){
+//                logger.error("用户" + order.getUserId() + ",提交的价格不匹配" );
+//                throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
+//            }
             order.setCreateDate(System.currentTimeMillis());
             order.setOrderNo(orderNo);
             order.setDepartmentName(department.getDepartmentName());
