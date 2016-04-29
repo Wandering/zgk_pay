@@ -96,41 +96,74 @@ webpackJsonp([19],{
 	            if (res.rtnCode == '0000000') {
 	                $('#price').html(res.bizData.wechatPrice);
 	                $('#price').attr('data-price', res.bizData.wechatPrice);
+
+
+	                util.ajaxFun(interfaceUrl.commitOrder, 'POST', {
+	                    userId: cookie.getCookieValue('userId'),
+	                    price: $('#price').attr('data-price'),
+	                    goodsCount:$('#number').text()
+	                }, function (res) {
+	                    console.log(res)
+	                    if (res.rtnCode == '0000000') {
+	                        var department = res.bizData.department;
+	                        $('#orderNo').html('订单ID：' + res.bizData.orderNo);
+	                        $('#orderNo').attr('orderNo', res.bizData.orderNo);
+	                        $('#order_time').html('订单创建日期：' + department.createDateAsDate);
+	                        $('#service_price').html('服务价格：' + department.wechatPrice + '元/套');
+	                        var number = parseInt($('.number').text());
+	                        $('#pay_number').html('购买数量：' + number + '套');
+	                        var totalPrice = department.wechatPrice * number;
+	                        $('#pay_price').html('应付费用：' + totalPrice  + '元');
+	                        $('#pay_price').attr('data-price', totalPrice);
+	                        $.pgwModal({
+	                            title: '订单确认',
+	                            content: $('.modal').html()
+	                        });
+	                        $('.confirm-btn').off('click');
+	                        $('.confirm-btn').click(function(){
+	                            payOrder();
+	                        });
+	                    }
+	                })
+
+
+
+
 	            }
 	        })
 	    }
 	    /**
 	     * 订单确定
 	     */
-	    function commitOrder() {
-	        util.ajaxFun(interfaceUrl.commitOrder, 'POST', {
-	            userId: cookie.getCookieValue('userId'),
-	            price: $('#price').attr('data-price'),
-	            goodsCount:$('#number').text()
-	        }, function (res) {
-	            console.log(res)
-	            if (res.rtnCode == '0000000') {
-	                var department = res.bizData.department;
-	                $('#orderNo').html('订单ID：' + res.bizData.orderNo);
-	                $('#orderNo').attr('orderNo', res.bizData.orderNo);
-	                $('#order_time').html('订单创建日期：' + department.createDateAsDate);
-	                $('#service_price').html('服务价格：' + department.wechatPrice + '元/套');
-	                var number = parseInt($('.number').text());
-	                $('#pay_number').html('购买数量：' + number + '套');
-	                var totalPrice = department.wechatPrice * number;
-	                $('#pay_price').html('应付费用：' + totalPrice  + '元');
-	                $('#pay_price').attr('data-price', totalPrice);
-	                $.pgwModal({
-	                   title: '订单确认',
-	                   content: $('.modal').html()
-	                });
-	                $('.confirm-btn').off('click');
-	                $('.confirm-btn').click(function(){
-	                    payOrder();
-	                });
-	            }
-	        })
-	    }
+	    //function commitOrder() {
+	    //    util.ajaxFun(interfaceUrl.commitOrder, 'POST', {
+	    //        userId: cookie.getCookieValue('userId'),
+	    //        price: $('#price').attr('data-price'),
+	    //        goodsCount:$('#number').text()
+	    //    }, function (res) {
+	    //        console.log(res)
+	    //        if (res.rtnCode == '0000000') {
+	    //            var department = res.bizData.department;
+	    //            $('#orderNo').html('订单ID：' + res.bizData.orderNo);
+	    //            $('#orderNo').attr('orderNo', res.bizData.orderNo);
+	    //            $('#order_time').html('订单创建日期：' + department.createDateAsDate);
+	    //            $('#service_price').html('服务价格：' + department.wechatPrice + '元/套');
+	    //            var number = parseInt($('.number').text());
+	    //            $('#pay_number').html('购买数量：' + number + '套');
+	    //            var totalPrice = department.wechatPrice * number;
+	    //            $('#pay_price').html('应付费用：' + totalPrice  + '元');
+	    //            $('#pay_price').attr('data-price', totalPrice);
+	    //            $.pgwModal({
+	    //               title: '订单确认',
+	    //               content: $('.modal').html()
+	    //            });
+	    //            $('.confirm-btn').off('click');
+	    //            $('.confirm-btn').click(function(){
+	    //                payOrder();
+	    //            });
+	    //        }
+	    //    })
+	    //}
 
 	    function orderPayStatus(msg) {
 	        util.drawToast(msg);
@@ -198,10 +231,11 @@ webpackJsonp([19],{
 	    $(document).ready(function() {
 	        $('#header-title').text('在线购买');
 
-	        getOrderInfo();
+
 
 	        $('.vip-buy-btn').on('click', function() {
-	            commitOrder();
+	            //commitOrder();
+	            getOrderInfo();
 	        });
 
 	        $('.sub').on('click', function() {
