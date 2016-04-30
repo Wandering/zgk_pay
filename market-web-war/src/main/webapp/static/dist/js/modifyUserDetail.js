@@ -82,8 +82,8 @@ webpackJsonp([8],[
 	                util.drawToast('用户名不能为空');
 	                return false;
 	            }
-	            if (name.length > 10) {
-	                util.drawToast('用户名不能大于10个字');
+	            if (name.length > 13) {
+	                util.drawToast('用户名不能大于13个字');
 	                return false;
 	            }
 	            if (school.length == 0) {
