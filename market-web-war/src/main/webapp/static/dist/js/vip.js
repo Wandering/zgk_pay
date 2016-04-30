@@ -10,21 +10,18 @@ webpackJsonp([18],[
 	    var getTime = __webpack_require__(4);
 
 	    var isLogin = cookie.getCookieValue('isLogin');
-	    var token = cookie.getCookieValue('token');
+	    var toUrl = util.getLinkey('state');
 	    var userId = cookie.getCookieValue('userId');
-
-
-
-
-
-
-
-
 
 
 	    $('#account-number').val(account);
 	    $('#header-menu').show();
 	    $('#header-title').text('关于智高考');
+
+
+
+
+
 
 	    var sharerId = util.getLinkey('sharerId');
 	    var sharerType = util.getLinkey('sharerType');
