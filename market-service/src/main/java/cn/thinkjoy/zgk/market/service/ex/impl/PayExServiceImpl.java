@@ -24,7 +24,7 @@ public class PayExServiceImpl implements IPayExService{
         // TODO 分成的金额单位是分
         Double totalIncome = payExDAO.getAllIncomeByUserId(userId);
         Double totalWithdrawals = payExDAO.getTotalWithdrawalsByUserId(userId);
-        BigDecimal total = new BigDecimal(totalIncome);
+        BigDecimal total = new BigDecimal(totalIncome).divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_DOWN);
         BigDecimal totalWithdraw = new BigDecimal(totalWithdrawals);
 
         if(totalIncome == null){
@@ -32,9 +32,9 @@ public class PayExServiceImpl implements IPayExService{
         }
         if(totalWithdrawals == null){
 
-            return total.divide(new BigDecimal(100), 2 ,BigDecimal.ROUND_HALF_DOWN).doubleValue();
+            return total.doubleValue();
         }
-        return total.subtract(totalWithdraw).divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_DOWN).doubleValue();
+        return total.subtract(totalWithdraw).doubleValue();
     }
 
     @Override
