@@ -208,8 +208,8 @@ $(function () {
             return false;
         }
 
-        var sharerId = cookie.getCookieValue('sharerId');
-        var sharerType = cookie.getCookieValue('sharerType');
+        var sharerId = util.getLinkey('sharerId');
+        var sharerType = util.getLinkey('sharerType');
 
         var subHtml = '<p class="reg-center">进入智高考"'+ provinceTxt +'"网站，</br>注册之后地域不可修改</p>';
         util.confirmLayer('注册',subHtml);
@@ -225,6 +225,7 @@ $(function () {
                 sharerId: sharerId || "0",
                 sharerType: sharerType || "0"
             }, function (res) {
+
                 $('#confirm-btn').attr('disabled', 'disabled');
                 if (res.rtnCode === "0000000") {
                     var token = res.bizData.token;  // token
@@ -268,7 +269,6 @@ $(function () {
                     } else {
                         window.location.assign(webUrl);
                     }
-
                 } else {
                     util.drawToast(res.msg);
                 }

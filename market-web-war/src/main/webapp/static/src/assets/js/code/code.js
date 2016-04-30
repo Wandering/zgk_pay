@@ -138,7 +138,6 @@ $(function () {
         $.getJSON('/pay/getAccessToken', function (res) {
             if (res.rtnCode == "0000000") {
                 var ticket = res.bizData.ticket;
-                //var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url="+urls;
                 var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url="+window.location.href;
 
                 //alert(string1)
