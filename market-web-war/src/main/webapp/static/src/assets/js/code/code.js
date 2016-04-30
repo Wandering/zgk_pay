@@ -182,8 +182,8 @@ $(function () {
         wx.onMenuShareAppMessage({
             title: title,
             desc: desc,
-            //link: window.location.href,//分享链接
-            link: urls,//分享链接
+            link: window.location.href,//分享链接
+            //link: urls,//分享链接
             imgUrl: logo, // 分享图标
             trigger: function (res) {
                 //alert('用户点击发送给朋友');
@@ -202,8 +202,8 @@ $(function () {
         wx.onMenuShareTimeline({
             title: title,
             desc: desc,
-            //link: window.location.href,//分享链接
-            link: urls,//分享链接
+            link: window.location.href,//分享链接
+            //link: urls,//分享链接
             imgUrl: logo, // 分享图标
             trigger: function (res) {
                 //alert('用户点击分享到朋友圈');

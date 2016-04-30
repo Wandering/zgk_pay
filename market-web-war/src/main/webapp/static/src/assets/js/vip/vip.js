@@ -10,6 +10,14 @@ $(function () {
     var userId = cookie.getCookieValue('userId');
 
 
+
+
+
+
+
+
+
+
     $('#account-number').val(account);
     $('#header-menu').show();
     $('#header-title').text('关于智高考');
