@@ -33,8 +33,8 @@ public class PayExServiceImpl implements IPayExService{
             return new BigDecimal(totalIncome).divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_DOWN).doubleValue();
         }
         BigDecimal total = new BigDecimal(totalIncome).divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_DOWN);
-        BigDecimal totalWithdraw = new BigDecimal(totalWithdrawals);
-        return total.subtract(totalWithdraw).doubleValue();
+        BigDecimal totalWithdraw = new BigDecimal(totalWithdrawals).setScale(2, BigDecimal.ROUND_HALF_DOWN);
+        return total.subtract(totalWithdraw).setScale(2, BigDecimal.ROUND_HALF_DOWN).doubleValue();
     }
 
     @Override
