@@ -28,8 +28,8 @@ public class PayExServiceImpl implements IPayExService{
         if(totalIncome == null){
             return 0;
         }
-        if(totalWithdrawals == null){
 
+        if(totalWithdrawals == null){
             return new BigDecimal(totalIncome).divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_DOWN).doubleValue();
         }
         BigDecimal total = new BigDecimal(totalIncome).divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_DOWN);
