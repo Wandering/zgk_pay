@@ -5,6 +5,7 @@ import cn.thinkjoy.zgk.market.service.ex.IPayExService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -23,14 +24,17 @@ public class PayExServiceImpl implements IPayExService{
         // TODO 分成的金额单位是分
         Double totalIncome = payExDAO.getAllIncomeByUserId(userId);
         Double totalWithdrawals = payExDAO.getTotalWithdrawalsByUserId(userId);
+        BigDecimal total = new BigDecimal(totalIncome);
+        BigDecimal totalWithdraw = new BigDecimal(totalWithdrawals);
 
         if(totalIncome == null){
             return 0;
         }
         if(totalWithdrawals == null){
-            return totalIncome/100;
+
+            return total.divide(new BigDecimal(100), 2 ,BigDecimal.ROUND_HALF_DOWN).doubleValue();
         }
-        return (totalIncome - totalWithdrawals)/100;
+        return total.subtract(totalWithdraw).divide(new BigDecimal(100), 2, BigDecimal.ROUND_HALF_DOWN).doubleValue();
     }
 
     @Override
