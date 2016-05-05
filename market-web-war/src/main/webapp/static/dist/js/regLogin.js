@@ -366,6 +366,7 @@ webpackJsonp([13],[
 	            password: md5loginPwdV
 	        }, function (res) {
 	            if (res.rtnCode === "0000000") {
+	                $(this).attr('disabled','disabled');
 	                var token = res.bizData.token;  // token
 	                var userName = res.bizData.userInfo.name; // 用户名称
 	                var userId = res.bizData.userInfo.id;  // userId
@@ -669,6 +670,7 @@ webpackJsonp([13],[
 	                sharerId: sharerId || "0",
 	                sharerType: sharerType || "0"
 	            }, function (res) {
+
 	                $('#confirm-btn').attr('disabled', 'disabled');
 	                if (res.rtnCode === "0000000") {
 	                    var token = res.bizData.token;  // token
@@ -712,7 +714,6 @@ webpackJsonp([13],[
 	                    } else {
 	                        window.location.assign(webUrl);
 	                    }
-
 	                } else {
 	                    util.drawToast(res.msg);
 	                }

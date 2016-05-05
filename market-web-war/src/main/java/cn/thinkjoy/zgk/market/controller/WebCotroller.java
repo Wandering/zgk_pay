@@ -263,5 +263,14 @@ public class WebCotroller {
     public ModelAndView applyCash() {
         return new ModelAndView("/apply-cash/apply-cash");
     }
+    /**
+     * searchSchool
+     *
+     * @return
+     */
+    @RequestMapping("/search-school")
+    public ModelAndView searchSchool() {
+        return new ModelAndView("/search-school/search-school");
+    }
 
 }

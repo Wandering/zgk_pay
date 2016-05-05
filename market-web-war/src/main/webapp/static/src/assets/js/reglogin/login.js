@@ -65,6 +65,7 @@ $(function () {
             password: md5loginPwdV
         }, function (res) {
             if (res.rtnCode === "0000000") {
+                $(this).attr('disabled','disabled');
                 var token = res.bizData.token;  // token
                 var userName = res.bizData.userInfo.name; // 用户名称
                 var userId = res.bizData.userInfo.id;  // userId

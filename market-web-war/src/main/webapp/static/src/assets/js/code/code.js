@@ -57,29 +57,30 @@ $(function () {
 
     var openId = cookie.getCookieValue('openId');
     var menuV = util.getLinkey('menu');
+    if(menuV=="1"){
+        cookie.setCookie("flag", "0", 4, "/");
+    }
+    var flag = cookie.getCookieValue('flag');
 
     if(toUrl=='code'){
-        if(!isLogin && menuV=="1"){
+        if(!isLogin){
             window.location.href='/login?state=code';
         }else{
-            if(menuV=="1"){
-                cookie.setCookie("flag", "0", 4, "/");
-            }
-            var flag = cookie.getCookieValue('flag');
-            if(flag=="0"){
-                cookie.setCookie("flag", "1", 4, "/");
-                window.location.assign('code?state=code&userId=' + cookieUserId+'&token=' + token + "&code="+getQueryObject(window.location.href).code);
-            }
-            if(flag=="1"){
-
-                if (isWeiXin()) {
-                    if(!openId){
-                        var obj = getQueryObject(window.location.href);
-                        cookie.setCookie("code", obj.code, 4, "/");
-                        getOpenId(obj.code);
+            setTimeout(function(){
+                if(flag=="0"){
+                    cookie.setCookie("flag", "1", 4, "/");
+                    window.location.href='code?state=code&userId=' + cookieUserId+'&token=' + token + "&code="+getQueryObject(window.location.href).code;
+                }
+                if(flag=="1"){
+                    if (isWeiXin()) {
+                        if(!openId){
+                            var obj = getQueryObject(window.location.href);
+                            cookie.setCookie("code", obj.code, 4, "/");
+                            getOpenId(obj.code);
+                        }
                     }
                 }
-            }
+            },500);
         }
     }
 
@@ -126,18 +127,10 @@ $(function () {
     /***************************自定义二维码*************************************/
 
     var timestamp = parseInt(new Date().getTime() / 1000);
-    //function getNonceStr() {
-    //    var $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    //    var maxPos = $chars.length;
-    //    var noceStr = "";
-    //    for (var i = 0; i < 32; i++) {
-    //        noceStr += $chars.charAt(Math.floor(Math.random() * maxPos));
-    //    }
-    //    return noceStr;
-    //}
-
 
     var noncestr = 'U5iQqjfV123NT5du';
+
+    var  urls = 'http://zgkser.zhigaokao.cn/vip?state=vip&sharerId='+userId+"&sharerType=1";
 
     function getSign() {
         $.ajaxSettings.async = false;
@@ -145,8 +138,8 @@ $(function () {
         $.getJSON('/pay/getAccessToken', function (res) {
             if (res.rtnCode == "0000000") {
                 var ticket = res.bizData.ticket;
-                //var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url="+window.location.href;
-                var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url=http://zgkser.zhigaokao.cn/vip?state=vip";
+                var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url="+window.location.href;
+
                 //alert(string1)
 
                 var sign = CryptoJS.SHA1(string1);
@@ -190,7 +183,7 @@ $(function () {
             title: title,
             desc: desc,
             //link: window.location.href,//分享链接
-            link: 'http://zgkser.zhigaokao.cn/vip?state=vip',//分享链接
+            link: urls,//分享链接
             imgUrl: logo, // 分享图标
             trigger: function (res) {
                 //alert('用户点击发送给朋友');
@@ -210,7 +203,7 @@ $(function () {
             title: title,
             desc: desc,
             //link: window.location.href,//分享链接
-            link: 'http://zgkser.zhigaokao.cn/vip?state=vip',//分享链接
+            link: urls,//分享链接
             imgUrl: logo, // 分享图标
             trigger: function (res) {
                 //alert('用户点击分享到朋友圈');
