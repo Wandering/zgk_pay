@@ -23,7 +23,8 @@ module.exports = {
         schedule: './src/assets/js/schedule/schedule',
         levelCalculate: './src/assets/js/level-calculate/level-calculate',
         userBullet: './src/assets/js/user-bullet/user-bullet',
-        applyCash: './src/assets/js/apply-cash/apply-cash'
+        applyCash: './src/assets/js/apply-cash/apply-cash',
+        searchSchool: './src/assets/js/search-school/search-school'
     },
     output: {
         path: path.join(__dirname, "./dist/js"),
