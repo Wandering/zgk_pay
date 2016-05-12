@@ -99,6 +99,10 @@
 	                        $('.school-location-btn').text($(this).text());
 	                        $('.school-location-btn').attr('data-select', $(this).attr('data-id'));
 	                        that.offset = 0;
+	                        $('.school-location-modal').addClass('hidden');
+	                        $('.backdrop1').addClass('hidden');
+	                        $('.filter-list').css('z-index', '1');
+	                        $('.select').removeClass('active');
 	                        School.getSchoolList();
 	                    });
 	                }
@@ -121,6 +125,10 @@
 	                        $('.' + arry[typeId - 1]).text($(this).text());
 	                        $('.' + arry[typeId - 1]).attr('data-select', $(this).attr('data-dictid'));
 	                        that.offset = 0;
+	                        $('.school-location-modal').addClass('hidden');
+	                        $('.backdrop1').addClass('hidden');
+	                        $('.filter-list').css('z-index', '1');
+	                        $('.select').removeClass('active');
 	                        School.getSchoolList();
 	                    });
 	                }
