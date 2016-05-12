@@ -359,3 +359,20 @@ header {
   text-decoration: none;
   color: inherit;
 }
+
+.search-result{
+  list-style: none;
+  width: 257px;
+  margin-top: 2px;
+  li{
+    list-style: none;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #8C8C8C;
+    background: #fff;
+    color: #8C8C8C;
+    &:hover {
+      color: #D80C18;
+    }
+  }
+}

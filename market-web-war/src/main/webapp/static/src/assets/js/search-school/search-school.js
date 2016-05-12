@@ -106,10 +106,13 @@
         getFeature: function() {
             this.getRemoteDataDictList('FEATURE');
         },
-        getSchoolList: function() {
+        getSchoolList: function(flag) {
             var areaid = $('.school-location-btn').attr('data-select') || '';
             var type = $('.category').attr('data-select') || '';
-            var educationLevel = $('.level').attr('data-select') || 1;
+            var educationLevel = $('.level').attr('data-select');
+            if (!educationLevel && flag) {
+                educationLevel = 1;
+            }
             var property = $('.feature').attr('data-select') || '';
             var universityName = $('#school_name').val() || '';
             var that = this;
@@ -163,6 +166,26 @@
                         $('.pull-text').html('没有更多数据~~');
                         $('.pull-text').addClass('no-data');
                     }
+                }
+            });
+        },
+        getMajoredInfoByKeywords: function() {
+            var keywords = $.trim($('#school_name').val());
+            if (!keywords) {
+                return;
+            }
+            if (!/^[\u4e00-\u9fa5]{0,}$/.test(keywords)) {
+                return;
+            }
+            util.ajaxFun(urlConfig.getUniversityInfoByKeywords, 'get', {
+                keywords: keywords
+            }, function (res) {
+                if (res.rtnCode == '0000000') {
+                    var html = [];
+                    for (var key in res.bizData) {
+                        html.push('<li class="result" data-id="' + key + '">' + res.bizData[key] + '</li>')
+                    }
+                    $('.search-result').html(html.join(''));
                 }
             });
         }
@@ -224,6 +247,30 @@
 
         });
 
+        $('#school_name').on('input propertychange', function() {
+            School.getMajoredInfoByKeywords();
+        });
+
+        $(document).click(function(event) {
+            var ele = $(event.target);
+            if (ele.hasClass('result')) {
+                var id = ele.attr('data-id');
+                var name = ele.text();
+                $('#school_name').val(name);
+                $('#school_name').attr('data-id', id);
+                $('.search-result').html('');
+            } else {
+                if ($('.search-result li').length > 0) {
+                    var dom = $('.search-result li').get(0);
+                    var id = $(dom).attr('data-id');
+                    var name = $(dom).text();
+                    $('#school_name').val(name);
+                    $('#school_name').attr('data-id', id);
+                    $('.search-result').html('');
+                }
+            }
+        });
+
         $('.search-modal span').on('click', function() {
             $('.search-modal').addClass('hidden');
             $('.backdrop1').addClass('hidden');
@@ -233,8 +280,16 @@
             $('.search-modal').addClass('hidden');
             $('.backdrop1').addClass('hidden');
             $('.filter-list').css('z-index', '1');
+            $('.school-location-btn').attr('data-select', '');
+            $('.school-location-btn').text('院校属地');
+            $('.category').attr('data-select', '');
+            $('.category').text('院校分类');
+            $('.level').attr('data-select', '');
+            $('.level').text('学历层次');
+            $('.feature').attr('data-select', '');
+            $('.feature').text('院校特征');
             School.offset = 0;
-            School.getSchoolList();
+            School.getSchoolList(true);
         });
         $('.select').on('click', function(){
             if (!$('.search-modal').hasClass('hidden')) {

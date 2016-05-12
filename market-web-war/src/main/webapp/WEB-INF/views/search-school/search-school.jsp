@@ -23,6 +23,8 @@
             <input id="school_name" type="text" placeholder="院校姓名"/>
             <span>取消</span>
             <i class="search-normal-icon"></i>
+            <ul class="search-result">
+            </ul>
         </div>
         <div class="info">
             共<span></span>所学校
