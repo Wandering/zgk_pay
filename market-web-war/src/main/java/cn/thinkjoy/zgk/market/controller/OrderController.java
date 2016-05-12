@@ -86,6 +86,7 @@ public class OrderController extends BaseCommonController {
             order.setUserId(Long.valueOf(userId));
             order.setStatus(0);
             order.setGoodsCount(goodsCount);
+            order.setHandleState(0);
             // TODO 现阶段客户端只有微信支付
             order.setChannle(0);
             orderService.insert(order);
