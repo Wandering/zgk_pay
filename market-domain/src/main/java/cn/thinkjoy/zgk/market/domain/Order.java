@@ -12,32 +12,24 @@ package cn.thinkjoy.zgk.market.domain;
 import cn.thinkjoy.common.domain.BaseDomain;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 public class Order extends BaseDomain{
+    private String state="N";
     private Long userId;
-    //    private Long productId;
     private String orderNo;
     private Integer channle;
     private Integer status;
     private Long createDate;
     private Long updateDate;
-    private String state="N";
-    private Integer goodsCount;
-    //    private Double amount;
-//    private Integer productNumber;
-    private String  productPrice;
-    private String  goodsAddress;
-    private String  departmentName;
+    private String goodsAddress;
+    private String productPrice;
+    private Long departmentCode;
+    private String departmentName;
     private String departmentPhone;
-
-
-    public Integer getGoodsCount() {
-        return goodsCount;
-    }
-
-    public void setGoodsCount(Integer goodsCount) {
-        this.goodsCount = goodsCount;
-    }
+    private Integer goodsCount;
+    private Integer handleState;
 
     public Order(){
     }
@@ -48,22 +40,6 @@ public class Order extends BaseDomain{
     public Long getUserId() {
         return this.userId;
     }
-//    public void setProductId(Long value) {
-//        this.productId = value;
-//    }
-
-    //    public Long getProductId() {
-//        return this.productId;
-//    }
-
-    public String getGoodsAddress() {
-        return goodsAddress;
-    }
-
-    public void setGoodsAddress(String goodsAddress) {
-        this.goodsAddress = goodsAddress;
-    }
-
     public void setOrderNo(String value) {
         this.orderNo = value;
     }
@@ -99,27 +75,55 @@ public class Order extends BaseDomain{
     public String getState() {
         return this.state;
     }
-//    public void setAmount(Double value) {
-//        this.amount = value;
-//    }
-//
-//    public Double getAmount() {
-//        return this.amount;
-//    }
-//    public void setProductNumber(Integer value) {
-//        this.productNumber = value;
-//    }
+    public void setGoodsAddress(String value) {
+        this.goodsAddress = value;
+    }
 
-//    public Integer getProductNumber() {
-//        return this.productNumber;
-//    }
-//    public void setProductPrice(Double value) {
-//        this.productPrice = value;
-////    }
+    public String getGoodsAddress() {
+        return this.goodsAddress;
+    }
+    public void setProductPrice(String value) {
+        this.productPrice = value;
+    }
 
-//    public Double getProductPrice() {
-//        return this.productPrice;
-//    }
+    public String getProductPrice() {
+        return this.productPrice;
+    }
+    public void setDepartmentCode(Long value) {
+        this.departmentCode = value;
+    }
+
+    public Long getDepartmentCode() {
+        return this.departmentCode;
+    }
+    public void setDepartmentName(String value) {
+        this.departmentName = value;
+    }
+
+    public String getDepartmentName() {
+        return this.departmentName;
+    }
+    public void setDepartmentPhone(String value) {
+        this.departmentPhone = value;
+    }
+
+    public String getDepartmentPhone() {
+        return this.departmentPhone;
+    }
+    public void setGoodsCount(Integer value) {
+        this.goodsCount = value;
+    }
+
+    public Integer getGoodsCount() {
+        return this.goodsCount;
+    }
+    public void setHandleState(Integer value) {
+        this.handleState = value;
+    }
+
+    public Integer getHandleState() {
+        return this.handleState;
+    }
 
     public Integer getStatus() {
         return status;
@@ -129,53 +133,30 @@ public class Order extends BaseDomain{
         this.status = status;
     }
 
-    //    public String toString() {
-//		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-//			.append("Id",getId())
-//			.append("UserId",getUserId())
-//			.append("ProductId",getProductId())
-//			.append("Status",getStatus())
-//			.append("OrderNo",getOrderNo())
-//			.append("Channle",getChannle())
-//			.append("CreateDate",getCreateDate())
-//			.append("UpdateDate",getUpdateDate())
-//			.append("State",getState())
-//			.append("Amount",getAmount())
-//			.append("ProductNumber",getProductNumber())
-//			.append("ProductPrice",getProductPrice())
-//			.toString();
-//	}
-//
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("Id",getId())
+                .append("UserId",getUserId())
+                .append("Status",getStatus())
+                .append("OrderNo",getOrderNo())
+                .append("Channle",getChannle())
+                .append("CreateDate",getCreateDate())
+                .append("UpdateDate",getUpdateDate())
+                .append("State",getState())
+                .append("GoodsAddress",getGoodsAddress())
+                .append("ProductPrice",getProductPrice())
+                .append("DepartmentCode",getDepartmentCode())
+                .append("DepartmentName",getDepartmentName())
+                .append("DepartmentPhone",getDepartmentPhone())
+                .append("GoodsCount",getGoodsCount())
+                .append("HandleState",getHandleState())
+                .toString();
+    }
+
     public int hashCode() {
         return new HashCodeBuilder()
                 .append(getId())
                 .toHashCode();
-    }
-
-    public String getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(String productPrice) {
-        this.productPrice = productPrice;
-    }
-
-
-
-    public String getDepartmentName() {
-        return departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-    }
-
-    public String getDepartmentPhone() {
-        return departmentPhone;
-    }
-
-    public void setDepartmentPhone(String departmentPhone) {
-        this.departmentPhone = departmentPhone;
     }
 
     public boolean equals(Object obj) {

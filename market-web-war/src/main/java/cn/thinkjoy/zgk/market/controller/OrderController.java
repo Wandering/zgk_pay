@@ -79,12 +79,15 @@ public class OrderController extends BaseCommonController {
             order.setCreateDate(System.currentTimeMillis());
             order.setOrderNo(orderNo);
             order.setDepartmentName(department.getDepartmentName());
+            order.setDepartmentCode(department.getDepartmentCode());
             order.setDepartmentPhone(department.getDepartmentPhone());
             order.setGoodsAddress(department.getGoodsAddress());
             order.setProductPrice(String.valueOf(price*goodsCount));
             order.setUserId(Long.valueOf(userId));
             order.setStatus(0);
             order.setGoodsCount(goodsCount);
+            // TODO 现阶段客户端只有微信支付
+            order.setChannle(0);
             orderService.insert(order);
 
             Map<String,Object> map=new HashMap<>();

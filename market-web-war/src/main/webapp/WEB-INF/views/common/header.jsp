@@ -33,25 +33,25 @@
             </div>
             <div class="menu-list clearfix">
                 <div class="item">
-                    <a href="http://dev.zhigaokao.cn/weixin/index.html#/queryCollege">
+                    <a href="/search-school">
                         <img src="<%=ctx%>/static/dist/img/1.png" alt=""/>
                         <span>查院校</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="http://dev.zhigaokao.cn/weixin/index.html#/queryMajor">
+                    <a href="/major-search">
                         <img src="<%=ctx%>/static/dist/img/2.png" alt=""/>
                         <span>查专业</span>
                     </a>
                 </div>
-                <%--<div class="item">--%>
-                <%--<a href="">--%>
-                <%--<img src="<%=ctx%>/static/dist/img/3.png" alt=""/>--%>
-                <%--<span>省控线</span>--%>
-                <%--</a>--%>
-                <%--</div>--%>
                 <div class="item">
-                    <a href="http://dev.zhigaokao.cn/weixin/index.html#/simulationSchool">
+                <a href="/passing-score">
+                <img src="<%=ctx%>/static/dist/img/3.png" alt=""/>
+                <span>省控线</span>
+                </a>
+                </div>
+                <div class="item">
+                    <a href="/school-calculate">
                         <img src="<%=ctx%>/static/dist/img/4.png" alt=""/>
                         <span>院校预测</span>
                     </a>
@@ -131,25 +131,25 @@
         <div class="menu">
             <div class="menu-list clearfix">
                 <div class="item">
-                    <a href="http://dev.zhigaokao.cn/weixin/index.html#/queryCollege">
+                    <a href="/search-school">
                         <img src="<%=ctx%>/static/dist/img/1.png" alt=""/>
                         <span>查院校</span>
                     </a>
                 </div>
                 <div class="item">
-                    <a href="http://dev.zhigaokao.cn/weixin/index.html#/queryMajor">
+                    <a href="/major-search">
                         <img src="<%=ctx%>/static/dist/img/2.png" alt=""/>
                         <span>查专业</span>
                     </a>
                 </div>
-                <%--<div class="item">--%>
-                <%--<a href="">--%>
-                <%--<img src="<%=ctx%>/static/dist/img/3.png" alt=""/>--%>
-                <%--<span>省控线</span>--%>
-                <%--</a>--%>
-                <%--</div>--%>
                 <div class="item">
-                    <a href="http://dev.zhigaokao.cn/weixin/index.html#/simulationSchool">
+                <a href="/passing-score">
+                <img src="<%=ctx%>/static/dist/img/3.png" alt=""/>
+                <span>省控线</span>
+                </a>
+                </div>
+                <div class="item">
+                    <a href="/school-calculate">
                         <img src="<%=ctx%>/static/dist/img/4.png" alt=""/>
 
                         <span>院校预测</span>

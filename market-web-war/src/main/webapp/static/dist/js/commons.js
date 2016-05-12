@@ -30,7 +30,7 @@
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		21:0
+/******/ 		27:0
 /******/ 	};
 
 /******/ 	// The require function
@@ -76,7 +76,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"1":"code","3":"findPassword","8":"modifyUserDetail","9":"order","11":"policy","12":"policyDetail","13":"regLogin","15":"schoolInfo","17":"userDetail","18":"vip","19":"vipBuy"}[chunkId]||chunkId) + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"1":"code","3":"findPassword","10":"modifyUserDetail","11":"order","14":"policy","15":"policyDetail","16":"regLogin","20":"schoolInfo","23":"userDetail","24":"vip","25":"vipBuy"}[chunkId]||chunkId) + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -396,6 +396,7 @@
 	    getQueryUniversityPlanChart: BASE_URL + '/university/queryUniversityPlanChart.do',//院校招生计划图标展示(暂时只有2015年数据)
 	    queryUniversityEnrollingChartList: BASE_URL + '/university/queryUniversityEnrollingChart.do',//录取情况 (院校录取详情)
 	    getUniversityMajorEnrollingSituationList: BASE_URL + '/university/getUniversityMajorEnrollingSituationList.do',//录取情况 (院校专业录取详情)
+	    getUniversityInfoByKeywords: BASE_URL + '/university/getUniversityInfoByKeywords.do',//通过关键字搜索学校
 
 	    /*
 	     * 收藏
@@ -507,6 +508,7 @@
 	    getMajoredInfoById: BASE_URL + '/majored/getMajoredInfoById.do',// 专业详情
 	    getMajorOpenUniversityList: BASE_URL + '/majored/getMajorOpenUniversityList.do',// 开设院校
 	    getMajoredByName: BASE_URL + '/majored/getMajoredByName.do',// 搜索
+	    getMajoredInfoByKeywords: BASE_URL + '/majored/getMajoredInfoByKeywords.do',//通过关键词搜索专业
 
 
 	    /**
