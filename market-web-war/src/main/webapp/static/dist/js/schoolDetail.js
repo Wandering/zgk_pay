@@ -61,7 +61,7 @@
 	        }, function (res) {
 	            if (res.rtnCode == '0000000') {
 	                $('.img').html('<img src="http://123.59.12.77:8080/' + res.bizData.photoUrl + '" >');
-	                $('.title').text(res.bizData.name);
+	                $('#school_name').text(res.bizData.name);
 	                $('.description').text(res.bizData.property);
 	                $('.pm-level').html('排名：' + res.bizData.rank);
 	                var source = $('#baseInfo').html();
@@ -222,8 +222,8 @@
 	        queryUniversityEnrollingChart: function() {
 	            var universityId = util.getLinkey('id');
 	            //var year = $('#school_year span.active').attr('data-id');
-	            var batch = $('#school_subject span.active').attr('data-id');
-	            var universityMajorType = $('#school_batch span.active').attr('data-id');
+	            var batch = $('#school_batch span.active').attr('data-id');
+	            var universityMajorType = $('#school_subject span.active').attr('data-id');
 	            util.ajaxFun(urlConfig.queryUniversityEnrollingChartList, 'get', {
 	                universityId: universityId,
 	                //year: year,
@@ -249,8 +249,8 @@
 	        getUniversityMajorEnrollingSituationList: function() {
 	            var universityId = util.getLinkey('id');
 	            var year = $('#professional_year span.active').attr('data-id');
-	            var batch = $('#professional_subject span.active').attr('data-id');
-	            var universityMajorType = $('#professional_batch span.active').attr('data-id');
+	            var batch = $('#professional_batch span.active').attr('data-id');
+	            var universityMajorType = $('#professional_subject span.active').attr('data-id');
 	            util.ajaxFun(urlConfig.getUniversityMajorEnrollingSituationList, 'get', {
 	                universityId: universityId,
 	                year: year,

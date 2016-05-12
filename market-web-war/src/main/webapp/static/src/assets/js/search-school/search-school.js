@@ -109,8 +109,8 @@
         getSchoolList: function(flag) {
             var areaid = $('.school-location-btn').attr('data-select') || '';
             var type = $('.category').attr('data-select') || '';
-            var educationLevel = $('.level').attr('data-select');
-            if (!educationLevel && flag) {
+            var educationLevel = $('.level').attr('data-select') || '';
+            if (!educationLevel && !flag) {
                 educationLevel = 1;
             }
             var property = $('.feature').attr('data-select') || '';

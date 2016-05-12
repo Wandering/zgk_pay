@@ -12,7 +12,7 @@
     <div class="img left">
     </div>
     <div class="summary left">
-      <div class="title"></div>
+      <div class="title" id="school_name"></div>
       <div class="description"></div>
       <div class="tags">
         <i class="flag-icon"></i>
