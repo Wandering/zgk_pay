@@ -209,6 +209,7 @@ var interfaceUrl = {
     getMajoredInfoById: BASE_URL + '/majored/getMajoredInfoById.do',// 专业详情
     getMajorOpenUniversityList: BASE_URL + '/majored/getMajorOpenUniversityList.do',// 开设院校
     getMajoredByName: BASE_URL + '/majored/getMajoredByName.do',// 搜索
+    getMajoredInfoByKeywords: BASE_URL + '/majored/getMajoredInfoByKeywords.do',//通过关键词搜索专业
 
 
     /**

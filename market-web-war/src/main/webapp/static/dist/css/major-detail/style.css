@@ -1,0 +1,84 @@
+header .header-btn {
+  position: absolute;
+}
+header .header-btn:first-child {
+  height: 25px;
+  top: 6px;
+  left: 9px;
+}
+header .header-btn:last-child {
+  width: 25px;
+  height: 25px;
+  top: 7px;
+  right: 13px;
+  left: auto;
+  cursor: pointer;
+}
+
+.container {
+  padding: 26px 20px;
+}
+.container .container-header {
+  line-height: 23px;
+  font-size: 12px;
+  color: #707070;
+}
+.container .container-header .title {
+  color: #575757;
+  font-weight: bold;
+  font-size: 17px;
+}
+.container .container-content {
+  font-size: 12px;
+  color: #707070;
+}
+.container .container-content .content {
+  margin-top: 14px;
+  margin-bottom: 20px;
+}
+.container .container-content .content .title {
+  color: #D80C18;
+  position: relative;
+}
+.container .container-content .content .title:after {
+  content: "";
+  display: block;
+  width: calc(100% - 55px);
+  height: 1px;
+  background-color: #D80C18;
+  position: absolute;
+  top: 6px;
+  left: 52px;
+}
+.container .container-content .content .description {
+  line-height: 20px;
+  margin-top: 10px;
+}
+
+.search-modal {
+  position: absolute;
+  z-index: 99;
+  background-color: #D80C18;
+  top: 0;
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+  color: #fff;
+  font-size: 15px;
+  padding: 0 10px;
+}
+.search-modal input {
+  outline: none;
+  border-radius: 12px;
+  border: none;
+  padding: 5px 5px 5px 27px;
+  width: calc(100% - 95px);
+}
+.search-modal span {
+  margin-left: 10px;
+}
+.search-modal i {
+  position: absolute;
+  left: 12px;
+  top: 15px;
+}

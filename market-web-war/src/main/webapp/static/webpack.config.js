@@ -24,7 +24,12 @@ module.exports = {
         levelCalculate: './src/assets/js/level-calculate/level-calculate',
         userBullet: './src/assets/js/user-bullet/user-bullet',
         applyCash: './src/assets/js/apply-cash/apply-cash',
-        searchSchool: './src/assets/js/search-school/search-school'
+        searchSchool: './src/assets/js/search-school/search-school',
+        schoolCalculate: './src/assets/js/school-calculate/school-calculate',
+        schoolDetail: './src/assets/js/school-detail/school-detail',
+        majorSearch: './src/assets/js/major-search/major-search',
+        majorDetail: './src/assets/js/major-detail/major-detail',
+        passingScore: './src/assets/js/passing-score/passing-score'
     },
     output: {
         path: path.join(__dirname, "./dist/js"),

@@ -150,6 +150,21 @@
 
 	    }
 
+	    function getQueryObject(url) {
+	        url = url == null ? window.location.href : url;
+	        var search = url.substring(url.lastIndexOf("?") + 1);
+	        var obj = {};
+	        var reg = /([^?&=]+)=([^?&=]*)/g;
+	        search.replace(reg, function (rs, $1, $2) {
+	            var name = decodeURIComponent($1);
+	            var val = decodeURIComponent($2);
+	            val = String(val);
+	            obj[name] = val;
+	            return rs;
+	        });
+	        return obj;
+	    }
+
 	    $(document).ready(function() {
 	        $('.options span').on('click', function() {
 	            $(this).addClass('active').siblings().removeClass('active');
@@ -160,6 +175,9 @@
 
 	        $('#header-title').text('录取预测');
 	        $('#header-menu').show();
+
+	        var schoolName = getQueryObject(window.location.href).schoolName || '';
+	        $('#target_institutions').val(schoolName);
 
 	    });
 
@@ -581,6 +599,7 @@
 	    getMajoredInfoById: BASE_URL + '/majored/getMajoredInfoById.do',// 专业详情
 	    getMajorOpenUniversityList: BASE_URL + '/majored/getMajorOpenUniversityList.do',// 开设院校
 	    getMajoredByName: BASE_URL + '/majored/getMajoredByName.do',// 搜索
+	    getMajoredInfoByKeywords: BASE_URL + '/majored/getMajoredInfoByKeywords.do',//通过关键词搜索专业
 
 
 	    /**

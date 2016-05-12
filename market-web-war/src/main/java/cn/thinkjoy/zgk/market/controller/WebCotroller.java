@@ -272,5 +272,53 @@ public class WebCotroller {
     public ModelAndView searchSchool() {
         return new ModelAndView("/search-school/search-school");
     }
+    /**
+     * schoolCalculate
+     *
+     * @return
+     */
+    @RequestMapping("/school-calculate")
+    public ModelAndView schoolCalculate() {
+        return new ModelAndView("/school-calculate/school-calculate");
+    }
+
+    /**
+     * schoolDetail
+     *
+     * @return
+     */
+    @RequestMapping("/school-detail")
+    public ModelAndView schoolDetail() {
+        return new ModelAndView("/school-detail/school-detail");
+    }
+
+    /**
+     * majorSearch
+     *
+     * @return
+     */
+    @RequestMapping("/major-search")
+    public ModelAndView majorSearch() {
+        return new ModelAndView("/major-search/major-search");
+    }
+
+    /**
+     * majorDetail
+     *
+     * @return
+     */
+    @RequestMapping("/major-detail")
+    public ModelAndView majorDetail() {
+        return new ModelAndView("/major-detail/major-detail");
+    }
+    /**
+     * passingScore
+     *
+     * @return
+     */
+    @RequestMapping("/passing-score")
+    public ModelAndView passingScore() {
+        return new ModelAndView("/passing-score/passing-score");
+    }
 
 }
