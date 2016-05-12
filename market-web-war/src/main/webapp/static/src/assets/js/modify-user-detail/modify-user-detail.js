@@ -172,8 +172,7 @@
                 wx.chooseImage({
                     count: 1,
                     success: function (res) {
-                        images.localId = res.localIds;
-                        alert('已选择 ' + res.localIds.length + ' 张图片');
+                        alert('已选择 ' + JSON.stringify(res) + ' 张图片');
                         if (images.localId.length == 0) {
                             alert('请先使用 chooseImage 接口选择图片');
                             return;

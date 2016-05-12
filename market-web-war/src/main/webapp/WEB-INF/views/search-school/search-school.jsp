@@ -20,7 +20,7 @@
             </ul>
         </div>
         <div class="search-modal hidden">
-            <input id="school_name" type="text" placeholder="院校姓名"/>
+            <input id="school_name" type="text" placeholder="院校名称"/>
             <span>取消</span>
             <i class="search-normal-icon"></i>
             <ul class="search-result">
