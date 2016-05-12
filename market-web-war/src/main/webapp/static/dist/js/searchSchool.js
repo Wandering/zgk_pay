@@ -61,6 +61,7 @@
 	            $('.'+ type +'-modal').removeClass('hidden');
 	            $('.backdrop1').removeClass().addClass(type).addClass('backdrop1');
 	        }
+	        $('.school-list').html('');
 	        switch (id) {
 	            case '1':
 	                School.getRemoteProvinceList();
@@ -160,7 +161,10 @@
 	                educationLevel = 1;
 	            }
 	            var property = $('.feature').attr('data-select') || '';
-	            var universityName = $('#school_name').val() || '';
+	            var universityName = '';
+	            if (flag) {
+	                universityName = $('#school_name').val();
+	            }
 	            var that = this;
 	            util.ajaxFun(urlConfig.getSearchList, 'get', {
 	                universityName: universityName,
@@ -174,6 +178,7 @@
 	                if (res.rtnCode == '0000000') {
 	                    $('.pull-text').show();
 	                    $('#scroller-pullUp').hide();
+	                    $('.info span').text(res.bizData.count);
 	                    if (res.bizData.count > 0) {
 	                        if (that.offset == 0) {
 	                            $('.school-list').html('');
@@ -206,9 +211,11 @@
 	                        var source = $('#temp-search-list').html();
 	                        var template = handlebars.compile(source);
 	                        $('.school-list').append(template(res));
-	                        $('.info span').text(res.bizData.count);
 	                        if (myScroll)myScroll.refresh();
 	                    } else {
+	                        if (that.offset == 0) {
+	                            $('.school-list').html('');
+	                        }
 	                        $('.pull-text').html('没有更多数据~~');
 	                        $('.pull-text').addClass('no-data');
 	                    }
