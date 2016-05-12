@@ -26,16 +26,19 @@
     <sql id="Base_Column_List">
         id,
         user_id,
-        product_id,
         status,
         order_no,
         channle,
         create_date,
         update_date,
         state,
-        amount,
-        product_number,
-        product_price
+        goods_address,
+        product_price,
+        department_code,
+        department_name,
+        department_phone,
+        goods_count,
+        handle_state
     </sql>
     <insert id="insert" parameterType="Order">
         INSERT INTO zgk_order (
@@ -48,9 +51,11 @@
         state,
         goods_address,
         product_price,
+        department_code,
         department_name,
         department_phone,
-        goods_count
+        goods_count,
+        handle_state
         ) VALUES (
         #{userId},
         #{status},
@@ -61,9 +66,11 @@
         #{state},
         #{goodsAddress},
         #{productPrice},
+        #{departmentCode},
         #{departmentName},
         #{departmentPhone},
-        #{goodsCount}
+        #{goodsCount},
+        #{handleState}
         )
         <selectKey resultType="java.lang.Long" keyProperty="id">
             SELECT LAST_INSERT_ID() AS ID
