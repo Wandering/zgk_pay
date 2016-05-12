@@ -141,18 +141,18 @@
 
         $('.search-normal-icon').on('click', function() {
             $('.search-modal').addClass('hidden');
-            $('.backdrop').addClass('hidden');
+            $('.backdrop1').addClass('hidden');
             major.searchFlag = true;
             major.getMajoredByName();
         });
-        $('#header-search, .backdrop').on('click', function() {
+        $('#header-search, .backdrop1').on('click', function() {
             if ($('.search-modal').hasClass('hidden')) {
                 $('.search-modal').removeClass('hidden');
-                $('.backdrop').removeClass('hidden');
+                $('.backdrop1').removeClass('hidden');
                 $('#school_name').val('');
             } else {
                 $('.search-modal').addClass('hidden');
-                $('.backdrop').addClass('hidden');
+                $('.backdrop1').addClass('hidden');
             }
         });
         $('#school_name').on('input propertychange', function() {
@@ -182,7 +182,7 @@
                 $('.search-modal').removeClass('hidden');
             } else {
                 $('.search-modal').addClass('hidden');
-                $('.backdrop').addClass('hidden');
+                $('.backdrop1').addClass('hidden');
             }
         });
         major.getMarjor();

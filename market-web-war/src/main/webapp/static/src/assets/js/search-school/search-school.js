@@ -13,7 +13,7 @@
     function openModal(type, id){
         if($('.'+ type +'-modal').hasClass('hidden')){
             $('.'+ type +'-modal').removeClass('hidden');
-            $('.backdrop').removeClass().addClass(type).addClass('backdrop');
+            $('.backdrop1').removeClass().addClass(type).addClass('backdrop1');
         }
         switch (id) {
             case '1':
@@ -101,7 +101,7 @@
         getSchoolList: function() {
             var areaid = $('.school-location-btn').attr('data-select') || '';
             var type = $('.category').attr('data-select') || '';
-            var educationLevel = $('.level').attr('data-select') || '';
+            var educationLevel = $('.level').attr('data-select') || 1;
             var property = $('.feature').attr('data-select') || '';
             var universityName = $('#school_name').val() || '';
             var that = this;
@@ -206,43 +206,49 @@
             }
             if ($('.search-modal').hasClass('hidden')) {
                 $('.search-modal').removeClass('hidden');
-                $('.backdrop').removeClass('hidden');
+                $('.backdrop1').removeClass('hidden');
+                $('.filter-list').css('z-index', '0');
             } else {
                 $('.search-modal').addClass('hidden');
-                $('.backdrop').addClass('hidden');
+                $('.backdrop1').addClass('hidden');
+                $('.filter-list').css('z-index', '1');
             }
 
         });
 
         $('.search-modal span').on('click', function() {
             $('.search-modal').addClass('hidden');
-            $('.backdrop').addClass('hidden');
+            $('.backdrop1').addClass('hidden');
+            $('.filter-list').css('z-index', '1');
         });
         $('.search-normal-icon').on('click', function() {
             $('.search-modal').addClass('hidden');
-            $('.backdrop').addClass('hidden');
+            $('.backdrop1').addClass('hidden');
+            $('.filter-list').css('z-index', '1');
             School.offset = 0;
             School.getSchoolList();
         });
         $('.select').on('click', function(){
             if (!$('.search-modal').hasClass('hidden')) {
                 $('.search-modal').addClass('hidden');
-                $('.backdrop').addClass('hidden');
+                $('.backdrop1').addClass('hidden');
+                $('.filter-list').css('z-index', '1');
             }
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
                 $('.school-location-modal').addClass('hidden');
-                $('.backdrop').addClass('hidden').addClass('school-location');
+                $('.backdrop1').addClass('hidden').addClass('school-location');
             } else {
                 $(this).addClass('active').siblings().removeClass('active');
                 var id = $(this).attr('data-id');
                 openModal('school-location', id);
             }
         });
-        $('.backdrop').on('click', function(){
+        $('.backdrop1').on('click', function(){
             $('.school-location-modal').addClass('hidden');
             $('.search-modal').addClass('hidden');
-            $('.backdrop').addClass('hidden');
+            $('.backdrop1').addClass('hidden');
+            $('.filter-list').css('z-index', '1');
             $('.select.active').removeClass('active');
         });
     });
