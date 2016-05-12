@@ -142,7 +142,7 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
         String fileName = id+".jpg";
         File file = new File(path,fileName);
         MatrixToImageWriter.writeToFile(bitMatrix, "jpg", file);
-        MultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
+        MultiValueMap<String, Object> param = new LinkedMultiValueMap<String, Object>();
             FileSystemResource resource = new FileSystemResource(file);
             RestTemplate template = new RestTemplate();
         param.add("file", resource);
@@ -178,7 +178,7 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
 
     @Override
     public UserInfoPojo getUserInfoPojoById(long id){
-        Map<String,Object> params = new HashMap<>();
+        Map<String,Object> params = new HashMap<String, Object>();
         params.put("id",id);
         return userAccountExDAO.getUserInfoPojoById(params);
     }
