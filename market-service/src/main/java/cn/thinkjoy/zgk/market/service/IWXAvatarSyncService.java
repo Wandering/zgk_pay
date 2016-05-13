@@ -1,6 +1,6 @@
 package cn.thinkjoy.zgk.market.service;
 
-import cn.thinkjoy.zgk.market.pojo.UploadFileReturn;
+import cn.thinkjoy.zgk.market.pojo.BizData;
 
 /**
  * Created by douzy on 16/5/12.
@@ -11,5 +11,5 @@ public interface IWXAvatarSyncService  {
      * @param mediaId
      * @return
      */
-    public UploadFileReturn remoteImgExec(String mediaId);
+    public BizData remoteImgExec(String mediaId);
 }

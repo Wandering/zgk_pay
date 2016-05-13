@@ -1,6 +1,9 @@
 package cn.thinkjoy.zgk.market.common;
 
+import cn.thinkjoy.common.exception.BizException;
+import cn.thinkjoy.zgk.market.edomain.ErrorCode;
 import cn.thinkjoy.zgk.market.pojo.AccessTokenView;
+import cn.thinkjoy.zgk.market.pojo.BizData;
 import cn.thinkjoy.zgk.market.pojo.UploadFileReturn;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -179,7 +182,7 @@ public class WXConfig {
             }
             // 根据内容类型获取扩展名
             String fileExt = getFileEndWitsh(conn.getHeaderField("Content-Type"));
-            System.out.println("............"+fileExt);
+//            System.out.println("............"+fileExt);
             // 将mediaId作为文件名
             filePath = savePath + mediaId + fileExt;
 
@@ -224,7 +227,7 @@ public class WXConfig {
      * 图片传送到远端    金山云
      * @return
      */
-    public static UploadFileReturn postRemote(String path) {
+    public static BizData postRemote(String path) {
         File file = new File(path);
         MultiValueMap<String, Object> param = new LinkedMultiValueMap<String, Object>();
         FileSystemResource resource = new FileSystemResource(file);
@@ -240,8 +243,10 @@ public class WXConfig {
         UploadFileReturn uploadFileReturn = JsonMapper.buildNormalMapper().fromJson(returnJson, UploadFileReturn.class);
         if (uploadFileReturn != null && "0000000".equals(uploadFileReturn.getRtnCode())) {
             file.delete();
+            return uploadFileReturn.getBizData();
         }
-        return uploadFileReturn;
+        throw new BizException(ErrorCode.UPLOAD_FAIL.getCode(),ErrorCode.UPLOAD_FAIL.getMessage());
+
     }
 
     /**
@@ -249,7 +254,8 @@ public class WXConfig {
      * @param arg
      * @throws Exception
      */
-    public static void main(String[] arg) throws Exception {
+    public static void main(String[] arg) throws Exception
+    {
         AccessTokenView accessTokenView = getAccessToken();
 
         JSONObject jsonObj = send(accessTokenView.getAccessToken(), "image", "/Users/yangguorong/Desktop/gitflow.png");
@@ -262,7 +268,7 @@ public class WXConfig {
             System.out.print("result:" + result);
 
 
-            UploadFileReturn uploadFileReturn=postRemote(result);
+//            UploadFileReturn uploadFileReturn=postRemote(result);
 //            File file = new File(result);
 //            MultiValueMap<String, Object> param = new LinkedMultiValueMap<String, Object>();
 //            FileSystemResource resource = new FileSystemResource(file);
@@ -276,8 +282,8 @@ public class WXConfig {
 //            template.getMessageConverters().add(new com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter());
 //            String returnJson = template.postForObject(CLOUD_SERVER_URL, param, String.class);
 //            UploadFileReturn uploadFileReturn = JsonMapper.buildNormalMapper().fromJson(returnJson, UploadFileReturn.class);
-            System.out.print(uploadFileReturn.getMsg());
-            System.out.print(uploadFileReturn.getRtnCode());
+//            System.out.print(uploadFileReturn.getMsg());
+//            System.out.print(uploadFileReturn.getRtnCode());
 //            if(uploadFileReturn !=null && "0000000".equals(uploadFileReturn.getRtnCode())){
 //                file.delete();
 //            }
