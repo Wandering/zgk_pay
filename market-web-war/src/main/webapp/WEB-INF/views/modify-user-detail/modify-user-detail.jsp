@@ -18,6 +18,7 @@
                 <img id="avatar-img" src="<%=ctx%>static/dist/img/icons/avatar.png" alt=""/>
             </div>
             <div class="upload-btn">上传头像</div>
+            <input type="hidden" id="uploadify_img" value="">
         </div>
         <div class="form-group">
             <div class="label">姓名：</div>
