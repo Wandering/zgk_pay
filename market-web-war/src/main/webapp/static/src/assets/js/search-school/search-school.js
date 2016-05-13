@@ -251,6 +251,8 @@
                 $('.backdrop1').addClass('hidden');
                 $('.filter-list').css('z-index', '1');
             }
+            $('.search-result').html('');
+            $('#school_name').val('');
 
         });
 
@@ -258,30 +260,36 @@
             School.getMajoredInfoByKeywords();
         });
 
-        $(document).click(function(event) {
+        $('.search-result').click(function(event) {
             var ele = $(event.target);
-            if (ele.hasClass('result')) {
-                var id = ele.attr('data-id');
-                var name = ele.text();
-                $('#school_name').val(name);
-                $('#school_name').attr('data-id', id);
-                $('.search-result').html('');
-            } else {
-                if ($('.search-result li').length > 0) {
-                    var dom = $('.search-result li').get(0);
-                    var id = $(dom).attr('data-id');
-                    var name = $(dom).text();
-                    $('#school_name').val(name);
-                    $('#school_name').attr('data-id', id);
-                    $('.search-result').html('');
-                }
-            }
+            var id = ele.attr('data-id');
+            var name = ele.text();
+            $('#school_name').val(name);
+            $('#school_name').attr('data-id', id);
+            $('.search-result').html('');
+            //if (ele.hasClass('result')) {
+            //    var id = ele.attr('data-id');
+            //    var name = ele.text();
+            //    $('#school_name').val(name);
+            //    $('#school_name').attr('data-id', id);
+            //    $('.search-result').html('');
+            //} else {
+            //    if ($('.search-result li').length > 0) {
+            //        var dom = $('.search-result li').get(0);
+            //        var id = $(dom).attr('data-id');
+            //        var name = $(dom).text();
+            //        $('#school_name').val(name);
+            //        $('#school_name').attr('data-id', id);
+            //        $('.search-result').html('');
+            //    }
+            //}
         });
 
         $('.search-modal span').on('click', function() {
             $('.search-modal').addClass('hidden');
             $('.backdrop1').addClass('hidden');
             $('.filter-list').css('z-index', '1');
+            $('.search-result').html('');
         });
         $('.search-normal-icon').on('click', function() {
             $('.search-modal').addClass('hidden');
@@ -320,6 +328,7 @@
             $('.backdrop1').addClass('hidden');
             $('.filter-list').css('z-index', '1');
             $('.select.active').removeClass('active');
+            $('.search-result').html('');
         });
     });
 })();

@@ -150,6 +150,7 @@
             major.getMajoredByName();
         });
         $('#header-search, .backdrop1').on('click', function() {
+            $('.search-result').html('');
             if ($('.search-modal').hasClass('hidden')) {
                 $('.search-modal').removeClass('hidden');
                 $('.backdrop1').removeClass('hidden');
@@ -162,24 +163,30 @@
         $('#school_name').on('input propertychange', function() {
             major.getMajoredInfoByKeywords();
         });
-        $(document).click(function(event) {
+        $('.search-result').click(function(event) {
             var ele = $(event.target);
-            if (ele.hasClass('result')) {
-                var id = ele.attr('data-id');
-                var name = ele.text();
-                $('#school_name').val(name);
-                $('#school_name').attr('data-id', id);
-                $('.search-result').html('');
-            } else {
-                if ($('.search-result li').length > 0) {
-                    var dom = $('.search-result li').get(0);
-                    var id = $(dom).attr('data-id');
-                    var name = $(dom).text();
-                    $('#school_name').val(name);
-                    $('#school_name').attr('data-id', id);
-                    $('.search-result').html('');
-                }
-            }
+            var id = ele.attr('data-id');
+            var name = ele.text();
+            $('#school_name').val(name);
+            $('#school_name').attr('data-id', id);
+            $('.search-result').html('');
+            //var ele = $(event.target);
+            //if (ele.hasClass('result')) {
+            //    var id = ele.attr('data-id');
+            //    var name = ele.text();
+            //    $('#school_name').val(name);
+            //    $('#school_name').attr('data-id', id);
+            //    $('.search-result').html('');
+            //} else {
+            //    if ($('.search-result li').length > 0) {
+            //        var dom = $('.search-result li').get(0);
+            //        var id = $(dom).attr('data-id');
+            //        var name = $(dom).text();
+            //        $('#school_name').val(name);
+            //        $('#school_name').attr('data-id', id);
+            //        $('.search-result').html('');
+            //    }
+            //}
         });
         $('.search-modal span').on('click', function() {
             if ($('.search-modal').hasClass('hidden')) {
@@ -188,6 +195,7 @@
                 $('.search-modal').addClass('hidden');
                 $('.backdrop1').addClass('hidden');
             }
+            $('.search-result').html('');
         });
         major.getMarjor();
     });
