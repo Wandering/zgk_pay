@@ -119,7 +119,7 @@
 	                for (var key in num) {
 	                    sum += num[key].count;
 	                }
-	                $('.info span').text(sum);
+	                $('#totalnum').text(sum);
 	                var source = $("#temp-content").html();
 	                handlebars.registerHelper('stars', function (val) {
 	                    var star = '';
