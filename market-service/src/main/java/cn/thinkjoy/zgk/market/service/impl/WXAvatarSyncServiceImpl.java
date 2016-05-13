@@ -22,7 +22,8 @@ public class WXAvatarSyncServiceImpl implements IWXAvatarSyncService {
 
         AccessTokenView accessTokenView = WXConfig.getAccessToken();
 
-        String path = Thread.currentThread().getContextClassLoader().getResource("").toString();
+        String path = "/tmp/wechat/";
+//        String path = Thread.currentThread().getContextClassLoader().getResource("").toString();
         path = path.substring(1, path.indexOf("classes")).replaceFirst("ile:", "");
 
         String result = WXConfig.downloadMedia(accessTokenView.getAccessToken(), mediaId, path);
