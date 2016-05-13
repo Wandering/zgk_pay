@@ -68,6 +68,12 @@
                 $('#header-back').on('click', function() {
                     back();
                 });
+                var num = res.bizData;
+                var sum = 0;
+                for (var key in num) {
+                    sum += num[key].count;
+                }
+                $('.info span').text(sum);
                 var source = $("#temp-content").html();
                 handlebars.registerHelper('stars', function (val) {
                     var star = '';

@@ -41,7 +41,7 @@
       <label>分数：</label><span id="score-tmp"></span>
     </div>
     <div class="info">
-      <label>为你推荐目标院校：</label><span>40</span>所
+      <label>为你推荐目标院校：</label><span>0</span>所
     </div>
   </div>
   <div class="container-content">
