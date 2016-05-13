@@ -8,7 +8,7 @@
 <body>
 <%@ include file="../common/header.jsp"%>
 <div class="container">
-  <div class="backdrop hidden"></div>
+  <div class="backdrop1 hidden"></div>
   <div class="search-modal hidden">
     <input id="school_name" autocomplete="off" type="text" placeholder="专业名称"/>
     <span>取消</span>

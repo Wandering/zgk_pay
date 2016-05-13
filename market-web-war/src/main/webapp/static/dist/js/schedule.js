@@ -467,6 +467,7 @@
 	    getQueryUniversityPlanChart: BASE_URL + '/university/queryUniversityPlanChart.do',//院校招生计划图标展示(暂时只有2015年数据)
 	    queryUniversityEnrollingChartList: BASE_URL + '/university/queryUniversityEnrollingChart.do',//录取情况 (院校录取详情)
 	    getUniversityMajorEnrollingSituationList: BASE_URL + '/university/getUniversityMajorEnrollingSituationList.do',//录取情况 (院校专业录取详情)
+	    getUniversityInfoByKeywords: BASE_URL + '/university/getUniversityInfoByKeywords.do',//通过关键字搜索学校
 
 	    /*
 	     * 收藏
@@ -526,6 +527,7 @@
 	     * */
 	    getAllRegion: BASE_URL + '/region/getAllRegion.do', //省市区
 	    getUserInfo: BASE_URL + '/info/getUserInfo.do', //获取用户信息
+	    uploadifyUserImg: BASE_URL + '/wx/remote/exec', //微信上传用户头像
 
 
 	    /*

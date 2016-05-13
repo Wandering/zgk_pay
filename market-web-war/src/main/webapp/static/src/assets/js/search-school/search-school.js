@@ -13,8 +13,9 @@
     function openModal(type, id){
         if($('.'+ type +'-modal').hasClass('hidden')){
             $('.'+ type +'-modal').removeClass('hidden');
-            $('.backdrop').removeClass().addClass(type).addClass('backdrop');
+            $('.backdrop1').removeClass().addClass(type).addClass('backdrop1');
         }
+        $('.school-list').html('');
         switch (id) {
             case '1':
                 School.getRemoteProvinceList();
@@ -53,6 +54,10 @@
                         $('.school-location-btn').text($(this).text());
                         $('.school-location-btn').attr('data-select', $(this).attr('data-id'));
                         that.offset = 0;
+                        $('.school-location-modal').addClass('hidden');
+                        $('.backdrop1').addClass('hidden');
+                        $('.filter-list').css('z-index', '1');
+                        $('.select').removeClass('active');
                         School.getSchoolList();
                     });
                 }
@@ -75,6 +80,10 @@
                         $('.' + arry[typeId - 1]).text($(this).text());
                         $('.' + arry[typeId - 1]).attr('data-select', $(this).attr('data-dictid'));
                         that.offset = 0;
+                        $('.school-location-modal').addClass('hidden');
+                        $('.backdrop1').addClass('hidden');
+                        $('.filter-list').css('z-index', '1');
+                        $('.select').removeClass('active');
                         School.getSchoolList();
                     });
                 }
@@ -98,12 +107,18 @@
         getFeature: function() {
             this.getRemoteDataDictList('FEATURE');
         },
-        getSchoolList: function() {
+        getSchoolList: function(flag) {
             var areaid = $('.school-location-btn').attr('data-select') || '';
             var type = $('.category').attr('data-select') || '';
             var educationLevel = $('.level').attr('data-select') || '';
+            if (!educationLevel && !flag) {
+                educationLevel = 1;
+            }
             var property = $('.feature').attr('data-select') || '';
-            var universityName = $('#school_name').val() || '';
+            var universityName = '';
+            if (flag) {
+                universityName = $('#school_name').val();
+            }
             var that = this;
             util.ajaxFun(urlConfig.getSearchList, 'get', {
                 universityName: universityName,
@@ -117,6 +132,7 @@
                 if (res.rtnCode == '0000000') {
                     $('.pull-text').show();
                     $('#scroller-pullUp').hide();
+                    $('.info span').text(res.bizData.count);
                     if (res.bizData.count > 0) {
                         if (that.offset == 0) {
                             $('.school-list').html('');
@@ -149,12 +165,34 @@
                         var source = $('#temp-search-list').html();
                         var template = handlebars.compile(source);
                         $('.school-list').append(template(res));
-                        $('.info span').text(res.bizData.count);
                         if (myScroll)myScroll.refresh();
                     } else {
+                        if (that.offset == 0) {
+                            $('.school-list').html('');
+                        }
                         $('.pull-text').html('没有更多数据~~');
                         $('.pull-text').addClass('no-data');
                     }
+                }
+            });
+        },
+        getMajoredInfoByKeywords: function() {
+            var keywords = $.trim($('#school_name').val());
+            if (!keywords) {
+                return;
+            }
+            if (!/^[\u4e00-\u9fa5]{0,}$/.test(keywords)) {
+                return;
+            }
+            util.ajaxFun(urlConfig.getUniversityInfoByKeywords, 'get', {
+                keywords: keywords
+            }, function (res) {
+                if (res.rtnCode == '0000000') {
+                    var html = [];
+                    for (var key in res.bizData) {
+                        html.push('<li class="result" data-id="' + key + '">' + res.bizData[key] + '</li>')
+                    }
+                    $('.search-result').html(html.join(''));
                 }
             });
         }
@@ -206,43 +244,81 @@
             }
             if ($('.search-modal').hasClass('hidden')) {
                 $('.search-modal').removeClass('hidden');
-                $('.backdrop').removeClass('hidden');
+                $('.backdrop1').removeClass('hidden');
+                $('.filter-list').css('z-index', '0');
             } else {
                 $('.search-modal').addClass('hidden');
-                $('.backdrop').addClass('hidden');
+                $('.backdrop1').addClass('hidden');
+                $('.filter-list').css('z-index', '1');
             }
 
+        });
+
+        $('#school_name').on('input propertychange', function() {
+            School.getMajoredInfoByKeywords();
+        });
+
+        $(document).click(function(event) {
+            var ele = $(event.target);
+            if (ele.hasClass('result')) {
+                var id = ele.attr('data-id');
+                var name = ele.text();
+                $('#school_name').val(name);
+                $('#school_name').attr('data-id', id);
+                $('.search-result').html('');
+            } else {
+                if ($('.search-result li').length > 0) {
+                    var dom = $('.search-result li').get(0);
+                    var id = $(dom).attr('data-id');
+                    var name = $(dom).text();
+                    $('#school_name').val(name);
+                    $('#school_name').attr('data-id', id);
+                    $('.search-result').html('');
+                }
+            }
         });
 
         $('.search-modal span').on('click', function() {
             $('.search-modal').addClass('hidden');
-            $('.backdrop').addClass('hidden');
+            $('.backdrop1').addClass('hidden');
+            $('.filter-list').css('z-index', '1');
         });
         $('.search-normal-icon').on('click', function() {
             $('.search-modal').addClass('hidden');
-            $('.backdrop').addClass('hidden');
+            $('.backdrop1').addClass('hidden');
+            $('.filter-list').css('z-index', '1');
+            $('.school-location-btn').attr('data-select', '');
+            $('.school-location-btn').text('院校属地');
+            $('.category').attr('data-select', '');
+            $('.category').text('院校分类');
+            $('.level').attr('data-select', '');
+            $('.level').text('学历层次');
+            $('.feature').attr('data-select', '');
+            $('.feature').text('院校特征');
             School.offset = 0;
-            School.getSchoolList();
+            School.getSchoolList(true);
         });
         $('.select').on('click', function(){
             if (!$('.search-modal').hasClass('hidden')) {
                 $('.search-modal').addClass('hidden');
-                $('.backdrop').addClass('hidden');
+                $('.backdrop1').addClass('hidden');
+                $('.filter-list').css('z-index', '1');
             }
             if ($(this).hasClass('active')) {
                 $(this).removeClass('active');
                 $('.school-location-modal').addClass('hidden');
-                $('.backdrop').addClass('hidden').addClass('school-location');
+                $('.backdrop1').addClass('hidden').addClass('school-location');
             } else {
                 $(this).addClass('active').siblings().removeClass('active');
                 var id = $(this).attr('data-id');
                 openModal('school-location', id);
             }
         });
-        $('.backdrop').on('click', function(){
+        $('.backdrop1').on('click', function(){
             $('.school-location-modal').addClass('hidden');
             $('.search-modal').addClass('hidden');
-            $('.backdrop').addClass('hidden');
+            $('.backdrop1').addClass('hidden');
+            $('.filter-list').css('z-index', '1');
             $('.select.active').removeClass('active');
         });
     });

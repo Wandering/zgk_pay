@@ -7,23 +7,24 @@
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>
-<div class="container">
-        <div class="backdrop hidden"></div>
-        <div class="search-modal hidden">
-            <input id="school_name" type="text" placeholder="院校姓名"/>
-            <span>取消</span>
-            <i class="search-normal-icon"></i>
-        </div>
-        <div class="school-location-modal hidden">
-            <ul class="location-list">
-            </ul>
-        </div>
-
+<div class="container relative">
+        <div class="backdrop1 hidden"></div>
         <div class="filter-list">
             <div data-id="1" class="select school-location-btn">院校属地</div>
             <div data-id="2" class="select category">院校分类</div>
             <div data-id="3" class="select level">学历层次</div>
             <div data-id="4" class="select feature">院校特征</div>
+        </div>
+        <div class="school-location-modal hidden">
+            <ul class="location-list">
+            </ul>
+        </div>
+        <div class="search-modal hidden">
+            <input id="school_name" type="text" placeholder="院校名称"/>
+            <span>取消</span>
+            <i class="search-normal-icon"></i>
+            <ul class="search-result">
+            </ul>
         </div>
         <div class="info">
             共<span></span>所学校

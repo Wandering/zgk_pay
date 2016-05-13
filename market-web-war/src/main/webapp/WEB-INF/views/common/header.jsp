@@ -47,7 +47,7 @@
                 <div class="item">
                 <a href="/passing-score">
                 <img src="<%=ctx%>/static/dist/img/3.png" alt=""/>
-                <span>省控线</span>
+                <span>省批次线</span>
                 </a>
                 </div>
                 <div class="item">
@@ -145,7 +145,7 @@
                 <div class="item">
                 <a href="/passing-score">
                 <img src="<%=ctx%>/static/dist/img/3.png" alt=""/>
-                <span>省控线</span>
+                <span>省批次线</span>
                 </a>
                 </div>
                 <div class="item">

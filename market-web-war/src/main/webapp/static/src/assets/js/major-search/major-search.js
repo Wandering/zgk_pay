@@ -9,7 +9,7 @@
     var handlebars = require('handlebars');
     var major = {
         searchFlag: false,
-        data: [],
+        data: {},
         getMarjor: function() {
             var that = this;
             var type = $('.tab.active').attr('data-type');
@@ -69,6 +69,16 @@
                 }
             });
         },
+        mergeData: function(data) {
+            var obj = {};
+            for (var i = 0, len = data.length; i < len; i++) {
+                if (!obj[data[i].disciplineCategoriesName]) {
+                    obj[data[i].disciplineCategoriesName] = [];
+                }
+                obj[data[i].disciplineCategoriesName].push.apply(obj[data[i].disciplineCategoriesName], data[i].majoredList);
+            };
+            return obj;
+        },
         getMajoredByName: function() {
             var that = this;
             var keywords = $.trim($('#school_name').val());
@@ -89,16 +99,16 @@
                     } else {
                         $('.no-data').addClass('hidden');
                         $('.no-data').html('');
-                        major.data = res.bizData;
-                        that.renderSearch(res.bizData);
+                        major.data = that.mergeData(res.bizData);
+                        that.renderSearch(major.data);
                     }
                 }
             });
         },
         renderSearch: function(data) {
             var html = [];
-            for (var i = 0, len = data.length; i < len; i++) {
-                html.push('<li>' + data[i].disciplineCategoriesName + '</li>');
+            for (var key in data) {
+                html.push('<li>' + key + '</li>');
             }
             $('.marjor-list').html(html.join(''));
             $('.marjor-list li').first().addClass('active');
@@ -113,13 +123,7 @@
             });
         },
         renderSearchChildren: function(name) {
-            var majoredList = [];
-            for (var i = 0, len = this.data.length; i < len; i++) {
-                if (this.data[i].disciplineCategoriesName == name) {
-                    majoredList = this.data[i].majoredList;
-                    break;
-                }
-            }
+            var majoredList = this.data[name];
             var html = [];
             for (var i = 0, len = majoredList.length; i < len; i++) {
                 html.push('<li><a href="/major-detail?id=' + majoredList[i].majoredId + '">' + majoredList[i].majoredName + '</a></li>');
@@ -139,20 +143,20 @@
             major.getMarjor();
         });
 
-        $('.search-normal-icon').on('click', function() {
+        $('.search-normal-icon').on('click', function(event) {
             $('.search-modal').addClass('hidden');
-            $('.backdrop').addClass('hidden');
+            $('.backdrop1').addClass('hidden');
             major.searchFlag = true;
             major.getMajoredByName();
         });
-        $('#header-search, .backdrop').on('click', function() {
+        $('#header-search, .backdrop1').on('click', function() {
             if ($('.search-modal').hasClass('hidden')) {
                 $('.search-modal').removeClass('hidden');
-                $('.backdrop').removeClass('hidden');
+                $('.backdrop1').removeClass('hidden');
                 $('#school_name').val('');
             } else {
                 $('.search-modal').addClass('hidden');
-                $('.backdrop').addClass('hidden');
+                $('.backdrop1').addClass('hidden');
             }
         });
         $('#school_name').on('input propertychange', function() {
@@ -182,7 +186,7 @@
                 $('.search-modal').removeClass('hidden');
             } else {
                 $('.search-modal').addClass('hidden');
-                $('.backdrop').addClass('hidden');
+                $('.backdrop1').addClass('hidden');
             }
         });
         major.getMarjor();

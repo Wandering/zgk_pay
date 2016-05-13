@@ -61,7 +61,7 @@
 	        }, function (res) {
 	            if (res.rtnCode == '0000000') {
 	                $('.img').html('<img src="http://123.59.12.77:8080/' + res.bizData.photoUrl + '" >');
-	                $('.title').text(res.bizData.name);
+	                $('#school_name').text(res.bizData.name);
 	                $('.description').text(res.bizData.property);
 	                $('.pm-level').html('排名：' + res.bizData.rank);
 	                var source = $('#baseInfo').html();
@@ -222,8 +222,8 @@
 	        queryUniversityEnrollingChart: function() {
 	            var universityId = util.getLinkey('id');
 	            //var year = $('#school_year span.active').attr('data-id');
-	            var batch = $('#school_subject span.active').attr('data-id');
-	            var universityMajorType = $('#school_batch span.active').attr('data-id');
+	            var batch = $('#school_batch span.active').attr('data-id');
+	            var universityMajorType = $('#school_subject span.active').attr('data-id');
 	            util.ajaxFun(urlConfig.queryUniversityEnrollingChartList, 'get', {
 	                universityId: universityId,
 	                //year: year,
@@ -249,8 +249,8 @@
 	        getUniversityMajorEnrollingSituationList: function() {
 	            var universityId = util.getLinkey('id');
 	            var year = $('#professional_year span.active').attr('data-id');
-	            var batch = $('#professional_subject span.active').attr('data-id');
-	            var universityMajorType = $('#professional_batch span.active').attr('data-id');
+	            var batch = $('#professional_batch span.active').attr('data-id');
+	            var universityMajorType = $('#professional_subject span.active').attr('data-id');
 	            util.ajaxFun(urlConfig.getUniversityMajorEnrollingSituationList, 'get', {
 	                universityId: universityId,
 	                year: year,
@@ -601,6 +601,7 @@
 	    getQueryUniversityPlanChart: BASE_URL + '/university/queryUniversityPlanChart.do',//院校招生计划图标展示(暂时只有2015年数据)
 	    queryUniversityEnrollingChartList: BASE_URL + '/university/queryUniversityEnrollingChart.do',//录取情况 (院校录取详情)
 	    getUniversityMajorEnrollingSituationList: BASE_URL + '/university/getUniversityMajorEnrollingSituationList.do',//录取情况 (院校专业录取详情)
+	    getUniversityInfoByKeywords: BASE_URL + '/university/getUniversityInfoByKeywords.do',//通过关键字搜索学校
 
 	    /*
 	     * 收藏
@@ -660,6 +661,7 @@
 	     * */
 	    getAllRegion: BASE_URL + '/region/getAllRegion.do', //省市区
 	    getUserInfo: BASE_URL + '/info/getUserInfo.do', //获取用户信息
+	    uploadifyUserImg: BASE_URL + '/wx/remote/exec', //微信上传用户头像
 
 
 	    /*
