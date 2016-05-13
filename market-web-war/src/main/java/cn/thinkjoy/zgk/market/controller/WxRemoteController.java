@@ -1,5 +1,6 @@
 package cn.thinkjoy.zgk.market.controller;
 
+import cn.thinkjoy.zgk.market.pojo.BizData;
 import cn.thinkjoy.zgk.market.pojo.UploadFileReturn;
 import cn.thinkjoy.zgk.market.service.IWXAvatarSyncService;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ public class WxRemoteController {
 
     @RequestMapping("/exec")
     @ResponseBody
-    public UploadFileReturn getAgentInfo(@RequestParam(value = "mediaId") String mediaId) {
+    public BizData getAgentInfo(@RequestParam(value = "mediaId") String mediaId) {
         return iwxAvatarSyncService.remoteImgExec(mediaId);
     }
 }

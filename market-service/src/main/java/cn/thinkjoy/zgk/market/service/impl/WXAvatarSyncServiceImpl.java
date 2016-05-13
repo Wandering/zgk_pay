@@ -2,6 +2,7 @@ package cn.thinkjoy.zgk.market.service.impl;
 
 import cn.thinkjoy.zgk.market.common.WXConfig;
 import cn.thinkjoy.zgk.market.pojo.AccessTokenView;
+import cn.thinkjoy.zgk.market.pojo.BizData;
 import cn.thinkjoy.zgk.market.pojo.UploadFileReturn;
 import cn.thinkjoy.zgk.market.service.IWXAvatarSyncService;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class WXAvatarSyncServiceImpl implements IWXAvatarSyncService {
      * @return
      */
     @Override
-    public UploadFileReturn remoteImgExec(String mediaId) {
+    public BizData remoteImgExec(String mediaId) {
 
         AccessTokenView accessTokenView = WXConfig.getAccessToken();
 
@@ -28,8 +29,8 @@ public class WXAvatarSyncServiceImpl implements IWXAvatarSyncService {
 
         String result = WXConfig.downloadMedia(accessTokenView.getAccessToken(), mediaId, path);
 
-        UploadFileReturn uploadFileReturn = WXConfig.postRemote(result);
+        BizData bizData = WXConfig.postRemote(result);
 
-        return uploadFileReturn;
+        return bizData;
     }
 }
