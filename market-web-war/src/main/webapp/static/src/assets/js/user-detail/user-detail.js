@@ -114,6 +114,7 @@ $(function(){
             $('#header-user-name').text(personListData.name);
             $('#school-name').text(personListData.schoolName);
             $('#email').text(personListData.mail);
+            $('#avatar-img').attr('src',personListData.icon);
             var sexTxt = personListData.sex;
             if(typeof sexTxt == 'number'){
                 sexTxt == "0" ? $('#sex').text('女生') : $('#sex').text('男生');
