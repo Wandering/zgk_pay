@@ -43,6 +43,8 @@ header .location.location-icon:before {
 }
 .user-info .info-center img {
   width: 66px;
+  height: 66px;
+  border-radius: 50%;
 }
 .user-info .info-center .name {
   margin-top: 4px;
