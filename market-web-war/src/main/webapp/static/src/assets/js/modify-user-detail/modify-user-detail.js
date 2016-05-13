@@ -188,7 +188,7 @@
                                     //alert(JSON.stringify(res));
                                     //i++;
                                     images.serverId.push(res.serverId);
-                                    util.ajaxFun(urlConfig.uploadifyUserImg, 'get', {
+                                    util.ajaxFun(interfaceUrl.uploadifyUserImg, 'get', {
                                         mediaId: res.serverId
                                     }, function (res) {
                                         if (res.rtnCode == '0000000') {
