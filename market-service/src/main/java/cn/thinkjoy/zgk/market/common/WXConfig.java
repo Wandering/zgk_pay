@@ -179,6 +179,7 @@ public class WXConfig {
             }
             // 根据内容类型获取扩展名
             String fileExt = getFileEndWitsh(conn.getHeaderField("Content-Type"));
+            System.out.println("............"+fileExt);
             // 将mediaId作为文件名
             filePath = savePath + mediaId + fileExt;
 
