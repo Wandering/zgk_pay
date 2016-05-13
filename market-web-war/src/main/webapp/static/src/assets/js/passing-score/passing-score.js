@@ -6,7 +6,7 @@
 
     $(document).ready(function() {
 
-        $('#header-title').text('省控线');
+        $('#header-title').text('省批次线');
         $('#header-menu').show();
         $('.container-header').on('click', function(){
             if($(this).hasClass('open-drop-list')){
