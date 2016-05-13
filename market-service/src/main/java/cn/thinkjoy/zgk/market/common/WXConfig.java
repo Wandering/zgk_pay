@@ -50,6 +50,8 @@ public class WXConfig {
 
         map.put("image/jpeg", ".jpg");
 
+        map.put("image/png", ".png");
+
         map.put("audio/mp3", ".mp3");
 
         map.put("video/mpeg4", ".mp4");
@@ -249,7 +251,7 @@ public class WXConfig {
     public static void main(String[] arg) throws Exception {
         AccessTokenView accessTokenView = getAccessToken();
 
-        JSONObject jsonObj = send(accessTokenView.getAccessToken(), "image", "/Users/douzy/xnykd.png");
+        JSONObject jsonObj = send(accessTokenView.getAccessToken(), "image", "/Users/yangguorong/Desktop/gitflow.png");
 
         if (jsonObj != null) {
             System.out.print("MediaId:" + jsonObj.get("media_id"));
