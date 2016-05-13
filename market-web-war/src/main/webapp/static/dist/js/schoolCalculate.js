@@ -114,12 +114,6 @@
 	                $('#header-back').on('click', function() {
 	                    back();
 	                });
-	                var num = res.bizData;
-	                var sum = 0;
-	                for (var key in num) {
-	                    sum += num[key].count;
-	                }
-	                $('#totalnum').text(sum);
 	                var source = $("#temp-content").html();
 	                handlebars.registerHelper('stars', function (val) {
 	                    var star = '';
@@ -157,6 +151,12 @@
 
 	                $('#type-subject').text($('.options span.active').text());
 	                $('#score-tmp').text(scoreV);
+	                var num = res.bizData;
+	                var sum = 0;
+	                for (var key in num) {
+	                    sum += num[key].count;
+	                }
+	                $('#totalnum').text(sum);
 
 	            } else {
 	                if (res.rtnCode == '1000004') {
