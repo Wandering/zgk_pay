@@ -24,6 +24,8 @@ header {
 }
 .avatar {
   width: 66px;
+  height: 66px;
+  border-radius: 50%;
   margin: 0 auto;
   font-size: 12px;
   text-align: center;
@@ -31,6 +33,7 @@ header {
   img {
     width: 100%;
   }
+
   .upload-btn {
     color: #D80C18;
     border: 1px solid #D80C18;

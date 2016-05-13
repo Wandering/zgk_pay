@@ -23,6 +23,8 @@ header .location.location-icon:before {
 
 .avatar {
   width: 66px;
+  height: 66px;
+  border-radius: 50%;
   margin: 0 auto;
   font-size: 12px;
   text-align: center;

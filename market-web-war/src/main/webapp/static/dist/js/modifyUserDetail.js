@@ -24,9 +24,9 @@ webpackJsonp([10],[
 	            var personListData = res.bizData;
 	            $('#name').val(personListData.name);
 	            $('#school_name').val(personListData.schoolName);
+	            $('#avatar-img').attr('src',personListData.icon);
 	            $('#email').val(personListData.mail);
 	            var sexTxt = personListData.sex;
-
 	            $('.sex').removeClass('active');
 	            $('.sex[data-value="' + sexTxt + '"]').addClass('active');
 	            var subjectTxt = personListData.subjectType;
