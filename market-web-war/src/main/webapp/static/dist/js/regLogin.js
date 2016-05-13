@@ -361,6 +361,7 @@ webpackJsonp([16],[
 	            return false;
 	        }
 	        var md5loginPwdV = $.md5(loginPwdV);
+	        alert(1)
 	        util.ajaxFun('/login/login', 'GET', {
 	            account: loginPhoneV,
 	            password: md5loginPwdV

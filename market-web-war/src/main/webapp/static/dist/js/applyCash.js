@@ -373,7 +373,6 @@
 
 
 
-
 	var interfaceUrl = {
 	    /*
 	     * ==================================================
@@ -476,12 +475,11 @@
 	    /*
 	     * 登录|注册
 	     * */
-	    postLogin: '/login/login',   // 登录
+	    postLogin:  '/login/login',   // 登录
 	    postRegisterLogin: BASE_URL + '/register/account.do',   // 注册
 	    postConfirmAccountCode: '/register/confirmAccount',  // 确认是否注册
 	    postVerificationCode: '/captcha/captcha',   // 获取手机验证码
 	    postRetrievePassword: '/register/retrievePassword',   // 获取手机验证码
-
 
 	    /**
 	     * 提交个人设置中心
