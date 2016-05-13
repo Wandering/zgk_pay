@@ -94,7 +94,7 @@ webpackJsonp([10],[
 	                util.drawToast('学校名不能大于20个字');
 	                return false;
 	            }
-	            var img_url = $('#avatar-img').attr('src');
+	            var img_url = $('#uploadify_img').val() || $('#avatar-img').attr('src');
 	            var provinceId = cookie.getCookieValue('province'),
 	                cityId = cookie.getCookieValue('city'),
 	                countyId = cookie.getCookieValue('county');
@@ -113,6 +113,7 @@ webpackJsonp([10],[
 	            }, function (res) {
 	                if (res.rtnCode == '0000000') {
 	                    $('#userName').html(name);
+	                    cookie.setCookie("avatar", $('#uploadify_img').val(), 4, "");
 	                    cookie.setCookie("userName", name, 4, "");
 	                    cookie.setCookie("sexType", sex, 4, "");
 	                    cookie.setCookie("subjectType", subject, 4, "");
@@ -176,8 +177,8 @@ webpackJsonp([10],[
 	                wx.chooseImage({
 	                    count: 1,
 	                    success: function (res) {
-	                        images.localId = res.localIds;
-	                        alert('已选择 ' + res.localIds.length + ' 张图片');
+	                        alert('已选择 ' + JSON.stringify(res) + ' 图片');
+	                        images.localId = res.localIds
 	                        if (images.localId.length == 0) {
 	                            alert('请先使用 chooseImage 接口选择图片');
 	                            return;
@@ -186,18 +187,30 @@ webpackJsonp([10],[
 	                        images.serverId = [];
 	                        function upload() {
 	                            wx.uploadImage({
-	                                localId: images.localId[i],
+	                                localId: images.localId[0],
 	                                success: function (res) {
-	                                    i++;
+	                                    alert(JSON.stringify(res));
+	                                    //i++;
 	                                    images.serverId.push(res.serverId);
-	                                    $('#avatar-img').attr('src', res.serverId);
-	                                    cookie.setCookie("avatar", res.serverId, 4, "");
-	                                    if (i < length) {
-	                                        upload();
-	                                    }
+	                                    util.ajaxFun(urlConfig.uploadifyUserImg, 'get', {
+	                                        mediaId: res.serverId
+	                                    }, function (res) {
+	                                        if (res.rtnCode == '0000000') {
+	                                            $('#uploadify_img').val(res.bizData.file.fileUrl);
+	                                            $('#avatar-img').attr('src', res.bizData.file.fileUrl);
+	                                        } else {
+	                                            util.drawToast('上传头像失败！');
+	                                        }
+	                                    });
+	                                    //$('#avatar-img').attr('src', res.serverId);
+	                                    //cookie.setCookie("avatar", res.serverId, 4, "");
+	                                    //if (i < length) {
+	                                    //    upload();
+	                                    //}
 	                                },
 	                                fail: function (res) {
 	                                    alert(JSON.stringify(res));
+	                                    util.drawToast('上传头像失败！');
 	                                }
 	                            });
 	                        }

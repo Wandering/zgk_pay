@@ -527,6 +527,7 @@
 	     * */
 	    getAllRegion: BASE_URL + '/region/getAllRegion.do', //省市区
 	    getUserInfo: BASE_URL + '/info/getUserInfo.do', //获取用户信息
+	    uploadifyUserImg: BASE_URL + '/wx/remote/exec', //微信上传用户头像
 
 
 	    /*
