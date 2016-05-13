@@ -191,15 +191,20 @@ webpackJsonp([10],[
 	                                success: function (res) {
 	                                    //alert(JSON.stringify(res));
 	                                    //i++;
-	                                    //alert(res.serverId)
+	                                    alert(res.serverId)
 	                                    images.serverId.push(res.serverId);
 	                                    util.ajaxFun(interfaceUrl.uploadifyUserImg, 'get', {
 	                                        mediaId: res.serverId
 	                                    }, function (res) {
-	                                        //alert(res.rtnCode)
+	                                        alert(res.rtnCode)
 	                                        if (res.rtnCode == '0000000') {
-	                                            $('#uploadify_img').val(res.bizData.file.fileUrl);
-	                                            $('#avatar-img').attr('src', res.bizData.file.fileUrl);
+	                                            try {
+	                                                $('#uploadify_img').val(res.bizData.bizData.file.fileUrl);
+	                                                $('#avatar-img').attr('src', res.bizData.bizData.file.fileUrl);
+	                                            } catch(e) {
+	                                                util.drawToast('上传头像失败！');
+	                                            }
+
 	                                        } else {
 	                                            util.drawToast('上传头像失败！');
 	                                        }
