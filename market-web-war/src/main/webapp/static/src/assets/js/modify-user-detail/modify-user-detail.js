@@ -192,7 +192,7 @@
                                     util.ajaxFun(interfaceUrl.uploadifyUserImg, 'get', {
                                         mediaId: res.serverId
                                     }, function (res) {
-                                        alert(res)
+                                        alert(res.rtnCode)
                                         if (res.rtnCode == '0000000') {
                                             $('#uploadify_img').val(res.bizData.file.fileUrl);
                                             $('#avatar-img').attr('src', res.bizData.file.fileUrl);
