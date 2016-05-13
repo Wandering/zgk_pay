@@ -229,7 +229,6 @@ header .location.location-icon:before {
   width: 100%;
   color: #fff;
   font-size: 15px;
-  padding: 0 10px;
 }
 .search-modal input {
   outline: none;
@@ -240,6 +239,7 @@ header .location.location-icon:before {
   height: 25px;
   line-height: 25px;
   margin-top: 6px;
+  margin-left: 10px;
 }
 .search-modal span {
   margin-left: 10px;
@@ -376,17 +376,26 @@ header .location.location-icon:before {
 
 .search-result {
   list-style: none;
-  width: 257px;
-  margin-top: 2px;
+  width: 100%;
+  margin: 0;
+  border: 1px solid #8C8C8C;
 }
 .search-result li {
   list-style: none;
   height: 30px;
   line-height: 30px;
-  border: 1px solid #8C8C8C;
+  border-bottom: 1px solid #8C8C8C;
   background: #fff;
   color: #8C8C8C;
+  padding: 0 10px;
 }
 .search-result li:hover {
   color: #D80C18;
+}
+.search-result li:last-child {
+  border-bottom: none;
+}
+
+.search-result-c {
+  margin: 0 10px;
 }

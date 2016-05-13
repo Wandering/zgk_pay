@@ -23,8 +23,11 @@
             <input id="school_name" type="text" placeholder="院校名称"/>
             <span>取消</span>
             <i class="search-normal-icon"></i>
-            <ul class="search-result">
-            </ul>
+            <div class="search-result-c">
+                <ul class="search-result">
+                </ul>
+            </div>
+
         </div>
         <div class="info">
             共<span></span>所学校
@@ -43,13 +46,13 @@
         </div>
 </div>
 <script id="privance-tpl" type="text/x-handlebars-template">
-    <li class="active" data-id="-99" data-code="-99">全部</li>
+    <li class="active" data-id="" data-code="">全部</li>
 {{#each bizData}}
     <li data-id="{{id}}" data-code="{{code}}">{{name}}</li>
 {{/each}}
 </script>
 <script id="school-type-tpl" type="text/x-handlebars-template">
-    <li class="active" data-dictId="-99">全部</li>
+    <li class="active" data-dictId="">全部</li>
     {{#each bizData}}
     <li data-dictId="{{dictId}}">{{name}}</li>
     {{/each}}

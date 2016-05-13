@@ -153,8 +153,6 @@ header {
   width: 100%;
   color: #fff;
   font-size: 15px;
-  padding: 0 10px;
-
   input {
     outline: none;
     border-radius: 30px;
@@ -164,6 +162,7 @@ header {
     height: 25px;
     line-height: 25px;
     margin-top: 6px;
+    margin-left:10px;
   }
   span {
     margin-left: 10px;
@@ -175,22 +174,43 @@ header {
   }
 }
 
+
+
+
 .search-result{
   list-style: none;
-  width: 257px;
-  margin-top: 2px;
+  width:100%;
+  margin:0;
+  border: 1px solid #8C8C8C;
   li{
     list-style: none;
     height: 30px;
     line-height: 30px;
-    border: 1px solid #8C8C8C;
+    border-bottom: 1px solid #8C8C8C;
     background: #fff;
     color: #8C8C8C;
+    padding:0 10px;
     &:hover {
       color: #D80C18;
     }
+    &:last-child{
+      border-bottom: none;
+    }
   }
 }
+
+
+.search-result-c{
+  margin:0 10px;
+}
+
+
+
+
+
+
+
+
 
 .backdrop,.backdrop1 {
   width: 100%;

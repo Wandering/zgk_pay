@@ -13,8 +13,11 @@
     <input id="school_name" autocomplete="off" type="text" placeholder="专业名称"/>
     <span>取消</span>
     <i class="search-normal-icon"></i>
-    <ul class="search-result">
-    </ul>
+    <div class="search-result-c">
+      <ul class="search-result">
+      </ul>
+    </div>
+
   </div>
   <div class="tab-list">
     <div data-type="1" class="tab active">本科</div>
