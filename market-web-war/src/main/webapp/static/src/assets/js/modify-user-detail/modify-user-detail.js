@@ -185,6 +185,7 @@
                             wx.uploadImage({
                                 localId: images.localId[0],
                                 success: function (res) {
+                                    alert(JSON.stringify(res));
                                     //i++;
                                     images.serverId.push(res.serverId);
                                     util.ajaxFun(urlConfig.uploadifyUserImg, 'get', {
