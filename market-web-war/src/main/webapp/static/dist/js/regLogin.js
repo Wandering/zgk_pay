@@ -387,7 +387,7 @@ webpackJsonp([16],[
 	                var qrcodeUrl = res.bizData.userInfo.qrcodeUrl;  // 二维码
 	                var isReported = res.bizData.userInfo.isReported; // 智能填报次数
 	                var isSurvey = res.bizData.userInfo.isSurvey; // 专家测试次数
-	                var avatar =
+	                var avatar = res.bizData.userInfo.icon;//头像
 	                cookie.setCookie("avatar", avatar, 4, "");
 	                cookie.setCookie("vipActiveDate", vipActiveDateV, 4, "/");
 	                cookie.setCookie("vipEndDate", vipEndDateV, 4, "/");
@@ -690,6 +690,8 @@ webpackJsonp([16],[
 	                    var qrcodeUrl = res.bizData.userInfo.qrcodeUrl;  // 二维码
 	                    var isReported = res.bizData.userInfo.isReported; // 智能填报次数
 	                    var isSurvey = res.bizData.userInfo.isSurvey; // 专家测试次数
+	                    var avatar = res.bizData.userInfo.icon;//头像
+	                    cookie.setCookie("avatar", avatar, 4, "");
 	                    cookie.setCookie("isLogin", "true", 4, "/");
 	                    cookie.setCookie("token", token, 4, "/");
 	                    cookie.setCookie("userId", userId, 4, "/");
