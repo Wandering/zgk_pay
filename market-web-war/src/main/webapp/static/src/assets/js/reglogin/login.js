@@ -86,6 +86,8 @@ $(function () {
                 var qrcodeUrl = res.bizData.userInfo.qrcodeUrl;  // 二维码
                 var isReported = res.bizData.userInfo.isReported; // 智能填报次数
                 var isSurvey = res.bizData.userInfo.isSurvey; // 专家测试次数
+                var avatar =
+                cookie.setCookie("avatar", avatar, 4, "");
                 cookie.setCookie("vipActiveDate", vipActiveDateV, 4, "/");
                 cookie.setCookie("vipEndDate", vipEndDateV, 4, "/");
                 cookie.setCookie("isLogin", "true", 4, "/");

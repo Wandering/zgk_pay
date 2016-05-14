@@ -84,6 +84,7 @@ $(function () {
 
     // 退出
     $('#logout-btn').attr('href',loginUrl).on('click', function () {
+        cookie.deleteCookie("avatar", '');
         cookie.deleteCookie('city', '');
         cookie.deleteCookie('county', '');
         cookie.deleteCookie('icon', '');
