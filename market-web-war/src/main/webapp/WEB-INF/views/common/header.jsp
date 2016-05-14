@@ -33,7 +33,7 @@
             </div>
             <div class="menu-list clearfix">
                 <div class="item">
-                    <a href="/search-school">
+                    <a href="/search-school?v=12344">
                         <img src="<%=ctx%>/static/dist/img/1.png" alt=""/>
                         <span>查院校</span>
                     </a>
@@ -131,7 +131,7 @@
         <div class="menu">
             <div class="menu-list clearfix">
                 <div class="item">
-                    <a href="/search-school">
+                    <a href="/search-school?v=1312313">
                         <img src="<%=ctx%>/static/dist/img/1.png" alt=""/>
                         <span>查院校</span>
                     </a>

@@ -220,11 +220,12 @@ header {
   }
 }
 .areaSel select.form-control {
+
+  -webkit-appearance: none;
+  border: 0;
+  background: 0 0;
   width: 90%;
   height: 38px;
-  border: none;
-  border: 0;
-  background: none;
   font-size: 14px;
 }
 
