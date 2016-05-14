@@ -164,7 +164,9 @@
             major.getMajoredInfoByKeywords();
         });
         $('.search-result').click(function(event) {
+            //$(this).addClass('active').siblings().removeClass('active');
             var ele = $(event.target);
+            ele.addClass('active').siblings().removeClass('active');
             var id = ele.attr('data-id');
             var name = ele.text();
             $('#school_name').val(name);

@@ -192,6 +192,9 @@ header {
     &:hover {
       color: #D80C18;
     }
+    &.active{
+      color: #D80C18;
+    }
     &:last-child{
       border-bottom: none;
     }

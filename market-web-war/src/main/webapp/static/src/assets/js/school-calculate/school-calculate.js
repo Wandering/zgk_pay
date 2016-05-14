@@ -54,6 +54,10 @@
             return false;
         }
 
+        if (scoreV > 999) {
+            util.drawToast('分数不能超过三位数');
+            return false;
+        }
         util.ajaxFun(urlConfig.getPredictSchoolList, 'POST', {
             'type': subjectV,
             'score': scoreV

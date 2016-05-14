@@ -184,6 +184,9 @@ header .location.location-icon:before {
 .search-result li:hover {
   color: #D80C18;
 }
+.search-result li.active {
+  color: #D80C18;
+}
 .search-result li:last-child {
   border-bottom: none;
 }
