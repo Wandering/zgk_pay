@@ -78,7 +78,10 @@
 	    function getRemoteUniversityMajorListByUniversityId() {
 	        var id = util.getLinkey('id');
 	        util.ajaxFun(urlConfig.getOpenProfessional, 'get', {
-	            universityId: id
+	            universityId: id,
+	            majorFeature: '特色专业',
+	            offset: 0,
+	            rows: 100
 	        }, function (res) {
 	            if (res.rtnCode == '0000000') {
 	                $('.professional').html('特色专业：' + res.bizData.featureMajorList[0].featureMajor.replace(/<h3>/ig, '<span>').replace(/<\/h3>/ig, '</span>'));
