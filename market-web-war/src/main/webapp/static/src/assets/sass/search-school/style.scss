@@ -2,6 +2,7 @@ html {
   height: 100%;
   background-color: #F6F6F6;
 }
+
 //header bar
 header {
   position: relative;
@@ -26,6 +27,10 @@ header {
       left: auto;
       cursor: pointer;
     }
+  }
+  .header-btn.header-close{
+    top: 6px;
+    left: 9px;
   }
   .location {
     font-size: 12px;
