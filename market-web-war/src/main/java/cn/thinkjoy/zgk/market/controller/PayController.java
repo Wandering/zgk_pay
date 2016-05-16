@@ -41,6 +41,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -106,35 +107,44 @@ public class PayController {
             return map;
         }
         try {
-            String queryUrl = String.format(queryAccessTokenUrl,wxAppId, appSecret);
-            DefaultHttpClient client = new DefaultHttpClient();
-            HttpGet httpGetToken = new HttpGet(queryUrl);
-            httpGetToken.addHeader("Content-type" , "text/html;charset=utf-8");
-            HttpResponse httpResponse = client.execute(httpGetToken);
-            if (httpResponse.getStatusLine().getStatusCode() == 200) {
-                accessToken = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
-                Map<String, String> tokenMap = JSON.parseObject(accessToken, Map.class);
-                map.put("accessToken",tokenMap.get("access_token"));
-                RedisUtil.getInstance().set("accessToken",tokenMap.get("access_token"),
-                        UserRedisConst.ACCESS_TOKEN_EXPIRE_TIME, TimeUnit.SECONDS);
-                String queryJsapiUrl2 = String.format(queryJsapiUrl,tokenMap.get("access_token"));
-                HttpGet httpGetJsapi = new HttpGet(queryJsapiUrl2);
-                httpGetJsapi.addHeader("Content-type" , "text/html;charset=utf-8");
-                HttpResponse httpResponseJsapi = client.execute(httpGetJsapi);
-                if (httpResponseJsapi.getStatusLine().getStatusCode() == 200) {
-                    ticket = EntityUtils.toString(httpResponseJsapi.getEntity(), "UTF-8");
-                    Map<String, String> ticketMap = JSON.parseObject(ticket, Map.class);
-                    map.put("ticket", ticketMap.get("ticket"));
-                    RedisUtil.getInstance().set("ticket", ticketMap.get("ticket"),
-                            UserRedisConst.TICKET_EXPIRE_TIME, TimeUnit.SECONDS);
-                }
-            }
-
+            getAccessToken(appSecret, wxAppId, map);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             logger.error("获取accessToken异常:" + e);
         }
         return map;
+    }
+
+    private void getAccessToken(String appSecret, String wxAppId, Map<String, Object> map) throws IOException {
+        String accessToken;
+        String queryUrl = String.format(queryAccessTokenUrl,wxAppId, appSecret);
+        DefaultHttpClient client = new DefaultHttpClient();
+        HttpGet httpGetToken = new HttpGet(queryUrl);
+        httpGetToken.addHeader("Content-type" , "text/html;charset=utf-8");
+        HttpResponse httpResponse = client.execute(httpGetToken);
+        if (httpResponse.getStatusLine().getStatusCode() == 200) {
+            accessToken = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
+            Map<String, String> tokenMap = JSON.parseObject(accessToken, Map.class);
+            map.put("accessToken",tokenMap.get("access_token"));
+            RedisUtil.getInstance().set("accessToken",tokenMap.get("access_token"),
+                    UserRedisConst.ACCESS_TOKEN_EXPIRE_TIME, TimeUnit.SECONDS);
+            getTicket(map, client, tokenMap);
+        }
+    }
+
+    private void getTicket(Map<String, Object> map, DefaultHttpClient client, Map<String, String> tokenMap) throws IOException {
+        String ticket;
+        String queryJsapiUrl2 = String.format(queryJsapiUrl,tokenMap.get("access_token"));
+        HttpGet httpGetJsapi = new HttpGet(queryJsapiUrl2);
+        httpGetJsapi.addHeader("Content-type" , "text/html;charset=utf-8");
+        HttpResponse httpResponseJsapi = client.execute(httpGetJsapi);
+        if (httpResponseJsapi.getStatusLine().getStatusCode() == 200) {
+            ticket = EntityUtils.toString(httpResponseJsapi.getEntity(), "UTF-8");
+            Map<String, String> ticketMap = JSON.parseObject(ticket, Map.class);
+            map.put("ticket", ticketMap.get("ticket"));
+            RedisUtil.getInstance().set("ticket", ticketMap.get("ticket"),
+                    UserRedisConst.TICKET_EXPIRE_TIME, TimeUnit.SECONDS);
+        }
     }
 
     /**

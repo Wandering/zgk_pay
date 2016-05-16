@@ -42,9 +42,11 @@ public class LoginController extends BaseCommonController {
 		UserInfoPojo old=null;
 		Map<String, Object> resultMap = new HashMap<>();
 		try {
+
 			if (StringUtils.isEmpty(account)) {
 				throw new BizException(ERRORCODE.PARAM_ERROR.getCode(), "请输入账号!");
 			}
+
 			if (StringUtils.isEmpty(password)) {
 				throw new BizException(ERRORCODE.PARAM_ERROR.getCode(), "请输入密码!");
 			}
@@ -72,6 +74,14 @@ public class LoginController extends BaseCommonController {
 			}
 			if(null != userInfoPojo)
 			{
+				/**
+				 * 老用户生成二维码
+				 */
+				if(null == userInfoPojo.getQrcodeUrl())
+				{
+					userAccountExService.insertUserMarketInfo(0L, 0 , id);
+					userInfoPojo=userAccountExService.getUserInfoPojoById(id);
+				}
 				/**
 				 * 判断VIP用户是否失效
 				 */
