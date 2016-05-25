@@ -3,7 +3,8 @@
  */
 
 (function() {
-
+    var cookie = require('cookie');
+    var proName = cookie.getCookieValue('proName').replace('省', '');
     $(document).ready(function() {
 
         $('#header-title').text('省批次线');
@@ -36,6 +37,10 @@
             $($('.containert-content').get(index)).show().siblings().hide();
         });
 
+        if (proName) {
+            $('.container-header span').text(proName);
+            $('.province-item[data-name="' + proName + '"]').addClass('active').siblings().removeClass('active');
+        }
         var index = $('.province-item.active').index();
         $($('.containert-content').get(index)).show().siblings().hide();
     });

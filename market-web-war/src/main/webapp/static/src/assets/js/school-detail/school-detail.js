@@ -38,7 +38,7 @@
             rows: 100
         }, function (res) {
             if (res.rtnCode == '0000000') {
-                $('.professional').html('特色专业：' + res.bizData.featureMajorList[0].featureMajor.replace(/<h3>/ig, '<span>').replace(/<\/h3>/ig, '</span>'));
+                $('.professional').html('特色专业：' + res.bizData.featureMajorList.join('、'));
                 if (res.bizData.majorList.length == 0) {
                     $('.professional-info table tbody').html('<tr><td colspan="2">(ﾟ∀ﾟ) 真抱歉,没有匹配到招生计划相关数据！</td></tr>');
                 } else {
@@ -236,8 +236,13 @@
 
         $('#header-back').on('click', function() {
             var action = util.getLinkey('action');
+            var majoredId = util.getLinkey('majoredId');
             if (action) {
-                window.location.href = '/' + action;
+                var url = '/' + action;
+                if (majoredId) {
+                    url += '?id=' + majoredId + '&active=2';
+                }
+                window.location.href = url;
             }
         });
 

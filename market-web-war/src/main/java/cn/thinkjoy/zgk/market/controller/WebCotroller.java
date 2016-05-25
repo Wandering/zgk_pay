@@ -321,4 +321,33 @@ public class WebCotroller {
         return new ModelAndView("/passing-score/passing-score");
     }
 
+    /**
+     * vipBuyDetial
+     *
+     * @return
+     */
+    @RequestMapping("/vip-buyDetial")
+    public ModelAndView vipBuyDetial() {
+        return new ModelAndView("/vip-buy-detail/vip-buy-detail");
+    }
+    /**
+     * paySuccess
+     *
+     * @return
+     */
+    @RequestMapping("/pay-success")
+    public ModelAndView paySuccess() {
+        return new ModelAndView("/pay-success/pay-success");
+    }
+
+    /**
+     * paySuccess
+     *
+     * @return
+     */
+    @RequestMapping("/address")
+    public ModelAndView address() {
+        return new ModelAndView("/address/address");
+    }
+
 }

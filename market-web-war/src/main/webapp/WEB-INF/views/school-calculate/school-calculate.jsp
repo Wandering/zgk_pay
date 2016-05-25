@@ -50,6 +50,7 @@
       <tr>
         <th>专业名称</th>
         <th>排名</th>
+        <th>录取批次</th>
         <th>录取指数</th>
       </tr>
       </thead>
@@ -74,6 +75,9 @@
         {{else}}
         <td>-</td>
         {{/if}}
+        <td>
+          {{{batchStr batch}}}
+        </td>
         <td>
           {{{stars ../star}}}
         </td>

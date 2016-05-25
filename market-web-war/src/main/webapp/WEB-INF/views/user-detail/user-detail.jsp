@@ -52,6 +52,10 @@
                     </span>
                 </a>
             </li>
+            <li>
+                <span>收货地址：</span>
+                <div id="address"></div>
+            </li>
         </ul>
     </div>
     <div class="change-password-btn">
