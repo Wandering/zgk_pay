@@ -4,7 +4,7 @@ dependencies {
 
     compile group: "cn.thinkjoy.common", name: "thinkjoy-mus-common", version: "$thinkjoyCommonVersion", changing: true
     //自动注册自己到cmc
-    compile group: "cn.thinkjoy.cloudstack", name: "cs-clustermanager-client", version: "$thinkjoyCloudstackVersion", changing: true
+    compile group: "cn.thinkjoy.cloudstack", name: "cs-clustermana0.0.22ger-client", version: "$thinkjoyCloudstackVersion", changing: true
     compile ("cn.thinkjoy.ucm:ucm-api:$thinkjoyUCMVersion"){
         exclude group: 'cn.thinkjoy.common', module: 'thinkjoy-mus-common'
         exclude group: 'cn.thinkjoy.common', module: 'thinkjoy-mu-common'
@@ -21,6 +21,6 @@ dependencies {
 //    compile "cn.thinkjoy.zgk.zgksystem:menuAuthority-domain:0.0.4-SNAPSHOT"
 //    compile "cn.thinkjoy.zgk.zgksystem:zgksystem-service:0.0.4-SNAPSHOT"
 //    compile "cn.thinkjoy.zgk.zgksystem:zgksystem-domain:0.0.4-SNAPSHOT"
-//    compile "cn.thinkjoy.zgk.zgksystem:zgksystem-api:0.0.4-SNAPSHOT
-    compile group:"cn.thinkjoy.zgk.zgksystem",name:"zgksystem-api",version:"0.0.20-SNAPSHOT", changing: true
+//    compile "cn.thinkjoy.zgk.zgksystem:zg ksystem-api:0.0.4-SNAPSHOT
+    compile group:"cn.thinkjoy.zgk.zgksystem",name:"zgksystem-api",version:"0.0.22-SNAPSHOT", changing: true
 }
