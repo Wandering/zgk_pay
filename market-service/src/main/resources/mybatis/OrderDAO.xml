@@ -55,7 +55,8 @@
         department_name,
         department_phone,
         goods_count,
-        handle_state
+        handle_state,
+        product_type
         ) VALUES (
         #{userId},
         #{status},
@@ -70,7 +71,8 @@
         #{departmentName},
         #{departmentPhone},
         #{goodsCount},
-        #{handleState}
+        #{handleState},
+        #{productType}
         )
         <selectKey resultType="java.lang.Long" keyProperty="id">
             SELECT LAST_INSERT_ID() AS ID
