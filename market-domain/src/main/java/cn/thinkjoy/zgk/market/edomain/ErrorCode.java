@@ -6,7 +6,7 @@ package cn.thinkjoy.zgk.market.edomain;
 public enum ErrorCode {
 
     ERROR_PARAM("0200001","提现金额不能大于钱包余额"),
-    UPLOAD_FAIL("0200002","上传失败");
+    UPLOAD_FAIL("0200002","上传文件错误");
 
     /** The code. */
     private final String code;

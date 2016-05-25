@@ -26,6 +26,15 @@ public class OrderStatements extends BaseDomain{
     private Double amount;
     private String payJson;
     private String callBackJson;
+    private String channel;
+
+    public String getChannel() {
+        return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
+    }
 
     public String getPayJson() {
         return payJson;
