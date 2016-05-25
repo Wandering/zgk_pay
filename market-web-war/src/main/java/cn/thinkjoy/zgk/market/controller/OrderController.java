@@ -4,15 +4,22 @@ import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.zgk.market.common.BaseCommonController;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
 import cn.thinkjoy.zgk.market.domain.Order;
+import cn.thinkjoy.zgk.market.domain.UserAccount;
 import cn.thinkjoy.zgk.market.service.IOrderService;
+import cn.thinkjoy.zgk.market.service.IUserAccountExService;
 import cn.thinkjoy.zgk.market.util.NumberGenUtil;
 import cn.thinkjoy.zgk.zgksystem.AgentService;
+import cn.thinkjoy.zgk.zgksystem.DeparmentApiService;
 import cn.thinkjoy.zgk.zgksystem.domain.Department;
+import cn.thinkjoy.zgk.zgksystem.domain.DepartmentProductRelation;
 import com.alibaba.dubbo.common.logger.Logger;
 import com.alibaba.dubbo.common.logger.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +37,10 @@ public class OrderController extends BaseCommonController {
     private IOrderService orderService;
     @Autowired
     private AgentService agentService;
+    @Autowired
+    private DeparmentApiService deparmentApiService;
+    @Autowired
+    private IUserAccountExService userAccountExService;
 
 
     /**
@@ -38,17 +49,17 @@ public class OrderController extends BaseCommonController {
      */
     @RequestMapping(value = "/getBuyInfo",method = RequestMethod.POST)
     @ResponseBody
-    public Department getBuyInfo(@RequestParam("userId") String userId){
+    public List<DepartmentProductRelation> getBuyInfo(@RequestParam("userId") String userId){
 
         //参数错误
         if(userId == null){
             throw new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
         }
         try{
-
-            Department  department= agentService.getAgentInfo(userId);
-
-            return  department;
+//            Department  department= agentService.getAgentInfo(userId);
+         UserAccount  userAccount=userAccountExService.findUserAccountById(Long.valueOf(userId));
+         List<DepartmentProductRelation>  departmentProductRelations= deparmentApiService.queryProductPriceByAreaId(userAccount.getProvinceId());
+            return  departmentProductRelations;
         }catch (Exception e){
             logger.error("用户" + userId + ",获取购买信息异常:" + e);
             throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
@@ -61,7 +72,11 @@ public class OrderController extends BaseCommonController {
      */
     @RequestMapping(value = "/commitOrder",method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> commitOrder(@RequestParam("userId") String userId,@RequestParam("price") double price,@RequestParam("goodsCount") int goodsCount ){
+    public Map<String,Object> commitOrder(@RequestParam("userId") String userId,
+                                          @RequestParam("price") double price,
+                                          @RequestParam("goodsCount") int goodsCount,
+                                           @RequestParam("departmentCode")String departmentCode ,
+                                           @RequestParam("productType")int productType){
 
         //参数错误
         if(userId==null||price==0){
@@ -71,7 +86,8 @@ public class OrderController extends BaseCommonController {
             String orderNo= NumberGenUtil.genOrderNo();
             Order order=new Order();
 
-            Department  department= agentService.getAgentInfo(userId);
+//            Department  department= agentService.getAgentInfo(userId);
+            Department department=deparmentApiService.quertDepartmentInfoByCode(Long.valueOf(departmentCode));
 //            if(! department.getSalePrice().equals(price)){
 //                logger.error("用户" + order.getUserId() + ",提交的价格不匹配" );
 //                throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
@@ -87,6 +103,7 @@ public class OrderController extends BaseCommonController {
             order.setStatus(0);
             order.setGoodsCount(goodsCount);
             order.setHandleState(0);
+            order.setProductType(productType);
             // TODO 现阶段客户端只有微信支付
             order.setChannle(0);
             orderService.insert(order);

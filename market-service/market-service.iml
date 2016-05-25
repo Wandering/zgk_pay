@@ -104,5 +104,7 @@
     <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-common:0.0.20-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:menuAuthority-domain:0.0.20-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-domain:0.0.20-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-api:0.0.22-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-domain:0.0.22-SNAPSHOT" level="project" />
   </component>
 </module>
