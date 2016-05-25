@@ -21,6 +21,11 @@ dependencies {
 //    compile "cn.thinkjoy.zgk.zgksystem:menuAuthority-domain:0.0.4-SNAPSHOT"
 //    compile "cn.thinkjoy.zgk.zgksystem:zgksystem-service:0.0.4-SNAPSHOT"
 //    compile "cn.thinkjoy.zgk.zgksystem:zgksystem-domain:0.0.4-SNAPSHOT"
+<<<<<<< HEAD
 //    compile "cn.thinkjoy.zgk.zgksystem:zg ksystem-api:0.0.4-SNAPSHOT
     compile group:"cn.thinkjoy.zgk.zgksystem",name:"zgksystem-api",version:"0.0.22-SNAPSHOT", changing: true
+=======
+//    compile "cn.thinkjoy.zgk.zgksystem:zgksystem-api:0.0.4-SNAPSHOT
+    compile group:"cn.thinkjoy.zgk.zgksystem",name:"zgksystem-api",version:"0.0.19-SNAPSHOT", changing: true
+>>>>>>> parent of 4915af1... 升级版本号
 }
