@@ -30,15 +30,6 @@ public class Order extends BaseDomain{
     private String departmentPhone;
     private Integer goodsCount;
     private Integer handleState;
-    private Integer productType;
-
-    public Integer getProductType() {
-        return productType;
-    }
-
-    public void setProductType(Integer productType) {
-        this.productType = productType;
-    }
 
     public Order(){
     }
