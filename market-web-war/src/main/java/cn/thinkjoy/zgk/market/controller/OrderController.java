@@ -98,7 +98,7 @@ public class OrderController extends BaseCommonController {
             order.setDepartmentCode(department.getDepartmentCode());
             order.setDepartmentPhone(department.getDepartmentPhone());
             order.setGoodsAddress(department.getGoodsAddress());
-            order.setProductPrice(String.valueOf(price*goodsCount));
+            order.setProductPrice(String.valueOf(price * goodsCount));
             order.setUserId(Long.valueOf(userId));
             order.setStatus(0);
             order.setGoodsCount(goodsCount);
@@ -149,6 +149,8 @@ public class OrderController extends BaseCommonController {
      * @param orderNo
      * @return
      */
+    @RequestMapping(value = "/getOrderInfo",method = RequestMethod.GET)
+    @ResponseBody
     public Map<String,Object> getOrderInfo(@RequestParam("orderNo")String orderNo){
 
         Map<String,Object> resultMap=new HashMap<>();
