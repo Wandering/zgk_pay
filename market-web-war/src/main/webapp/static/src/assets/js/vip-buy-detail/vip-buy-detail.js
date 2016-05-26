@@ -6,7 +6,8 @@
     var interfaceUrl = require('urlConfig');
     var cookie = require('cookie');
     var price = util.getLinkey('price');
-    var packageCode = util.getLinkey('packageCode');
+    var packageCode = util.getLinkey('productId');
+    var departmentCode = util.getLinkey('departmentCode');
     var token = cookie.getCookieValue('token');
     var toUrl = util.getLinkey('state');
     var isLogin = cookie.getCookieValue('isLogin');
@@ -75,7 +76,7 @@
         $('#modal').removeClass('modal-in');
         util.drawToast(msg);
         setTimeout(function () {
-            window.location.href = '/order?state=order';
+            //window.location.href = '/order?state=order';
         }, 1000);
     }
 
@@ -132,15 +133,19 @@
         });
 
         $('.buy-price').text('单价：' + price + '元/套');
+        var productArray = ['', 'jbdk', 'zyjd'];
         var packageName = {
             'zyjd': '状元及第',
             'jbdk': '金榜登科'
         };
-        $('.wrapper h6').text(packageName[packageCode]);
-        if (packageCode === 'jbdk') {
+        $('.wrapper h6').text(packageName[productArray[packageCode]]);
+        if (productArray[packageCode] === 'jbdk') {
             $('.jbdk').hide();
         }
-        $('.total-price').text(parseInt($('.number').text()) * price);
+        var totalPrice = parseInt($('.number').text()) * price;
+        var splitPrice = totalPrice.toString().split('.');
+        $('.total-price').text(splitPrice[0]);
+        $('.sub-price').text(splitPrice[1] || '00');
 
         $('.buy-go').on('click', function() {
             var userId = cookie.getCookieValue('userId');
@@ -155,7 +160,9 @@
             util.ajaxFun(interfaceUrl.commitOrder, 'POST', {
                 userId: cookie.getCookieValue('userId'),
                 price: price,
-                goodsCount: $('#number').text()
+                goodsCount: $('#number').text(),
+                productType: packageCode,
+                departmentCode: departmentCode
             }, function (res) {
                 if (res.rtnCode == '0000000') {
                     //var department = res.bizData.department;
@@ -172,7 +179,7 @@
                     //    title: '订单确认',
                     //    content: $('.modal').html()
                     //});
-                    $('.info').text('智高考“' + packageName[packageCode] + '”会员卡 ' + number + ' 套￥' + number * price + '元');
+                    $('.info').text('智高考“' + packageName[productArray[packageCode]] + '”会员卡 ' + number + ' 套￥' + number * price + '元');
                     $('#modal_overlay').addClass('modal-overlay-visible');
                     $('#modal').addClass('modal-in');
                     $('.paying').off('click');
@@ -205,7 +212,10 @@
                 $('.plus').addClass('plus-able').removeClass('plus-abled');
             }
             $('.number').text(num);
-            $('.total-price').text(num * price);
+            var totalPrice = num * price;
+            var splitPrice = totalPrice.toString().split('.');
+            $('.total-price').text(splitPrice[0]);
+            $('.sub-price').text(splitPrice[1] || '00');
         });
 
         $('.plus').on('click', function () {
@@ -221,7 +231,10 @@
                 $('.plus').addClass('plus-abled').removeClass('plus-able');
             }
             $('.number').text(num);
-            $('.total-price').text(num * price);
+            var totalPrice = num * price;
+            var splitPrice = totalPrice.toString().split('.');
+            $('.total-price').text(splitPrice[0]);
+            $('.sub-price').text(splitPrice[1] || '00');
         })
     });
 })();

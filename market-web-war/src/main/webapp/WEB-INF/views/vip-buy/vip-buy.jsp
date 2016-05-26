@@ -8,8 +8,7 @@
 <body>
 <%@ include file="../common/header.jsp"%>
 <div class="container">
-    <section class="package zyjd">
-        <a href="/vip-buyDetial">
+    <section class="package hidden zyjd">
             <div class="info">
                 <div class="btn">
                     <span class="package-name">状元及第</span>
@@ -20,15 +19,13 @@
                 <p>智能算法精准预测</p>
                 <p>全国顶级老师在线辅导</p>
                 <div class="price">
-                    <span class="main-price">￥300</span>
-                    <span class="sub-price">.00元</span>
+                    <span class="main-price"></span>
+                    <span class="sub-price"></span>
                 </div>
                 <div class="look-detial">查看详情</div>
             </div>
-        </a>
     </section>
-    <section class="package jbdk">
-        <a href="/vip-buyDetial">
+    <section class="package hidden jbdk">
             <div class="info">
                 <div class="btn">
                     <span class="package-name">金榜登科</span>
@@ -38,12 +35,11 @@
                 <p>美国MBTI性格多维度测试</p>
                 <p>智能算法精准预测</p>
                 <div class="price" style="margin-top: 46px">
-                    <span class="main-price">￥300</span>
-                    <span class="sub-price">.00元</span>
+                    <span class="main-price"></span>
+                    <span class="sub-price"></span>
                 </div>
                 <div class="look-detial">查看详情</div>
             </div>
-        </a>
     </section>
     <%--<div class="description">--%>
         <%--<img src="<%=ctx%>static/dist/img/bannner_bak_1.png" alt=""/>--%>

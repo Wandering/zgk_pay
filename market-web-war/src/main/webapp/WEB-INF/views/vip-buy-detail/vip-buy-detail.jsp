@@ -68,7 +68,7 @@
     </div>
   </div>
   <div class="buy-action">
-    <div class="buy-shopping">￥<span class="total-price"></span>.<span class="sub">00</span></div>
+    <div class="buy-shopping">￥<span class="total-price"></span>.<span class="sub-price">00</span></div>
     <div class="buy-go">现在支付</div>
   </div>
 </div>
