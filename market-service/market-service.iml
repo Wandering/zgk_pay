@@ -98,20 +98,11 @@
     <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.common:thinkjoy-security-common:0.1.83-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.ucm:ucm-domain:1.0.0-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.notify:notify-domain:jx0.0.1-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: org.springframework.security:spring-security-core:3.2.4.RELEASE" level="project" />
-<<<<<<< HEAD
     <orderEntry type="library" exported="" name="Gradle: apache-httpclient:commons-httpclient:3.1" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-api:0.0.20-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-common:0.0.20-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:menuAuthority-domain:0.0.20-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-domain:0.0.20-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-api:0.0.22-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-domain:0.0.22-SNAPSHOT" level="project" />
-=======
-    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-api:0.0.19-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-common:0.0.19-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:menuAuthority-domain:0.0.19-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-domain:0.0.19-SNAPSHOT" level="project" />
->>>>>>> parent of 8ed7586... commit code
+    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-api:0.0.25-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-domain:0.0.25-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework.security:spring-security-core:3.2.4.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:zgksystem-common:0.0.25-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: cn.thinkjoy.zgk.zgksystem:menuAuthority-domain:0.0.25-SNAPSHOT" level="project" />
   </component>
 </module>
