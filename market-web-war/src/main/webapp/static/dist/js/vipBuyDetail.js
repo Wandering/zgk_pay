@@ -94,7 +94,7 @@
 	    var openId = cookie.getCookieValue('openId');
 	    if (toUrl == 'vip-buy') {
 	        if (!isLogin) {
-	            window.location.href = '/login?state=vip-buyDetial&price=' + price + '&packageCode=' + packageCode;
+	            window.location.href = '/login?state=vip-buyDetial&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
 	        } else {
 	            var menuV = util.getLinkey('menu');
 	            if (menuV == "1") {
@@ -103,7 +103,7 @@
 	            var flag = cookie.getCookieValue('flag');
 	            if (flag == "0") {
 	                cookie.setCookie("flag", "1", 4, "/");
-	                window.location.assign('vip-buyDetial?state=vip-buyDetial&token=' + token + "&code=" + getQueryObject(window.location.href).code);
+	                window.location.assign('vip-buyDetial?state=vip-buyDetial&token=' + token + "&code=" + getQueryObject(window.location.href).code) + '&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
 	            }
 	            if (flag == "1") {
 	                if (isWeiXin()) {
@@ -122,7 +122,7 @@
 	        $('#modal').removeClass('modal-in');
 	        util.drawToast(msg);
 	        setTimeout(function () {
-	            //window.location.href = '/order?state=order';
+	            window.location.href = '/order?state=order';
 	        }, 1000);
 	    }
 
@@ -198,7 +198,7 @@
 	            if (!cookie.getCookieValue('isLogin')) {
 	                util.drawToast('请登录后再购买!');
 	                setTimeout(function () {
-	                    window.location.href = "/login?state=vip-buy";
+	                    window.location.href = '/login?state=vip-buyDetial&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
 	                }, 2000);
 	                return false;
 	            }
@@ -242,7 +242,7 @@
 	        });
 
 	        $('.address').on('click', function() {
-	            window.location.href = '/address?action=vip-buyDetial';
+	            window.location.href = '/address?action=vip-buyDetial&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
 	        });
 
 	        $('.sub').on('click', function () {
@@ -298,7 +298,8 @@
 	};
 	function ajaxFun(url, method, data, callback) {
 	    if (cookie.getCookieValue('token')) {
-	        data.token = cookie.getCookieValue('token');
+	        //data.token = cookie.getCookieValue('token');
+	        data.token = 's4zpLJbJ7KdmOx5FAvvJfctJP4Kd4N9i';
 	    }
 
 	    data.userKey = cookie.getCookieValue('userKey');
@@ -493,9 +494,9 @@
 	/*
 	 * url配置文件
 	 * */
-	var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
+	//var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
 	//var BASE_URL = 'http://dev.service.zhigaokao.cn/';  //正式环境
-	//var BASE_URL = 'http://10.136.13.233:8080';  //测试环境
+	var BASE_URL = 'http://172.16.160.73:8066/';  //测试环境
 	//var BASE_URL = 'http://172.16.160.31:8080';  //小文本地
 	//var BASE_URL = 'http://172.16.160.82:8085';  //小文本地
 	//var BASE_URL = 'http://172.16.160.72:8089';  //左浩本地
@@ -742,7 +743,16 @@
 	    /**
 	     * 微信分享获取jsapi_ticket
 	     */
-	    getAccessToken : '/pay/getAccessToken'
+	    getAccessToken : '/pay/getAccessToken',
+
+	    /**
+	     * 增加收货地址
+	     */
+	    addUserGoodsAddress: BASE_URL + 'userGoodsAddress/saveOrUpdateUserGoodsAddress.do',
+	    /**
+	     *查询收货地址
+	     */
+	    getUserGoodsAddress: BASE_URL + 'userGoodsAddress/getUserGoodsAddress.do'
 
 
 	};

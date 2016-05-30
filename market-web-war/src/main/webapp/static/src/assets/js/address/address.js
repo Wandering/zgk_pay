@@ -11,9 +11,16 @@
     var token = cookie.getCookieValue('token');
 
     $('#header-back').show().on('click', function () {
-        var action = util.getLinkey('action')
-        var url = '/' + action;
-        window.location.assign(url);
+        var action = util.getLinkey('action');
+        var productId = util.getLinkey('productId');
+        var price = util.getLinkey('price');
+        var departmentCode = util.getLinkey('departmentCode');
+        if (action === 'user-detail') {
+            var url = '/' + action;
+            window.location.assign(url);
+        } else {
+            window.location.href = '/' + action + '?productId=' + productId + '&price=' + price + '&departmentCode=' + departmentCode;
+        }
     });
 
     //省市地区
@@ -22,20 +29,27 @@
     var county = '';
     var Area = {
         data: [],
-        init: function () {
+        init: function (provinceId, cityId, countyId) {
             var that = this;
             util.ajaxFun(interfaceUrl.getAllRegion, 'GET', {}, function (ret) {
                 if ('0000000' === ret.rtnCode) {
                     that.data = ret.bizData;
                     $('#province_select').html(that.render(that.data, true));
+                    if (provinceId) {
+                        $('#province_select').val(provinceId);
+                    }
                     var currentProvinceId = $('#province_select option:checked').val();
-                    that.changeProvince(currentProvinceId);
+                    that.changeProvince(currentProvinceId)
+
+                    if (cityId) {
+                        $('#city_select').val(cityId);
+                    }
                     var currentCityId = $('#city_select option:checked').val();
                     that.changeCity(currentCityId);
 
-                } else {
-
-
+                    if (countyId) {
+                        $('#county_select').val(countyId);
+                    }
                 }
             });
         },
@@ -98,8 +112,7 @@
                     $('#county_select').parent().show();
                 }
 
-            }
-            ;
+            };
         },
         changeCounty: function (value) {
         },
@@ -148,7 +161,10 @@
     function addAddress() {
         var province = $('#province_select').val(),
             city = $('#city_select').val(),
-            county = $('#county_select').val();
+            county = $('#county_select').val(),
+            provinceName =  $('#province_select option:selected').text(),
+            cityName = $('#city_select option:selected').text(),
+            countyName = $('#county_select option:selected').text();
         if (!province || province == '00') {
             util.drawToast('请选择省份');
             return;
@@ -185,10 +201,48 @@
             util.drawToast('手机号有误,请重新输入');
             return;
         }
+
+        var address = provinceName + cityName + countyName + '&' + detailAddress;
+        util.ajaxFun(interfaceUrl.addUserGoodsAddress, 'post', {
+            address: address,
+            contactPhone: phone,
+            contactName: consignee,
+            provinceId:province,
+            cityId:city,
+            countyId:county,
+            postCode:postalcode
+        }, function (ret) {
+            if ('0000000' === ret.rtnCode) {
+                util.drawToast('操作成功');
+                var action = util.getLinkey('action');
+                var productId = util.getLinkey('productId');
+                var price = util.getLinkey('price');
+                var departmentCode = util.getLinkey('departmentCode');
+                //window.location.href = '/' + action + '?productId=' + productId + '&price=' + price + '&departmentCode=' + departmentCode;
+            }
+        });
     }
 
     $(document).ready(function () {
-        Area.init();
+
+        util.ajaxFun(interfaceUrl.getUserGoodsAddress, 'GET', {}, function (res) {
+            var provinceId = null;
+            var cityId = null;
+            var countyId = null;
+            if (res.rtnCode == '0000000') {
+                var bizData = res.bizData;
+                if (bizData && bizData.receivingAddress) {
+                    provinceId = bizData.provinceId;
+                    cityId = bizData.cityId;
+                    countyId = bizData.countyId;
+                    $('#postalcode').val(bizData.postCode);
+                    $('#detail_address').val(bizData.receivingAddress.split('&')[1] || '');
+                    $('#consignee').val(bizData.contactName);
+                    $('#phone').val(bizData.contactPhone);
+                }
+            }
+            Area.init(provinceId, cityId, countyId);
+        });
         Area.addEventForArea();
         $('.submit-btn').on('click', function() {
             addAddress();

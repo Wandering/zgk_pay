@@ -186,8 +186,8 @@
 
     $(document).ready(function () {
         initUserInfo();
-        Area.init();
-        Area.addEventForArea();
+        //Area.init();
+        //Area.addEventForArea();
         //清除input里面的值
         $('.clear').on('click', function () {
             $(this).parent().find('input').val('');

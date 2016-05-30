@@ -175,7 +175,8 @@
 	};
 	function ajaxFun(url, method, data, callback) {
 	    if (cookie.getCookieValue('token')) {
-	        data.token = cookie.getCookieValue('token');
+	        //data.token = cookie.getCookieValue('token');
+	        data.token = 's4zpLJbJ7KdmOx5FAvvJfctJP4Kd4N9i';
 	    }
 
 	    data.userKey = cookie.getCookieValue('userKey');
@@ -370,9 +371,9 @@
 	/*
 	 * url配置文件
 	 * */
-	var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
+	//var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
 	//var BASE_URL = 'http://dev.service.zhigaokao.cn/';  //正式环境
-	//var BASE_URL = 'http://10.136.13.233:8080';  //测试环境
+	var BASE_URL = 'http://172.16.160.73:8066/';  //测试环境
 	//var BASE_URL = 'http://172.16.160.31:8080';  //小文本地
 	//var BASE_URL = 'http://172.16.160.82:8085';  //小文本地
 	//var BASE_URL = 'http://172.16.160.72:8089';  //左浩本地
@@ -619,7 +620,16 @@
 	    /**
 	     * 微信分享获取jsapi_ticket
 	     */
-	    getAccessToken : '/pay/getAccessToken'
+	    getAccessToken : '/pay/getAccessToken',
+
+	    /**
+	     * 增加收货地址
+	     */
+	    addUserGoodsAddress: BASE_URL + 'userGoodsAddress/saveOrUpdateUserGoodsAddress.do',
+	    /**
+	     *查询收货地址
+	     */
+	    getUserGoodsAddress: BASE_URL + 'userGoodsAddress/getUserGoodsAddress.do'
 
 
 	};
