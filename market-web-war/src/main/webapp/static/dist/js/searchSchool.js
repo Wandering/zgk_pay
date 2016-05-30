@@ -392,7 +392,7 @@
 	function ajaxFun(url, method, data, callback) {
 	    if (cookie.getCookieValue('token')) {
 	        //data.token = cookie.getCookieValue('token');
-	        data.token = 's4zpLJbJ7KdmOx5FAvvJfctJP4Kd4N9i';
+	        data.token = 'CG0yO9g/8r1V64iR5X0xiRx6DXdy12bW';
 	    }
 
 	    data.userKey = cookie.getCookieValue('userKey');
@@ -845,7 +845,8 @@
 	    /**
 	     *查询收货地址
 	     */
-	    getUserGoodsAddress: BASE_URL + 'userGoodsAddress/getUserGoodsAddress.do'
+	    getUserGoodsAddress: BASE_URL + 'userGoodsAddress/getUserGoodsAddress.do',
+	    getRemoveOrder: BASE_URL + '/orders/removeOrder.do' //删除订单
 
 
 	};

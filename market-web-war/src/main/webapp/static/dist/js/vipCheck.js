@@ -395,7 +395,8 @@
 	    /**
 	     *查询收货地址
 	     */
-	    getUserGoodsAddress: BASE_URL + 'userGoodsAddress/getUserGoodsAddress.do'
+	    getUserGoodsAddress: BASE_URL + 'userGoodsAddress/getUserGoodsAddress.do',
+	    getRemoveOrder: BASE_URL + '/orders/removeOrder.do' //删除订单
 
 
 	};

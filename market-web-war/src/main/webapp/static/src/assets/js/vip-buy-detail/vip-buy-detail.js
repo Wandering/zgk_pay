@@ -147,6 +147,18 @@
         $('.total-price').text(splitPrice[0]);
         $('.sub-price').text(splitPrice[1] || '00');
 
+        util.ajaxFun(interfaceUrl.getUserGoodsAddress, 'GET', {}, function (res) {
+            if (res.rtnCode == '0000000') {
+                var bizData = res.bizData;
+                if (bizData && bizData.receivingAddress) {
+                    $('.vertical').html(bizData.receivingAddress.replace('&', '') + '&nbsp;&nbsp;&nbsp;&nbsp;(' + bizData.contactName + '收)&nbsp;&nbsp;&nbsp;&nbsp;' +  bizData.contactPhone);
+                } else {
+                    $('.buy-go').addClass('no-address');
+                    $('.vertical').html('<span style="color: #D70C18">添加收货地址</span>');
+                }
+            }
+        });
+
         $('.buy-go').on('click', function() {
             var userId = cookie.getCookieValue('userId');
             if (!cookie.getCookieValue('isLogin')) {
@@ -154,6 +166,10 @@
                 setTimeout(function () {
                     window.location.href = '/login?state=vip-buyDetial&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
                 }, 2000);
+                return false;
+            }
+
+            if ($(this).hasClass('no-address')) {
                 return false;
             }
 

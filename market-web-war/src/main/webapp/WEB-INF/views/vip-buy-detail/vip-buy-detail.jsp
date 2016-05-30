@@ -53,7 +53,7 @@
   <div class="buy-info address" style="border-bottom: 1px solid #D8D8D8;">
     <span class="left icon-address"></span>
     <span class="left address-info">
-      <span class="vertical">添加收货地址</span>
+      <span class="vertical"></span>
     </span>
     <span class="left icon-into"></span>
   </div>
