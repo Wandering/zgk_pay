@@ -189,7 +189,8 @@ webpackJsonp([12],[
 	                    if (result == "success") {
 	                        // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。
 	                        orderPayStatus('支付成功');
-	                        window.location.reload();
+	                      //window.location.reload();
+	                        window.location.href = '/pay-success?orderNo=' + orderNo;
 	                    } else if (result == "fail") {
 	                        // charge 不正确或者微信公众账号支付失败时会在此处返回
 	                        orderPayStatus('支付失败');

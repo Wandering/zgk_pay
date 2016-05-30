@@ -178,6 +178,9 @@ header .location.location-icon:before {
   font-size: 18px;
   color: #fff;
 }
+.buy-bottom .buy-action .no-address {
+  background: #b2b2b2;
+}
 
 .modal-overlay {
   position: fixed;

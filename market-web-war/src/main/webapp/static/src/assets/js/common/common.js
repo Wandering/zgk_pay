@@ -6,8 +6,8 @@ var isLogin = function () {
 };
 function ajaxFun(url, method, data, callback) {
     if (cookie.getCookieValue('token')) {
-        //data.token = cookie.getCookieValue('token');
-        data.token = 'CG0yO9g/8r1V64iR5X0xiRx6DXdy12bW';
+        data.token = cookie.getCookieValue('token');
+        //data.token = 'CG0yO9g/8r1V64iR5X0xiRx6DXdy12bW';
     }
 
     data.userKey = cookie.getCookieValue('userKey');
