@@ -52,8 +52,8 @@
                     </span>
                 </a>
             </li>
-            <li>
-                <span>收货地址：</span>
+            <li style="height: auto;min-height: 50px">
+                <span>收货地址：</span><span class="update-address" style="color: #D70C18">修改收货地址</span>
                 <div id="address"></div>
             </li>
         </ul>

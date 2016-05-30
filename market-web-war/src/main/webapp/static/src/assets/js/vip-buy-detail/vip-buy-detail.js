@@ -48,7 +48,7 @@
     var openId = cookie.getCookieValue('openId');
     if (toUrl == 'vip-buy') {
         if (!isLogin) {
-            window.location.href = '/login?state=vip-buyDetial&price=' + price + '&packageCode=' + packageCode;
+            window.location.href = '/login?state=vip-buyDetial&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
         } else {
             var menuV = util.getLinkey('menu');
             if (menuV == "1") {
@@ -57,7 +57,7 @@
             var flag = cookie.getCookieValue('flag');
             if (flag == "0") {
                 cookie.setCookie("flag", "1", 4, "/");
-                window.location.assign('vip-buyDetial?state=vip-buyDetial&token=' + token + "&code=" + getQueryObject(window.location.href).code);
+                window.location.assign('vip-buyDetial?state=vip-buyDetial&token=' + token + "&code=" + getQueryObject(window.location.href).code) + '&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
             }
             if (flag == "1") {
                 if (isWeiXin()) {
@@ -76,7 +76,7 @@
         $('#modal').removeClass('modal-in');
         util.drawToast(msg);
         setTimeout(function () {
-            //window.location.href = '/order?state=order';
+            window.location.href = '/order?state=order';
         }, 1000);
     }
 
@@ -152,7 +152,7 @@
             if (!cookie.getCookieValue('isLogin')) {
                 util.drawToast('请登录后再购买!');
                 setTimeout(function () {
-                    window.location.href = "/login?state=vip-buy";
+                    window.location.href = '/login?state=vip-buyDetial&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
                 }, 2000);
                 return false;
             }
@@ -196,7 +196,7 @@
         });
 
         $('.address').on('click', function() {
-            window.location.href = '/address?action=vip-buyDetial';
+            window.location.href = '/address?action=vip-buyDetial&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
         });
 
         $('.sub').on('click', function () {

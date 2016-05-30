@@ -135,6 +135,18 @@ webpackJsonp([25],{
 	        }
 	    });
 
+	    util.ajaxFun(interfaceUrl.getUserGoodsAddress, 'GET', {}, function (res) {
+	        if (res.rtnCode == '0000000') {
+	            var bizData = res.bizData;
+	            if (bizData && bizData.receivingAddress) {
+	                $('#address').html(bizData.receivingAddress.replace('&', '') + '&nbsp;&nbsp;&nbsp;&nbsp;(' + bizData.contactName + '收)&nbsp;&nbsp;&nbsp;&nbsp;' +  bizData.contactPhone);
+	            } else {
+	                $('.update-address').hide();
+	                $('#address').html('<span style="color: #D70C18">添加收货地址</span>');
+	            }
+	        }
+	    });
+
 
 
 
@@ -160,6 +172,10 @@ webpackJsonp([25],{
 
 	    $('body').on('click', '#close-modal', function () {
 	        $(this).removeClass('show');
+	    });
+
+	    $('.update-address, #address').on('click', function() {
+	        window.location.href = '/address?action=user-detail';
 	    });
 
 	    var userId = cookie.getCookieValue('userId');
