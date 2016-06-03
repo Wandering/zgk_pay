@@ -105,9 +105,9 @@ header .location.location-icon:before {
 }
 .order-list .order-item .img-paid {
   position: absolute;
-  width: 76px;
-  right: 100px;
-  top: -14px;
+  width: 66px;
+  right: 50px;
+  top: -2px;
 }
 .order-list .order-item.unpaid .item-list li:nth-child(1) span:nth-child(1),
 .order-list .order-item.unpaid .item-list li:nth-child(1) span:nth-child(2) {

@@ -72,12 +72,16 @@ body {
 .container .wrapper .page .order-number {
   width: 100%;
   height: 60px;
-  line-height: 60px;
+  display: table;
   text-align: center;
   border: 1px solid #D80C18;
   margin: 20px 0;
   color: #d80c18;
-  font-size: 18px;
+  font-size: 14px;
+}
+.container .wrapper .page .order-number span {
+  display: table-cell;
+  vertical-align: middle;
 }
 .container .wrapper .page p {
   margin-top: 20px;
@@ -88,9 +92,8 @@ body {
 .container .wrapper .page .phone {
   color: #575757;
   font-size: 14px;
-  margin-top: 30px;
+  margin-top: 20px;
   padding-top: 20px;
-  border-top: 1px dashed #DADADA;
 }
 .container .wrapper .page .phone span {
   color: #D80C18;
@@ -98,7 +101,7 @@ body {
 .container .wrapper .page .address-lable {
   color: #575757;
   font-size: 14px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .container .wrapper .page .address {
   color: #d80c18;

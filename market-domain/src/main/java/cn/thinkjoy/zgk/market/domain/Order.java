@@ -31,6 +31,15 @@ public class Order extends BaseDomain{
     private Integer goodsCount;
     private Integer handleState;
     private Integer productType;
+    private String unitPrice;
+
+    public String getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(String unitPrice) {
+        this.unitPrice = unitPrice;
+    }
 
     public Integer getProductType() {
         return productType;

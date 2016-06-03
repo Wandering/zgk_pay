@@ -137,9 +137,9 @@
 	/*
 	 * url配置文件
 	 * */
-	//var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
+	var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
 	//var BASE_URL = 'http://dev.service.zhigaokao.cn/';  //正式环境
-	var BASE_URL = 'http://172.16.160.73:8066/';  //测试环境
+	//var BASE_URL = 'http://172.16.160.73:8066/';  //测试环境
 	//var BASE_URL = 'http://172.16.160.31:8080';  //小文本地
 	//var BASE_URL = 'http://172.16.160.82:8085';  //小文本地
 	//var BASE_URL = 'http://172.16.160.72:8089';  //左浩本地
@@ -198,6 +198,10 @@
 	     * 获取钱包剩余金额
 	     */
 	    getWalletBalance: '/pay/getWalletBalance',
+	    /**
+	     * 获取单个订单信息
+	     */
+	    getOrderInfo: '/order/getOrderInfo',
 	    /*
 	     * 高考咨询
 	     * */
@@ -395,7 +399,8 @@
 	    /**
 	     *查询收货地址
 	     */
-	    getUserGoodsAddress: BASE_URL + 'userGoodsAddress/getUserGoodsAddress.do'
+	    getUserGoodsAddress: BASE_URL + 'userGoodsAddress/getUserGoodsAddress.do',
+	    getRemoveOrder: BASE_URL + '/orders/removeOrder.do' //删除订单
 
 
 	};

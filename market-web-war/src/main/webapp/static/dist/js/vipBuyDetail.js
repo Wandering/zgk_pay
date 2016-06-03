@@ -155,7 +155,7 @@
 	                    if (result == "success") {
 	                        // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。
 	                        //orderPayStatus('支付成功');
-	                        window.location.href = '/pay-success';
+	                        window.location.href = '/pay-success?orderNo=' + $('#orderNo').val();
 	                    } else if (result == "fail") {
 	                        // charge 不正确或者微信公众账号支付失败时会在此处返回
 	                        orderPayStatus('支付失败');
@@ -193,6 +193,18 @@
 	        $('.total-price').text(splitPrice[0]);
 	        $('.sub-price').text(splitPrice[1] || '00');
 
+	        util.ajaxFun(interfaceUrl.getUserGoodsAddress, 'GET', {}, function (res) {
+	            if (res.rtnCode == '0000000') {
+	                var bizData = res.bizData;
+	                if (bizData && bizData.receivingAddress) {
+	                    $('.vertical').html(bizData.receivingAddress.replace('&', '') + '&nbsp;&nbsp;&nbsp;&nbsp;(' + bizData.contactName + '收)&nbsp;&nbsp;&nbsp;&nbsp;' +  bizData.contactPhone);
+	                } else {
+	                    $('.buy-go').addClass('no-address');
+	                    $('.vertical').html('<span style="color: #D70C18">添加收货地址</span>');
+	                }
+	            }
+	        });
+
 	        $('.buy-go').on('click', function() {
 	            var userId = cookie.getCookieValue('userId');
 	            if (!cookie.getCookieValue('isLogin')) {
@@ -200,6 +212,10 @@
 	                setTimeout(function () {
 	                    window.location.href = '/login?state=vip-buyDetial&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
 	                }, 2000);
+	                return false;
+	            }
+
+	            if ($(this).hasClass('no-address')) {
 	                return false;
 	            }
 
@@ -298,8 +314,8 @@
 	};
 	function ajaxFun(url, method, data, callback) {
 	    if (cookie.getCookieValue('token')) {
-	        //data.token = cookie.getCookieValue('token');
-	        data.token = 's4zpLJbJ7KdmOx5FAvvJfctJP4Kd4N9i';
+	        data.token = cookie.getCookieValue('token');
+	        //data.token = 'CG0yO9g/8r1V64iR5X0xiRx6DXdy12bW';
 	    }
 
 	    data.userKey = cookie.getCookieValue('userKey');
@@ -494,9 +510,9 @@
 	/*
 	 * url配置文件
 	 * */
-	//var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
+	var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
 	//var BASE_URL = 'http://dev.service.zhigaokao.cn/';  //正式环境
-	var BASE_URL = 'http://172.16.160.73:8066/';  //测试环境
+	//var BASE_URL = 'http://172.16.160.73:8066/';  //测试环境
 	//var BASE_URL = 'http://172.16.160.31:8080';  //小文本地
 	//var BASE_URL = 'http://172.16.160.82:8085';  //小文本地
 	//var BASE_URL = 'http://172.16.160.72:8089';  //左浩本地
@@ -555,6 +571,10 @@
 	     * 获取钱包剩余金额
 	     */
 	    getWalletBalance: '/pay/getWalletBalance',
+	    /**
+	     * 获取单个订单信息
+	     */
+	    getOrderInfo: '/order/getOrderInfo',
 	    /*
 	     * 高考咨询
 	     * */
@@ -752,7 +772,8 @@
 	    /**
 	     *查询收货地址
 	     */
-	    getUserGoodsAddress: BASE_URL + 'userGoodsAddress/getUserGoodsAddress.do'
+	    getUserGoodsAddress: BASE_URL + 'userGoodsAddress/getUserGoodsAddress.do',
+	    getRemoveOrder: BASE_URL + '/orders/removeOrder.do' //删除订单
 
 
 	};
