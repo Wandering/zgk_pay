@@ -403,3 +403,7 @@ header .location.location-icon:before {
 .search-result-c {
   margin: 0 10px;
 }
+
+.menu {
+  z-index: 10;
+}
