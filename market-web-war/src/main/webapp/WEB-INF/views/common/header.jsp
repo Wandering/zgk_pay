@@ -9,7 +9,7 @@
         </div>
         <div class="header-title">
             <span id="header-title"></span>
-            <span class="location location-icon" id="province-text">陕西</span>
+            <span class="location location-icon" id="province-text"></span>
         </div>
         <div class="header-btn header-search hide" id="header-search">
             <i class="search-icon"></i>
@@ -225,8 +225,8 @@
         <div class="backdrop"></div>
         <div class="menu">
             <div class="province-option-list" id="province-option-list">
-                <a class="province-item" href="javascript:void(0)" domain="zj">浙江</a>
                 <a class="province-item" href="javascript:void(0)" domain="sn">陕西</a>
+                <a class="province-item" href="javascript:void(0)" domain="zj">浙江</a>
                 <a class="province-item" href="javascript:void(0)" domain="fj">福建</a>
                 <a class="province-item" href="javascript:void(0)" domain="gd">广东</a>
                 <a class="province-item" href="javascript:void(0)" domain="hb">湖北</a>

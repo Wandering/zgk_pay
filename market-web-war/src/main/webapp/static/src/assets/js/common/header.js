@@ -51,7 +51,7 @@ $(function () {
         }
     });
     if (!cookie.getCookieValue('userKey')) {
-        cookie.setCookie("userKey", 'zj', 4, "/");
+        cookie.setCookie("userKey", 'sn', 4, "/");
         $('#province-text').text('浙江');
     }
     var userKey = cookie.getCookieValue('userKey');
