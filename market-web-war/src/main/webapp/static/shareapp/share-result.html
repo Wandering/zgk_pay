@@ -1,7 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="format-detection" content="telephone=no"/>
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
@@ -177,7 +177,7 @@
         .main .intro {
             padding: 20px;
             text-align: left;
-            font-size: 14px;
+            font-size: 18px;
             line-height: 1.5em;
             color: #EC4E21;
             text-indent: 2em;
@@ -187,7 +187,7 @@
 
         .main .intro span {
             color: #FF3232;
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .main .start {
@@ -209,7 +209,7 @@
 
         .main .pic {
             text-align: center;
-            margin: 70px 5% 40px;
+            margin: 70px 5% 30px;
             position: relative;
             left: 0;
             top: 0;
@@ -217,13 +217,14 @@
 
         .main .pic span.name {
             position: absolute;
-            left: 41px;
-            top: 66px;
+            left: 9%;
+            top: 33%;
             width: 53px;
             text-align: center;
             height: 20px;
             line-height: 20px;
             overflow: hidden;
+            font-size:16px;
 
         }
 
@@ -293,6 +294,7 @@
             font-size: 24px;
             line-height: 40px;
             background: rgba(0, 0, 0, 0.85);
+            z-index:10;
         }
 
         .share .arron {
@@ -311,36 +313,71 @@
 
         #rs a.left {
             display: inline-block;
-            width: 70px;
+            width: 74px;
             padding: 15px 30px;
             margin: 0 auto 80px;
             background-color: #FC7652;
             color: #fff;
-            font-size: 16px;
+            font-size: 18px;
             border-radius: 35px;
             box-shadow: 0 7px 0 0 #EC4E21;
         }
 
         #rs a.right {
             display: inline-block;
-            width: 70px;
+            width: 74px;
             padding: 15px 30px;
-            margin: 0 auto 80px;
+            margin: 0 0 80px 10px;
             background-color: #FC7652;
             color: #fff;
-            font-size: 16px;
+            font-size: 18px;
             border-radius: 35px;
             box-shadow: 0 7px 0 0 #EC4E21;
         }
 
         #schoolName {
-            font-size: 14px;
         }
 
         #text-content {
             color: #fff;
-            font-size: 18px;
-            margin-top: 48px;
+            font-size: 22px;
+            margin-top: 18px;
+        }
+        #introImg{
+            width:100%;
+        }
+        /*iphone 5*/
+        @media (min-device-width : 320px) {
+            .main .intro,
+            .main .intro span{
+                font-size:16px;
+            }
+            .main .pic span.name{
+                top:31%;
+                left:10%;
+            }
+        }
+        /*iphone 6*/
+        @media (min-device-width : 375px) {
+            .main .intro,
+            .main .intro span{
+                font-size:21px;
+            }
+            .main .pic span.name{
+                top:33%;
+                left:10%;
+            }
+        }
+        /*iphone6 plus*/
+        @media (min-device-width : 414px) {
+            .main .intro,
+            .main .intro span{
+                font-size:21px;
+            }
+            .main .pic span.name{
+                top:34%;
+                left:10%;
+            }
         }
     </style>
     <script type="text/javascript">
@@ -398,12 +435,12 @@
 <div class="main" id="main">
     <div class="intro">经智高考鉴定，你是玉树临风才高八斗的美少年，恭喜你将被<span id="schoolName"></span>录取！</div>
     <div class="pic">
-        <span class="name" id="userName">你好</span><img id="introImg" src="" width="250"/>
+        <span class="name" id="userName">你好</span><img id="introImg" src=""/>
         <p id="text-content"></p>
     </div>
     <div id="rs" style="margin-top:20px;">
-        <a href="" class="left">报考外挂</a>
-        <a href="javascript:void(0);" class="right">不服你来</a>
+        <a href="/static/shareapp/share-ewm.html" class="left">报考外挂</a>
+        <a href="javascript:void(0);" id="share-btn" class="right">不服你来</a>
     </div>
 </div><!--/main-->
 <script src="../src/lib/jquery/jquery-2.2.2.min.js"></script>
@@ -454,6 +491,10 @@
         $('#schoolName').text(introTxtArr[num]);
         $('#introImg').attr('src', introImg[num]);
         $('#text-content').text(textArr[num]);
+        $('#share-btn').on('click',function(){
+            $('#share').show();
+        });
+
         /***************************自定义二维码*************************************/
         var timestamp = parseInt(new Date().getTime() / 1000);
         var noncestr = 'U5iQqjfV123NT5du';
@@ -479,7 +520,7 @@
         }
 
         wx.config({
-            debug: true,
+            debug: false,
             appId: 'wx552f3800df25e964',
             timestamp: timestamp,
             nonceStr: noncestr,
