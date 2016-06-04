@@ -15,7 +15,7 @@
             $('.'+ type +'-modal').removeClass('hidden');
             $('.backdrop1').removeClass().addClass(type).addClass('backdrop1');
         }
-        $('.school-list').html('');
+        //$('.school-list').html('');
         switch (id) {
             case '1':
                 School.getRemoteProvinceList();
