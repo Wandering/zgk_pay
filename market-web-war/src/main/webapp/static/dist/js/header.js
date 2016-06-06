@@ -52,7 +52,6 @@
 	    var token = cookie.getCookieValue('token');
 	    var userName = cookie.getCookieValue('userName');
 	    var interfaceUrl = __webpack_require__(3);
-
 	    if (isLogin) {
 	        $('#userName').text(userName);
 	    }
@@ -386,7 +385,6 @@
 	//var BASE_URL = 'http://172.16.180.150:8086';  //yyp
 	//var BASE_URL = 'http://127.0.0.1:8080';
 	//var BASE_URL = '';
-
 
 
 	var interfaceUrl = {
