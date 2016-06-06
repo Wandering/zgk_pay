@@ -14,34 +14,34 @@
     <span>浙江</span>
   </div>
   <div class="province-option-list hidden">
-    <div class="province-item active" data-name="浙江">浙江</div>
-    <div class="province-item" data-name="广西">广西</div>
-    <div class="province-item" data-name="湖南">湖南</div>
-    <div class="province-item" data-name="湖北">湖北</div>
-    <div class="province-item" data-name="广东">广东</div>
-    <div class="province-item" data-name="福建">福建</div>
-    <div class="province-item" data-name="河南">河南</div>
-    <div class="province-item" data-name="山东">山东</div>
-    <div class="province-item" data-name="河北">河北</div>
-    <div class="province-item" data-name="四川">四川</div>
-    <div class="province-item" data-name="上海">上海</div>
-    <div class="province-item" data-name="重庆">重庆</div>
-    <div class="province-item" data-name="江西">江西</div>
-    <div class="province-item" data-name="云南">云南</div>
-    <div class="province-item" data-name="陕西">陕西</div>
-    <div class="province-item" data-name="北京">北京</div>
-    <div class="province-item" data-name="天津">天津</div>
-    <div class="province-item" data-name="安徽">安徽</div>
-    <div class="province-item" data-name="江苏">江苏</div>
-    <div class="province-item" data-name="吉林">吉林</div>
-    <div class="province-item" data-name="辽宁">辽宁</div>
-    <div class="province-item" data-name="甘肃">甘肃</div>
-    <div class="province-item" data-name="山西">山西</div>
-    <div class="province-item" data-name="贵州">贵州</div>
-    <div class="province-item" data-name="宁夏">宁夏</div>
-    <div class="province-item" data-name="新疆">新疆</div>
-    <div class="province-item" data-name="海南">海南</div>
-    <div class="province-item" data-name="黑龙江">黑龙江</div>
+      <div class="province-item active" data-name="浙江">浙江</div>
+      <div class="province-item" data-name="广西">广西</div>
+      <div class="province-item" data-name="湖南">湖南</div>
+      <div class="province-item" data-name="湖北">湖北</div>
+      <div class="province-item" data-name="广东">广东</div>
+      <div class="province-item" data-name="福建">福建</div>
+      <div class="province-item" data-name="河南">河南</div>
+      <div class="province-item" data-name="山东">山东</div>
+      <div class="province-item" data-name="河北">河北</div>
+      <div class="province-item" data-name="四川">四川</div>
+      <div class="province-item" data-name="上海">上海</div>
+      <div class="province-item" data-name="重庆">重庆</div>
+      <div class="province-item" data-name="江西">江西</div>
+      <div class="province-item" data-name="云南">云南</div>
+      <div class="province-item" data-name="陕西">陕西</div>
+      <div class="province-item" data-name="北京">北京</div>
+      <div class="province-item" data-name="天津">天津</div>
+      <div class="province-item" data-name="安徽">安徽</div>
+      <div class="province-item" data-name="江苏">江苏</div>
+      <div class="province-item" data-name="吉林">吉林</div>
+      <div class="province-item" data-name="辽宁">辽宁</div>
+      <div class="province-item" data-name="甘肃">甘肃</div>
+      <div class="province-item" data-name="山西">山西</div>
+      <div class="province-item" data-name="贵州">贵州</div>
+      <div class="province-item" data-name="宁夏">宁夏</div>
+      <div class="province-item" data-name="新疆">新疆</div>
+      <div class="province-item" data-name="海南">海南</div>
+      <div class="province-item" data-name="黑龙江">黑龙江</div>
   </div>
   <div class="backdrop hidden"></div>
   <div>
