@@ -144,3 +144,8 @@ table tbody tr:first-child td {
   background: #000;
   opacity: .6;
 }
+
+#un-login {
+  position: absolute;
+  top: 0;
+}
