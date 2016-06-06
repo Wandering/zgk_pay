@@ -84,9 +84,6 @@ header .location.location-icon:before {
   width: 33px;
   margin-top: 5px;
 }
-.detail-list li span:last-child {
-  float: right;
-}
 
 .change-password-btn {
   height: 44px;
@@ -205,4 +202,8 @@ header .location.location-icon:before {
   border: none;
   margin: 20px 0;
   color: #fff;
+}
+
+#address {
+  line-height: 30px;
 }

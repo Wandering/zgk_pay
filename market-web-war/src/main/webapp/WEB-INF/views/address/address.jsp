@@ -12,7 +12,7 @@
     <div class="address-container">
       <div class="form-group-address">
         <label class="col-sm-2 control-label mb5"><span>*</span>所在地区：</label>
-        <div class="col-sm-12 areaSel">
+        <div class="col-sm-10 areaSel">
           <span class="select"><select name="" id="province_select" class="form-control"></select></span>
           <span class="select"><select name="" id="city_select" class="form-control"></select></span>
           <span class="select"><select name="" id="county_select" class="form-control"></select></span>
@@ -20,7 +20,7 @@
       </div>
       <div class="form-group-address">
         <label class="col-sm-2 control-label mb5"><span>*</span>详细地址：</label>
-        <div class="col-sm-12">
+        <div class="col-sm-10">
           <textarea class="form-control detail-address" id="detail_address" placeholder="建议您如实填写详细收货地址，例如街道名称，门牌号码，楼层和房间号等信息"></textarea>
         </div>
       </div>

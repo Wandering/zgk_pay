@@ -33,17 +33,18 @@
       <p class="universityIntro"></p>
     </div>
     <div class="tab-content hidden professional-info">
-      <div class="professional"></div>
-      <table>
-        <thead>
-        <tr>
-          <th>专业名称</th>
-          <th>学历层次</th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+      <div class="professional" id="special-profession-title"></div>
+      <div class="special-content" id="special-content"></div>
+      <%--<table>--%>
+        <%--<thead>--%>
+        <%--<tr>--%>
+          <%--<th>专业名称</th>--%>
+          <%--<th>学历层次</th>--%>
+        <%--</tr>--%>
+        <%--</thead>--%>
+        <%--<tbody>--%>
+        <%--</tbody>--%>
+      <%--</table>--%>
     </div>
     <div class="tab-content hidden plan-Enrolling">
       <div class="filter-list">

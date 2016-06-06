@@ -162,6 +162,7 @@ header .header-btn:last-child {
   left: 0;
   top: 0;
   z-index: 99;
+  width: 36px;
 }
 
 .container .img,

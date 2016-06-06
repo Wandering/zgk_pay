@@ -51,12 +51,36 @@
                     }
                     return propertyListTpl;
                 });
-                handlebars.registerHelper('rankImg', function (rank) {
-                    if (rank && rank < 4) {
-                        return '<img class="rank-img" src="/static/dist/img/rank_img_' + rank + '.png">';
+
+                handlebars.registerHelper('compare', function(left, operator, right, options) {
+                    if (arguments.length < 3) {
+                        throw new Error('Handlerbars Helper "compare" needs 2 parameters');
                     }
-                    return '';
+                    var operators = {
+                        '==':     function(l, r) {return l == r; },
+                        '===':    function(l, r) {return l === r; },
+                        '!=':     function(l, r) {return l != r; },
+                        '!==':    function(l, r) {return l !== r; },
+                        '<':      function(l, r) {return l < r; },
+                        '>':      function(l, r) {return l > r; },
+                        '<=':     function(l, r) {return l <= r; },
+                        '>=':     function(l, r) {return l >= r; },
+                        'typeof': function(l, r) {return typeof l == r; }
+                    };
+
+                    if (!operators[operator]) {
+                        throw new Error('Handlerbars Helper "compare" doesn\'t know the operator ' + operator);
+                    }
+
+                    var result = operators[operator](left, right);
+
+                    if (result) {
+                        return options.fn(this);
+                    } else {
+                        return options.inverse(this);
+                    }
                 });
+
                 var source = $('#temp-search-list').html();
                 var template = handlebars.compile(source);
                 $('.school-list').html(template(res));
@@ -72,7 +96,13 @@
         $('#header-title').text('专业详情');
 
         $('#header-back').on('click', function() {
-            window.location.href = '/major-search';
+            var action = util.getLinkey('action');
+            if (action === 'school-detail') {
+                var schoolId = util.getLinkey('schoolId');
+                window.location.href = '/school-detail?id=' + schoolId;
+            } else {
+                window.location.href = '/major-search';
+            }
         });
         var activeId = util.getLinkey('active') || '1';
         $('.tab .item[data-id="' + activeId + '"]').addClass('active');
