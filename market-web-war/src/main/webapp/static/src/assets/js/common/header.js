@@ -79,10 +79,10 @@ $(function () {
         window.location.href = '/code?userId=' + userId;
     });
 
-    var loginUrl = 'login?state=' + toUrl;
+    //var loginUrl = 'login?state=' + toUrl;
 
     // 退出
-    $('#logout-btn').attr('href',loginUrl).on('click', function () {
+    $('#logout-btn').attr('href','login?state=user-detail').on('click', function () {
         cookie.deleteCookie("avatar", '');
         cookie.deleteCookie('city', '');
         cookie.deleteCookie('county', '');
