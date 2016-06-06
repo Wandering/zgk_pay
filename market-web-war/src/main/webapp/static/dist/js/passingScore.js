@@ -55,7 +55,10 @@
 
 	        $('#header-title').text('省批次线');
 	        $('#header-menu').show().on('click',function(){
-	            $('.container-header').hide();
+	            $('.container-header').removeClass('open-drop-list');
+	            $('.containert-content').removeClass('hidden');
+	            $('.backdrop').addClass('hidden');
+	            $('.province-option-list').addClass('hidden');
 	        });
 	        $('.container-header').on('click', function(){
 	            if($(this).hasClass('open-drop-list')){
