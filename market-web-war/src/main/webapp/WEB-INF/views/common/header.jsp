@@ -80,24 +80,24 @@
                         <span>个人信息</span>
                     </a>
                 </div>
-                <div class="item">
-                    <a id="consumerLinks" href="consumer-list?state=consumer-list&menu=1">
-                        <img src="<%=ctx%>/static/dist/img/8.png" alt=""/>
-                        <span>我的钱包</span>
-                    </a>
-                </div>
+                <%--<div class="item">--%>
+                    <%--<a id="consumerLinks" href="consumer-list?state=consumer-list&menu=1">--%>
+                        <%--<img src="<%=ctx%>/static/dist/img/8.png" alt=""/>--%>
+                        <%--<span>我的钱包</span>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
                 <div class="item">
                     <a id="orderLinks" href="order?state=order&menu=1">
                         <img src="<%=ctx%>/static/dist/img/9.png" alt=""/>
                         <span>我的订单</span>
                     </a>
                 </div>
-                <div class="item">
-                    <a href="javascript:void(0)" class="invite-friend">
-                        <img src="<%=ctx%>/static/dist/img/11.png" alt=""/>
-                        <span>邀请好友</span>
-                    </a>
-                </div>
+                <%--<div class="item">--%>
+                    <%--<a href="javascript:void(0)" class="invite-friend">--%>
+                        <%--<img src="<%=ctx%>/static/dist/img/11.png" alt=""/>--%>
+                        <%--<span>邀请好友</span>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
                 <div class="item">
                     <a href="/intro" class="">
                         <img src="<%=ctx%>/static/dist/img/rule.png" alt=""/>
@@ -179,12 +179,12 @@
                         <span>个人信息</span>
                     </a>
                 </div>
-                <div class="item">
-                    <a href="/consumer-list?state=consumer-list&menu=1">
-                        <img src="<%=ctx%>/static/dist/img/8.png" alt=""/>
-                        <span>我的钱包</span>
-                    </a>
-                </div>
+                <%--<div class="item">--%>
+                    <%--<a href="/consumer-list?state=consumer-list&menu=1">--%>
+                        <%--<img src="<%=ctx%>/static/dist/img/8.png" alt=""/>--%>
+                        <%--<span>我的钱包</span>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
                 <div class="item">
                     <a href="order?state=order&menu=1">
                         <img src="<%=ctx%>/static/dist/img/9.png" alt=""/>
@@ -197,12 +197,12 @@
                         <span>邀请好友</span>
                     </a>
                 </div>
-                <div class="item">
-                    <a href="/intro" class="">
-                        <img src="<%=ctx%>/static/dist/img/rule.png" alt=""/>
-                        <span>盈利规则</span>
-                    </a>
-                </div>
+                <%--<div class="item">--%>
+                    <%--<a href="/intro" class="">--%>
+                        <%--<img src="<%=ctx%>/static/dist/img/rule.png" alt=""/>--%>
+                        <%--<span>盈利规则</span>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
                 <div class="item">
                     <a href="/vip" class="">
                         <img src="<%=ctx%>/static/dist/img/vip.png" alt=""/>
