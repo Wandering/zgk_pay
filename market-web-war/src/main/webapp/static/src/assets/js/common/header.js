@@ -6,7 +6,6 @@ $(function () {
     var token = cookie.getCookieValue('token');
     var userName = cookie.getCookieValue('userName');
     var interfaceUrl = require('urlConfig');
-
     if (isLogin) {
         $('#userName').text(userName);
     }

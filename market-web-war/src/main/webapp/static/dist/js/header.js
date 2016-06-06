@@ -52,7 +52,6 @@
 	    var token = cookie.getCookieValue('token');
 	    var userName = cookie.getCookieValue('userName');
 	    var interfaceUrl = __webpack_require__(3);
-
 	    if (isLogin) {
 	        $('#userName').text(userName);
 	    }
