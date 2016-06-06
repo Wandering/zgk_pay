@@ -206,3 +206,9 @@ header .location.location-icon:before {
   margin: 20px 0;
   color: #fff;
 }
+
+.detail-list li.detail-info {
+  padding: 10px 15px;
+  line-height: 30px;
+  height: 90px;
+}

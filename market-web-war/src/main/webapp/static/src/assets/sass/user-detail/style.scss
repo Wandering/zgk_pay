@@ -63,6 +63,7 @@ header {
     border-radius: 2px;
   }
 }
+
 .detail-list li {
   height: 50px;
   line-height: 50px;
@@ -188,4 +189,9 @@ header {
     margin: 20px 0;
     color: #fff;
   }
+}
+.detail-list li.detail-info{
+  padding:10px 15px;
+  line-height:30px;
+  height: 90px;
 }

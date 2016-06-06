@@ -15,7 +15,6 @@ var BASE_URL = 'http://dev.service.zhigaokao.cn/';  //正式环境
 //var BASE_URL = '';
 
 
-
 var interfaceUrl = {
     /*
      * ==================================================

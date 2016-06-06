@@ -133,7 +133,7 @@ header .location.location-icon:before {
   color: #D80C18;
 }
 .form-group-address .col-sm-2 {
-  width: 22%;
+  width: 30%;
   float: left;
 }
 .form-group-address .col-sm-10 {
@@ -148,7 +148,7 @@ header .location.location-icon:before {
 .form-group-address .control-label {
   padding-top: 7px;
   margin-bottom: 0;
-  text-align: right;
+  text-align: left;
   color: #686868;
   font-size: 16px;
   font-weight: 100;
