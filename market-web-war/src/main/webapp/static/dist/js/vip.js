@@ -16,7 +16,7 @@ webpackJsonp([26],[
 
 	    $('#account-number').val(account);
 	    $('#header-menu').show();
-	    $('#header-title').text('关于智高考');
+	    $('#header-title').text('升级VIP');
 
 
 
