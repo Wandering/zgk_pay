@@ -52,7 +52,7 @@ $(function () {
     });
     if (!cookie.getCookieValue('userKey')) {
         cookie.setCookie("userKey", 'sn', 4, "/");
-        $('#province-text').text('浙江');
+        $('#province-text').text('陕西');
     }
     var userKey = cookie.getCookieValue('userKey');
     var provinceTxt = $('#province-option-list a[domain="' + userKey + '"]').text();
@@ -64,7 +64,7 @@ $(function () {
         window.location.href = '/' + pagePath;
         console.log(domainProvince);
         if (!userKey) {
-            cookie.setCookie("userKey", 'zj', 4, "/");
+            cookie.setCookie("userKey", 'sn', 4, "/");
         } else {
             cookie.setCookie("userKey", domainProvince, 4, "/");
         }
