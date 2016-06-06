@@ -2,7 +2,6 @@ package cn.thinkjoy.zgk.market.common;
 
 import cn.thinkjoy.common.domain.CreateBaseDomain;
 import cn.thinkjoy.common.exception.BizException;
-import cn.thinkjoy.zgk.market.edomain.ErrorCode;
 
 /**
  * Created by yangguorong on 16/4/28.
@@ -28,7 +27,7 @@ public class ModelUtil {
      *
      * @param errorCode
      */
-    public static void throwException(ErrorCode errorCode){
+    public static void throwException(ERRORCODE errorCode){
         throw new BizException(errorCode.getCode(),errorCode.getMessage());
     }
 }

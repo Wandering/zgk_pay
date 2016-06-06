@@ -3,6 +3,7 @@ package cn.thinkjoy.zgk.market.controller;
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.zgk.market.common.BaseCommonController;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
+import cn.thinkjoy.zgk.market.common.ModelUtil;
 import cn.thinkjoy.zgk.market.domain.Order;
 import cn.thinkjoy.zgk.market.service.IOrderService;
 import cn.thinkjoy.zgk.market.util.NumberGenUtil;
@@ -42,7 +43,7 @@ public class OrderController extends BaseCommonController {
 
         //参数错误
         if(userId == null){
-            throw new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
+            ModelUtil.throwException(ERRORCODE.PARAM_ERROR);
         }
         try{
 
@@ -51,8 +52,9 @@ public class OrderController extends BaseCommonController {
             return  department;
         }catch (Exception e){
             logger.error("用户" + userId + ",获取购买信息异常:" + e);
-            throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
+            ModelUtil.throwException(ERRORCODE.FAIL);
         }
+        return null;
     }
 
     /**
@@ -65,7 +67,7 @@ public class OrderController extends BaseCommonController {
 
         //参数错误
         if(userId==null||price==0){
-            throw new BizException(ERRORCODE.PARAM_ERROR.getCode(),ERRORCODE.PARAM_ERROR.getMessage());
+            ModelUtil.throwException(ERRORCODE.PARAM_ERROR);
         }
         try{
             String orderNo= NumberGenUtil.genOrderNo();
@@ -97,8 +99,10 @@ public class OrderController extends BaseCommonController {
             return  map;
         }catch (Exception e){
             logger.error("用户" +userId + ",提交订单异常:" + e);
-            throw new BizException(ERRORCODE.FAIL.getCode(),ERRORCODE.FAIL.getMessage());
+            ModelUtil.throwException(ERRORCODE.FAIL);
         }
+
+        return null;
     }
 
     /**
