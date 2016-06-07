@@ -72,7 +72,6 @@
 	        });
 	        return obj;
 	    }
-
 	    function getOpenId(code) {
 	        $.get(interfaceUrl.getOpenId, {code: code}, function (res) {
 	            if (res.rtnCode == '0000000') {
@@ -92,26 +91,15 @@
 
 
 	    var openId = cookie.getCookieValue('openId');
-	    if (toUrl == 'vip-buy') {
+	    if (toUrl == 'vip-buyDetial') {
 	        if (!isLogin) {
 	            window.location.href = '/login?state=vip-buyDetial&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
 	        } else {
-	            var menuV = util.getLinkey('menu');
-	            if (menuV == "1") {
-	                cookie.setCookie("flag", "0", 4, "/");
-	            }
-	            var flag = cookie.getCookieValue('flag');
-	            if (flag == "0") {
-	                cookie.setCookie("flag", "1", 4, "/");
-	                window.location.assign('vip-buyDetial?state=vip-buyDetial&token=' + token + "&code=" + getQueryObject(window.location.href).code) + '&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
-	            }
-	            if (flag == "1") {
-	                if (isWeiXin()) {
-	                    if (!openId) {
-	                        var obj = getQueryObject(window.location.href);
-	                        cookie.setCookie("code", obj.code, 4, "/");
-	                        getOpenId(obj.code);
-	                    }
+	            if (isWeiXin()) {
+	                if (!openId) {
+	                    var obj = getQueryObject(window.location.href);
+	                    cookie.setCookie("code", obj.code, 4, "/");
+	                    getOpenId(obj.code);
 	                }
 	            }
 	        }
@@ -125,7 +113,6 @@
 	            window.location.href = '/order?state=order';
 	        }, 1000);
 	    }
-
 	    /**
 	     * 支付
 	     */
