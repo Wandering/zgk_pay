@@ -88,7 +88,7 @@
 	            return false;
 	        }
 	    }
-	    
+
 	    var openId = cookie.getCookieValue('openId');
 	    alert("外" +openId )
 	    if (!isLogin) {
