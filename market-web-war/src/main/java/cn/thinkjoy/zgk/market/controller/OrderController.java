@@ -137,6 +137,24 @@ public class OrderController extends BaseCommonController {
         try {
 
             result=orderService.queryOrderListByUserId(userId, (pageNo-1)*pageSize, pageSize);
+            for(int i=0;i<result.size();i++){
+                Map<String,Object> map=result.get(i);
+                int productType=(Integer)map.get("product_type");
+                String productName="";
+                switch (productType){
+                    case 1:
+                        productName="金榜登科";
+                        break;
+                    case 2:
+                        productName="状元及第 ";
+                        break;
+                    case 3:
+                        productName="金榜题名 ";
+                        break;
+                    default:productName="";
+                }
+                map.put("productName",productName);
+            }
             return  result;
 
         }catch (Exception e){
