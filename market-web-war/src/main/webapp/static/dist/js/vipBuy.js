@@ -8,7 +8,6 @@ webpackJsonp([27],[
 	    var cookie = __webpack_require__(2);
 	    var util = __webpack_require__(1);
 
-
 	    function getQueryObject(url) {
 	        url = url == null ? window.location.href : url;
 	        var search = url.substring(url.lastIndexOf("?") + 1);
@@ -23,7 +22,6 @@ webpackJsonp([27],[
 	        });
 	        return obj;
 	    }
-	    
 	    //alert(window.location.href);
 	    //var obj = getQueryObject(window.location.href);
 	    //alert(JSON.stringify(obj))

@@ -4,7 +4,6 @@
     var cookie = require('cookie');
     var util = require('commonjs');
 
-
     function getQueryObject(url) {
         url = url == null ? window.location.href : url;
         var search = url.substring(url.lastIndexOf("?") + 1);
@@ -19,7 +18,6 @@
         });
         return obj;
     }
-    
     //alert(window.location.href);
     //var obj = getQueryObject(window.location.href);
     //alert(JSON.stringify(obj))
