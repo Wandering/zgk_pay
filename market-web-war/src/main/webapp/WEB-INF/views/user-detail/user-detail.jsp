@@ -21,7 +21,7 @@
     <div class="user-detail">
         <ul class="detail-list">
             <li>
-                <span>性别</span>
+                <span>性别：</span>
                 <span id="sex"></span>
             </li>
             <li>
@@ -52,7 +52,7 @@
                     </span>
                 </a>
             </li>
-            <li style="height: auto;min-height: 50px">
+            <li class="detail-info">
                 <span>收货地址：</span><span class="update-address" style="color: #D70C18">修改收货地址</span>
                 <div id="address"></div>
             </li>

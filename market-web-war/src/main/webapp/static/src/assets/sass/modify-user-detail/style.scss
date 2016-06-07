@@ -134,11 +134,11 @@ header {
     color: #D80C18;
   }
   .col-sm-2{
-    width: 22%;
+    width: 25%;
     float: left;
   }
   .col-sm-10{
-    width: 78%;
+    width: 75%;
     float: left;
     padding: 0 !important;
   }
@@ -149,9 +149,9 @@ header {
   .control-label{
     padding-top: 7px;
     margin-bottom: 0;
-    text-align: right;
+    text-align: left;
     color: #686868;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 100;
     padding-right: 0;
   }
@@ -160,8 +160,11 @@ header {
   }
   .form-control{
     height: 36px;
-    padding: 0;
-    width: 95%;
+    padding: 0 5px;
+    width: 97%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 4px;
   }
   .btn-danger{
     background: #D70C18;
@@ -188,11 +191,14 @@ header {
     font-size: 16px;
     outline: none;
     border: 1px solid #E8E8E8;
-    border-radius: 2px;
+    border-radius: 4px;
     padding: 5px;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     height: 72px;
     line-height: 30px;
   }
+}
+.detail-list li.detail-info{
+
 }

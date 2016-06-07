@@ -151,6 +151,8 @@ public class Order extends BaseDomain{
         this.status = status;
     }
 
+
+
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
                 .append("Id",getId())

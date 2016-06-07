@@ -250,7 +250,7 @@
 
 	        var address = provinceName + cityName + countyName + '&' + detailAddress;
 	        util.ajaxFun(interfaceUrl.addUserGoodsAddress, 'post', {
-	            address: address,
+	            receivingAddress: address,
 	            contactPhone: phone,
 	            contactName: consignee,
 	            provinceId:province,
@@ -264,7 +264,7 @@
 	                var productId = util.getLinkey('productId');
 	                var price = util.getLinkey('price');
 	                var departmentCode = util.getLinkey('departmentCode');
-	                //window.location.href = '/' + action + '?productId=' + productId + '&price=' + price + '&departmentCode=' + departmentCode;
+	                window.location.href = '/' + action + '?productId=' + productId + '&price=' + price + '&departmentCode=' + departmentCode;
 	            }
 	        });
 	    }
@@ -312,8 +312,8 @@
 	};
 	function ajaxFun(url, method, data, callback) {
 	    if (cookie.getCookieValue('token')) {
-	        //data.token = cookie.getCookieValue('token');
-	        data.token = 's4zpLJbJ7KdmOx5FAvvJfctJP4Kd4N9i';
+	        data.token = cookie.getCookieValue('token');
+	        //data.token = 'CG0yO9g/8r1V64iR5X0xiRx6DXdy12bW';
 	    }
 
 	    data.userKey = cookie.getCookieValue('userKey');
@@ -326,7 +326,13 @@
 	        url: url,
 	        type: method,
 	        data: data || {},
-	        success: callback,
+	        success: function(res) {
+	            if (res.rtnCode === '1000004') {
+	                checkLoginTimeout(res);
+	            } else {
+	                callback(res);
+	            }
+	        },
 	        error: callback
 	    });
 	};
@@ -415,6 +421,22 @@
 	    });
 	}
 
+	function checkLoginTimeout(returnJson) {
+	    if (returnJson.rtnCode == '1000004') {
+	        drawToast('登录超时');
+	        setTimeout(function() {
+	            window.location.href = '/login?state=user-detail';
+	        }, 2000);
+	        //if (cookie.getCookieValue('isLogin')) {
+	        //    $('#loginTimeoutWindow').modal('show');
+	        //} else {
+	        //    $('#loginTimeoutWindow').modal('show');
+	        //    $('#loginTimeoutWindow-jump-btn').html('登录');
+	        //    $('.loginTimeoutWindow-body').attr('class', 'modal-body nologinWindow-body');
+	        //}
+	    }
+	}
+
 
 
 	exports.isLogin = isLogin;
@@ -427,6 +449,7 @@
 	exports.layer = layer;
 	exports.ajaxFunJSON = ajaxFunJSON;
 	exports.confirmLayer = confirmLayer;
+
 
 
 
@@ -508,18 +531,20 @@
 	/*
 	 * url配置文件
 	 * */
-	//var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
+	var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
 	//var BASE_URL = 'http://dev.service.zhigaokao.cn/';  //正式环境
-	var BASE_URL = 'http://172.16.160.73:8066/';  //测试环境
+
+	//var BASE_URL = 'http://172.16.160.73:8066/';  //测试环境
 	//var BASE_URL = 'http://172.16.160.31:8080';  //小文本地
 	//var BASE_URL = 'http://172.16.160.82:8085';  //小文本地
 	//var BASE_URL = 'http://172.16.160.72:8089';  //左浩本地
 	//var BASE_URL2 = 'http://10.254.130.33:8080';  //测试环境(智能填报)
 	//var BASE_URL = 'http://10.136.56.195:8080';  //开发环境
 	//var BASE_URL = 'http://172.16.180.150:8086';  //yyp
+	//var BASE_URL = 'http://10.254.130.33:8085';  // 测试
+
 	//var BASE_URL = 'http://127.0.0.1:8080';
 	//var BASE_URL = '';
-
 
 
 	var interfaceUrl = {
@@ -569,6 +594,10 @@
 	     * 获取钱包剩余金额
 	     */
 	    getWalletBalance: '/pay/getWalletBalance',
+	    /**
+	     * 获取单个订单信息
+	     */
+	    getOrderInfo: '/order/getOrderInfo',
 	    /*
 	     * 高考咨询
 	     * */
@@ -766,7 +795,8 @@
 	    /**
 	     *查询收货地址
 	     */
-	    getUserGoodsAddress: BASE_URL + 'userGoodsAddress/getUserGoodsAddress.do'
+	    getUserGoodsAddress: BASE_URL + 'userGoodsAddress/getUserGoodsAddress.do',
+	    getRemoveOrder: BASE_URL + '/orders/removeOrder.do' //删除订单
 
 
 	};

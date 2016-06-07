@@ -138,6 +138,7 @@ $(function(){
             } else {
                 $('.update-address').hide();
                 $('#address').html('<span style="color: #D70C18">添加收货地址</span>');
+                $('#address').css('text-align', 'center');
             }
         }
     });

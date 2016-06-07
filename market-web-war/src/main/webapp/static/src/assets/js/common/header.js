@@ -6,7 +6,6 @@ $(function () {
     var token = cookie.getCookieValue('token');
     var userName = cookie.getCookieValue('userName');
     var interfaceUrl = require('urlConfig');
-
     if (isLogin) {
         $('#userName').text(userName);
     }
@@ -51,8 +50,8 @@ $(function () {
         }
     });
     if (!cookie.getCookieValue('userKey')) {
-        cookie.setCookie("userKey", 'zj', 4, "/");
-        $('#province-text').text('浙江');
+        cookie.setCookie("userKey", 'sn', 4, "/");
+        $('#province-text').text('陕西');
     }
     var userKey = cookie.getCookieValue('userKey');
     var provinceTxt = $('#province-option-list a[domain="' + userKey + '"]').text();
@@ -64,7 +63,7 @@ $(function () {
         window.location.href = '/' + pagePath;
         console.log(domainProvince);
         if (!userKey) {
-            cookie.setCookie("userKey", 'zj', 4, "/");
+            cookie.setCookie("userKey", 'sn', 4, "/");
         } else {
             cookie.setCookie("userKey", domainProvince, 4, "/");
         }
@@ -80,10 +79,9 @@ $(function () {
         window.location.href = '/code?userId=' + userId;
     });
 
-    var loginUrl = 'login?state=' + toUrl;
 
     // 退出
-    $('#logout-btn').attr('href',loginUrl).on('click', function () {
+    $('#logout-btn').attr('href','login?state=user-detail').on('click', function () {
         cookie.deleteCookie("avatar", '');
         cookie.deleteCookie('city', '');
         cookie.deleteCookie('county', '');

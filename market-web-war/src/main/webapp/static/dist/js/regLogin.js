@@ -379,34 +379,37 @@ webpackJsonp([18],[
 	                var phone = res.bizData.userInfo.account; // 用户账号
 	                var userKey = res.bizData.userInfo.userKey; // 省份userKey
 	                var province = res.bizData.userInfo.province; // 选择省份
-	                var proName = res.bizData.userInfo.proName; // 选择省份
-	                var city = res.bizData.userInfo.city; // 选择城市
-	                var cityName = res.bizData.userInfo.cityName; // 选择城市
-	                var county = res.bizData.userInfo.county; // 选择县区
-	                var countyName = res.bizData.userInfo.countyName; // 选择县区
+	                var proName = res.bizData.userInfo.proName || ''; // 选择省份
+	                if (proName === 'undefined')proName = '';
+	                var city = res.bizData.userInfo.city || ''; // 选择城市
+	                var cityName = res.bizData.userInfo.cityName || ''; // 选择城市
+	                if (cityName === 'undefined')cityName = '';
+	                var county = res.bizData.userInfo.county || ''; // 选择县区
+	                var countyName = res.bizData.userInfo.countyName || ''; // 选择县区
+	                if (countyName === 'undefined')countyName = '';
 	                var qrcodeUrl = res.bizData.userInfo.qrcodeUrl;  // 二维码
 	                var isReported = res.bizData.userInfo.isReported; // 智能填报次数
 	                var isSurvey = res.bizData.userInfo.isSurvey; // 专家测试次数
-	                var avatar =
-	                cookie.setCookie("avatar", avatar, 4, "");
-	                cookie.setCookie("vipActiveDate", vipActiveDateV, 4, "/");
-	                cookie.setCookie("vipEndDate", vipEndDateV, 4, "/");
+	                var avatar = res.bizData.userInfo.icon || '';
+	                cookie.setCookie("avatar", avatar || '', 4, "");
+	                cookie.setCookie("vipActiveDate", vipActiveDateV || '', 4, "/");
+	                cookie.setCookie("vipEndDate", vipEndDateV || '', 4, "/");
 	                cookie.setCookie("isLogin", "true", 4, "/");
-	                cookie.setCookie("token", token, 4, "/");
-	                cookie.setCookie("userId", userId, 4, "/");
-	                cookie.setCookie("userName", userName, 4, "/");
-	                cookie.setCookie("vipStatus", vipStatus, 4, "/");
-	                cookie.setCookie("phone", phone, 4, "/");
-	                cookie.setCookie("userKey", userKey, 4, "/");
-	                cookie.setCookie("proName", proName, 4, "/");
-	                cookie.setCookie("cityName", cityName, 4, "/");
-	                cookie.setCookie("countyName", countyName, 4, "/");
-	                cookie.setCookie("province", province, 4, "/");
-	                cookie.setCookie("city", city, 4, "/");
-	                cookie.setCookie("county", county, 4, "/");
-	                cookie.setCookie("qrcodeUrl", qrcodeUrl, 4, "/");
-	                cookie.setCookie("isReported", isReported, 4, "/");
-	                cookie.setCookie("isSurvey", isSurvey, 4, "/");
+	                cookie.setCookie("token", token || '', 4, "/");
+	                cookie.setCookie("userId", userId || '', 4, "/");
+	                cookie.setCookie("userName", userName || '', 4, "/");
+	                cookie.setCookie("vipStatus", vipStatus || '', 4, "/");
+	                cookie.setCookie("phone", phone || '', 4, "/");
+	                cookie.setCookie("userKey", userKey || '', 4, "/");
+	                cookie.setCookie("proName", proName || '', 4, "/");
+	                cookie.setCookie("cityName", cityName || '', 4, "/");
+	                cookie.setCookie("countyName", countyName || '', 4, "/");
+	                cookie.setCookie("province", province || '', 4, "/");
+	                cookie.setCookie("city", city || '', 4, "/");
+	                cookie.setCookie("county", county || '', 4, "/");
+	                cookie.setCookie("qrcodeUrl", qrcodeUrl || '', 4, "/");
+	                cookie.setCookie("isReported", isReported || '', 4, "/");
+	                cookie.setCookie("isSurvey", isSurvey || '', 4, "/");
 	                cookie.setCookie("flag", "0", 4, "/" );
 	                var webUrl = '/'+toUrl+'?state='+ toUrl+"&menu=1";
 	                var url = 'http://zgkser.zhigaokao.cn/'+toUrl+'?state='+ toUrl+"&menu=1";
@@ -662,6 +665,7 @@ webpackJsonp([18],[
 	        util.confirmLayer('注册',subHtml);
 	        $('body').on('click', '#confirm-btn', function () {
 	            var md5RegisterPwdV = $.md5(registerPwdV);
+	            $('#confirm-btn').attr('disabled', 'disabled');
 	            util.ajaxFun('/register/account', 'POST', {
 	                account: registerPhoneV, //用户账号
 	                captcha: verificationCodeV, //验证码
@@ -672,8 +676,7 @@ webpackJsonp([18],[
 	                sharerId: sharerId || "0",
 	                sharerType: sharerType || "0"
 	            }, function (res) {
-
-	                $('#confirm-btn').attr('disabled', 'disabled');
+	                $('#confirm-btn').attr('disabled', '');
 	                if (res.rtnCode === "0000000") {
 	                    var token = res.bizData.token;  // token
 	                    var userName = res.bizData.userInfo.name; // 用户名称

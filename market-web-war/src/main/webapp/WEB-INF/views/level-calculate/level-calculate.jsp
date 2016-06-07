@@ -46,11 +46,11 @@
         <label>目标院校：</label><span>{{universityName}}</span>
     </div>
     <div class="info star-list">
-        <label>科目：</label><span id="star-list"></span>
+        <label>录取难易程度：</label><span id="star-list"></span>
     </div>
-    <div class="info">
-        <label>推荐批次：</label><span>{{batch}}</span>
-    </div>
+    <%--<div class="info">--%>
+        <%--<label>推荐批次：</label><span>{{batch}}</span>--%>
+    <%--</div>--%>
 </div>
 <div class="hr">
     <span>历史分数参考价值很大哟！</span>

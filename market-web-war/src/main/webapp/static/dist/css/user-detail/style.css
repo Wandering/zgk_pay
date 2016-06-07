@@ -72,6 +72,10 @@ header .location.location-icon:before {
   font-size: 16px;
   border-bottom: 1px solid #E9E4E4;
 }
+.detail-list li:last-child {
+  height: auto;
+  min-height: 50px;
+}
 .detail-list li a.code-links {
   color: #707070;
   text-decoration: none;
@@ -83,9 +87,6 @@ header .location.location-icon:before {
 .detail-list li a.code-links img {
   width: 33px;
   margin-top: 5px;
-}
-.detail-list li span:last-child {
-  float: right;
 }
 
 .change-password-btn {
@@ -205,4 +206,8 @@ header .location.location-icon:before {
   border: none;
   margin: 20px 0;
   color: #fff;
+}
+
+#address {
+  line-height: 30px;
 }

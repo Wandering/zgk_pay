@@ -204,7 +204,7 @@
 
         var address = provinceName + cityName + countyName + '&' + detailAddress;
         util.ajaxFun(interfaceUrl.addUserGoodsAddress, 'post', {
-            address: address,
+            receivingAddress: address,
             contactPhone: phone,
             contactName: consignee,
             provinceId:province,
@@ -218,7 +218,7 @@
                 var productId = util.getLinkey('productId');
                 var price = util.getLinkey('price');
                 var departmentCode = util.getLinkey('departmentCode');
-                //window.location.href = '/' + action + '?productId=' + productId + '&price=' + price + '&departmentCode=' + departmentCode;
+                window.location.href = '/' + action + '?productId=' + productId + '&price=' + price + '&departmentCode=' + departmentCode;
             }
         });
     }

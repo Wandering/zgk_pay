@@ -104,15 +104,34 @@ webpackJsonp([12],[
 	                            //$('.order-list').append(that.orderListRender(res.bizData));
 	                            $('.paying').off('click');
 	                            $('.paying').on('click', function() {
-	                                var orderNo = $(this).attr('data-orderNo');
+	                                var orderNo = $(this).attr('data-ordernum');
 	                                var price = $(this).attr('data-price');
-	                                var userId = $(this).attr('data-userId');
-	                                payOrder(orderNo, price, userId);
+	                                var userId = $(this).attr('data-userid');
+	                                var goodsCount = $(this).attr('data-goodscount');
+	                                payOrder(orderNo, price, userId, goodsCount);
 	                            });
 	                            $('.delete').off('click');
 	                            $('.delete').on('click', function() {
+	                                var that = this;
+	                                var orderNo = $(that).attr('data-ordernum');
+	                                $('#modal_overlay').removeClass('hidden');
+	                                $('#modal').removeClass('hidden');
 	                                $('#modal_overlay').addClass('modal-overlay-visible');
 	                                $('#modal').addClass('modal-in');
+	                                $('#delete_order').off('click');
+	                                $('#delete_order').on('click', function() {
+	                                    util.ajaxFun(interfaceUrl.getRemoveOrder, 'get', {
+	                                        orderNo: orderNo
+	                                    }, function (res) {
+	                                        if (res.rtnCode == '0000000') {
+	                                            $('#modal_overlay').removeClass('modal-overlay-visible');
+	                                            $('#modal').removeClass('modal-in');
+	                                            $('#modal_overlay').addClass('hidden');
+	                                            $('#modal').addClass('hidden');
+	                                            $(that).parent().parent().parent().remove();
+	                                        }
+	                                    })
+	                                });
 	                            });
 	                            if (myScroll) myScroll.refresh();
 	                        } else {
@@ -143,12 +162,12 @@ webpackJsonp([12],[
 	     * 支付
 	     */
 	    var orderFlag = false;
-	    function payOrder(orderNo, price, userId) {
+	    function payOrder(orderNo, price, userId, goodsCount) {
 	        if (orderFlag) {
 	            return;
 	        }
 	        orderFlag = true;
-	        var amount = parseFloat(price || '200');
+	        var amount = parseFloat(price);
 	        var openId = cookie.getCookieValue('openId');
 	        var channel = 'wx_pub';
 	        if (!isWeiXin()) {
@@ -159,17 +178,20 @@ webpackJsonp([12],[
 	            userId: userId,
 	            amount: amount,
 	            channel: channel,
-	            openId: openId
+	            openId: openId,
+	            goodsCount: goodsCount
 	        }, function (res) {
 	            orderFlag = false;
 	            if (res.rtnCode == '0000000') {
 	                var charge = res.bizData;
 	                charge.credential = JSON.parse(charge.credential);
+	                cookie.setCookie("orderNo", $('#orderNo').val(), 4, "/");
 	                pingpp.createPayment(charge, function(result, error){
 	                    if (result == "success") {
 	                        // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。
 	                        orderPayStatus('支付成功');
-	                        window.location.reload();
+	                      //window.location.reload();
+	                        window.location.href = '/pay-success?orderNo=' + orderNo;
 	                    } else if (result == "fail") {
 	                        // charge 不正确或者微信公众账号支付失败时会在此处返回
 	                        orderPayStatus('支付失败');
@@ -209,14 +231,33 @@ webpackJsonp([12],[
 	                    fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
 	            return fmt;
 	        }
-	        handlebars.registerHelper("compare", function(v1, v2, options){
-	          if(v1 == v2){
-	             //满足添加继续执行
-	             return options.fn(this);
-	           } else {
-	             //不满足条件执行{{else}}部分
-	             return options.inverse(this);
-	           }
+	        handlebars.registerHelper('compare', function(left, operator, right, options) {
+	            if (arguments.length < 3) {
+	                throw new Error('Handlerbars Helper "compare" needs 2 parameters');
+	            }
+	            var operators = {
+	                '==':     function(l, r) {return l == r; },
+	                '===':    function(l, r) {return l === r; },
+	                '!=':     function(l, r) {return l != r; },
+	                '!==':    function(l, r) {return l !== r; },
+	                '<':      function(l, r) {return l < r; },
+	                '>':      function(l, r) {return l > r; },
+	                '<=':     function(l, r) {return l <= r; },
+	                '>=':     function(l, r) {return l >= r; },
+	                'typeof': function(l, r) {return typeof l == r; }
+	            };
+
+	            if (!operators[operator]) {
+	                throw new Error('Handlerbars Helper "compare" doesn\'t know the operator ' + operator);
+	            }
+
+	            var result = operators[operator](left, right);
+
+	            if (result) {
+	                return options.fn(this);
+	            } else {
+	                return options.inverse(this);
+	            }
 	        });
 	        handlebars.registerHelper("format", function(v1){
 	            return new Date(v1).Format('yyyy年MM月dd日 hh:mm:ss');

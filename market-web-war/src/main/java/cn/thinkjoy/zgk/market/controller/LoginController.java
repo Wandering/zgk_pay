@@ -1,7 +1,6 @@
 package cn.thinkjoy.zgk.market.controller;
 
 import cn.thinkjoy.common.exception.BizException;
-import cn.thinkjoy.zgk.market.common.BaseCommonController;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
 import cn.thinkjoy.zgk.market.pojo.UserAccountPojo;
 import cn.thinkjoy.zgk.market.pojo.UserInfoPojo;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import cn.thinkjoy.zgk.market.common.BaseCommonController;
 
 import java.util.HashMap;
 import java.util.Map;

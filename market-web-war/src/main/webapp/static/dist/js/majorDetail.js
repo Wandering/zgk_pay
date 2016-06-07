@@ -97,12 +97,36 @@
 	                    }
 	                    return propertyListTpl;
 	                });
-	                handlebars.registerHelper('rankImg', function (rank) {
-	                    if (rank && rank < 4) {
-	                        return '<img class="rank-img" src="/static/dist/img/rank_img_' + rank + '.png">';
+
+	                handlebars.registerHelper('compare', function(left, operator, right, options) {
+	                    if (arguments.length < 3) {
+	                        throw new Error('Handlerbars Helper "compare" needs 2 parameters');
 	                    }
-	                    return '';
+	                    var operators = {
+	                        '==':     function(l, r) {return l == r; },
+	                        '===':    function(l, r) {return l === r; },
+	                        '!=':     function(l, r) {return l != r; },
+	                        '!==':    function(l, r) {return l !== r; },
+	                        '<':      function(l, r) {return l < r; },
+	                        '>':      function(l, r) {return l > r; },
+	                        '<=':     function(l, r) {return l <= r; },
+	                        '>=':     function(l, r) {return l >= r; },
+	                        'typeof': function(l, r) {return typeof l == r; }
+	                    };
+
+	                    if (!operators[operator]) {
+	                        throw new Error('Handlerbars Helper "compare" doesn\'t know the operator ' + operator);
+	                    }
+
+	                    var result = operators[operator](left, right);
+
+	                    if (result) {
+	                        return options.fn(this);
+	                    } else {
+	                        return options.inverse(this);
+	                    }
 	                });
+
 	                var source = $('#temp-search-list').html();
 	                var template = handlebars.compile(source);
 	                $('.school-list').html(template(res));
@@ -118,7 +142,13 @@
 	        $('#header-title').text('专业详情');
 
 	        $('#header-back').on('click', function() {
-	            window.location.href = '/major-search';
+	            var action = util.getLinkey('action');
+	            if (action === 'school-detail') {
+	                var schoolId = util.getLinkey('schoolId');
+	                window.location.href = '/school-detail?id=' + schoolId;
+	            } else {
+	                window.location.href = '/major-search';
+	            }
 	        });
 	        var activeId = util.getLinkey('active') || '1';
 	        $('.tab .item[data-id="' + activeId + '"]').addClass('active');
@@ -147,8 +177,8 @@
 	};
 	function ajaxFun(url, method, data, callback) {
 	    if (cookie.getCookieValue('token')) {
-	        //data.token = cookie.getCookieValue('token');
-	        data.token = 's4zpLJbJ7KdmOx5FAvvJfctJP4Kd4N9i';
+	        data.token = cookie.getCookieValue('token');
+	        //data.token = 'CG0yO9g/8r1V64iR5X0xiRx6DXdy12bW';
 	    }
 
 	    data.userKey = cookie.getCookieValue('userKey');
@@ -161,7 +191,13 @@
 	        url: url,
 	        type: method,
 	        data: data || {},
-	        success: callback,
+	        success: function(res) {
+	            if (res.rtnCode === '1000004') {
+	                checkLoginTimeout(res);
+	            } else {
+	                callback(res);
+	            }
+	        },
 	        error: callback
 	    });
 	};
@@ -250,6 +286,22 @@
 	    });
 	}
 
+	function checkLoginTimeout(returnJson) {
+	    if (returnJson.rtnCode == '1000004') {
+	        drawToast('登录超时');
+	        setTimeout(function() {
+	            window.location.href = '/login?state=user-detail';
+	        }, 2000);
+	        //if (cookie.getCookieValue('isLogin')) {
+	        //    $('#loginTimeoutWindow').modal('show');
+	        //} else {
+	        //    $('#loginTimeoutWindow').modal('show');
+	        //    $('#loginTimeoutWindow-jump-btn').html('登录');
+	        //    $('.loginTimeoutWindow-body').attr('class', 'modal-body nologinWindow-body');
+	        //}
+	    }
+	}
+
 
 
 	exports.isLogin = isLogin;
@@ -262,6 +314,7 @@
 	exports.layer = layer;
 	exports.ajaxFunJSON = ajaxFunJSON;
 	exports.confirmLayer = confirmLayer;
+
 
 
 
@@ -343,18 +396,20 @@
 	/*
 	 * url配置文件
 	 * */
-	//var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
+	var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
 	//var BASE_URL = 'http://dev.service.zhigaokao.cn/';  //正式环境
-	var BASE_URL = 'http://172.16.160.73:8066/';  //测试环境
+
+	//var BASE_URL = 'http://172.16.160.73:8066/';  //测试环境
 	//var BASE_URL = 'http://172.16.160.31:8080';  //小文本地
 	//var BASE_URL = 'http://172.16.160.82:8085';  //小文本地
 	//var BASE_URL = 'http://172.16.160.72:8089';  //左浩本地
 	//var BASE_URL2 = 'http://10.254.130.33:8080';  //测试环境(智能填报)
 	//var BASE_URL = 'http://10.136.56.195:8080';  //开发环境
 	//var BASE_URL = 'http://172.16.180.150:8086';  //yyp
+	//var BASE_URL = 'http://10.254.130.33:8085';  // 测试
+
 	//var BASE_URL = 'http://127.0.0.1:8080';
 	//var BASE_URL = '';
-
 
 
 	var interfaceUrl = {
@@ -404,6 +459,10 @@
 	     * 获取钱包剩余金额
 	     */
 	    getWalletBalance: '/pay/getWalletBalance',
+	    /**
+	     * 获取单个订单信息
+	     */
+	    getOrderInfo: '/order/getOrderInfo',
 	    /*
 	     * 高考咨询
 	     * */
@@ -601,7 +660,8 @@
 	    /**
 	     *查询收货地址
 	     */
-	    getUserGoodsAddress: BASE_URL + 'userGoodsAddress/getUserGoodsAddress.do'
+	    getUserGoodsAddress: BASE_URL + 'userGoodsAddress/getUserGoodsAddress.do',
+	    getRemoveOrder: BASE_URL + '/orders/removeOrder.do' //删除订单
 
 
 	};

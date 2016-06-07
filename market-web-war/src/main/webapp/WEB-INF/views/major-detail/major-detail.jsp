@@ -51,9 +51,11 @@
 <script id="temp-search-list" type="text/x-handlebars-template">
   {{#each bizData.universityList}}
   <li>
-    {{rankImg rank}}
+    {{#compare rank '<' 4}}
+    <img class="rank-img" src="/static/dist/img/rank_img_{{rank}}.png">
+    {{/compare}}
     <div class="img">
-      <img src="http://123.59.12.77:8080/{{photoUrl}}" class="school-logo" sid="{{id}}">
+      <img src="http://123.59.12.77:8080/{{photo_url}}" class="school-logo" sid="{{id}}">
     </div>
     <div class="summary">
       <div class="title" data-id="{{id}}">
@@ -67,7 +69,10 @@
       <div class="footer">
         <span><i class="location-normal-icon"></i><span class="province">{{province}}</span></span>
         {{#if rank}}
-        <span><i class="flag-icon"></i>排名：{{rank}}</span>
+        <span><i class="flag-icon"></i>全国排名:{{rank}}</span>
+        {{/if}}
+        {{#if majorRank}}
+        <span style="margin-left: 5px">专业排名:{{majorRank}}</span>
         {{/if}}
       </div>
     </div>

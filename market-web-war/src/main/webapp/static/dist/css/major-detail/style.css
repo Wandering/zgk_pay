@@ -162,6 +162,7 @@ header .header-btn:last-child {
   left: 0;
   top: 0;
   z-index: 99;
+  width: 36px;
 }
 
 .container .img,
@@ -182,7 +183,7 @@ header .header-btn:last-child {
 
 .summary {
   margin-left: 3px;
-  width: calc(100% - 160px);
+  width: calc(100% - 140px);
 }
 .summary .title {
   font-size: 15px;

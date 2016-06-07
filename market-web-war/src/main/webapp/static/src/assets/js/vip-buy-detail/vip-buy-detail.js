@@ -105,11 +105,12 @@
             if (res.rtnCode == '0000000') {
                 var charge = res.bizData;
                 charge.credential = JSON.parse(charge.credential);
+                cookie.setCookie("orderNo", $('#orderNo').val(), 4, "/");
                 pingpp.createPayment(charge, function (result, error) {
                     if (result == "success") {
                         // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。
                         //orderPayStatus('支付成功');
-                        window.location.href = '/pay-success';
+                        window.location.href = '/pay-success?orderNo=' + $('#orderNo').val();
                     } else if (result == "fail") {
                         // charge 不正确或者微信公众账号支付失败时会在此处返回
                         orderPayStatus('支付失败');
@@ -147,6 +148,18 @@
         $('.total-price').text(splitPrice[0]);
         $('.sub-price').text(splitPrice[1] || '00');
 
+        util.ajaxFun(interfaceUrl.getUserGoodsAddress, 'GET', {}, function (res) {
+            if (res.rtnCode == '0000000') {
+                var bizData = res.bizData;
+                if (bizData && bizData.receivingAddress) {
+                    $('.vertical').html(bizData.receivingAddress.replace('&', '') + '&nbsp;&nbsp;&nbsp;&nbsp;(' + bizData.contactName + '收)&nbsp;&nbsp;&nbsp;&nbsp;' +  bizData.contactPhone);
+                } else {
+                    $('.buy-go').addClass('no-address');
+                    $('.vertical').html('<span style="color: #D70C18">添加收货地址</span>');
+                }
+            }
+        });
+
         $('.buy-go').on('click', function() {
             var userId = cookie.getCookieValue('userId');
             if (!cookie.getCookieValue('isLogin')) {
@@ -154,6 +167,10 @@
                 setTimeout(function () {
                     window.location.href = '/login?state=vip-buyDetial&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
                 }, 2000);
+                return false;
+            }
+
+            if ($(this).hasClass('no-address')) {
                 return false;
             }
 
