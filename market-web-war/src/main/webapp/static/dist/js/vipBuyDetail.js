@@ -88,7 +88,9 @@
 	            return false;
 	        }
 	    }
+	    
 	    var openId = cookie.getCookieValue('openId');
+	    alert("外" +openId )
 	    if (!isLogin) {
 	        window.location.href = '/login?state=vip-buyDetial&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
 	    } else {
@@ -96,11 +98,12 @@
 	            if (!openId) {
 	                var obj = getQueryObject(window.location.href);
 	                cookie.setCookie("code", obj.code, 4, "/");
+	                alert("code:"+ obj.code)
 	                getOpenId(obj.code);
 	            }
 	        }
 	    }
-	    
+
 
 	    function orderPayStatus(msg) {
 	        $('#modal_overlay').removeClass('modal-overlay-visible');
@@ -116,6 +119,7 @@
 	    function payOrder() {
 	        var amount = parseFloat(price);
 	        var openId = cookie.getCookieValue('openId');
+	        alert("order:" + openId)
 	        var goodsCount = parseInt($('.number').text());
 
 	        var channel = 'wx_pub';
