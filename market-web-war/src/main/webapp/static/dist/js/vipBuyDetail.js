@@ -88,22 +88,19 @@
 	            return false;
 	        }
 	    }
-
-
 	    var openId = cookie.getCookieValue('openId');
-	    if (toUrl == 'vip-buyDetial') {
-	        if (!isLogin) {
-	            window.location.href = '/login?state=vip-buyDetial&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
-	        } else {
-	            if (isWeiXin()) {
-	                if (!openId) {
-	                    var obj = getQueryObject(window.location.href);
-	                    cookie.setCookie("code", obj.code, 4, "/");
-	                    getOpenId(obj.code);
-	                }
+	    if (!isLogin) {
+	        window.location.href = '/login?state=vip-buyDetial&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
+	    } else {
+	        if (isWeiXin()) {
+	            if (!openId) {
+	                var obj = getQueryObject(window.location.href);
+	                cookie.setCookie("code", obj.code, 4, "/");
+	                getOpenId(obj.code);
 	            }
 	        }
 	    }
+	    
 
 	    function orderPayStatus(msg) {
 	        $('#modal_overlay').removeClass('modal-overlay-visible');
