@@ -42,9 +42,9 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
     </context:component-scan>
 
-    <!--<mvc:interceptors >-->
-        <!--<bean class="cn.thinkjoy.zgk.market.interceptor.LoginInterceptor"></bean>-->
-    <!--</mvc:interceptors>-->
+    <mvc:interceptors >
+        <bean class="cn.thinkjoy.zgk.market.interceptor.LoginInterceptor"></bean>
+    </mvc:interceptors>
 
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
         <property name="caseSensitive" value="true" />
