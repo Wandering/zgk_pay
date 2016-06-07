@@ -66,7 +66,7 @@
                             <span class="paying" data-goodscount="{{goodsCount}}" data-price="{{product_price}}" data-userid="{{user_id}}" data-ordernum="{{order_no}}">去支付</span>
                         </span>
             </div>
-            <div class="item-li">名称：智高{{productName}}第会员卡</div>
+            <div class="item-li">名称：智高考{{productName}}会员卡</div>
             <div class="item-li">价格：{{unit_price}}元/套</div>
             <div class="item-li">数量：{{goodsCount}}套</div>
         </div>
