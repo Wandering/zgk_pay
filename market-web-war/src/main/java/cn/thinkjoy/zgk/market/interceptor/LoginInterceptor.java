@@ -1,5 +1,6 @@
 package cn.thinkjoy.zgk.market.interceptor;
 import cn.thinkjoy.common.exception.BizException;
+import cn.thinkjoy.zgk.market.common.UserAreaContext;
 import cn.thinkjoy.zgk.market.constant.ServletPathConst;
 import cn.thinkjoy.zgk.market.constant.UserRedisConst;
 import cn.thinkjoy.zgk.market.util.CookieUtil;
@@ -22,6 +23,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
     @Override
 	public boolean preHandle(HttpServletRequest request,HttpServletResponse response, Object handler) throws Exception {
+		UserAreaContext.setCurrentUserArea(request.getParameter("userKey") == null ? "zj" : request.getParameter("userKey"));
 		String url = request.getServletPath();
 		String token = request.getParameter("token");
 		String toUrl = request.getParameter("toUrl");
