@@ -151,6 +151,7 @@
 	            if (res.rtnCode == '0000000') {
 	                var charge = res.bizData;
 	                charge.credential = JSON.parse(charge.credential);
+	                cookie.setCookie("orderNo", $('#orderNo').val(), 4, "/");
 	                pingpp.createPayment(charge, function (result, error) {
 	                    if (result == "success") {
 	                        // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。
@@ -328,7 +329,13 @@
 	        url: url,
 	        type: method,
 	        data: data || {},
-	        success: callback,
+	        success: function(res) {
+	            if (res.rtnCode === '1000004') {
+	                checkLoginTimeout(res);
+	            } else {
+	                callback(res);
+	            }
+	        },
 	        error: callback
 	    });
 	};
@@ -417,6 +424,22 @@
 	    });
 	}
 
+	function checkLoginTimeout(returnJson) {
+	    if (returnJson.rtnCode == '1000004') {
+	        drawToast('登录超时');
+	        setTimeout(function() {
+	            window.location.href = '/login?state=user-detail';
+	        }, 2000);
+	        //if (cookie.getCookieValue('isLogin')) {
+	        //    $('#loginTimeoutWindow').modal('show');
+	        //} else {
+	        //    $('#loginTimeoutWindow').modal('show');
+	        //    $('#loginTimeoutWindow-jump-btn').html('登录');
+	        //    $('.loginTimeoutWindow-body').attr('class', 'modal-body nologinWindow-body');
+	        //}
+	    }
+	}
+
 
 
 	exports.isLogin = isLogin;
@@ -429,6 +452,7 @@
 	exports.layer = layer;
 	exports.ajaxFunJSON = ajaxFunJSON;
 	exports.confirmLayer = confirmLayer;
+
 
 
 
