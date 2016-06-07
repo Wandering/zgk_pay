@@ -79,7 +79,6 @@ $(function () {
         window.location.href = '/code?userId=' + userId;
     });
 
-    //var loginUrl = 'login?state=' + toUrl;
 
     // 退出
     $('#logout-btn').attr('href','login?state=user-detail').on('click', function () {
