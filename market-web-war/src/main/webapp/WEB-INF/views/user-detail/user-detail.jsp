@@ -21,7 +21,7 @@
     <div class="user-detail">
         <ul class="detail-list">
             <li>
-                <span>性别</span>
+                <span>性别：</span>
                 <span id="sex"></span>
             </li>
             <li>

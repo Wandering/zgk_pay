@@ -127,7 +127,7 @@
 	                    return star;
 	                });
 	                handlebars.registerHelper('batchStr', function (val) {
-	                    var batchArray = ['','一批本科','二批本科','三批本科','高职（专科）'];
+	                    var batchArray = ['','一批本科','二批本科','', '三批本科','','','','高职（专科）'];
 	                    return batchArray[val];
 	                });
 	                handlebars.registerHelper('propertyList', function (data) {
