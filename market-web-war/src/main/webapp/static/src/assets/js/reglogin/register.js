@@ -225,7 +225,6 @@ $(function () {
                 sharerId: sharerId || "0",
                 sharerType: sharerType || "0"
             }, function (res) {
-
                 $('#confirm-btn').attr('disabled', 'disabled');
                 if (res.rtnCode === "0000000") {
                     var token = res.bizData.token;  // token
