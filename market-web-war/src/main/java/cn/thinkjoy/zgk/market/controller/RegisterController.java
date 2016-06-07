@@ -1,7 +1,6 @@
 package cn.thinkjoy.zgk.market.controller;
 
 import cn.thinkjoy.common.exception.BizException;
-import cn.thinkjoy.zgk.market.common.BaseCommonController;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
 import cn.thinkjoy.zgk.market.constant.RedisConst;
 import cn.thinkjoy.zgk.market.domain.Province;
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import cn.thinkjoy.zgk.market.common.BaseCommonController;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

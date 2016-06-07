@@ -497,7 +497,7 @@
 
         var noncestr = 'U5iQqjfV123NT5du';
 
-        var  urls = window.location.href;
+        var  urls = 'http://zgkser.zhigaokao.cn/static/shareapp/share-index.html';
 
         function getSign() {
             $.ajaxSettings.async = false;
@@ -544,7 +544,7 @@
                 }
             });
             var title = '测一测你会被哪个大学录取？';
-            var desc = '高考结束想知道你会被哪个大学录取吗？好奇害死猫，慎点！';
+            var desc = '高考结束，想知道你会被哪个大学录取吗？好奇害死猫，慎点！';
             var logo = 'http://zgkser.zhigaokao.cn/static/shareapp/'+introImg[num];
             wx.onMenuShareAppMessage({
                 title: title,
@@ -557,6 +557,7 @@
                 },
                 success: function (res) {
                     //alert('已分享');
+                    shareComplete();
                 },
                 cancel: function (res) {
                     //alert('已取消');
@@ -577,6 +578,7 @@
                 },
                 success: function (res) {
                     //alert('已分享');
+                    shareComplete();
                 },
                 cancel: function (res) {
                     //alert('已取消');
@@ -603,6 +605,10 @@
             //alert(res.errMsg);
         });
 
+
+        function shareComplete() {
+            document.getElementById('share').style.display = 'none';
+        }
 
 
 

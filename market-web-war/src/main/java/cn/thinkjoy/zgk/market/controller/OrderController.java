@@ -1,10 +1,8 @@
 package cn.thinkjoy.zgk.market.controller;
 
 import cn.thinkjoy.common.exception.BizException;
-import cn.thinkjoy.zgk.market.common.BaseCommonController;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
 import cn.thinkjoy.zgk.market.domain.Order;
-import cn.thinkjoy.zgk.market.domain.UserAccount;
 import cn.thinkjoy.zgk.market.service.IOrderService;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
 import cn.thinkjoy.zgk.market.util.NumberGenUtil;
@@ -20,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import cn.thinkjoy.zgk.market.common.BaseCommonController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -137,6 +136,24 @@ public class OrderController extends BaseCommonController {
         try {
 
             result=orderService.queryOrderListByUserId(userId, (pageNo-1)*pageSize, pageSize);
+            for(int i=0;i<result.size();i++){
+                Map<String,Object> map=result.get(i);
+                int productType=(Integer)map.get("product_type");
+                String productName="";
+                switch (productType){
+                    case 1:
+                        productName="金榜登科";
+                        break;
+                    case 2:
+                        productName="状元及第 ";
+                        break;
+                    case 3:
+                        productName="金榜题名 ";
+                        break;
+                    default:productName="";
+                }
+                map.put("productName",productName);
+            }
             return  result;
 
         }catch (Exception e){

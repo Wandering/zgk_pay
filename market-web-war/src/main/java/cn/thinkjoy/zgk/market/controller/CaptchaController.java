@@ -3,7 +3,6 @@ package cn.thinkjoy.zgk.market.controller;
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.push.domain.sms.SMSCheckCode;
 import cn.thinkjoy.push.service.sms.SMSService;
-import cn.thinkjoy.zgk.market.common.BaseCommonController;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
 import cn.thinkjoy.zgk.market.constant.CaptchaTimeConst;
 import cn.thinkjoy.zgk.market.constant.RedisConst;
@@ -20,6 +19,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import cn.thinkjoy.zgk.market.common.BaseCommonController;
 
 import java.util.concurrent.TimeUnit;
 
