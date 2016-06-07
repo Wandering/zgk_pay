@@ -78,11 +78,14 @@ $(function () {
                 var phone = res.bizData.userInfo.account; // 用户账号
                 var userKey = res.bizData.userInfo.userKey; // 省份userKey
                 var province = res.bizData.userInfo.province; // 选择省份
-                var proName = res.bizData.userInfo.proName; // 选择省份
+                var proName = res.bizData.userInfo.proName || ''; // 选择省份
+                if (proName === 'undefined')proName = '';
                 var city = res.bizData.userInfo.city || ''; // 选择城市
-                var cityName = res.bizData.userInfo.cityName; // 选择城市
+                var cityName = res.bizData.userInfo.cityName || ''; // 选择城市
+                if (cityName === 'undefined')cityName = '';
                 var county = res.bizData.userInfo.county || ''; // 选择县区
-                var countyName = res.bizData.userInfo.countyName; // 选择县区
+                var countyName = res.bizData.userInfo.countyName || ''; // 选择县区
+                if (countyName === 'undefined')countyName = '';
                 var qrcodeUrl = res.bizData.userInfo.qrcodeUrl;  // 二维码
                 var isReported = res.bizData.userInfo.isReported; // 智能填报次数
                 var isSurvey = res.bizData.userInfo.isSurvey; // 专家测试次数
