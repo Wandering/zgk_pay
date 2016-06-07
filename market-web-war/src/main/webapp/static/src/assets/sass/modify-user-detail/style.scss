@@ -160,8 +160,11 @@ header {
   }
   .form-control{
     height: 36px;
-    padding: 0;
-    width: 95%;
+    padding: 0 5px;
+    width: 97%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 4px;
   }
   .btn-danger{
     background: #D70C18;
@@ -188,7 +191,7 @@ header {
     font-size: 16px;
     outline: none;
     border: 1px solid #E8E8E8;
-    border-radius: 2px;
+    border-radius: 4px;
     padding: 5px;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
