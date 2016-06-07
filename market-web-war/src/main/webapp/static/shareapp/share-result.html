@@ -440,157 +440,59 @@
     </div>
 </div><!--/main-->
 <script src="../src/lib/jquery/jquery-2.2.2.min.js"></script>
-<script>
-    function GetRandomNum(Min, Max) {
-        var Range = Max - Min;
-        var Rand = Math.random();
-        return (Min + Math.round(Rand * Range));
-    }
-    var num = GetRandomNum(0, 3);
-    console.log(num);
-    $(function(){
-        function GetLocationParam(param) {
-            var request = {
-                QueryString: function (val) {
-                    var uri = window.location.search;
-                    var re = new RegExp("" + val + "=([^&?]*)", "ig");
-                    return ((uri.match(re)) ? (decodeURI(uri.match(re)[0].substr(val.length + 1))) : '');
-                }
-            };
-            return request.QueryString(param);
-        }
-
-        $('#userName').text(GetLocationParam("nickname"));
-
-        var introTxtArr = [
-            '清华大学',
-            '北京大学',
-            '蓝翔高级技工学校',
-            '新东方烹饪学校'
-        ];
-
-        var textArr = [
-            '北大老，师大穷，唯有清华最通融',
-            '未名湖畔的容嬷嬷在等着你',
-            '挖掘机技术哪家强',
-            '找个新东方厨师就嫁了吧'
-        ];
-
-        var introImg = [
-            'img/school01.jpg',
-            'img/school04.jpg',
-            'img/school03.jpg',
-            'img/school02.jpg'
-        ];
-
-
-        $('#schoolName').text(introTxtArr[num]);
-        $('#introImg').attr('src', introImg[num]);
-        $('#text-content').text(textArr[num]);
-        $('#share-btn').on('click',function(){
-            $('#share').show();
-        });
-    })
-</script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="../src/lib/sha1/sha1.js"></script>
 <script type="text/javascript">
     $(function () {
+        function GetRandomNum(Min, Max) {
+            var Range = Max - Min;
+            var Rand = Math.random();
+            return (Min + Math.round(Rand * Range));
+        }
+        var num = GetRandomNum(0, 3);
+        console.log(num);
+            function GetLocationParam(param) {
+                var request = {
+                    QueryString: function (val) {
+                        var uri = window.location.search;
+                        var re = new RegExp("" + val + "=([^&?]*)", "ig");
+                        return ((uri.match(re)) ? (decodeURI(uri.match(re)[0].substr(val.length + 1))) : '');
+                    }
+                };
+                return request.QueryString(param);
+            }
+
+            $('#userName').text(GetLocationParam("nickname"));
+
+            var introTxtArr = [
+                '清华大学',
+                '北京大学',
+                '蓝翔高级技工学校',
+                '新东方烹饪学校'
+            ];
+
+            var textArr = [
+                '北大老，师大穷，唯有清华最通融',
+                '未名湖畔的容嬷嬷在等着你',
+                '挖掘机技术哪家强',
+                '找个新东方厨师就嫁了吧'
+            ];
+
+            var introImg = [
+                'img/school01.jpg',
+                'img/school04.jpg',
+                'img/school03.jpg',
+                'img/school02.jpg'
+            ];
+
+
+            $('#schoolName').text(introTxtArr[num]);
+            $('#introImg').attr('src', introImg[num]);
+            $('#text-content').text(textArr[num]);
+            $('#share-btn').on('click',function(){
+                $('#share').show();
+            });
         /***************************自定义二维码*************************************/
-//        var timestamp = parseInt(new Date().getTime() / 1000);
-//        var noncestr = 'U5iQqjfV123NT5du';
-//        var urls = window.location.href;
-//        var title = '高考【VIP购买】邀请';
-//        var desc = '“拼拼”成绩靠努力，“选选”院校靠智慧；智高考，智慧填报专家';
-//        var logo = 'http://zgkser.zhigaokao.cn/static/dist/img/logo.jpg';
-//        function getSign() {
-//            $.ajaxSettings.async = false;
-//            var signStr = '';
-//            $.getJSON(window.location.host + '/pay/getAccessToken', function (res) {
-//                alert(res)
-//                if (res.rtnCode == "0000000") {
-//                    var ticket = res.bizData.ticket;
-//                    var string1 = "jsapi_ticket=" + ticket + "&noncestr=" + noncestr + "&timestamp=" + timestamp + "&url=" + window.location.href;
-//                    var sign = CryptoJS.SHA1(string1);
-//                    signStr = sign.toString();
-//                    alert(signStr)
-//                }
-//            });
-//            $.ajaxSettings.async = true;
-//            return signStr;
-//        }
-//
-//        wx.config({
-//            debug: false,
-//            appId: 'wx552f3800df25e964',
-//            timestamp: timestamp,
-//            nonceStr: noncestr,
-//            signature: getSign(),
-//            jsApiList: [
-//                'checkJsApi',
-//                'onMenuShareTimeline',
-//                'onMenuShareAppMessage'
-//            ]
-//        });
-//        wx.ready(function () {
-//            wx.checkJsApi({
-//                jsApiList: [
-//                    'getNetworkType',
-//                    'previewImage'
-//                ],
-//                success: function (res) {
-//                    alert(JSON.stringify(res));
-//                }
-//            });
-//            wx.onMenuShareAppMessage({
-//                title: title,
-//                desc: desc,
-//                //link: window.location.href,//分享链接
-//                link: urls,//分享链接
-//                imgUrl: logo, // 分享图标
-//                trigger: function (res) {
-//                    alert('用户点击发送给朋友');
-//                },
-//                success: function (res) {
-//                    alert('已分享');
-//                    shareComplete();
-//                },
-//                cancel: function (res) {
-//                    alert('已取消');
-//                },
-//                fail: function (res) {
-//                    alert(JSON.stringify(res));
-//                }
-//            });
-//
-//            wx.onMenuShareTimeline({
-//                title: title,
-//                desc: desc,
-////                link: window.location.href,//分享链接
-//                link: urls,//分享链接
-//                imgUrl: logo, // 分享图标
-//                trigger: function (res) {
-//                    alert('用户点击分享到朋友圈');
-//                },
-//                success: function (res) {
-//                    alert('已分享');
-//                    shareComplete();
-//                },
-//                cancel: function (res) {
-//                    alert('已取消');
-//                },
-//                fail: function (res) {
-//                    alert(JSON.stringify(res));
-//                }
-//            });
-//        });
-//
-//        wx.error(function (res) {
-//            alert(res.errMsg);
-//        });
-//        function shareComplete() {
-//            document.getElementById('share').style.display = 'none';
-//        }
         var timestamp = parseInt(new Date().getTime() / 1000);
 
         var noncestr = 'U5iQqjfV123NT5du';
@@ -641,9 +543,9 @@
                     //alert(JSON.stringify(res));
                 }
             });
-            var title = '高考【VIP购买】邀请';
-            var desc = '“拼拼”成绩靠努力，“选选”院校靠智慧；智高考，智慧填报专家';
-            var logo = 'http://zgkser.zhigaokao.cn/static/dist/img/logo.jpg';
+            var title = '测一测你会被哪个大学录取？';
+            var desc = '高考结束想知道你会被哪个大学录取吗？好奇害死猫，慎点！';
+            var logo = 'http://zgkser.zhigaokao.cn/static/shareapp/'+introImg[num];
             wx.onMenuShareAppMessage({
                 title: title,
                 desc: desc,
