@@ -46,7 +46,7 @@
                             <span class="delete" data-ordernum="{{order_no}}"></span>
                         </span>
             </div>
-            <div class="item-li">名称：智高考状元及第会员卡</div>
+            <div class="item-li">名称：智高考{{productName}}会员卡</div>
             <div class="item-li">价格：200元/套</div>
             <div class="item-li">数量：{{goodsCount}}套</div>
 
