@@ -215,6 +215,7 @@ $(function () {
         util.confirmLayer('注册',subHtml);
         $('body').on('click', '#confirm-btn', function () {
             var md5RegisterPwdV = $.md5(registerPwdV);
+            $('#confirm-btn').attr('disabled', 'disabled');
             util.ajaxFun('/register/account', 'POST', {
                 account: registerPhoneV, //用户账号
                 captcha: verificationCodeV, //验证码
@@ -225,7 +226,7 @@ $(function () {
                 sharerId: sharerId || "0",
                 sharerType: sharerType || "0"
             }, function (res) {
-                $('#confirm-btn').attr('disabled', 'disabled');
+                $('#confirm-btn').attr('disabled', '');
                 if (res.rtnCode === "0000000") {
                     var token = res.bizData.token;  // token
                     var userName = res.bizData.userInfo.name; // 用户名称
