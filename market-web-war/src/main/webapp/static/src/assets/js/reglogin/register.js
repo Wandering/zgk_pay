@@ -4,6 +4,10 @@ $(function () {
     var md5 = require('md5');
     var urlConfig = require('urlConfig');
     var toUrl = util.getLinkey('state');
+    var sharerId = cookie.getCookieValue('sharerId');
+    var sharerType = cookie.getCookieValue('sharerType');
+
+
     function isWeiXin() {
         var ua = window.navigator.userAgent.toLowerCase();
         if (ua.indexOf('micromessenger') > -1) {
@@ -208,8 +212,7 @@ $(function () {
             return false;
         }
 
-        var sharerId = cookie.getCookieValue('sharerId');
-        var sharerType = cookie.getCookieValue('sharerType');
+
 
         var subHtml = '<p class="reg-center">进入智高考"'+ provinceTxt +'"网站，</br>注册之后地域不可修改</p>';
         util.confirmLayer('注册',subHtml);

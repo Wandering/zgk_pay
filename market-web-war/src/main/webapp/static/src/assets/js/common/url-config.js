@@ -16,7 +16,6 @@ var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
 //var BASE_URL = 'http://127.0.0.1:8080';
 //var BASE_URL = '';
 
-
 var interfaceUrl = {
     /*
      * ==================================================
