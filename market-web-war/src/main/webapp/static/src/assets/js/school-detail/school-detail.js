@@ -17,7 +17,11 @@
                 $('.img').html('<img src="http://123.59.12.77:8080/' + res.bizData.photoUrl + '" >');
                 $('#school_name').text(res.bizData.name);
                 $('.description').text(res.bizData.property);
-                $('.pm-level').html('排名：' + res.bizData.rank);
+                if (res.bizData.rank) {
+                    $('.pm-level').html('排名：' + res.bizData.rank);
+                } else {
+                    $('.pm-level').hide();
+                }
                 var source = $('#baseInfo').html();
                 var template = handlebars.compile(source);
                 $('.base-info').html(template(res.bizData));
