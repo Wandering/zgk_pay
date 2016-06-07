@@ -454,6 +454,10 @@ webpackJsonp([18],[
 	    var md5 = __webpack_require__(7);
 	    var urlConfig = __webpack_require__(3);
 	    var toUrl = util.getLinkey('state');
+	    var sharerId = cookie.getCookieValue('sharerId');
+	    var sharerType = cookie.getCookieValue('sharerType');
+
+
 	    function isWeiXin() {
 	        var ua = window.navigator.userAgent.toLowerCase();
 	        if (ua.indexOf('micromessenger') > -1) {
@@ -658,8 +662,7 @@ webpackJsonp([18],[
 	            return false;
 	        }
 
-	        var sharerId = cookie.getCookieValue('sharerId');
-	        var sharerType = cookie.getCookieValue('sharerType');
+
 
 	        var subHtml = '<p class="reg-center">进入智高考"'+ provinceTxt +'"网站，</br>注册之后地域不可修改</p>';
 	        util.confirmLayer('注册',subHtml);
