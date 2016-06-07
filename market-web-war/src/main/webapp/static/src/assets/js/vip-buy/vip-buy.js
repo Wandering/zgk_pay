@@ -19,9 +19,10 @@
         });
         return obj;
     }
-    alert(window.location.href);
-    var obj = getQueryObject(window.location.href);
-    alert(JSON.stringify(obj))
+    
+    //alert(window.location.href);
+    //var obj = getQueryObject(window.location.href);
+    //alert(JSON.stringify(obj))
     $(document).ready(function () {
         $('#header-title').text('在线购买');
         var userId = cookie.getCookieValue('userId');
@@ -53,6 +54,7 @@
                     var productId = $(this).attr('data-productId');
                     var price = $(this).attr('data-price');
                     var departmentCode = $(this).attr('data-departmentCode');
+                    var obj = getQueryObject(window.location.href);
                     window.location.href = '/vip-buyDetial?code='+ obj.code +'&productId=' + productId + '&price=' + price + '&departmentCode=' + departmentCode;
                 });
             }
