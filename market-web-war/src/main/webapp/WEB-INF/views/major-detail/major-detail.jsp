@@ -69,9 +69,11 @@
       <div class="footer">
         <span><i class="location-normal-icon"></i><span class="province">{{province}}</span></span>
         {{#if rank}}
-        <span><i class="flag-icon"></i>全国排名：{{rank}}</span>
+        <span><i class="flag-icon"></i>全国排名:{{rank}}</span>
         {{/if}}
-        <span>专业排名：{{majorRank}}</span>
+        {{#if majorRank}}
+        <span style="margin-left: 5px">专业排名:{{majorRank}}</span>
+        {{/if}}
       </div>
     </div>
   </li>
