@@ -557,6 +557,7 @@
                 },
                 success: function (res) {
                     //alert('已分享');
+                    shareComplete();
                 },
                 cancel: function (res) {
                     //alert('已取消');
@@ -577,6 +578,7 @@
                 },
                 success: function (res) {
                     //alert('已分享');
+                    shareComplete();
                 },
                 cancel: function (res) {
                     //alert('已取消');
@@ -603,6 +605,10 @@
             //alert(res.errMsg);
         });
 
+
+        function shareComplete() {
+            document.getElementById('share').style.display = 'none';
+        }
 
 
 
