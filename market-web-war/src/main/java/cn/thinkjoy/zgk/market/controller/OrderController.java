@@ -57,8 +57,8 @@ public class OrderController extends BaseCommonController {
         }
         try{
 //            Department  department= agentService.getAgentInfo(userId);
-         UserAccount  userAccount=userAccountExService.findUserAccountById(Long.valueOf(userId));
-         List<DepartmentProductRelation>  departmentProductRelations= deparmentApiService.queryProductPriceByAreaId(userAccount.getProvinceId());
+//         UserAccount  userAccount=userAccountExService.findUserAccountById(Long.valueOf(userId));
+         List<DepartmentProductRelation>  departmentProductRelations= deparmentApiService.queryProductPriceByAreaId(this.getAreaId()+"");
             return  departmentProductRelations;
         }catch (Exception e){
             logger.error("用户" + userId + ",获取购买信息异常:" + e);
