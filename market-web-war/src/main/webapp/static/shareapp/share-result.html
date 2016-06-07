@@ -381,11 +381,8 @@
         }
     </style>
     <script type="text/javascript">
-        var _czc = _czc || [];
-        _czc.push(["_setAccount", "1255715953"]);
         var len = 0;
         var atime;
-
         window.onload = function () {
             atime = setInterval(function () {
                 len += 1.3;
@@ -400,7 +397,6 @@
                 }
             }, 10)
         }
-
     </script>
 </head>
 <body>
@@ -444,10 +440,15 @@
     </div>
 </div><!--/main-->
 <script src="../src/lib/jquery/jquery-2.2.2.min.js"></script>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<script src="../src/lib/sha1/sha1.js"></script>
-<script type="text/javascript">
-    $(function () {
+<script>
+    function GetRandomNum(Min, Max) {
+        var Range = Max - Min;
+        var Rand = Math.random();
+        return (Min + Math.round(Rand * Range));
+    }
+    var num = GetRandomNum(0, 3);
+    console.log(num);
+    $(function(){
         function GetLocationParam(param) {
             var request = {
                 QueryString: function (val) {
@@ -482,19 +483,19 @@
             'img/school02.jpg'
         ];
 
-        function GetRandomNum(Min, Max) {
-            var Range = Max - Min;
-            var Rand = Math.random();
-            return (Min + Math.round(Rand * Range));
-        }
-        var num = GetRandomNum(1, 4);
+
         $('#schoolName').text(introTxtArr[num]);
         $('#introImg').attr('src', introImg[num]);
         $('#text-content').text(textArr[num]);
         $('#share-btn').on('click',function(){
             $('#share').show();
         });
-
+    })
+</script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="../src/lib/sha1/sha1.js"></script>
+<script type="text/javascript">
+    $(function () {
         /***************************自定义二维码*************************************/
         var timestamp = parseInt(new Date().getTime() / 1000);
         var noncestr = 'U5iQqjfV123NT5du';
