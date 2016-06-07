@@ -8,7 +8,7 @@ $(function () {
     var isLogin = cookie.getCookieValue('isLogin');
     var toUrl = util.getLinkey('state');
     var userId = cookie.getCookieValue('userId');
-    
+
 
 
 
