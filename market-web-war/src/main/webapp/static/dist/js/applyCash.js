@@ -178,7 +178,13 @@
 	        url: url,
 	        type: method,
 	        data: data || {},
-	        success: callback,
+	        success: function(res) {
+	            if (res.rtnCode === '1000004') {
+	                checkLoginTimeout(res);
+	            } else {
+	                callback(res);
+	            }
+	        },
 	        error: callback
 	    });
 	};
@@ -267,6 +273,22 @@
 	    });
 	}
 
+	function checkLoginTimeout(returnJson) {
+	    if (returnJson.rtnCode == '1000004') {
+	        drawToast('登录超时');
+	        setTimeout(function() {
+	            window.location.href = '/login?state=user-detail';
+	        }, 2000);
+	        //if (cookie.getCookieValue('isLogin')) {
+	        //    $('#loginTimeoutWindow').modal('show');
+	        //} else {
+	        //    $('#loginTimeoutWindow').modal('show');
+	        //    $('#loginTimeoutWindow-jump-btn').html('登录');
+	        //    $('.loginTimeoutWindow-body').attr('class', 'modal-body nologinWindow-body');
+	        //}
+	    }
+	}
+
 
 
 	exports.isLogin = isLogin;
@@ -279,6 +301,7 @@
 	exports.layer = layer;
 	exports.ajaxFunJSON = ajaxFunJSON;
 	exports.confirmLayer = confirmLayer;
+
 
 
 

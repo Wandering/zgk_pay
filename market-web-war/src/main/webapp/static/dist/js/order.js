@@ -185,6 +185,7 @@ webpackJsonp([12],[
 	            if (res.rtnCode == '0000000') {
 	                var charge = res.bizData;
 	                charge.credential = JSON.parse(charge.credential);
+	                cookie.setCookie("orderNo", $('#orderNo').val(), 4, "/");
 	                pingpp.createPayment(charge, function(result, error){
 	                    if (result == "success") {
 	                        // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的 wap 支付结果都是在 extra 中对应的 URL 跳转。

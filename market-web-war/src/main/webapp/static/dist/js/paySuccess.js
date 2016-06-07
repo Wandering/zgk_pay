@@ -52,6 +52,7 @@
 
 	    var interfaceUrl = __webpack_require__(3);
 	    var util = __webpack_require__(1);
+	    var cookie = __webpack_require__(2);
 
 	    var productArray = ['', 'jbdk', 'zyjd'];
 	    var packageName = {
@@ -62,7 +63,7 @@
 	    $(document).ready(function() {
 	        $('#header-menu').show();
 	        $('#header-title').text('支付成功');
-	        var orderNo = util.getLinkey('orderNo');
+	        var orderNo = util.getLinkey('orderNo') || util.getLinkey('out_trade_no') || cookie.getCookieValue('orderNo');
 
 	        util.ajaxFun(interfaceUrl.getOrderInfo, 'GET', {
 	            orderNo: orderNo
@@ -104,7 +105,13 @@
 	        url: url,
 	        type: method,
 	        data: data || {},
-	        success: callback,
+	        success: function(res) {
+	            if (res.rtnCode === '1000004') {
+	                checkLoginTimeout(res);
+	            } else {
+	                callback(res);
+	            }
+	        },
 	        error: callback
 	    });
 	};
@@ -193,6 +200,22 @@
 	    });
 	}
 
+	function checkLoginTimeout(returnJson) {
+	    if (returnJson.rtnCode == '1000004') {
+	        drawToast('登录超时');
+	        setTimeout(function() {
+	            window.location.href = '/login?state=user-detail';
+	        }, 2000);
+	        //if (cookie.getCookieValue('isLogin')) {
+	        //    $('#loginTimeoutWindow').modal('show');
+	        //} else {
+	        //    $('#loginTimeoutWindow').modal('show');
+	        //    $('#loginTimeoutWindow-jump-btn').html('登录');
+	        //    $('.loginTimeoutWindow-body').attr('class', 'modal-body nologinWindow-body');
+	        //}
+	    }
+	}
+
 
 
 	exports.isLogin = isLogin;
@@ -205,6 +228,7 @@
 	exports.layer = layer;
 	exports.ajaxFunJSON = ajaxFunJSON;
 	exports.confirmLayer = confirmLayer;
+
 
 
 

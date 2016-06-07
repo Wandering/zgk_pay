@@ -6,6 +6,7 @@
 
     var interfaceUrl = require('urlConfig');
     var util = require('commonjs');
+    var cookie = require('cookie');
 
     var productArray = ['', 'jbdk', 'zyjd'];
     var packageName = {
@@ -16,7 +17,7 @@
     $(document).ready(function() {
         $('#header-menu').show();
         $('#header-title').text('支付成功');
-        var orderNo = util.getLinkey('orderNo');
+        var orderNo = util.getLinkey('orderNo') || util.getLinkey('out_trade_no') || cookie.getCookieValue('orderNo');
 
         util.ajaxFun(interfaceUrl.getOrderInfo, 'GET', {
             orderNo: orderNo
