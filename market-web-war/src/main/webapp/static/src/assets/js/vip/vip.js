@@ -10,6 +10,9 @@ $(function () {
     var userId = cookie.getCookieValue('userId');
 
 
+    $('#account-number').val(account);
+    $('#header-menu').show();
+
 
 
     var sharerId = util.getLinkey('sharerId');
@@ -17,6 +20,7 @@ $(function () {
 
     cookie.setCookie("sharerId", sharerId, 4, "/" );
     cookie.setCookie("sharerType", sharerType, 4, "/" );
+
 });
 
 

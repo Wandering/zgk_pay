@@ -14,6 +14,9 @@ webpackJsonp([26],[
 	    var userId = cookie.getCookieValue('userId');
 
 
+	    $('#account-number').val(account);
+	    $('#header-menu').show();
+
 
 
 	    var sharerId = util.getLinkey('sharerId');
@@ -21,6 +24,7 @@ webpackJsonp([26],[
 
 	    cookie.setCookie("sharerId", sharerId, 4, "/" );
 	    cookie.setCookie("sharerType", sharerType, 4, "/" );
+
 	});
 
 
