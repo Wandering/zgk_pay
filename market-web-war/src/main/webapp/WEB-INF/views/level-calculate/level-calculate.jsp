@@ -88,6 +88,6 @@
 </div>
 </script>
 <script src="<%=ctx%>/static/dist/js/commons.js"></script>
-<script type="text/javascript" src="<%=ctx%>static/dist/js/levelCalculate.js?V=11"></script>
+<script type="text/javascript" src="<%=ctx%>static/dist/js/levelCalculate.js?V=20160608"></script>
 </body>
 </html>
