@@ -328,8 +328,6 @@ webpackJsonp([18],[
 	    cookie.deleteCookie('vipActiveDate', '');
 	    cookie.deleteCookie('vipEndDate', '');
 	    cookie.deleteCookie('flag', '');
-	    cookie.deleteCookie("openId", '');
-	    cookie.deleteCookie("code", '');
 
 
 

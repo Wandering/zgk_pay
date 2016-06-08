@@ -72,7 +72,6 @@
 	        });
 	        return obj;
 	    }
-
 	    function getOpenId(code) {
 	        $.get(interfaceUrl.getOpenId, {code: code}, function (res) {
 	            if (res.rtnCode == '0000000') {
@@ -80,7 +79,6 @@
 	            }
 	        });
 	    }
-
 	    function isWeiXin() {
 	        var ua = window.navigator.userAgent.toLowerCase();
 	        if (ua.indexOf('micromessenger') > -1) {
@@ -89,33 +87,21 @@
 	            return false;
 	        }
 	    }
-
-
 	    var openId = cookie.getCookieValue('openId');
-	    if (toUrl == 'vip-buy') {
-	        if (!isLogin) {
-	            window.location.href = '/login?state=vip-buyDetial&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
-	        } else {
-	            var menuV = util.getLinkey('menu');
-	            if (menuV == "1") {
-	                cookie.setCookie("flag", "0", 4, "/");
-	            }
-	            var flag = cookie.getCookieValue('flag');
-	            if (flag == "0") {
-	                cookie.setCookie("flag", "1", 4, "/");
-	                window.location.assign('vip-buyDetial?state=vip-buyDetial&token=' + token + "&code=" + getQueryObject(window.location.href).code) + '&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
-	            }
-	            if (flag == "1") {
-	                if (isWeiXin()) {
-	                    if (!openId) {
-	                        var obj = getQueryObject(window.location.href);
-	                        cookie.setCookie("code", obj.code, 4, "/");
-	                        getOpenId(obj.code);
-	                    }
-	                }
+	    //alert("外" +openId )
+	    if (!isLogin) {
+	        window.location.href = '/login?state=vip-buyDetial&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
+	    } else {
+	        if (isWeiXin()) {
+	            if (!openId) {
+	                var obj = getQueryObject(window.location.href);
+	                cookie.setCookie("code", obj.code, 4, "/");
+	                //alert("code:"+ obj.code)
+	                getOpenId(obj.code);
 	            }
 	        }
 	    }
+
 
 	    function orderPayStatus(msg) {
 	        $('#modal_overlay').removeClass('modal-overlay-visible');
@@ -125,13 +111,13 @@
 	            window.location.href = '/order?state=order';
 	        }, 1000);
 	    }
-
 	    /**
 	     * 支付
 	     */
 	    function payOrder() {
 	        var amount = parseFloat(price);
 	        var openId = cookie.getCookieValue('openId');
+	        //alert("order:" + openId)
 	        var goodsCount = parseInt($('.number').text());
 
 	        var channel = 'wx_pub';
