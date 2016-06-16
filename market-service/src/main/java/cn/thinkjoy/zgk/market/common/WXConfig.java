@@ -1,7 +1,6 @@
 package cn.thinkjoy.zgk.market.common;
 
 import cn.thinkjoy.common.exception.BizException;
-import cn.thinkjoy.zgk.market.edomain.ErrorCode;
 import cn.thinkjoy.zgk.market.pojo.AccessTokenView;
 import cn.thinkjoy.zgk.market.pojo.BizData;
 import cn.thinkjoy.zgk.market.pojo.UploadFileReturn;
@@ -245,7 +244,7 @@ public class WXConfig {
             file.delete();
             return uploadFileReturn.getBizData();
         }
-        throw new BizException(ErrorCode.UPLOAD_FAIL.getCode(),ErrorCode.UPLOAD_FAIL.getMessage());
+        throw new BizException("1100007","上传失败");
 
     }
 

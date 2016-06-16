@@ -15,6 +15,16 @@ dependencies {
         exclude group: 'cn.thinkjoy.common', module: 'thinkjoy-mu-common'
     }
 
+    // 智高考专有短信服务
+    compile ("cn.thinkjoy.sms:sms-api:$zgkSmsVersion"){
+        exclude group: 'cn.thinkjoy.common', module: 'thinkjoy-mu-common'
+        exclude group: 'org.springframework'
+    }
+    compile ("cn.thinkjoy.sms:sms-domain:$zgkSmsVersion"){
+        exclude group: 'cn.thinkjoy.common', module: 'thinkjoy-mu-common'
+        exclude group: 'org.springframework'
+    }
+
     compile "apache-httpclient:commons-httpclient:3.1"
 
     compile project(':market-api')

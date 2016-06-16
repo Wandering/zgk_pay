@@ -11,7 +11,6 @@ import cn.thinkjoy.zgk.market.constant.UserRedisConst;
 import cn.thinkjoy.zgk.market.domain.Order;
 import cn.thinkjoy.zgk.market.domain.OrderStatements;
 import cn.thinkjoy.zgk.market.domain.UserWithdrawRecord;
-import cn.thinkjoy.zgk.market.edomain.ErrorCode;
 import cn.thinkjoy.zgk.market.enumerate.PAYCHANNEL;
 import cn.thinkjoy.zgk.market.service.IOrderService;
 import cn.thinkjoy.zgk.market.service.IOrderStatementsService;
@@ -349,7 +348,7 @@ public class PayController {
         double balance = payExService.getWalletBalance(userId);
 
         if(money > balance || money < 0){
-            ModelUtil.throwException(ErrorCode.ERROR_PARAM);
+            ModelUtil.throwException(ERRORCODE.ERROR_PARAM);
         }
 
         UserWithdrawRecord record = new UserWithdrawRecord();
