@@ -52,7 +52,9 @@ $(function () {
                     value.id != "630000" &&
                     value.id != "710000" &&
                     value.id != "810000" &&
-                    value.id != "820000"
+                    value.id != "820000" &&
+                    value.id != "900000"
+
                 ) {
                     html.push('<option value="' + value.id + '">' + value.name + '</option>');
                 }

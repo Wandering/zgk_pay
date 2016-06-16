@@ -191,13 +191,26 @@
 	        type: method,
 	        data: data || {},
 	        success: function(res) {
+	            if(res.statusText=='error'){
+	                drawToast("登录超时，请重新登录");
+	                setTimeout(function(){
+	                    window.location.href='/login?state=user-detail';
+	                },2000);
+	            }
 	            if (res.rtnCode === '1000004') {
-	                checkLoginTimeout(res);
+	                checkLoginTimeout();
 	            } else {
 	                callback(res);
 	            }
 	        },
-	        error: callback
+	        error: function(res){
+	            if(res.statusText=='error'){
+	                drawToast("登录超时，请重新登录");
+	                setTimeout(function(){
+	                    window.location.href='/login?state=user-detail';
+	                },2000);
+	            }
+	        }
 	    });
 	};
 
@@ -285,8 +298,7 @@
 	    });
 	}
 
-	function checkLoginTimeout(returnJson) {
-	    if (returnJson.rtnCode == '1000004') {
+	function checkLoginTimeout() {
 	        drawToast('登录超时');
 	        setTimeout(function() {
 	            window.location.href = '/login?state=user-detail';
@@ -298,7 +310,6 @@
 	        //    $('#loginTimeoutWindow-jump-btn').html('登录');
 	        //    $('.loginTimeoutWindow-body').attr('class', 'modal-body nologinWindow-body');
 	        //}
-	    }
 	}
 
 
