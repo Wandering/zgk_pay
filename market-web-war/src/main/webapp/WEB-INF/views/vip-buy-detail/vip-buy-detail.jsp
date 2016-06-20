@@ -81,6 +81,15 @@
     <input type="hidden" id="orderNo">
   </div>
 </div>
+
+<div class="modal" id="modal-tips">
+  <div class="modal-title">收货地址</div>
+  <div class="modal-body">
+    <p class="info">购买前请输入您的收货地址</p>
+    <div class="btn modal-tips-close">关闭</div>
+  </div>
+</div>
+
 <script src="<%=ctx%>/static/dist/js/commons.js"></script>
 <script src="<%=ctx%>/static/dist/js/pingpp.js"></script>
 <script src="<%=ctx%>/static/dist/js/vipBuyDetail.js?v=11"></script>
