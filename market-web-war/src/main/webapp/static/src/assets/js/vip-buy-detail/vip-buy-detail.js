@@ -138,6 +138,7 @@
             if (res.rtnCode == '0000000') {
                 var bizData = res.bizData;
                 if (bizData && bizData.receivingAddress) {
+                    //$('.buy-go').removeClass('no-address');
                     $('.vertical').html(bizData.receivingAddress.replace('&', '') + '&nbsp;&nbsp;&nbsp;&nbsp;(' + bizData.contactName + '收)&nbsp;&nbsp;&nbsp;&nbsp;' +  bizData.contactPhone);
                 } else {
                     $('.buy-go').addClass('no-address');
@@ -156,7 +157,10 @@
                 return false;
             }
 
+
+
             if ($(this).hasClass('no-address')) {
+                util.drawToast('购买前请输入您的收货地址!');
                 return false;
             }
 
