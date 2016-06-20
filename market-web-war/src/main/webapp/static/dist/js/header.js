@@ -406,9 +406,9 @@
 	/*
 	 * url配置文件
 	 * */
-	//var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
+	var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
 	//var BASE_URL = 'http://dev.service.zhigaokao.cn/';  //正式环境
-	BASE_URL = 'http://gx.dev.zhigaokao.cn/';
+	//BASE_URL = 'http://gx.dev.zhigaokao.cn/';
 	//var BASE_URL = 'http://172.16.160.73:8066/';  //测试环境
 	//var BASE_URL = 'http://172.16.160.31:8080';  //小文本地
 	//var BASE_URL = 'http://172.16.160.82:8085';  //小文本地
