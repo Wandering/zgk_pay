@@ -162,10 +162,10 @@ webpackJsonp([28],[
 	            }
 
 
-
 	            if ($(this).hasClass('no-address')) {
 	                $('#modal_overlay').addClass('modal-overlay-visible');
 	                $('#modal-tips').addClass('modal-in');
+	                $('.modal-tips-close').off('click');
 	                $('.modal-tips-close').on('click',function(){
 	                    $('#modal-tips').removeClass('modal-in');
 	                    $('#modal_overlay').removeClass('modal-overlay-visible');
