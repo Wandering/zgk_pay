@@ -12,7 +12,6 @@
     <description>cs dubbo 服务消费配置 </description>
     
     <!-- 账号dubbo -->
-    <dubbo:reference id="smsService" interface="cn.thinkjoy.push.service.sms.SMSService" check="false" retries="0" timeout="600000" />
     <dubbo:reference id="agentService" interface="cn.thinkjoy.zgk.zgksystem.AgentService" check="false" retries="0" timeout="600000" />
 
     <!-- 智高考专有短信服务 -->

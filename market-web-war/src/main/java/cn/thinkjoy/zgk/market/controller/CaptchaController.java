@@ -30,9 +30,6 @@ public class CaptchaController extends BaseCommonController {
     private static final Logger LOGGER= LoggerFactory.getLogger(CaptchaController.class);
 
     @Autowired
-    private cn.thinkjoy.push.service.sms.SMSService smsService;
-
-    @Autowired
     private SMSService zgkSmsService;
 
     @Autowired
@@ -85,13 +82,8 @@ public class CaptchaController extends BaseCommonController {
         boolean smsResult = zgkSmsService.sendSMS(zgkSmsCheckCode,false);
 
         if(!smsResult) {
-            // 发送失败切换至原有短信渠道
-            cn.thinkjoy.push.domain.sms.SMSCheckCode smsCheckCode = new cn.thinkjoy.push.domain.sms.SMSCheckCode(
-                    account,
-                    randomString,
-                    CaptchaTimeConst.CAPTCHA_TARGET);
-
-            smsResult = smsService.sendSMS(smsCheckCode,false);
+            // 发送失败切换短信通道
+            zgkSmsService.sendSMS(zgkSmsCheckCode,true);
         }
 
         if(smsResult){

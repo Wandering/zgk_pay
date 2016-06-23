@@ -11,10 +11,6 @@ dependencies {
     }
     compile "cn.thinkjoy.cloudstack:cs-spring-redis:$thinkjoyCloudstackVersion"
 
-    compile ("cn.thinkjoy.notify:notify-service:jx0.0.1-SNAPSHOT"){
-        exclude group: 'cn.thinkjoy.common', module: 'thinkjoy-mu-common'
-    }
-
     // 智高考专有短信服务
     compile ("cn.thinkjoy.sms:sms-api:$zgkSmsVersion"){
         exclude group: 'cn.thinkjoy.common', module: 'thinkjoy-mu-common'
