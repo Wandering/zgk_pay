@@ -164,6 +164,18 @@
                         });
                         var source = $('#temp-search-list').html();
                         var template = handlebars.compile(source);
+
+
+                        handlebars.registerHelper('whichOne', function (v1,v2) {
+                            if(v1.indexOf('http')>-1){
+                                var str = '<img src="'+v1+'" class="school-logo" sid="{{id}}">';
+                                return str;
+                            }else{
+                                return v2.fn(this);
+                            }
+                        });
+
+
                         $('.school-list').append(template(res));
                         if (myScroll)myScroll.refresh();
                     } else {
@@ -197,7 +209,11 @@
             });
         }
 
-    }
+    };
+    $('body').on('click','.location-list li',function(){
+        var areaTxt = $(this).text();
+        sa.track('WeChat_area',{area:areaTxt});
+    });
     $(document).ready(function() {
 
         $('#container').css('height', window.innerHeight - 93);

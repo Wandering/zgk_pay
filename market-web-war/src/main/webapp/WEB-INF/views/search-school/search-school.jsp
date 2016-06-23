@@ -61,7 +61,11 @@
 {{#each bizData.universityList}}
     <li>
     <div class="img">
+        {{#whichOne photoUrl}}
         <img src="http://123.59.12.77:8080/{{photoUrl}}" class="school-logo" sid="{{id}}">
+        {{else}}
+        <img src="{{photoUrl}}" class="school-logo" sid="{{id}}">
+        {{/whichOne}}
     </div>
     <div class="summary">
         <div class="title">

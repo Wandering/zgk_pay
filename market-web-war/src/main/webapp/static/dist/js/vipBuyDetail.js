@@ -143,6 +143,7 @@ webpackJsonp([28],[
 	                var bizData = res.bizData;
 	                if (bizData && bizData.receivingAddress) {
 	                    //$('.buy-go').removeClass('no-address');
+	                    $('#modal-tips').hide();
 	                    $('.vertical').html(bizData.receivingAddress.replace('&', '') + '&nbsp;&nbsp;&nbsp;&nbsp;(' + bizData.contactName + '收)&nbsp;&nbsp;&nbsp;&nbsp;' +  bizData.contactPhone);
 	                } else {
 	                    $('.buy-go').addClass('no-address');
@@ -161,19 +162,16 @@ webpackJsonp([28],[
 	                return false;
 	            }
 
-
 	            if ($(this).hasClass('no-address')) {
-	                //$('#modal_overlay').addClass('modal-overlay-visible');
-	                //$('#modal-tips').addClass('modal-in');
-	                //$('.modal-tips-close').off('click');
-	                //$('.modal-tips-close').on('click',function(){
-	                //    $('#modal-tips').removeClass('modal-in');
-	                //    $('#modal_overlay').removeClass('modal-overlay-visible');
-	                //});
-	                util.drawToast('购买前请输入您的收货地址!');
+	                $('#modal_overlay').addClass('modal-overlay-visible');
+	                $('#modal-tips').addClass('modal-in');
+	                $('.modal-tips-close').off('click');
+	                $('.modal-tips-close').on('click',function(){
+	                    window.location.href = '/address?action=vip-buyDetial&productId=' + packageCode + '&price=' + price + '&departmentCode=' + departmentCode;
+	                });
+	                //util.drawToast('购买前请输入您的收货地址!');
 	                return false;
 	            }
-
 	            util.ajaxFun(interfaceUrl.commitOrder, 'POST', {
 	                userId: cookie.getCookieValue('userId'),
 	                price: price,
@@ -206,6 +204,7 @@ webpackJsonp([28],[
 	                }
 	            })
 	        });
+
 
 	        $('#modal_overlay').on('click', function() {
 	            $('#modal_overlay').removeClass('modal-overlay-visible');

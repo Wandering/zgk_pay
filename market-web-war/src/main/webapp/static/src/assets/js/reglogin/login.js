@@ -88,6 +88,7 @@ $(function () {
                 var isReported = res.bizData.userInfo.isReported; // 智能填报次数
                 var isSurvey = res.bizData.userInfo.isSurvey; // 专家测试次数
                 var avatar = res.bizData.userInfo.icon || '';
+                sa.track('WeChat_login',{proName:proName});
                 cookie.setCookie("avatar", avatar || '', 4, "");
                 cookie.setCookie("vipActiveDate", vipActiveDateV || '', 4, "/");
                 cookie.setCookie("vipEndDate", vipEndDateV || '', 4, "/");

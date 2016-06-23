@@ -250,7 +250,7 @@ header .location.location-icon:before {
 }
 .search-modal i {
   position: absolute;
-  left: 12px;
+  right: 62px;
   top: 9px;
 }
 

@@ -565,6 +565,7 @@ webpackJsonp([18],[
 	                var isReported = res.bizData.userInfo.isReported; // 智能填报次数
 	                var isSurvey = res.bizData.userInfo.isSurvey; // 专家测试次数
 	                var avatar = res.bizData.userInfo.icon || '';
+	                sa.track('WeChat_login',{proName:proName});
 	                cookie.setCookie("avatar", avatar || '', 4, "");
 	                cookie.setCookie("vipActiveDate", vipActiveDateV || '', 4, "/");
 	                cookie.setCookie("vipEndDate", vipEndDateV || '', 4, "/");
@@ -889,6 +890,7 @@ webpackJsonp([18],[
 	                    cookie.setCookie("isReported",isReported, 4, "/");
 	                    cookie.setCookie("isSurvey",isSurvey, 4, "/");
 	                    cookie.setCookie("flag", "0", 4, "/" );
+	                    sa.track('WeChat_register',{proName:proName});
 	                    var webUrl = '/'+toUrl+'?state='+ toUrl+"&menu=1";
 	                    var url = 'http://zgkser.zhigaokao.cn/'+toUrl+'?state='+ toUrl+"&menu=1";
 	                    if (isWeiXin()) {

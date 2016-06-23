@@ -86,7 +86,7 @@
   <div class="modal-title">收货地址</div>
   <div class="modal-body">
     <p class="info">购买前请输入您的收货地址</p>
-    <div class="btn modal-tips-close">关闭</div>
+    <div class="btn modal-tips-close">去填写地址</div>
   </div>
 </div>
 

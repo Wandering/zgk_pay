@@ -61,6 +61,19 @@
         </thead>
         <tbody>
         <tr>
+          <td rowspan="2" class="fwb">2016年</td>
+          <td>文科</td>
+          <td>603</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>理科</td>
+          <td>600</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
           <td rowspan="2" class="fwb">2015年</td>
           <td>文科</td>
           <td>626</td>
@@ -127,20 +140,39 @@
           <th>一批</th>
           <th>二批</th>
           <th>三批</th>
+          <th>三批</th>
+          <th>高职高专</th>
         </tr>
         </thead>
         <tbody>
+        <tr>
+          <td rowspan="2" class="fwb">2016年</td>
+          <td>文科</td>
+          <td>545</td>
+          <td>400</td>
+          <td>-</td>
+          <td>180</td>
+        </tr>
+        <tr>
+          <td>理科</td>
+          <td>502</td>
+          <td>333</td>
+          <td>-</td>
+          <td>180</td>
+        </tr>
         <tr>
           <td rowspan="2" class="fwb">2015年</td>
           <td>文科</td>
           <td>530</td>
           <td>380</td>
           <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>480</td>
           <td>320</td>
+          <td>-</td>
           <td>-</td>
         </tr>
         <tr>
@@ -149,12 +181,14 @@
           <td>550</td>
           <td>463</td>
           <td>404</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>520</td>
           <td>407</td>
           <td>326</td>
+          <td>-</td>
         </tr>
         <tr>
           <td rowspan="2" class="fwb">2013年</td>
@@ -162,12 +196,14 @@
           <td>541</td>
           <td>467</td>
           <td>395</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>510</td>
           <td>413</td>
           <td>310</td>
+          <td>-</td>
         </tr>
         <tr>
           <td rowspan="2" class="fwb">2012年</td>
@@ -629,27 +665,45 @@
         <tr>
           <th rowspan="2">年份</th>
           <th rowspan="2">科目</th>
-          <th colspan="3">批次</th>
+          <th colspan="4">批次</th>
         </tr>
         <tr>
           <th>一批</th>
           <th>二批</th>
           <th>三批</th>
+          <th>高职高专</th>
         </tr>
         </thead>
         <tbody>
+        <tr>
+          <td rowspan="2" class="fwb">2016年</td>
+          <td>文科</td>
+          <td>535</td>
+          <td>416</td>
+          <td>-</td>
+          <td>200</td>
+        </tr>
+        <tr>
+          <td>理科</td>
+          <td>525</td>
+          <td>364</td>
+          <td>-</td>
+          <td>200</td>
+        </tr>
         <tr>
           <td rowspan="2" class="fwb">2015年</td>
           <td>文科</td>
           <td>548</td>
           <td>496</td>
           <td>404</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>544</td>
           <td>474</td>
           <td>335</td>
+          <td>-</td>
         </tr>
         <tr>
           <td rowspan="2" class="fwb">2014年</td>
@@ -657,12 +711,14 @@
           <td>563</td>
           <td>513</td>
           <td>415</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>573</td>
           <td>503</td>
           <td>326</td>
+          <td>-</td>
         </tr>
         <tr>
           <td rowspan="2" class="fwb">2013年</td>
@@ -670,12 +726,14 @@
           <td>561</td>
           <td>511</td>
           <td>414</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>538</td>
           <td>478</td>
           <td>324</td>
+          <td>-</td>
         </tr>
         <tr>
           <td rowspan="2" class="fwb">2012年</td>
@@ -683,12 +741,14 @@
           <td>572</td>
           <td>529</td>
           <td>425</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>564</td>
           <td>509</td>
           <td>340</td>
+          <td>-</td>
         </tr>
         </tbody>
       </table>
@@ -709,6 +769,19 @@
         </tr>
         </thead>
         <tbody>
+        <tr>
+          <td rowspan="2" class="fwb">2016年</td>
+          <td>文科</td>
+          <td>540</td>
+          <td>480</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>理科</td>
+          <td>532</td>
+          <td>453</td>
+          <td>-</td>
+        </tr>
         <tr>
           <td rowspan="2" class="fwb">2015年</td>
           <td>文科</td>
@@ -842,27 +915,48 @@
         <tr>
           <th rowspan="2">年份</th>
           <th rowspan="2">科目</th>
-          <th colspan="3">批次</th>
+          <th colspan="5">批次</th>
         </tr>
         <tr>
           <th>一批</th>
           <th>二批</th>
           <th>三批</th>
+          <th>高职高专一段</th>
+          <th>高职高专二段</th>
         </tr>
         </thead>
         <tbody>
+        <tr>
+          <td rowspan="2" class="fwb">2016年</td>
+          <td>文科</td>
+          <td>527</td>
+          <td>435</td>
+          <td>-</td>
+          <td>140</td>
+          <td>140</td>
+        </tr>
+        <tr>
+          <td>理科</td>
+          <td>525</td>
+          <td>416</td>
+          <td>-</td>
+          <td>140</td>
+          <td>140</td>
+        </tr>
         <tr>
           <td rowspan="2" class="fwb">2015年</td>
           <td>文科</td>
           <td>572</td>
           <td>532</td>
           <td>482</td>
+          <td>-</td><td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>573</td>
           <td>527</td>
           <td>485</td>
+          <td>-</td><td>-</td>
         </tr>
         <tr>
           <td rowspan="2" class="fwb">2014年</td>
@@ -870,12 +964,14 @@
           <td>555</td>
           <td>507</td>
           <td>466</td>
+          <td>-</td><td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>514</td>
           <td>455</td>
           <td>422</td>
+          <td>-</td><td>-</td>
         </tr>
         <tr>
           <td rowspan="2" class="fwb">2013年</td>
@@ -883,12 +979,14 @@
           <td>556</td>
           <td>499</td>
           <td>457</td>
+          <td>-</td><td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>520</td>
           <td>462</td>
           <td>430</td>
+          <td>-</td><td>-</td>
         </tr>
         <tr>
           <td rowspan="2" class="fwb">2012年</td>
@@ -896,12 +994,14 @@
           <td>554</td>
           <td>494</td>
           <td>446</td>
+          <td>-</td><td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>522</td>
           <td>462</td>
           <td>429</td>
+          <td>-</td><td>-</td>
         </tr>
         </tbody>
       </table>
@@ -1136,6 +1236,19 @@
         </thead>
         <tbody>
         <tr>
+          <td rowspan="2" class="fwb">2016年</td>
+          <td>文科</td>
+          <td>583</td>
+          <td>532</td>
+          <td>488</td>
+        </tr>
+        <tr>
+          <td>理科</td>
+          <td>548</td>
+          <td>494</td>
+          <td>438</td>
+        </tr>
+        <tr>
           <td rowspan="2" class="fwb">2015年</td>
           <td>文科</td>
           <td>579</td>
@@ -1202,61 +1315,63 @@
         <tr>
           <th>一批</th>
           <th>二批</th>
-          <th>三批</th>
         </tr>
         </thead>
         <tbody>
+        <tr>
+          <td rowspan="2" class="fwb">2016年</td>
+          <td>文科</td>
+          <td>532</td>
+          <td>460</td>
+        </tr>
+        <tr>
+          <td>理科</td>
+          <td>512</td>
+          <td>424</td>
+        </tr>
         <tr>
           <td rowspan="2" class="fwb">2015年</td>
           <td>文科</td>
           <td>547</td>
           <td>486</td>
-          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>538</td>
           <td>459</td>
-          <td>-</td>
         </tr>
         <tr>
           <td rowspan="2" class="fwb">2014年</td>
           <td>文科</td>
           <td>523</td>
           <td>462</td>
-          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>516</td>
           <td>439</td>
-          <td>-</td>
         </tr>
         <tr>
           <td rowspan="2" class="fwb">2013年</td>
           <td>文科</td>
           <td>533</td>
           <td>474</td>
-          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>521</td>
           <td>436</td>
-          <td>-</td>
         </tr>
         <tr>
           <td rowspan="2" class="fwb">2012年</td>
           <td>文科</td>
           <td>549</td>
           <td>489</td>
-          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>530</td>
           <td>440</td>
-          <td>-</td>
         </tr>
         </tbody>
       </table>
@@ -1268,27 +1383,45 @@
         <tr>
           <th rowspan="2">年份</th>
           <th rowspan="2">科目</th>
-          <th colspan="3">批次</th>
+          <th colspan="4">批次</th>
         </tr>
         <tr>
           <th>一批</th>
           <th>二批</th>
           <th>三批</th>
+          <th>高职高专</th>
         </tr>
         </thead>
         <tbody>
+        <tr>
+          <td rowspan="2" class="fwb">2016年</td>
+          <td>文科</td>
+          <td>521</td>
+          <td>482</td>
+          <td>453</td>
+          <td>251</td>
+        </tr>
+        <tr>
+          <td>理科</td>
+          <td>518</td>
+          <td>473</td>
+          <td>446</td>
+          <td>290</td>
+        </tr>
         <tr>
           <td rowspan="2" class="fwb">2015年</td>
           <td>文科</td>
           <td>597</td>
           <td>558</td>
           <td>522</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>555</td>
           <td>511</td>
           <td>483</td>
+          <td>-</td>
         </tr>
         <tr>
           <td rowspan="2" class="fwb">2014年</td>
@@ -1296,12 +1429,14 @@
           <td>541</td>
           <td>500</td>
           <td>469</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>489</td>
           <td>438</td>
           <td>409</td>
+          <td>-</td>
         </tr>
         <tr>
           <td rowspan="2" class="fwb">2013年</td>
@@ -1309,12 +1444,14 @@
           <td>540</td>
           <td>498</td>
           <td>458</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>490</td>
           <td>429</td>
           <td>387</td>
+          <td>-</td>
         </tr>
         <tr>
           <td rowspan="2" class="fwb">2012年</td>
@@ -1322,12 +1459,14 @@
           <td>577</td>
           <td>541</td>
           <td>512</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>544</td>
           <td>478</td>
           <td>431</td>
+          <td>-</td>
         </tr>
         </tbody>
       </table>
@@ -1419,6 +1558,19 @@
         </tr>
         </thead>
         <tbody>
+        <tr>
+          <td rowspan="2" class="fwb">2016年</td>
+          <td>文科</td>
+          <td>531</td>
+          <td>413</td>
+          <td>275</td>
+        </tr>
+        <tr>
+          <td>理科</td>
+          <td>530</td>
+          <td>402</td>
+          <td>286</td>
+        </tr>
         <tr>
           <td rowspan="2" class="fwb">2015年</td>
           <td>文科</td>
@@ -1552,26 +1704,44 @@
         <tr>
           <th rowspan="2">年份</th>
           <th rowspan="2">科目</th>
-          <th colspan="3">批次</th>
+          <th colspan="4">批次</th>
         </tr>
         <tr>
           <th>一批</th>
           <th>二批</th>
           <th>三批</th>
+          <th>高职高专</th>
         </tr>
         </thead>
         <tbody>
+        <tr>
+          <td rowspan="2" class="fwb">2016年</td>
+          <td>文科</td>
+          <td>504</td>
+          <td>455</td>
+          <td>391</td>
+          <td>200</td>
+        </tr>
+        <tr>
+          <td>理科</td>
+          <td>490</td>
+          <td>435</td>
+          <td>367</td>
+          <td>200</td>
+        </tr>
         <tr>
           <td rowspan="2" class="fwb">2015年</td>
           <td>文科</td>
           <td>517</td>
           <td>465</td>
           <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>475</td>
           <td>417</td>
+          <td>-</td>
           <td>-</td>
         </tr>
         <tr>
@@ -1580,11 +1750,13 @@
           <td>543</td>
           <td>499</td>
           <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>516</td>
           <td>459</td>
+          <td>-</td>
           <td>-</td>
         </tr>
         <tr>
@@ -1593,11 +1765,13 @@
           <td>503</td>
           <td>451</td>
           <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>489</td>
           <td>430</td>
+          <td>-</td>
           <td>-</td>
         </tr>
         <tr>
@@ -1606,11 +1780,13 @@
           <td>533</td>
           <td>485</td>
           <td>-</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>517</td>
           <td>462</td>
+          <td>-</td>
           <td>-</td>
         </tr>
         </tbody>
@@ -1699,10 +1875,23 @@
         <tr>
           <th>一批</th>
           <th>二批</th>
-          <th>三批</th>
+          <th>高职高专</th>
         </tr>
         </thead>
         <tbody>
+        <tr>
+          <td rowspan="2" class="fwb">2016年</td>
+          <td>文科</td>
+          <td>457</td>
+          <td>472</td>
+          <td>200</td>
+        </tr>
+        <tr>
+          <td>理科</td>
+          <td>473</td>
+          <td>365</td>
+          <td>200</td>
+        </tr>
         <tr>
           <td rowspan="2" class="fwb">2015年</td>
           <td>文科</td>
@@ -1765,27 +1954,45 @@
         <tr>
           <th rowspan="2">年份</th>
           <th rowspan="2">科目</th>
-          <th colspan="3">批次</th>
+          <th colspan="4">批次</th>
         </tr>
         <tr>
           <th>一批</th>
           <th>二批</th>
           <th>三批</th>
+          <th>高职高专</th>
         </tr>
         </thead>
         <tbody>
+        <tr>
+          <td rowspan="2" class="fwb">2016年</td>
+          <td>文科</td>
+          <td>516</td>
+          <td>486</td>
+          <td>406</td>
+          <td>200</td>
+        </tr>
+        <tr>
+          <td>理科</td>
+          <td>465</td>
+          <td>434</td>
+          <td>354</td>
+          <td>200</td>
+        </tr>
         <tr>
           <td rowspan="2" class="fwb">2015年</td>
           <td>文科</td>
           <td>507</td>
           <td>478</td>
           <td>378</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>445</td>
           <td>416</td>
           <td>316</td>
+          <td>-</td>
         </tr>
         <tr>
           <td rowspan="2" class="fwb">2014年</td>
@@ -1793,12 +2000,14 @@
           <td>517</td>
           <td>486</td>
           <td>370</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>473</td>
           <td>440</td>
           <td>320</td>
+          <td>-</td>
         </tr>
         <tr>
           <td rowspan="2" class="fwb">2013年</td>
@@ -1806,12 +2015,14 @@
           <td>484</td>
           <td>450</td>
           <td>350</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>455</td>
           <td>417</td>
           <td>300</td>
+          <td>-</td>
         </tr>
         <tr>
           <td rowspan="2" class="fwb">2012年</td>
@@ -1819,12 +2030,14 @@
           <td>489</td>
           <td>453</td>
           <td>350</td>
+          <td>-</td>
         </tr>
         <tr>
           <td>理科</td>
           <td>440</td>
           <td>401</td>
           <td>300</td>
+          <td>-</td>
         </tr>
         </tbody>
       </table>
