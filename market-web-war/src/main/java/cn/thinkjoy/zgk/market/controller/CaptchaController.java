@@ -83,7 +83,7 @@ public class CaptchaController extends BaseCommonController {
 
         if(!smsResult) {
             // 发送失败切换短信通道
-            zgkSmsService.sendSMS(zgkSmsCheckCode,true);
+            smsResult = zgkSmsService.sendSMS(zgkSmsCheckCode,true);
         }
 
         if(smsResult){
