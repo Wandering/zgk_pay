@@ -83,7 +83,7 @@ public enum ERRORCODE {
 
 	/**
 	 * Instantiates a new error type.
-	 * 
+	 *
 	 * @param code
 	 *            the code
 	 * @param message
@@ -96,7 +96,7 @@ public enum ERRORCODE {
 
 	/**
 	 * Gets the code.
-	 * 
+	 *
 	 * @return the code
 	 */
 	public String getCode() {
@@ -105,7 +105,7 @@ public enum ERRORCODE {
 
 	/**
 	 * Gets the message.
-	 * 
+	 *
 	 * @return the message
 	 */
 	public String getMessage() {
