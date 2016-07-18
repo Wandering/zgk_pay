@@ -4,7 +4,8 @@ package cn.thinkjoy.zgk.market.edomain;
  * Created by yangguorong on 16/4/28.
  */
 public enum ErrorCode {
-
+    ERROR_PARAM("0200001","提现金额不能大于钱包余额"),
+    UPLOAD_FAIL("0200002","上传文件错误"),
     PARAM_ERROR("0100001", "参数错误"),
     FAIL("0100002", "失败"),
     PHONE_FORMAT_ERROR("0100003", "电话号码格式错误"),
