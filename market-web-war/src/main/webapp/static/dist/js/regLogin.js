@@ -1,4 +1,4 @@
-webpackJsonp([16],[
+webpackJsonp([18],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -16,7 +16,183 @@ webpackJsonp([16],[
 
 
 /***/ },
-/* 1 */,
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	var cookie = __webpack_require__(2);
+
+	var isLogin = function () {
+	    return cookie.getCookieValue('isLogin')
+	};
+	function ajaxFun(url, method, data, callback) {
+	    if (cookie.getCookieValue('token')) {
+	        data.token = cookie.getCookieValue('token');
+	        //data.token = 'CG0yO9g/8r1V64iR5X0xiRx6DXdy12bW';
+	    }
+
+	    data.userKey = cookie.getCookieValue('userKey');
+	    var strParameter = '';
+	    for (var i in data) {
+	        strParameter += "&" + i + "=" + data[i];
+	    }
+
+	    $.ajax({
+	        url: url,
+	        type: method,
+	        data: data || {},
+	        success: function(res) {
+	            if(res.statusText=='error'){
+	                drawToast("登录超时，请重新登录");
+	                setTimeout(function(){
+	                    window.location.href='/login?state=user-detail';
+	                },2000);
+	            }
+	            if (res.rtnCode === '1000004') {
+	                checkLoginTimeout();
+	            } else {
+	                callback(res);
+	            }
+	        },
+	        error: function(res){
+	            if(res.statusText=='error'){
+	                drawToast("登录超时，请重新登录");
+	                setTimeout(function(){
+	                    window.location.href='/login?state=user-detail';
+	                },2000);
+	            }
+	        }
+	    });
+	};
+
+	function ajaxFunJSON(url, method, data, callback) {
+	    if (cookie.getCookieValue('token')) {
+	        data.token = cookie.getCookieValue('token');
+	    }
+	    data.userKey = cookie.getCookieValue('userKey');
+	    console.log(JSON.stringify(data));
+	    $.ajax({
+	        url: url,
+	        type: method,
+	        contentType: 'application/json',
+	        dataType: 'json',
+	        data: JSON.stringify(data),
+	        success: callback,
+	        error: callback
+	    });
+	}
+
+
+	var getLinkey = function getLinkey(name) {
+	    var reg = new RegExp("(^|\\?|&)" + name + "=([^&]*)(\\s|&|$)", "i");
+	    if (reg.test(window.location.href)) return unescape(RegExp.$2.replace(/\+/g, " "));
+	    return "";
+	};
+
+
+	var tips = function tips(obj, txt) {
+	    $(obj).text(txt).fadeIn('1500');
+	    setTimeout(function () {
+	        $(obj).fadeOut('1500');
+	    }, 1000);
+	};
+
+	function drawToast(message) {
+	    var intervalCounter = null;
+	    var alert = document.getElementById("toast");
+	    if (!alert) {
+	        var toastHTML = '<div id="toast">' + message + '</div>';
+	        document.body.insertAdjacentHTML('beforeEnd', toastHTML);
+	    } else {
+	        alert.style.opacity = .9;
+	    }
+	    intervalCounter = setInterval(function () {
+	        var alert = $("#toast");
+	        alert.css('opacity', 0).remove();
+	        clearInterval(intervalCounter);
+	    }, 3000);
+	}
+
+
+	function layer(message, btns) {
+	    var alert = document.getElementById("toast");
+	    if (!alert) {
+	        var toastHTML = '<div id="toast">'
+	            + message;
+	        if (btns) {
+	            toastHTML += btns;
+	        }
+	        toastHTML += '</div>';
+	        document.body.insertAdjacentHTML('beforeEnd', toastHTML);
+	    } else {
+	        alert.style.opacity = .9;
+	    }
+	}
+
+
+	function confirmLayer(title,content) {
+	    var confirmLayer = [];
+	    confirmLayer.push('<div class="mask show">');
+	    confirmLayer.push('<div class="modal">');
+	    confirmLayer.push('<div class="modal-title">'+ title +'</div>');
+	    confirmLayer.push('<div class="modal-body">');
+	    confirmLayer.push(content);
+	    confirmLayer.push('</div>');
+	    confirmLayer.push('<div class="modal-footer">');
+	    confirmLayer.push('<button id="close-modal" type="button">取消</button>');
+	    confirmLayer.push('<button id="confirm-btn" type="button">确定</button>');
+	    confirmLayer.push('</div>');
+	    confirmLayer.push('</div>');
+	    confirmLayer.push('</div>');
+	    $('body').append(confirmLayer.join('')).on('click','#close-modal',function() {
+	        $('.mask').remove();
+	    });
+	}
+
+	function checkLoginTimeout() {
+	        drawToast('登录超时');
+	        setTimeout(function() {
+	            window.location.href = '/login?state=user-detail';
+	        }, 2000);
+	        //if (cookie.getCookieValue('isLogin')) {
+	        //    $('#loginTimeoutWindow').modal('show');
+	        //} else {
+	        //    $('#loginTimeoutWindow').modal('show');
+	        //    $('#loginTimeoutWindow-jump-btn').html('登录');
+	        //    $('.loginTimeoutWindow-body').attr('class', 'modal-body nologinWindow-body');
+	        //}
+	}
+
+
+
+	exports.isLogin = isLogin;
+	exports.ajaxFun = ajaxFun;
+	exports.getLinkey = getLinkey;
+	//exports.domain = domainStr;
+	//exports.provinceKey = provinceKey;
+	exports.tips = tips;
+	exports.drawToast = drawToast;
+	exports.layer = layer;
+	exports.ajaxFunJSON = ajaxFunJSON;
+	exports.confirmLayer = confirmLayer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***/ },
 /* 2 */,
 /* 3 */,
 /* 4 */
@@ -328,8 +504,6 @@ webpackJsonp([16],[
 	    cookie.deleteCookie('vipActiveDate', '');
 	    cookie.deleteCookie('vipEndDate', '');
 	    cookie.deleteCookie('flag', '');
-	    cookie.deleteCookie("openId", '');
-	    cookie.deleteCookie("code", '');
 
 
 
@@ -379,34 +553,38 @@ webpackJsonp([16],[
 	                var phone = res.bizData.userInfo.account; // 用户账号
 	                var userKey = res.bizData.userInfo.userKey; // 省份userKey
 	                var province = res.bizData.userInfo.province; // 选择省份
-	                var proName = res.bizData.userInfo.proName; // 选择省份
-	                var city = res.bizData.userInfo.city; // 选择城市
-	                var cityName = res.bizData.userInfo.cityName; // 选择城市
-	                var county = res.bizData.userInfo.county; // 选择县区
-	                var countyName = res.bizData.userInfo.countyName; // 选择县区
+	                var proName = res.bizData.userInfo.proName || ''; // 选择省份
+	                if (proName === 'undefined')proName = '';
+	                var city = res.bizData.userInfo.city || ''; // 选择城市
+	                var cityName = res.bizData.userInfo.cityName || ''; // 选择城市
+	                if (cityName === 'undefined')cityName = '';
+	                var county = res.bizData.userInfo.county || ''; // 选择县区
+	                var countyName = res.bizData.userInfo.countyName || ''; // 选择县区
+	                if (countyName === 'undefined')countyName = '';
 	                var qrcodeUrl = res.bizData.userInfo.qrcodeUrl;  // 二维码
 	                var isReported = res.bizData.userInfo.isReported; // 智能填报次数
 	                var isSurvey = res.bizData.userInfo.isSurvey; // 专家测试次数
-	                var avatar =
-	                cookie.setCookie("avatar", avatar, 4, "");
-	                cookie.setCookie("vipActiveDate", vipActiveDateV, 4, "/");
-	                cookie.setCookie("vipEndDate", vipEndDateV, 4, "/");
+	                var avatar = res.bizData.userInfo.icon || '';
+	                sa.track('WeChat_login',{proName:proName});
+	                cookie.setCookie("avatar", avatar || '', 4, "");
+	                cookie.setCookie("vipActiveDate", vipActiveDateV || '', 4, "/");
+	                cookie.setCookie("vipEndDate", vipEndDateV || '', 4, "/");
 	                cookie.setCookie("isLogin", "true", 4, "/");
-	                cookie.setCookie("token", token, 4, "/");
-	                cookie.setCookie("userId", userId, 4, "/");
-	                cookie.setCookie("userName", userName, 4, "/");
-	                cookie.setCookie("vipStatus", vipStatus, 4, "/");
-	                cookie.setCookie("phone", phone, 4, "/");
-	                cookie.setCookie("userKey", userKey, 4, "/");
-	                cookie.setCookie("proName", proName, 4, "/");
-	                cookie.setCookie("cityName", cityName, 4, "/");
-	                cookie.setCookie("countyName", countyName, 4, "/");
-	                cookie.setCookie("province", province, 4, "/");
-	                cookie.setCookie("city", city, 4, "/");
-	                cookie.setCookie("county", county, 4, "/");
-	                cookie.setCookie("qrcodeUrl", qrcodeUrl, 4, "/");
-	                cookie.setCookie("isReported", isReported, 4, "/");
-	                cookie.setCookie("isSurvey", isSurvey, 4, "/");
+	                cookie.setCookie("token", token || '', 4, "/");
+	                cookie.setCookie("userId", userId || '', 4, "/");
+	                cookie.setCookie("userName", userName || '', 4, "/");
+	                cookie.setCookie("vipStatus", vipStatus || '', 4, "/");
+	                cookie.setCookie("phone", phone || '', 4, "/");
+	                cookie.setCookie("userKey", userKey || '', 4, "/");
+	                cookie.setCookie("proName", proName || '', 4, "/");
+	                cookie.setCookie("cityName", cityName || '', 4, "/");
+	                cookie.setCookie("countyName", countyName || '', 4, "/");
+	                cookie.setCookie("province", province || '', 4, "/");
+	                cookie.setCookie("city", city || '', 4, "/");
+	                cookie.setCookie("county", county || '', 4, "/");
+	                cookie.setCookie("qrcodeUrl", qrcodeUrl || '', 4, "/");
+	                cookie.setCookie("isReported", isReported || '', 4, "/");
+	                cookie.setCookie("isSurvey", isSurvey || '', 4, "/");
 	                cookie.setCookie("flag", "0", 4, "/" );
 	                var webUrl = '/'+toUrl+'?state='+ toUrl+"&menu=1";
 	                var url = 'http://zgkser.zhigaokao.cn/'+toUrl+'?state='+ toUrl+"&menu=1";
@@ -451,6 +629,10 @@ webpackJsonp([16],[
 	    var md5 = __webpack_require__(7);
 	    var urlConfig = __webpack_require__(3);
 	    var toUrl = util.getLinkey('state');
+	    var sharerId = cookie.getCookieValue('sharerId');
+	    var sharerType = cookie.getCookieValue('sharerType');
+
+
 	    function isWeiXin() {
 	        var ua = window.navigator.userAgent.toLowerCase();
 	        if (ua.indexOf('micromessenger') > -1) {
@@ -495,7 +677,9 @@ webpackJsonp([16],[
 	                    value.id != "630000" &&
 	                    value.id != "710000" &&
 	                    value.id != "810000" &&
-	                    value.id != "820000"
+	                    value.id != "820000" &&
+	                    value.id != "900000"
+
 	                ) {
 	                    html.push('<option value="' + value.id + '">' + value.name + '</option>');
 	                }
@@ -655,13 +839,13 @@ webpackJsonp([16],[
 	            return false;
 	        }
 
-	        var sharerId = cookie.getCookieValue('sharerId');
-	        var sharerType = cookie.getCookieValue('sharerType');
+
 
 	        var subHtml = '<p class="reg-center">进入智高考"'+ provinceTxt +'"网站，</br>注册之后地域不可修改</p>';
 	        util.confirmLayer('注册',subHtml);
 	        $('body').on('click', '#confirm-btn', function () {
 	            var md5RegisterPwdV = $.md5(registerPwdV);
+	            $('#confirm-btn').attr('disabled', 'disabled');
 	            util.ajaxFun('/register/account', 'POST', {
 	                account: registerPhoneV, //用户账号
 	                captcha: verificationCodeV, //验证码
@@ -672,8 +856,7 @@ webpackJsonp([16],[
 	                sharerId: sharerId || "0",
 	                sharerType: sharerType || "0"
 	            }, function (res) {
-
-	                $('#confirm-btn').attr('disabled', 'disabled');
+	                $('#confirm-btn').attr('disabled', '');
 	                if (res.rtnCode === "0000000") {
 	                    var token = res.bizData.token;  // token
 	                    var userName = res.bizData.userInfo.name; // 用户名称
@@ -707,6 +890,7 @@ webpackJsonp([16],[
 	                    cookie.setCookie("isReported",isReported, 4, "/");
 	                    cookie.setCookie("isSurvey",isSurvey, 4, "/");
 	                    cookie.setCookie("flag", "0", 4, "/" );
+	                    sa.track('WeChat_register',{proName:proName});
 	                    var webUrl = '/'+toUrl+'?state='+ toUrl+"&menu=1";
 	                    var url = 'http://zgkser.zhigaokao.cn/'+toUrl+'?state='+ toUrl+"&menu=1";
 	                    if (isWeiXin()) {

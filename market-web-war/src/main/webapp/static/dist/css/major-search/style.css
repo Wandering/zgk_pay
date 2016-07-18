@@ -20,6 +20,10 @@ header .header-btn:last-child {
   right: 13px;
   left: auto;
 }
+header .header-btn.header-close {
+  top: 6px;
+  left: 9px;
+}
 header .location {
   font-size: 12px;
   vertical-align: 2px;
@@ -162,7 +166,7 @@ header .location.location-icon:before {
 }
 .search-modal i {
   position: absolute;
-  left: 12px;
+  right: 62px;
   top: 9px;
 }
 

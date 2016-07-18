@@ -12,8 +12,7 @@ $(function () {
 
     $('#account-number').val(account);
     $('#header-menu').show();
-    $('#header-title').text('关于智高考');
-
+    $('#header-title').text('升级VIP');
 
 
 
@@ -73,6 +72,7 @@ $(function () {
                 "password": cardPsd
             }, function (res) {
                 if (res.rtnCode == '0000000') {
+                    util.drawToast(res.msg || '升级成功');
                     var vipStatus = res.bizData.vipStatus;
                     var vipActiveDate = res.bizData.vipActiveDate;
                     var vipEndDate = res.bizData.vipEndDate;
@@ -85,10 +85,7 @@ $(function () {
                     $('.viped').show();
                     $('.no-vip').hide();
                 } else {
-                    util.drawToast(res.msg);
-                }
-                if (res.rtnCode == '0900002' || res.rtnCode == '0900001') {
-                    util.drawToast(res.msg);
+                    util.drawToast(res.msg || '升级失败，请联系客服查询详细信息');
                 }
             });
         });

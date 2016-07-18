@@ -1,7 +1,7 @@
 header {
   position: relative;
   overflow: hidden;
-  z-index: 3;
+  z-index: 4;
 }
 header .header-title {
   padding-left: 46px;
@@ -119,7 +119,7 @@ table tbody tr:first-child td {
 }
 .province-option-list .province-item {
   display: inline-block;
-  width: 55px;
+  width: 50px;
   text-align: center;
   height: 27px;
   line-height: 30px;
@@ -143,4 +143,9 @@ table tbody tr:first-child td {
   z-index: 2;
   background: #000;
   opacity: .6;
+}
+
+#un-login {
+  position: absolute;
+  top: 0;
 }

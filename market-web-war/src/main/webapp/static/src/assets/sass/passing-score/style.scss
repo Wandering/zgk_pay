@@ -2,7 +2,7 @@
 header {
   position: relative;
   overflow: hidden;
-  z-index: 3;
+  z-index: 4;
 
   .header-title {
     padding-left: 46px;
@@ -119,7 +119,7 @@ table {
   background-color: #fff;
   .province-item {
     display: inline-block;
-    width: 55px;
+    width: 50px;
     text-align: center;
     height: 27px;
     line-height: 30px;
@@ -144,4 +144,9 @@ table {
   z-index: 2;
   background: #000;
   opacity: .6;
+}
+
+#un-login{
+  position: absolute;
+  top: 0;
 }

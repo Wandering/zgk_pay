@@ -3,17 +3,18 @@
  * */
 var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
 //var BASE_URL = 'http://dev.service.zhigaokao.cn/';  //正式环境
-//var BASE_URL = 'http://10.136.13.233:8080';  //测试环境
+//var BASE_URL = 'http://gx.dev.zhigaokao.cn/';
+//var BASE_URL = 'http://172.16.160.73:8066/';  //测试环境
 //var BASE_URL = 'http://172.16.160.31:8080';  //小文本地
 //var BASE_URL = 'http://172.16.160.82:8085';  //小文本地
 //var BASE_URL = 'http://172.16.160.72:8089';  //左浩本地
 //var BASE_URL2 = 'http://10.254.130.33:8080';  //测试环境(智能填报)
 //var BASE_URL = 'http://10.136.56.195:8080';  //开发环境
 //var BASE_URL = 'http://172.16.180.150:8086';  //yyp
+//var BASE_URL = 'http://10.254.130.33:8085';  // 测试
+
 //var BASE_URL = 'http://127.0.0.1:8080';
 //var BASE_URL = '';
-
-
 
 var interfaceUrl = {
     /*
@@ -62,6 +63,10 @@ var interfaceUrl = {
      * 获取钱包剩余金额
      */
     getWalletBalance: '/pay/getWalletBalance',
+    /**
+     * 获取单个订单信息
+     */
+    getOrderInfo: '/order/getOrderInfo',
     /*
      * 高考咨询
      * */
@@ -250,7 +255,17 @@ var interfaceUrl = {
     /**
      * 微信分享获取jsapi_ticket
      */
-    getAccessToken : '/pay/getAccessToken'
+    getAccessToken : '/pay/getAccessToken',
+
+    /**
+     * 增加收货地址
+     */
+    addUserGoodsAddress: BASE_URL + 'userGoodsAddress/saveOrUpdateUserGoodsAddress.do',
+    /**
+     *查询收货地址
+     */
+    getUserGoodsAddress: BASE_URL + 'userGoodsAddress/getUserGoodsAddress.do',
+    getRemoveOrder: BASE_URL + '/orders/removeOrder.do' //删除订单
 
 
 };

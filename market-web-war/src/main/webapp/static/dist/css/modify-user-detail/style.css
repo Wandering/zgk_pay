@@ -113,3 +113,85 @@ header .location.location-icon:before {
   width: 270px;
   margin: 50px auto;
 }
+
+.address-group {
+  height: auto;
+  line-height: normal;
+  padding-left: 17px;
+  font-size: 16px;
+  border-bottom: 1px solid #E9E4E4;
+}
+.address-group .label {
+  margin: 10px 0;
+}
+
+.form-group-address {
+  overflow: hidden;
+  margin: 10px 0;
+}
+.form-group-address span {
+  color: #D80C18;
+}
+.form-group-address .col-sm-2 {
+  width: 25%;
+  float: left;
+}
+.form-group-address .col-sm-10 {
+  width: 75%;
+  float: left;
+  padding: 0 !important;
+}
+.form-group-address .col-sm-12 {
+  width: 100%;
+  float: left;
+}
+.form-group-address .control-label {
+  padding-top: 7px;
+  margin-bottom: 0;
+  text-align: left;
+  color: #686868;
+  font-size: 14px;
+  font-weight: 100;
+  padding-right: 0;
+}
+.form-group-address .mb5 {
+  margin-bottom: 5px;
+}
+.form-group-address .form-control {
+  height: 36px;
+  padding: 0 5px;
+  width: 97%;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-radius: 4px;
+}
+.form-group-address .btn-danger {
+  background: #D70C18;
+  padding: 8px 24px;
+}
+.form-group-address .areaSel span.select {
+  height: 38px;
+  line-height: 36px;
+  display: inline-block;
+  width: 31%;
+  outline: none;
+}
+.form-group-address .areaSel select.form-control {
+  height: 36px;
+  background: none;
+  padding: 0;
+  font-size: 16px;
+  border: 1px solid #E8E8E8;
+}
+.form-group-address .detail-address {
+  width: 97%;
+  font-size: 16px;
+  outline: none;
+  border: 1px solid #E8E8E8;
+  border-radius: 4px;
+  padding: 5px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  height: 72px;
+  line-height: 30px;
+}

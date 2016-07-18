@@ -200,6 +200,7 @@ public class PayController {
             orderstatement.setStatus(0);
             orderstatement.setStatementNo(statemenstNo);
             orderstatement.setState("N");
+            orderstatement.setChannel(channel);
             Map<String,Object> chargeParams=new HashMap<>();
             Map<String,String> app=new HashMap<>();
             app.put("id", appId);

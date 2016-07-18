@@ -30,7 +30,7 @@
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		27:0
+/******/ 		30:0
 /******/ 	};
 
 /******/ 	// The require function
@@ -76,7 +76,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"1":"code","3":"findPassword","10":"modifyUserDetail","11":"order","14":"policy","15":"policyDetail","16":"regLogin","20":"schoolInfo","23":"userDetail","24":"vip","25":"vipBuy"}[chunkId]||chunkId) + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"address","1":"applyCash","2":"code","3":"consumerList","4":"findPassword","8":"levelCalculate","9":"majorDetail","10":"majorSearch","11":"modifyUserDetail","12":"order","14":"paySuccess","16":"policy","17":"policyDetail","18":"regLogin","19":"schedule","20":"schoolCalculate","21":"schoolDetail","22":"schoolInfo","23":"searchSchool","25":"userDetail","26":"vip","27":"vipBuy","28":"vipBuyDetail","29":"vipCheck"}[chunkId]||chunkId) + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -93,148 +93,7 @@
 /************************************************************************/
 /******/ ([
 /* 0 */,
-/* 1 */
-/***/ function(module, exports, __webpack_require__) {
-
-	
-	var cookie = __webpack_require__(2);
-
-	var isLogin = function () {
-	    return cookie.getCookieValue('isLogin')
-	};
-	function ajaxFun(url, method, data, callback) {
-	    if (cookie.getCookieValue('token')) {
-	        data.token = cookie.getCookieValue('token');
-	    }
-
-	    data.userKey = cookie.getCookieValue('userKey');
-	    var strParameter = '';
-	    for (var i in data) {
-	        strParameter += "&" + i + "=" + data[i];
-	    }
-
-	    $.ajax({
-	        url: url,
-	        type: method,
-	        data: data || {},
-	        success: callback,
-	        error: callback
-	    });
-	};
-
-	function ajaxFunJSON(url, method, data, callback) {
-	    if (cookie.getCookieValue('token')) {
-	        data.token = cookie.getCookieValue('token');
-	    }
-	    data.userKey = cookie.getCookieValue('userKey');
-	    console.log(JSON.stringify(data));
-	    $.ajax({
-	        url: url,
-	        type: method,
-	        contentType: 'application/json',
-	        dataType: 'json',
-	        data: JSON.stringify(data),
-	        success: callback,
-	        error: callback
-	    });
-	}
-
-
-	var getLinkey = function getLinkey(name) {
-	    var reg = new RegExp("(^|\\?|&)" + name + "=([^&]*)(\\s|&|$)", "i");
-	    if (reg.test(window.location.href)) return unescape(RegExp.$2.replace(/\+/g, " "));
-	    return "";
-	};
-
-
-	var tips = function tips(obj, txt) {
-	    $(obj).text(txt).fadeIn('1500');
-	    setTimeout(function () {
-	        $(obj).fadeOut('1500');
-	    }, 1000);
-	};
-
-	function drawToast(message) {
-	    var intervalCounter = null;
-	    var alert = document.getElementById("toast");
-	    if (!alert) {
-	        var toastHTML = '<div id="toast">' + message + '</div>';
-	        document.body.insertAdjacentHTML('beforeEnd', toastHTML);
-	    } else {
-	        alert.style.opacity = .9;
-	    }
-	    intervalCounter = setInterval(function () {
-	        var alert = $("#toast");
-	        alert.css('opacity', 0).remove();
-	        clearInterval(intervalCounter);
-	    }, 3000);
-	}
-
-
-	function layer(message, btns) {
-	    var alert = document.getElementById("toast");
-	    if (!alert) {
-	        var toastHTML = '<div id="toast">'
-	            + message;
-	        if (btns) {
-	            toastHTML += btns;
-	        }
-	        toastHTML += '</div>';
-	        document.body.insertAdjacentHTML('beforeEnd', toastHTML);
-	    } else {
-	        alert.style.opacity = .9;
-	    }
-	}
-
-
-	function confirmLayer(title,content) {
-	    var confirmLayer = [];
-	    confirmLayer.push('<div class="mask show">');
-	    confirmLayer.push('<div class="modal">');
-	    confirmLayer.push('<div class="modal-title">'+ title +'</div>');
-	    confirmLayer.push('<div class="modal-body">');
-	    confirmLayer.push(content);
-	    confirmLayer.push('</div>');
-	    confirmLayer.push('<div class="modal-footer">');
-	    confirmLayer.push('<button id="close-modal" type="button">取消</button>');
-	    confirmLayer.push('<button id="confirm-btn" type="button">确定</button>');
-	    confirmLayer.push('</div>');
-	    confirmLayer.push('</div>');
-	    confirmLayer.push('</div>');
-	    $('body').append(confirmLayer.join('')).on('click','#close-modal',function() {
-	        $('.mask').remove();
-	    });
-	}
-
-
-
-	exports.isLogin = isLogin;
-	exports.ajaxFun = ajaxFun;
-	exports.getLinkey = getLinkey;
-	//exports.domain = domainStr;
-	//exports.provinceKey = provinceKey;
-	exports.tips = tips;
-	exports.drawToast = drawToast;
-	exports.layer = layer;
-	exports.ajaxFunJSON = ajaxFunJSON;
-	exports.confirmLayer = confirmLayer;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/***/ },
+/* 1 */,
 /* 2 */
 /***/ function(module, exports) {
 
@@ -301,17 +160,18 @@
 	 * */
 	var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
 	//var BASE_URL = 'http://dev.service.zhigaokao.cn/';  //正式环境
-	//var BASE_URL = 'http://10.136.13.233:8080';  //测试环境
+	//var BASE_URL = 'http://gx.dev.zhigaokao.cn/';
+	//var BASE_URL = 'http://172.16.160.73:8066/';  //测试环境
 	//var BASE_URL = 'http://172.16.160.31:8080';  //小文本地
 	//var BASE_URL = 'http://172.16.160.82:8085';  //小文本地
 	//var BASE_URL = 'http://172.16.160.72:8089';  //左浩本地
 	//var BASE_URL2 = 'http://10.254.130.33:8080';  //测试环境(智能填报)
 	//var BASE_URL = 'http://10.136.56.195:8080';  //开发环境
 	//var BASE_URL = 'http://172.16.180.150:8086';  //yyp
+	//var BASE_URL = 'http://10.254.130.33:8085';  // 测试
+
 	//var BASE_URL = 'http://127.0.0.1:8080';
 	//var BASE_URL = '';
-
-
 
 	var interfaceUrl = {
 	    /*
@@ -360,6 +220,10 @@
 	     * 获取钱包剩余金额
 	     */
 	    getWalletBalance: '/pay/getWalletBalance',
+	    /**
+	     * 获取单个订单信息
+	     */
+	    getOrderInfo: '/order/getOrderInfo',
 	    /*
 	     * 高考咨询
 	     * */
@@ -548,7 +412,17 @@
 	    /**
 	     * 微信分享获取jsapi_ticket
 	     */
-	    getAccessToken : '/pay/getAccessToken'
+	    getAccessToken : '/pay/getAccessToken',
+
+	    /**
+	     * 增加收货地址
+	     */
+	    addUserGoodsAddress: BASE_URL + 'userGoodsAddress/saveOrUpdateUserGoodsAddress.do',
+	    /**
+	     *查询收货地址
+	     */
+	    getUserGoodsAddress: BASE_URL + 'userGoodsAddress/getUserGoodsAddress.do',
+	    getRemoveOrder: BASE_URL + '/orders/removeOrder.do' //删除订单
 
 
 	};

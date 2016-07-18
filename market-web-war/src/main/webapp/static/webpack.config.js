@@ -29,7 +29,10 @@ module.exports = {
         schoolDetail: './src/assets/js/school-detail/school-detail',
         majorSearch: './src/assets/js/major-search/major-search',
         majorDetail: './src/assets/js/major-detail/major-detail',
-        passingScore: './src/assets/js/passing-score/passing-score'
+        passingScore: './src/assets/js/passing-score/passing-score',
+        vipBuyDetail: './src/assets/js/vip-buy-detail/vip-buy-detail',
+        paySuccess: './src/assets/js/pay-success/pay-success',
+        address: './src/assets/js/address/address'
     },
     output: {
         path: path.join(__dirname, "./dist/js"),
@@ -53,17 +56,50 @@ module.exports = {
     plugins: [
         new CommonsChunkPlugin("commons.js",
             [
-                "regLogin",
+                //"regLogin",
+                //"vipBuy",
+                //'vip',
+                //'code',
+                //'modifyUserDetail',
+                //'findPassword',
+                //'userDetail',
+                //'order',
+                //'policy',
+                //'policyDetail',
+                //'schoolInfo'
+
+
+
+
+
+
+
+
                 "vipBuy",
-                'vip',
-                'code',
-                'modifyUserDetail',
-                'findPassword',
-                'userDetail',
-                'order',
-                'policy',
-                'policyDetail',
-                'schoolInfo'
+                "vip",
+                "code",
+                "regLogin",
+                "modifyUserDetail",
+                "findPassword",
+                "userDetail",
+                "order",
+                "policy",
+                "policyDetail",
+                "schoolInfo",
+                "consumerList",
+                "vipCheck",
+                "schedule",
+                "levelCalculate",
+                "applyCash",
+                "searchSchool",
+                "schoolCalculate",
+                "schoolDetail",
+                "majorSearch",
+                "majorDetail",
+                "vipBuyDetail",
+                "paySuccess",
+                "address"
+
             ]),
         //new CommonsChunkPlugin("commons.js", ["p1", "p2", "admin-commons.js"])
     ]

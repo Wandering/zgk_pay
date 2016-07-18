@@ -136,6 +136,8 @@
         $('#header-menu').show();
         $('#header-search').show();
 
+        document.addEventListener('touchstart',function(){},false);
+
         $('.tab').on('click', function() {
             $('.no-data').addClass('hidden');
             $('.no-data').html('');

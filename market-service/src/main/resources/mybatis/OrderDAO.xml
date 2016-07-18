@@ -55,7 +55,9 @@
         department_name,
         department_phone,
         goods_count,
-        handle_state
+        handle_state,
+        unit_price,
+        product_type
         ) VALUES (
         #{userId},
         #{status},
@@ -70,7 +72,9 @@
         #{departmentName},
         #{departmentPhone},
         #{goodsCount},
-        #{handleState}
+        #{handleState},
+        #{unitPrice},
+        #{productType}
         )
         <selectKey resultType="java.lang.Long" keyProperty="id">
             SELECT LAST_INSERT_ID() AS ID
@@ -632,7 +636,9 @@
     </select>
 
     <select id="queryOrderListByUserId" resultType="java.util.Map">
-        select user_id, status,order_no, channle,create_date, update_date,state,goods_address,product_price, department_name,department_phone, goods_count as goodsCount from zgk_order where user_id=#{userId} order by create_date desc limit ${pageNo},${pageSize} ;
+        select user_id, status,order_no, channle,create_date, update_date,state,goods_address,product_price, department_name,department_phone, goods_count as goodsCount ,
+        unit_price,handle_state,product_type
+        from zgk_order where user_id=#{userId} order by create_date desc limit ${pageNo},${pageSize} ;
     </select>
 
 

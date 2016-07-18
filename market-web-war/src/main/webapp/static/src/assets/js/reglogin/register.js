@@ -4,6 +4,10 @@ $(function () {
     var md5 = require('md5');
     var urlConfig = require('urlConfig');
     var toUrl = util.getLinkey('state');
+    var sharerId = cookie.getCookieValue('sharerId');
+    var sharerType = cookie.getCookieValue('sharerType');
+
+
     function isWeiXin() {
         var ua = window.navigator.userAgent.toLowerCase();
         if (ua.indexOf('micromessenger') > -1) {
@@ -48,7 +52,9 @@ $(function () {
                     value.id != "630000" &&
                     value.id != "710000" &&
                     value.id != "810000" &&
-                    value.id != "820000"
+                    value.id != "820000" &&
+                    value.id != "900000"
+
                 ) {
                     html.push('<option value="' + value.id + '">' + value.name + '</option>');
                 }
@@ -208,13 +214,13 @@ $(function () {
             return false;
         }
 
-        var sharerId = cookie.getCookieValue('sharerId');
-        var sharerType = cookie.getCookieValue('sharerType');
+
 
         var subHtml = '<p class="reg-center">进入智高考"'+ provinceTxt +'"网站，</br>注册之后地域不可修改</p>';
         util.confirmLayer('注册',subHtml);
         $('body').on('click', '#confirm-btn', function () {
             var md5RegisterPwdV = $.md5(registerPwdV);
+            $('#confirm-btn').attr('disabled', 'disabled');
             util.ajaxFun('/register/account', 'POST', {
                 account: registerPhoneV, //用户账号
                 captcha: verificationCodeV, //验证码
@@ -225,8 +231,7 @@ $(function () {
                 sharerId: sharerId || "0",
                 sharerType: sharerType || "0"
             }, function (res) {
-
-                $('#confirm-btn').attr('disabled', 'disabled');
+                $('#confirm-btn').attr('disabled', '');
                 if (res.rtnCode === "0000000") {
                     var token = res.bizData.token;  // token
                     var userName = res.bizData.userInfo.name; // 用户名称
@@ -260,6 +265,7 @@ $(function () {
                     cookie.setCookie("isReported",isReported, 4, "/");
                     cookie.setCookie("isSurvey",isSurvey, 4, "/");
                     cookie.setCookie("flag", "0", 4, "/" );
+                    sa.track('WeChat_register',{proName:proName});
                     var webUrl = '/'+toUrl+'?state='+ toUrl+"&menu=1";
                     var url = 'http://zgkser.zhigaokao.cn/'+toUrl+'?state='+ toUrl+"&menu=1";
                     if (isWeiXin()) {

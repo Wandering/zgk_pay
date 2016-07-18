@@ -17,7 +17,11 @@
                 $('.img').html('<img src="http://123.59.12.77:8080/' + res.bizData.photoUrl + '" >');
                 $('#school_name').text(res.bizData.name);
                 $('.description').text(res.bizData.property);
-                $('.pm-level').html('排名：' + res.bizData.rank);
+                if (res.bizData.rank) {
+                    $('.pm-level').html('排名：' + res.bizData.rank);
+                } else {
+                    $('.pm-level').hide();
+                }
                 var source = $('#baseInfo').html();
                 var template = handlebars.compile(source);
                 $('.base-info').html(template(res.bizData));
@@ -33,16 +37,50 @@
         var id = util.getLinkey('id');
         util.ajaxFun(urlConfig.getOpenProfessional, 'get', {
             universityId: id
+            //majorFeature: '特色专业',
+            //offset: 0,
+            //rows: 100
         }, function (res) {
             if (res.rtnCode == '0000000') {
-                $('.professional').html('特色专业：' + res.bizData.featureMajorList[0].featureMajor.replace(/<h3>/ig, '<span>').replace(/<\/h3>/ig, '</span>'));
-                if (res.bizData.majorList.length == 0) {
-                    $('.professional-info table tbody').html('<tr><td colspan="2">(ﾟ∀ﾟ) 真抱歉,没有匹配到招生计划相关数据！</td></tr>');
-                } else {
-                    var source = $('#open-professional-part1-tpl').html();
-                    var template = handlebars.compile(source);
-                    $('.professional-info table tbody').html(template(res.bizData));
+
+                var jsonData = res.bizData;
+                $('.open-professional').show();
+                var $specialContent = $('#special-content');
+                var tabsHtml = [];
+
+                for (var tabs in jsonData) {
+                    tabsHtml.push('<p class="professional-sub-title">' + tabs + '</p>');
+                    $('#special-profession-title').html(tabsHtml);
                 }
+                $('body').on('click', '.professional-sub-title', function () {
+                    $(this).addClass('bt3').siblings().removeClass('bt3');
+                    $specialContent.html('');
+                    if (Object.prototype.toString.call(jsonData[$(this).text()]) === '[object Object]') {
+                        for (var tabsub in jsonData[$(this).text()]) {
+                            $specialContent.append('<div class="tabsub">' + tabsub + '</div>');
+                            for (var j = 0; j < jsonData[$(this).text()][tabsub].length; j++) {
+                                var majorId = jsonData[$(this).text()][tabsub][j].majorId,
+                                    majorName = jsonData[$(this).text()][tabsub][j].majorName;
+                                majorId ? $specialContent.append('<span class="feature-major"><a href="/major-detail?action=school-detail&schoolId=' + util.getLinkey('id') + '&id='+ majorId +'">'+majorName+'</a></span>') :$specialContent.append('<span class="feature-major">'+majorName+'</span>');
+                            }
+                        }
+                    }
+                    for (var i = 0; i < jsonData[$(this).text()].length; i++) {
+                        var majorIdSub = jsonData[$(this).text()][i].majorId,
+                            majorNameSub = jsonData[$(this).text()][i].majorName;
+                        majorIdSub ? $specialContent.append('<span class="feature-major"><a href="/major-detail?action=school-detail&schoolId=' + util.getLinkey('id') + '&id='+ majorIdSub +'">'+majorNameSub+'</a></span>') :$specialContent.append('<span class="feature-major">'+majorNameSub+'</span>');
+                    }
+                });
+                $('body').find('.professional-sub-title:eq(0)').click();
+
+                //$('.professional').html('特色专业：' + res.bizData.featureMajorList.join('、'));
+                //if (res.bizData.majorList.length == 0) {
+                //    $('.professional-info table tbody').html('<tr><td colspan="2">(ﾟ∀ﾟ) 真抱歉,没有匹配到招生计划相关数据！</td></tr>');
+                //} else {
+                //    var source = $('#open-professional-part1-tpl').html();
+                //    var template = handlebars.compile(source);
+                //    $('.professional-info table tbody').html(template(res.bizData));
+                //}
             }
         });
     }
@@ -233,8 +271,13 @@
 
         $('#header-back').on('click', function() {
             var action = util.getLinkey('action');
+            var majoredId = util.getLinkey('majoredId');
             if (action) {
-                window.location.href = '/' + action;
+                var url = '/' + action;
+                if (majoredId) {
+                    url += '?id=' + majoredId + '&active=2';
+                }
+                window.location.href = url;
             }
         });
 
