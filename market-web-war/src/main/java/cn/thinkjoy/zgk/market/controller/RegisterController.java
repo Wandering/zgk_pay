@@ -2,6 +2,7 @@ package cn.thinkjoy.zgk.market.controller;
 
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.zgk.market.common.ERRORCODE;
+import cn.thinkjoy.zgk.market.common.ModelUtil;
 import cn.thinkjoy.zgk.market.constant.RedisConst;
 import cn.thinkjoy.zgk.market.domain.Province;
 import cn.thinkjoy.zgk.market.domain.UserAccount;
@@ -245,6 +246,22 @@ public class RegisterController extends BaseCommonController {
         String key = RedisConst.USER_CAPTCHA_KEY+account;
         if (RedisUtil.getInstance().get(key)==null){
             throw new BizException(ERRORCODE.PARAM_ERROR.getCode(), "验证码过期或不存在，请重新获取!");
+        }
+        return RedisUtil.getInstance().get(key).toString();
+    }
+
+    /**
+     * 图形验证码太模糊的时候,查询图形验证码接口
+     * @param account
+     * @return
+     */
+    @RequestMapping(value = "/getRegisterImageCaptcha")
+    @ResponseBody
+    public String getRegisterImageCaptcha(String account)
+    {
+        String key = RedisConst.USER_IMAGE_CAPTCHA_KEY + account;
+        if (RedisUtil.getInstance().get(key)==null){
+            throw new BizException(ERRORCODE.PARAM_ERROR.getCode(), "图形验证码过期或不存在，请重新获取!");
         }
         return RedisUtil.getInstance().get(key).toString();
     }

@@ -1,5 +1,6 @@
 package cn.thinkjoy.zgk.market.controller;
 
+import cn.thinkjoy.cloudstack.cache.RedisRepository;
 import cn.thinkjoy.common.exception.BizException;
 import cn.thinkjoy.push.domain.sms.SMSCheckCode;
 import cn.thinkjoy.push.service.sms.SMSService;
@@ -11,6 +12,7 @@ import cn.thinkjoy.zgk.market.util.CaptchaUtil;
 import cn.thinkjoy.zgk.market.util.RedisUtil;
 import cn.thinkjoy.zgk.market.util.StaticSource;
 import com.alibaba.fastjson.JSONObject;
+import com.google.code.kaptcha.Producer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import cn.thinkjoy.zgk.market.common.BaseCommonController;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 @Controller
@@ -28,6 +34,9 @@ import java.util.concurrent.TimeUnit;
 public class CaptchaController extends BaseCommonController {
 
     private static final Logger LOGGER= LoggerFactory.getLogger(CaptchaController.class);
+
+    @Autowired
+    private Producer captchaProducer = null;
 
     @Autowired
     private SMSService smsService;
@@ -104,4 +113,29 @@ public class CaptchaController extends BaseCommonController {
         return result.toJSONString();
     }
 
+
+    @RequestMapping(value = "/imageCaptcha")
+    public String captcha(@RequestParam(value="account",required=false) String account)
+        throws IOException
+    {
+        response.setDateHeader("Expires", 0);
+        response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+        response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+        response.setHeader("Pragma", "no-cache");
+        response.setContentType("image/jpeg");
+        String capText = captchaProducer.createText();
+        LOGGER.error("******************\"用户\" +account + 验证码是: " + capText + "******************");
+        RedisRepository redis = RedisUtil.getInstance();
+        String userImageCaptchaKey = RedisConst.USER_IMAGE_CAPTCHA_KEY + account;
+        redis.set(userImageCaptchaKey, capText, 120, TimeUnit.SECONDS);
+        BufferedImage bi = captchaProducer.createImage(capText);
+        ServletOutputStream out = response.getOutputStream();
+        ImageIO.write(bi, "jpg", out);
+        try {
+            out.flush();
+        } finally {
+            out.close();
+        }
+        return null;
+    }
 }
