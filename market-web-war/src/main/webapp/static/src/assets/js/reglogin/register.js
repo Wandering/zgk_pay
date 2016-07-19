@@ -309,9 +309,7 @@ $(function () {
             '</div>';
 
 
-        $('body').on('click', '#imgTip', function () {
-            $('#image-captcha').attr('src', urlConfig.getImageCaptcha + '?account=' + registerPhoneV + '&time=' + Date.parse(new Date()));
-        });
+
 
         $.ajax({
             type: "POST",
@@ -325,6 +323,9 @@ $(function () {
             success: function (res) {
                 if (res.rtnCode === "0000000") {
                     util.confirmLayer('图片验证', formHtml);
+                    $('body').on('click', '#imgTip', function () {
+                        $('#image-captcha').attr('src', urlConfig.getImageCaptcha + '?account=' + registerPhoneV + '&time=' + Date.parse(new Date()));
+                    });
                     $('.modal-footer').remove();
                     $('#captcha-confirm').unbind("click").on('click', function () {
                         var _self = $(this);
