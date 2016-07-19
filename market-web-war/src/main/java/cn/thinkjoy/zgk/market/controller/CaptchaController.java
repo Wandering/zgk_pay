@@ -1,10 +1,11 @@
 package cn.thinkjoy.zgk.market.controller;
 
 import cn.thinkjoy.cloudstack.cache.RedisRepository;
-import cn.thinkjoy.push.domain.sms.SMSCheckCode;
-import cn.thinkjoy.push.service.sms.SMSService;
+import cn.thinkjoy.sms.api.SMSService;
+import cn.thinkjoy.sms.domain.SMSCheckCode;
 import cn.thinkjoy.zgk.market.common.ModelUtil;
 import cn.thinkjoy.zgk.market.constant.CaptchaConst;
+import cn.thinkjoy.zgk.market.constant.CaptchaTimeConst;
 import cn.thinkjoy.zgk.market.constant.RedisConst;
 import cn.thinkjoy.zgk.market.edomain.ErrorCode;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
@@ -94,17 +95,11 @@ public class CaptchaController extends BaseCommonController {
 
         String randomString = CaptchaUtil.getRandomNumString(6);
 
-//        cn.thinkjoy.push.domain.sms.SMSCheckCode smsCheckCode = new cn.thinkjoy.push.domain.sms.SMSCheckCode();
-//        smsCheckCode.setPhone(account);
-//        smsCheckCode.setBizTarget(CaptchaConst.CAPTCHA_TARGET);
-//        smsCheckCode.setCheckCode(randomString);
-
-//        boolean smsResult = smsService.sendSMS(smsCheckCode,false);
-
+        // 先用zgk短信渠道发送
         SMSCheckCode zgkSmsCheckCode = new SMSCheckCode();
         zgkSmsCheckCode.setPhone(account);
         zgkSmsCheckCode.setCheckCode(randomString);
-        zgkSmsCheckCode.setBizTarget(CaptchaConst.CAPTCHA_TARGET);
+        zgkSmsCheckCode.setBizTarget(CaptchaTimeConst.CAPTCHA_TARGET);
 
         boolean smsResult = zgkSmsService.sendSMS(zgkSmsCheckCode,false);
 
