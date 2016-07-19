@@ -306,7 +306,6 @@ $(function () {
             '<div class="imgCodeErr"></div>' +
             '<button class="btn btn-primary" id="captcha-confirm" type="button">确认</button>' +
             '<button class="btn btn-primary" id="close-modal" type="button">取消</button>' +
-
             '</div>';
 
 
