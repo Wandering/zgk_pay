@@ -286,3 +286,7 @@ a, button, input {
 .imgCodeErr {
   color: #F37B1D;
 }
+
+.mask .modal {
+  margin-top: 60px;
+}
