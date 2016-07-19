@@ -76,4 +76,6 @@ public class CaptchaConst {
      * 验证码时长
      */
     public static final int CAPTCHA_TIME = 60;
+
+    public static final String CAPTCHA_TARGET = "zgk";
 }

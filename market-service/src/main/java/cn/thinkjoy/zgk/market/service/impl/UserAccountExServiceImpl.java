@@ -83,10 +83,10 @@ public class UserAccountExServiceImpl implements IUserAccountExService {
     }
 
     @Override
-    public int findUserAccountCountByPhone(String account,long areaId) {
+    public int findUserAccountCountByPhone(String account) {
         Map<String,Object> params = new HashMap<String,Object>();
         params.put("account",account);
-        params.put("areaId",areaId);
+//        params.put("areaId",areaId);
         return userAccountExDAO.findUserAccountCount(params);
     }
 

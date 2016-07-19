@@ -64,7 +64,11 @@ public enum ERRORCODE {
 
 	UPLOAD_ERROR_402("1100005", "无效的文件类型!"),
 
-	UPLOAD_ERROR_500("1100006", "服务端发生错误!");
+	UPLOAD_ERROR_500("1100006", "服务端发生错误!"),
+
+	IMAGE_CAPTCHA_NOT_EXIST_ERROR("0600011", "图形验证码已失效,或者不存在!"),
+
+	IMAGE_CAPTCHA_INVALID_ERROR("0600012", "图形验证码错误!");
 
 
 
@@ -83,7 +87,7 @@ public enum ERRORCODE {
 
 	/**
 	 * Instantiates a new error type.
-	 * 
+	 *
 	 * @param code
 	 *            the code
 	 * @param message
@@ -96,7 +100,7 @@ public enum ERRORCODE {
 
 	/**
 	 * Gets the code.
-	 * 
+	 *
 	 * @return the code
 	 */
 	public String getCode() {
@@ -105,7 +109,7 @@ public enum ERRORCODE {
 
 	/**
 	 * Gets the message.
-	 * 
+	 *
 	 * @return the message
 	 */
 	public String getMessage() {

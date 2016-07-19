@@ -19,4 +19,6 @@ dependencies {
     compile project(':market-service')
     compile "cn.thinkjoy:pingpp-java:2.0.1"
     compile "com.google.code.gson:gson:2.6.2"
+
+    compile group: 'com.github.penggle', name: 'kaptcha', version: '2.3.2'
 }
