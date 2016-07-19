@@ -51,6 +51,7 @@ webpackJsonp([23],[
 	                    var source = $('#privance-tpl').html();
 	                    var template = handlebars.compile(source);
 	                    $('.location-list').html(template(res));
+
 	                    $('.location-list li[data-id="' + $('.select.active').attr('data-select') + '"]').addClass('active').siblings().removeClass('active');
 	                    $('.location-list li').off('click');
 	                    $('.location-list li').on('click', function() {
@@ -67,6 +68,7 @@ webpackJsonp([23],[
 	                }
 	            });
 	        },
+
 	        getRemoteDataDictList: function(type) {
 	            var that = this;
 	            util.ajaxFun(urlConfig.getCollegeList + '?type=' + type, 'get', {
@@ -82,7 +84,12 @@ webpackJsonp([23],[
 	                        var typeId = $('.select.active').attr('data-id');
 	                        var arry = ['','category','level','feature'];
 	                        $('.' + arry[typeId - 1]).text($(this).text());
-	                        $('.' + arry[typeId - 1]).attr('data-select', $(this).attr('data-dictid'));
+	                        alert(typeId)
+	                        if(typeId=="4"){
+	                            $('.' + arry[typeId - 1]).attr('data-select', $(this).attr('data-dictid'));
+	                        }else{
+	                            $('.' + arry[typeId - 1]).attr('data-select', $(this).attr('data-dictid'));
+	                        }
 	                        that.offset = 0;
 	                        $('.school-location-modal').addClass('hidden');
 	                        $('.backdrop1').addClass('hidden');
@@ -119,6 +126,7 @@ webpackJsonp([23],[
 	                educationLevel = 1;
 	            }
 	            var property = $('.feature').attr('data-select') || '';
+
 	            var universityName = '';
 	            if (flag) {
 	                universityName = $('#school_name').val();

@@ -795,8 +795,6 @@ webpackJsonp([18],[
 	            countyId = $('#county').val();
 
 
-
-
 	        if (registerPhoneV == "") {
 	            util.drawToast('请输入手机号');
 	            return false;
@@ -840,9 +838,8 @@ webpackJsonp([18],[
 	        }
 
 
-
-	        var subHtml = '<p class="reg-center">进入智高考"'+ provinceTxt +'"网站，</br>注册之后地域不可修改</p>';
-	        util.confirmLayer('注册',subHtml);
+	        var subHtml = '<p class="reg-center">进入智高考"' + provinceTxt + '"网站，</br>注册之后地域不可修改</p>';
+	        util.confirmLayer('注册', subHtml);
 	        $('body').on('click', '#confirm-btn', function () {
 	            var md5RegisterPwdV = $.md5(registerPwdV);
 	            $('#confirm-btn').attr('disabled', 'disabled');
@@ -878,21 +875,21 @@ webpackJsonp([18],[
 	                    cookie.setCookie("userId", userId, 4, "/");
 	                    cookie.setCookie("userName", userName, 4, "/");
 	                    cookie.setCookie("vipStatus", vipStatus, 4, "/");
-	                    cookie.setCookie("phone",phone, 4, "/");
-	                    cookie.setCookie("userKey",userKey, 4, "/");
-	                    cookie.setCookie("proName",proName, 4, "/");
-	                    cookie.setCookie("cityName",cityName, 4, "/");
-	                    cookie.setCookie("countyName",countyName, 4, "/");
-	                    cookie.setCookie("province",province, 4, "/");
-	                    cookie.setCookie("city",city, 4, "/");
-	                    cookie.setCookie("county",county, 4, "/");
-	                    cookie.setCookie("qrcodeUrl",qrcodeUrl, 4, "/");
-	                    cookie.setCookie("isReported",isReported, 4, "/");
-	                    cookie.setCookie("isSurvey",isSurvey, 4, "/");
-	                    cookie.setCookie("flag", "0", 4, "/" );
-	                    sa.track('WeChat_register',{proName:proName});
-	                    var webUrl = '/'+toUrl+'?state='+ toUrl+"&menu=1";
-	                    var url = 'http://zgkser.zhigaokao.cn/'+toUrl+'?state='+ toUrl+"&menu=1";
+	                    cookie.setCookie("phone", phone, 4, "/");
+	                    cookie.setCookie("userKey", userKey, 4, "/");
+	                    cookie.setCookie("proName", proName, 4, "/");
+	                    cookie.setCookie("cityName", cityName, 4, "/");
+	                    cookie.setCookie("countyName", countyName, 4, "/");
+	                    cookie.setCookie("province", province, 4, "/");
+	                    cookie.setCookie("city", city, 4, "/");
+	                    cookie.setCookie("county", county, 4, "/");
+	                    cookie.setCookie("qrcodeUrl", qrcodeUrl, 4, "/");
+	                    cookie.setCookie("isReported", isReported, 4, "/");
+	                    cookie.setCookie("isSurvey", isSurvey, 4, "/");
+	                    cookie.setCookie("flag", "0", 4, "/");
+	                    sa.track('WeChat_register', {proName: proName});
+	                    var webUrl = '/' + toUrl + '?state=' + toUrl + "&menu=1";
+	                    var url = 'http://zgkser.zhigaokao.cn/' + toUrl + '?state=' + toUrl + "&menu=1";
 	                    if (isWeiXin()) {
 	                        url = encodeURIComponent(url);
 	                        var rUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx552f3800df25e964&redirect_uri=' + url + '&response_type=code&scope=snsapi_base&#wechat_redirect';
@@ -906,7 +903,6 @@ webpackJsonp([18],[
 	            });
 	        });
 	    });
-
 
 
 	    var captchaType = '0'; //0.注册标志  1 找回密码
@@ -924,44 +920,90 @@ webpackJsonp([18],[
 	            util.drawToast('手机号有误,请重新输入');
 	            return false;
 	        }
-	        util.ajaxFun(urlConfig.postConfirmAccountCode, 'POST', {
-	            type: captchaType,
-	            account: registerPhoneV
-	        }, function (res) {
-	            if (res.rtnCode === "0000000") {
-	                util.ajaxFun(urlConfig.postVerificationCode, 'POST', {
-	                    type: captchaType,
-	                    account: registerPhoneV
-	                }, function (res) {
-	                    if (res.rtnCode === "0000000") {
-	                        _this.attr({
-	                            'background-color': '#ccc',
-	                            'disabled': true
-	                        });
-	                        var s = (JSON.parse(res.bizData)).time;
-	                        var timer = setInterval(function () {
-	                            s--;
-	                            _this.text(s + '秒后重新获取');
-	                            if (s <= 0) {
-	                                clearInterval(timer);
-	                                _this.text('重新获取').css('background-color', '#d80c18');
-	                                _this.attr('disabled', false)
+
+
+	        //图形验证码接口
+	        var formHtml = '' +
+	            '<div class="img-box">' +
+	            '<img src="' + urlConfig.getImageCaptcha + '?account=' + registerPhoneV + '" alt="" class="form-control" id="image-captcha">' +
+	            '<span id="imgTip">换一个?</span>' +
+	            '<input type="text" class="form-control" id="captcha-psd" placeholder="请输入图像验证码">' +
+	            '<button class="btn btn-primary" id="captcha-confirm" type="button">确认</button>' +
+	            '<button class="btn btn-primary" id="close-modal" type="button">取消</button>' +
+	            '<div class="imgCodeErr"></div>' +
+	            '</div>';
+
+
+	        $('body').on('click', '#imgTip', function () {
+	            $('#image-captcha').attr('src', urlConfig.getImageCaptcha + '?account=' + registerPhoneV + '&time=' + Date.parse(new Date()));
+	        });
+
+	        $.ajax({
+	            type: "POST",
+	            url: urlConfig.postConfirmAccountCode,
+	            dataType: 'json',
+	            async: false,
+	            data: {
+	                type: captchaType,
+	                account: registerPhoneV
+	            },
+	            success: function (res) {
+	                if (res.rtnCode === "0000000") {
+	                    util.confirmLayer('图片验证', formHtml);
+	                    $('.modal-footer').remove();
+	                    $('#captcha-confirm').unbind("click").on('click', function () {
+	                        var _self = $(this);
+	                        var imgCaptchaV = $.trim($('#captcha-psd').val());
+	                        if (imgCaptchaV == '') {
+	                            $('.imgCodeErr').text('图形验证码不能为空!');
+	                            return false;
+	                        }
+	                        if (imgCaptchaV.length != 6) {
+	                            $('.imgCodeErr').text('图形验证码输入有误!');
+	                            return false;
+	                        }
+	                        _self.attr('disabled',true);
+	                        util.ajaxFun(urlConfig.postVerificationCode, 'POST', {
+	                            type: captchaType,
+	                            account: registerPhoneV,
+	                            capText: imgCaptchaV
+	                        }, function (result) {
+	                            _self.attr('disabled',false);
+	                            if (result.rtnCode === "0000000") {
+	                                $('.imgCodeErr').text('');
+	                                $('.modal-backdrop,#dialogModal').remove();
+	                                _this.attr({
+	                                    'background-color': '#ccc',
+	                                    'disabled': true
+	                                });
+	                                var s = (JSON.parse(result.bizData)).time;
+	                                var timer = setInterval(function () {
+	                                    s--;
+	                                    _this.text(s + '秒后重新获取');
+	                                    if (s <= 0) {
+	                                        clearInterval(timer);
+	                                        _this.text('重新获取').css('background-color', '#d80c18');
+	                                        _this.attr('disabled', false)
+	                                    }
+	                                }, 1000);
+	                            } else {
+	                                $('.imgCodeErr').text(result.msg);
+	                                $('#image-captcha').attr('src', urlConfig.getImageCaptcha + '?account=' + registerPhoneV + '&time=' + Date.parse(new Date()));
 	                            }
-	                        }, 1000);
-	                    } else {
-	                        util.drawToast(res.msg);
-	                    }
-	                });
-	            } else {
-	                util.drawToast(res.msg);
+	                        });
+
+	                    });
+	                }else {
+	                    util.drawToast(res.msg);
+	                }
 	            }
 	        });
+
 
 	    });
 
 
-
-	});
+	})
 
 
 /***/ }

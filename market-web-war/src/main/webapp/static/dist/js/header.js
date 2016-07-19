@@ -406,10 +406,10 @@
 	/*
 	 * url配置文件
 	 * */
-	var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
+	//var BASE_URL = 'http://s1.service.zhigaokao.cn/'; //正式
 	//var BASE_URL = 'http://dev.service.zhigaokao.cn/';  //正式环境
 	//var BASE_URL = 'http://gx.dev.zhigaokao.cn/';
-	//var BASE_URL = 'http://172.16.160.73:8066/';  //测试环境
+	var BASE_URL = 'http://172.16.160.73:8066/';  //测试环境
 	//var BASE_URL = 'http://172.16.160.31:8080';  //小文本地
 	//var BASE_URL = 'http://172.16.160.82:8085';  //小文本地
 	//var BASE_URL = 'http://172.16.160.72:8089';  //左浩本地
@@ -420,7 +420,6 @@
 
 	//var BASE_URL = 'http://127.0.0.1:8080';
 	//var BASE_URL = '';
-
 	var interfaceUrl = {
 	    /*
 	     * ==================================================
@@ -532,6 +531,7 @@
 	    postConfirmAccountCode: '/register/confirmAccount',  // 确认是否注册
 	    postVerificationCode: '/captcha/captcha',   // 获取手机验证码
 	    postRetrievePassword: '/register/retrievePassword',   // 获取手机验证码
+	    getImageCaptcha: '/captcha/imageCaptcha.do',   // 获取图像验证码
 
 	    /**
 	     * 提交个人设置中心

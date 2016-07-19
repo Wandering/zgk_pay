@@ -56,25 +56,6 @@ module.exports = {
     plugins: [
         new CommonsChunkPlugin("commons.js",
             [
-                //"regLogin",
-                //"vipBuy",
-                //'vip',
-                //'code',
-                //'modifyUserDetail',
-                //'findPassword',
-                //'userDetail',
-                //'order',
-                //'policy',
-                //'policyDetail',
-                //'schoolInfo'
-
-
-
-
-
-
-
-
                 "vipBuy",
                 "vip",
                 "code",

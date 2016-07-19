@@ -200,3 +200,42 @@ header .location.location-icon:before {
   text-decoration: underline;
   margin-top: 13px;
 }
+
+
+
+.img-box{
+  padding:15px;
+  overflow: hidden;
+}
+#image-captcha{
+  display: inline-block;
+}
+#captcha-psd{
+  width:113px;
+  height:32px;
+  border:1px solid #ccc;
+  padding:4px;
+  margin:10px 6px 10px 0;
+  display: block;
+}
+
+#captcha-confirm,
+#close-modal{
+  width: 40%;
+  height: 43px;
+  line-height: 43px;
+  border: 1px solid #e9e4e4;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  color: #fff;
+  background: #dd514c;
+  font-size: 14px;
+  padding: 0;
+  margin:0 10px 0 0;
+}
+#imgTip{
+  margin:0 0 0 5px;
+}
+.imgCodeErr{
+  color: #F37B1D;
+}

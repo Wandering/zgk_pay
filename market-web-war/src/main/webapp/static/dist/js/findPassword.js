@@ -88,38 +88,118 @@ webpackJsonp([4],[
 	            util.drawToast('手机号有误,请重新输入');
 	            return false;
 	        }
-	        util.ajaxFun(urlConfig.postConfirmAccountCode, 'POST', {
-	            type: captchaType,
-	            account: registerPhoneV
-	        }, function (res) {
-	            if (res.rtnCode === "0000000") {
-	                util.ajaxFun(urlConfig.postVerificationCode, 'POST', {
-	                    type: captchaType,
-	                    account: registerPhoneV
-	                }, function (res) {
-	                    if (res.rtnCode === "0000000") {
-	                        _this.attr({
-	                            'background-color': '#ccc',
-	                            'disabled': true
-	                        });
-	                        var s = (JSON.parse(res.bizData)).time;
-	                        var timer = setInterval(function () {
-	                            s--;
-	                            _this.text(s + '秒后重新获取');
-	                            if (s <= 0) {
-	                                clearInterval(timer);
-	                                _this.text('重新获取').css('background-color', '#d80c18');
-	                                _this.attr('disabled', false)
+
+	        //图形验证码接口
+	        var formHtml = '' +
+	            '<div class="img-box">' +
+	            '<img src="' + urlConfig.getImageCaptcha + '?account=' + registerPhoneV + '" alt="" class="form-control" id="image-captcha">' +
+	            '<span id="imgTip">换一个?</span>' +
+	            '<input type="text" class="form-control" id="captcha-psd" placeholder="请输入图像验证码">' +
+	            '<button class="btn btn-primary" id="captcha-confirm" type="button">确认</button>' +
+	            '<button class="btn btn-primary" id="close-modal" type="button">取消</button>' +
+	            '<div class="imgCodeErr"></div>' +
+	            '</div>';
+
+
+	        $('body').on('click', '#imgTip', function () {
+	            $('#image-captcha').attr('src', urlConfig.getImageCaptcha + '?account=' + registerPhoneV + '&time=' + Date.parse(new Date()));
+	        });
+
+	        $.ajax({
+	            type: "POST",
+	            url: urlConfig.postConfirmAccountCode,
+	            dataType: 'json',
+	            async: false,
+	            data: {
+	                type: captchaType,
+	                account: registerPhoneV
+	            },
+	            success: function (res) {
+	                if (res.rtnCode === "0000000") {
+	                    util.confirmLayer('图片验证', formHtml);
+	                    $('.modal-footer').remove();
+	                    $('#captcha-confirm').unbind("click").on('click', function () {
+	                        var _self = $(this);
+	                        var imgCaptchaV = $.trim($('#captcha-psd').val());
+	                        if (imgCaptchaV == '') {
+	                            $('.imgCodeErr').text('图形验证码不能为空!');
+	                            return false;
+	                        }
+	                        if (imgCaptchaV.length != 6) {
+	                            $('.imgCodeErr').text('图形验证码输入有误!');
+	                            return false;
+	                        }
+	                        _self.attr('disabled',true);
+	                        util.ajaxFun(urlConfig.postVerificationCode, 'POST', {
+	                            type: captchaType,
+	                            account: registerPhoneV,
+	                            capText: imgCaptchaV
+	                        }, function (result) {
+	                            _self.attr('disabled',false);
+	                            if (result.rtnCode === "0000000") {
+	                                $('.imgCodeErr').text('');
+	                                $('.modal-backdrop,#dialogModal').remove();
+	                                _this.attr({
+	                                    'background-color': '#ccc',
+	                                    'disabled': true
+	                                });
+	                                var s = (JSON.parse(result.bizData)).time;
+	                                var timer = setInterval(function () {
+	                                    s--;
+	                                    _this.text(s + '秒后重新获取');
+	                                    if (s <= 0) {
+	                                        clearInterval(timer);
+	                                        _this.text('重新获取').css('background-color', '#d80c18');
+	                                        _this.attr('disabled', false)
+	                                    }
+	                                }, 1000);
+	                            } else {
+	                                $('.imgCodeErr').text(result.msg);
+	                                $('#image-captcha').attr('src', urlConfig.getImageCaptcha + '?account=' + registerPhoneV + '&time=' + Date.parse(new Date()));
 	                            }
-	                        }, 1000);
-	                    } else {
-	                        util.drawToast(res.msg);
-	                    }
-	                });
-	            } else {
-	                util.drawToast(res.msg);
+	                        });
+
+	                    });
+	                }else {
+	                    util.drawToast(res.msg);
+	                }
 	            }
 	        });
+
+
+
+	        //util.ajaxFun(urlConfig.postConfirmAccountCode, 'POST', {
+	        //    type: captchaType,
+	        //    account: registerPhoneV
+	        //}, function (res) {
+	        //    if (res.rtnCode === "0000000") {
+	        //        util.ajaxFun(urlConfig.postVerificationCode, 'POST', {
+	        //            type: captchaType,
+	        //            account: registerPhoneV
+	        //        }, function (res) {
+	        //            if (res.rtnCode === "0000000") {
+	        //                _this.attr({
+	        //                    'background-color': '#ccc',
+	        //                    'disabled': true
+	        //                });
+	        //                var s = (JSON.parse(res.bizData)).time;
+	        //                var timer = setInterval(function () {
+	        //                    s--;
+	        //                    _this.text(s + '秒后重新获取');
+	        //                    if (s <= 0) {
+	        //                        clearInterval(timer);
+	        //                        _this.text('重新获取').css('background-color', '#d80c18');
+	        //                        _this.attr('disabled', false)
+	        //                    }
+	        //                }, 1000);
+	        //            } else {
+	        //                util.drawToast(res.msg);
+	        //            }
+	        //        });
+	        //    } else {
+	        //        util.drawToast(res.msg);
+	        //    }
+	        //});
 
 	    });
 
