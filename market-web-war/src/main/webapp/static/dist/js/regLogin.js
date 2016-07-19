@@ -985,7 +985,7 @@ webpackJsonp([18],[
 	                                    _this.text(s + '秒后重新获取');
 	                                    if (s <= 0) {
 	                                        clearInterval(timer);
-	                                        _this.text('重新获取').css('background-color', '#d80c18');
+	                                        _this.text('重新获取');
 	                                        _this.attr('disabled', false)
 	                                    }
 	                                }, 1000);
