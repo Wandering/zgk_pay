@@ -95,9 +95,9 @@ webpackJsonp([4],[
 	            '<img src="' + urlConfig.getImageCaptcha + '?account=' + registerPhoneV + '" alt="" class="form-control" id="image-captcha">' +
 	            '<span id="imgTip">换一个?</span>' +
 	            '<input type="text" class="form-control" id="captcha-psd" placeholder="请输入图像验证码">' +
+	            '<div class="imgCodeErr"></div>' +
 	            '<button class="btn btn-primary" id="captcha-confirm" type="button">确认</button>' +
 	            '<button class="btn btn-primary" id="close-modal" type="button">取消</button>' +
-	            '<div class="imgCodeErr"></div>' +
 	            '</div>';
 
 
