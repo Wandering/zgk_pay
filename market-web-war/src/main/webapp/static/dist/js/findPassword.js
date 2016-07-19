@@ -92,8 +92,10 @@ webpackJsonp([4],[
 	        //图形验证码接口
 	        var formHtml = '' +
 	            '<div class="img-box">' +
+	            '<div class="img-group">' +
 	            '<img src="' + urlConfig.getImageCaptcha + '?account=' + registerPhoneV + '" alt="" class="form-control" id="image-captcha">' +
 	            '<span id="imgTip">换一个?</span>' +
+	            '</div>'+
 	            '<input type="text" class="form-control" id="captcha-psd" placeholder="请输入图像验证码">' +
 	            '<div class="imgCodeErr"></div>' +
 	            '<button class="btn btn-primary" id="captcha-confirm" type="button">确认</button>' +

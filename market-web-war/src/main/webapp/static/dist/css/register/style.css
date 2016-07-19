@@ -244,6 +244,10 @@ a, button, input {
   padding: 15px;
 }
 
+#image-captcha {
+  float: left;
+}
+
 #captcha-psd {
   width: 113px;
   height: 32px;

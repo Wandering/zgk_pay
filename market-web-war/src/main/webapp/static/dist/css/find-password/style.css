@@ -191,3 +191,7 @@ a, button, input {
 .mask .modal {
   margin-top: 60px;
 }
+
+#image-captcha {
+  float: left;
+}
