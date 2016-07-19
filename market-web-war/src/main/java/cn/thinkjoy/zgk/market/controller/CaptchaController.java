@@ -53,8 +53,7 @@ public class CaptchaController extends BaseCommonController {
             ModelUtil.throwException(ErrorCode.PARAM_ERROR);
         }
 
-        int count = userAccountExService.findUserAccountCountByPhone(
-            account, 0);
+        int count = userAccountExService.findUserAccountCountByPhone(account);
 
         // type=0为注册，type=1找回密码
         if(type == 0 && count > 0) {
