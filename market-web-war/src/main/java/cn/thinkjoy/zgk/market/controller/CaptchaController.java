@@ -4,7 +4,7 @@ import cn.thinkjoy.cloudstack.cache.RedisRepository;
 import cn.thinkjoy.push.domain.sms.SMSCheckCode;
 import cn.thinkjoy.push.service.sms.SMSService;
 import cn.thinkjoy.zgk.market.common.ModelUtil;
-import cn.thinkjoy.zgk.market.constant.CaptchaTimeConst;
+import cn.thinkjoy.zgk.market.constant.CaptchaConst;
 import cn.thinkjoy.zgk.market.constant.RedisConst;
 import cn.thinkjoy.zgk.market.edomain.ErrorCode;
 import cn.thinkjoy.zgk.market.service.IUserAccountExService;
@@ -49,15 +49,12 @@ public class CaptchaController extends BaseCommonController {
         @RequestParam(value="capText",required=false) String capText,
         @RequestParam(value="type",required=false) Integer type) throws Exception {
 
-        JSONObject result = new JSONObject();
-
         if(StringUtils.isEmpty(account) || type == null){
             ModelUtil.throwException(ErrorCode.PARAM_ERROR);
         }
 
         int count = userAccountExService.findUserAccountCountByPhone(
-            account,
-            0l);
+            account, 0);
 
         // type=0为注册，type=1找回密码
         if(type == 0 && count > 0) {
@@ -83,9 +80,10 @@ public class CaptchaController extends BaseCommonController {
         {
             ModelUtil.throwException(ErrorCode.IMAGE_CAPTCHA_NOT_EXIST_ERROR);
         }
-        long time = CaptchaTimeConst.CAPTCHA_TIME;
-        String timeKey  = RedisConst.CAPTCHA_AUTH_TIME_KEY+account;
 
+        long time = CaptchaConst.CAPTCHA_TIME;
+        String timeKey = RedisConst.CAPTCHA_AUTH_TIME_KEY + account;
+        JSONObject result = new JSONObject();
         // 验证码存在缓存中
         if(redis.exists(timeKey)){
             time = time -
@@ -97,11 +95,17 @@ public class CaptchaController extends BaseCommonController {
 
         String randomString = CaptchaUtil.getRandomNumString(6);
 
-        // 先用zgk短信渠道发送
+//        cn.thinkjoy.push.domain.sms.SMSCheckCode smsCheckCode = new cn.thinkjoy.push.domain.sms.SMSCheckCode();
+//        smsCheckCode.setPhone(account);
+//        smsCheckCode.setBizTarget(CaptchaConst.CAPTCHA_TARGET);
+//        smsCheckCode.setCheckCode(randomString);
+
+//        boolean smsResult = smsService.sendSMS(smsCheckCode,false);
+
         SMSCheckCode zgkSmsCheckCode = new SMSCheckCode();
         zgkSmsCheckCode.setPhone(account);
         zgkSmsCheckCode.setCheckCode(randomString);
-        zgkSmsCheckCode.setBizTarget(CaptchaTimeConst.CAPTCHA_TARGET);
+        zgkSmsCheckCode.setBizTarget(CaptchaConst.CAPTCHA_TARGET);
 
         boolean smsResult = zgkSmsService.sendSMS(zgkSmsCheckCode,false);
 
@@ -122,7 +126,6 @@ public class CaptchaController extends BaseCommonController {
         }
 
         result.put("time", time);
-
         return result.toJSONString();
     }
 
