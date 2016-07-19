@@ -137,7 +137,7 @@ public class CaptchaController extends BaseCommonController {
         response.setHeader("Pragma", "no-cache");
         response.setContentType("image/jpeg");
         String capText = captchaProducer.createText();
-        LOGGER.error("******************\"用户\" +account + 验证码是: " + capText + "******************");
+        LOGGER.error("******************用户" +account + "验证码是: " + capText + "******************");
         RedisRepository redis = RedisUtil.getInstance();
         String userImageCaptchaKey = RedisConst.USER_IMAGE_CAPTCHA_KEY + account;
         redis.set(userImageCaptchaKey, capText, 120, TimeUnit.SECONDS);
