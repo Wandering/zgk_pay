@@ -347,7 +347,7 @@ $(function () {
                             _self.attr('disabled',false);
                             if (result.rtnCode === "0000000") {
                                 $('.imgCodeErr').text('');
-                                $('.modal-backdrop,#dialogModal').remove();
+                                $('.mask').remove();
                                 _this.attr({
                                     'background-color': '#ccc',
                                     'disabled': true
