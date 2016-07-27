@@ -8,13 +8,12 @@ http_path = "/"
 css_dir = "/css"
 sass_dir = "/css"
 
-images_dir = "src/assets/img"
-generated_images_dir = "src/assets/img"
+images_dir = "/img"
+generated_images_dir = "/img"
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed
 output_style = :compressed
-
 # To enable relative paths to assets via compass helper functions. Uncomment:
 relative_assets = true
 

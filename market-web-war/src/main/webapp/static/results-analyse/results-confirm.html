@@ -4,13 +4,201 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="./css/results-confirm.css">
 </head>
 
 <body>
-    <!-- 输入成绩确认 -->
-    <!-- 总分设置 -->
-    <!-- 省份切换 -->
+    <!--成绩分析-->
+    <header class="header-title">成绩分析</header>
+    <div class="main-section1-container">
+        <div class="toggle-province">
+            <p class="location-tip">您当前的省份是<span>陕西省</span></p>
+            <div class="js-toggle"><i class="icon-toggle-location"></i> 切换省份
+                <i class="icon-bottom-arrow-0"></i></div>
+        </div>
+        <div class="flex-content">
+            <div class="subject-name">
+                <i class="icon-subject-name"></i><span class="name">科目：</span>
+                <input type="checkbox" id="wk" name="wk" />
+                <label for="wk">文科</label>
+                <input type="checkbox" id="lk" name="lk" />
+                <label for="lk">理科</label>
+            </div>
+            <div class="each-subject-score m15">
+                <i class="icon-subject-score"></i>
+                <span class="each-name">各科成绩：</span>
+            </div>
+            <div class="flex-container">
+                <div class="flex-block m15">
+                    <div class="col-1">
+                        <div class="flex-block">
+                            <div class="col-1 subject-label-name">语文</div>
+                            <div class="input-score-box col-3">
+                                <input type="tel" value="150" name="input-score" maxlength="3">
+                                <span class="full-mark">满分150</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <div class="flex-block">
+                            <div class="col-1 subject-label-name">语文</div>
+                            <div class="input-score-box col-3">
+                                <input type="tel" value="150" name="input-score" maxlength="3">
+                                <span class="full-mark">满分150</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-block m15">
+                    <div class="col-1">
+                        <div class="flex-block">
+                            <div class="col-1 subject-label-name">语文</div>
+                            <div class="input-score-box col-3">
+                                <input type="tel" value="150" name="input-score" maxlength="3">
+                                <span class="full-mark">满分150</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <div class="flex-block">
+                            <div class="col-1 subject-label-name">语文</div>
+                            <div class="input-score-box col-3">
+                                <input type="tel" value="150" name="input-score" maxlength="3">
+                                <span class="full-mark">满分150</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-block m15">
+                    <div class="col-1">
+                        <div class="flex-block">
+                            <div class="col-1 subject-label-name">语文</div>
+                            <div class="input-score-box col-3">
+                                <input type="tel" value="150" name="input-score" maxlength="3">
+                                <span class="full-mark">满分150</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <div class="flex-block">
+                            <div class="col-1 subject-label-name">语文</div>
+                            <div class="input-score-box col-3">
+                                <input type="tel" value="150" name="input-score" maxlength="3">
+                                <span class="full-mark">满分150</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="setting-score-link">设置各科满分成绩</div>
+        <div class="btn-score-analyse">成绩分析</div>
+    </div>
+
+
+    <!--各科成绩满分-->
+    <div class="main-setion2-container hide">
+        <div class="each-subject-score">
+            <i class="icon-subject-score"></i>
+            <span class="each-name">各科成绩满分:</span>
+        </div>
+        <div class="flex-content">
+            <div class="flex-block m15">
+                <div class="col-1">
+                    <div class="flex-block">
+                        <div class="col-1 subject-full-name">语文</div>
+                        <div class="col-3">
+                            <input type="tel" name="input-full-score" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="flex-block">
+                        <div class="col-1 subject-full-name">语文</div>
+                        <div class="col-3">
+                            <input type="tel" name="input-full-score" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-block m15">
+                <div class="col-1">
+                    <div class="flex-block">
+                        <div class="col-1 subject-full-name">语文</div>
+                        <div class="col-3">
+                            <input type="tel" name="input-full-score" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="flex-block">
+                        <div class="col-1 subject-full-name">语文</div>
+                        <div class="col-3">
+                            <input type="tel" name="input-full-score" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-block m15">
+                <div class="col-1">
+                    <div class="flex-block">
+                        <div class="col-1 subject-full-name">语文</div>
+                        <div class="col-3">
+                            <input type="tel" name="input-full-score" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="flex-block">
+                        <div class="col-1 subject-full-name">语文</div>
+                        <div class="col-3">
+                            <input type="tel" name="input-full-score" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="save-full-score">保存</div>
+    </div>
+
+    <!--省份弹层-->
+    <div class="mask-province-model hide">
+        <div class="flex-block">
+            <div class="col-1">
+                内蒙古
+            </div>
+            <div class="col-1">
+                内蒙古
+            </div>
+            <div class="col-1">
+                内蒙古
+            </div>
+            <div class="col-1">
+                内蒙古
+            </div>
+            <div class="col-1">
+                内蒙古
+            </div>
+            <div class="col-1">
+                内蒙古
+            </div>
+            <div class="col-1">
+                内蒙古
+            </div>
+            <div class="col-1">
+                内蒙古
+            </div>
+            <div class="col-1">
+                内蒙古
+            </div>
+            <div class="col-1">
+                内蒙古
+            </div>
+
+        </div>
+    </div>
+    <div class="mask hide"></div>
 
     <script src="js/results-confirm.js"></script>
 </body>

@@ -10,7 +10,6 @@ caption,
 center,
 dd,
 details,
-div,
 dl,
 dt,
 em,
@@ -96,15 +95,6 @@ video {
 img {
     border: none;
 }
-/*允许表单选择*/
-input,
-textarea {
-    -webkit-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
-    /*紧急处理之前项目bug，待改进*/
-    -webkit-appearance: none;
-}
 button:focus,
 input:focus,
 select:focus,
@@ -140,4 +130,42 @@ i {
 }
 li {
     list-style: none;
+}
+// radio & checkbox  ==== reset
+// <input type="checkbox" id="check" name="check" /> <label for="check">Checkbox</label>
+input[type=checkbox] {
+    display: none;
+}
+input[type=checkbox] + label:before {
+    content: "";
+    border: 1px solid #919191;
+    font-size: 11px;
+    line-height: 10px;
+    margin: 0 5px 0 0;
+    height: 10px;
+    width: 10px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 1px 3px;
+}
+input[type=checkbox]:checked + label:before {
+    content: "\2713";
+}
+input[type=checkbox] + label:before {
+    content: "\2713";
+    color: transparent;
+    transition: color ease 0.3s;
+}
+input[type=checkbox]:checked + label:before {
+    color: #333;
+}
+input[type=radio] + label:before {
+    content: "\26AB";
+    border: 1px solid #919191;
+    border-radius: 50%;
+    font-size: 0;
+    transition: font-size ease 0.3s;
+}
+input[type=radio]:checked + label:before {
+    font-size: 10px;
 }
