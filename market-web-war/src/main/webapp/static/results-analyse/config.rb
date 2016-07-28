@@ -13,12 +13,16 @@ generated_images_dir = "/img"
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed
-output_style = :compressed
+# output_style = :compressed
 # To enable relative paths to assets via compass helper functions. Uncomment:
 relative_assets = true
 
 # To disable debugging comments that display the original location of your selectors. Uncomment:
 line_comments = false
+
+#setting catch .sass-cache
+cache = false
+
 
 # @see http://stackoverflow.com/questions/14173242/remove-the-random-string-appended-to-sprite-filename-with-compass-sass
 module Compass::SassExtensions::Functions::Sprites

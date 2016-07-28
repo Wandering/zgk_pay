@@ -1,8 +1,9 @@
 @charset "utf-8";
 @import "./reset";
-@import "./variables";
 @import "./sprites";
 @import "./flex";
+$mainRed:#D80C18;
+$mainWidth:80%;
 [class^="i-"],
 [class^="icon-"] {
     display: inline-block;
@@ -17,6 +18,16 @@ html {
 }
 .v-hide {
     visibility: hidden;
+}
+//顶部header
+.header-title {
+    width: 100%;
+    height: 46px;
+    line-height: 46px;
+    font-size: 20px;
+    color: #fff;
+    background-color: $mainRed;
+    text-align: center;
 }
 //===================================================
 //====================常用动画========================
