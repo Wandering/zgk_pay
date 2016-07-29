@@ -10,8 +10,8 @@
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
         <sourceRoots>
-          <root url="file://$MODULE_DIR$/src/main/resources" />
           <root url="file://$MODULE_DIR$/src/main/java" />
+          <root url="file://$MODULE_DIR$/src/main/resources" />
         </sourceRoots>
       </configuration>
     </facet>
@@ -115,6 +115,7 @@
     <orderEntry type="library" exported="" name="Gradle: com.github.penggle:kaptcha:2.3.2" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.jhlabs:filters:2.0.235-1" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.google.guava:guava:18.0" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Gradle: javax.servlet:servlet-api:2.5" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: javax.servlet:servlet-api:2.5" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.pentahohub.nexus:alipay-sdk-java:20150820220052" level="project" />
   </component>
 </module>
