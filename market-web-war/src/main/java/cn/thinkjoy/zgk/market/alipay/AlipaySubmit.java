@@ -90,8 +90,8 @@ public class AlipaySubmit {
      */
     public static String buildRequest(Map<String, String> sParaTemp, String strMethod, String strButtonName, String strParaFileName) {
         //待请求参数数组
-        Map<String, String> sPara = buildRequestPara(sParaTemp);
-        List<String> keys = new ArrayList<String>(sPara.keySet());
+//        Map<String, String> sPara = buildRequestPara(sParaTemp);
+        List<String> keys = new ArrayList<String>(sParaTemp.keySet());
 
         StringBuffer sbHtml = new StringBuffer();
 
@@ -101,7 +101,7 @@ public class AlipaySubmit {
 
         for (int i = 0; i < keys.size(); i++) {
             String name = (String) keys.get(i);
-            String value = (String) sPara.get(name);
+            String value = (String) sParaTemp.get(name);
 
             sbHtml.append("<input type=\"hidden\" name=\"" + name + "\" value=\"" + value + "\"/>");
         }
@@ -126,7 +126,7 @@ public class AlipaySubmit {
      */
     public static String buildRequest(String strParaFileName, String strFilePath,Map<String, String> sParaTemp) throws Exception {
         //待请求参数数组
-        Map<String, String> sPara = buildRequestPara(sParaTemp);
+//        Map<String, String> sPara = buildRequestPara(sParaTemp);
 
         HttpProtocolHandler httpProtocolHandler = HttpProtocolHandler.getInstance();
 
@@ -134,7 +134,7 @@ public class AlipaySubmit {
         //设置编码集
         request.setCharset(AlipayConfig.input_charset);
 
-        request.setParameters(generatNameValuePair(sPara));
+        request.setParameters(generatNameValuePair(sParaTemp));
         request.setUrl(ALIPAY_GATEWAY_NEW+"_input_charset="+AlipayConfig.input_charset);
 
         HttpResponse response = httpProtocolHandler.execute(request,strParaFileName,strFilePath);

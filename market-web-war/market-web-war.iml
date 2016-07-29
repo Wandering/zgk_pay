@@ -116,6 +116,6 @@
     <orderEntry type="library" exported="" name="Gradle: com.jhlabs:filters:2.0.235-1" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.google.guava:guava:18.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: javax.servlet:servlet-api:2.5" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: com.pentahohub.nexus:alipay-sdk-java:20150820220052" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: :alipay-sdk-java:" level="project" />
   </component>
 </module>
