@@ -1,17 +1,10 @@
 package cn.thinkjoy.zgk.market.alipay;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+import org.apache.commons.httpclient.NameValuePair;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.httpclient.NameValuePair;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Node;
-import org.dom4j.io.SAXReader;
 
 /**
  * Created by liusven on 16/7/28.
@@ -167,40 +160,6 @@ public class AlipaySubmit {
         }
 
         return nameValuePair;
-    }
-
-    /**
-     * 用于防钓鱼，调用接口query_timestamp来获取时间戳的处理函数
-     * 注意：远程解析XML出错，与服务器是否支持SSL等配置有关
-     * @return 时间戳字符串
-     * @throws IOException
-     * @throws DocumentException
-     * @throws MalformedURLException
-     */
-    public static String query_timestamp() throws MalformedURLException,
-        DocumentException, IOException {
-
-        //构造访问query_timestamp接口的URL串
-        String strUrl = ALIPAY_GATEWAY_NEW + "service=query_timestamp&partner=" + AlipayConfig.partner + "&_input_charset" +AlipayConfig.input_charset;
-        StringBuffer result = new StringBuffer();
-
-        SAXReader reader = new SAXReader();
-        Document doc = reader.read(new URL(strUrl).openStream());
-
-        List<Node> nodeList = doc.selectNodes("//alipay/*");
-
-        for (Node node : nodeList) {
-            // 截取部分不需要解析的信息
-            if (node.getName().equals("is_success") && node.getText().equals("T")) {
-                // 判断是否有成功标示
-                List<Node> nodeList1 = doc.selectNodes("//response/timestamp/*");
-                for (Node node1 : nodeList1) {
-                    result.append(node1.getText());
-                }
-            }
-        }
-
-        return result.toString();
     }
 }
 
